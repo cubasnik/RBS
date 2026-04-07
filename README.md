@@ -589,6 +589,4 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 | 3GPP TS 32.600      | OMS: Network Resource Model                          |
 | 3GPP TS 28.623      | OMS: IOC (Information Object Classes)                |
 
----
 
-*Проект выполнен в учебных и исследовательских целях. Не предназначен для использования в реальной радиосети.*

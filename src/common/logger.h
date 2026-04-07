@@ -117,29 +117,32 @@ public:
         std::string lv  = levelStr(level);
         std::string msg = ts + " [" + lv + "] [" + component + "] " + bodyText;
 
-        // Coloured output for the console.
+        // Coloured output for the console:
+        //   timestamp  → white
+        //   [LEVEL]    → level colour (yellow for INFO, etc.)
+        //   [cmp] msg  → green when bodyText contains a completed-action keyword,
+        //                default otherwise.
+        bool isGreen = logIsCompletedAction(bodyText);
         std::string coloured;
-        if (logIsCompletedAction(bodyText)) {
-            // Entire line in green.
-            coloured  = ansiGreen();
-            coloured += msg;
-            coloured += ansiReset();
-        } else {
-            // Timestamp: white  |  [LEVEL]: level colour  |  rest: default.
-            coloured  = ansiWhite();
-            coloured += ts;
-            coloured += ansiReset();
-            coloured += " ";
-            coloured += logLevelColour(level);
-            coloured += "[";
-            coloured += lv;
-            coloured += "]";
-            coloured += ansiReset();
-            coloured += " [";
-            coloured += component;
-            coloured += "] ";
-            coloured += bodyText;
-        }
+        // Timestamp: white
+        coloured  = ansiWhite();
+        coloured += ts;
+        coloured += ansiReset();
+        coloured += " ";
+        // [LEVEL]: level colour
+        coloured += logLevelColour(level);
+        coloured += "[";
+        coloured += lv;
+        coloured += "]";
+        coloured += ansiReset();
+        coloured += " ";
+        // [component] message: green or default
+        if (isGreen) coloured += ansiGreen();
+        coloured += "[";
+        coloured += component;
+        coloured += "] ";
+        coloured += bodyText;
+        if (isGreen) coloured += ansiReset();
 
         std::lock_guard<std::mutex> lock(mutex_);
         std::cout << coloured << "\n";
