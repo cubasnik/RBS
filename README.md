@@ -343,26 +343,24 @@ OMS (синглтон)
 #### Класс `RadioBaseStation`
 
 ```
-RadioBaseStation(configPath)
+RadioBaseStation(configPath, mode)         ← mode: GSM | UMTS | LTE | ALL
  │
- ├── Config::instance().loadFile()        ← читает rbs.conf
- ├── RFHardware(2Tx,2Rx) × 3             ← три RF-фронтенда
- ├── setAlarmCallback() → OMS            ← аппаратные аварии
- ├── GSMStack / UMTSStack / LTEStack
+ ├── Config::instance().loadFile()         ← читает rbs.conf
+ ├── if GSM/ALL:  RFHardware(2Tx,2Rx) + GSMStack
+ ├── if UMTS/ALL: RFHardware(2Tx,2Rx) + UMTSStack
+ ├── if LTE/ALL:  RFHardware(2Tx,4Rx) + LTEStack
+ ├── setAlarmCallback() → OMS              ← аппаратные аварии
  │
  ├── start()
  │   ├── OMS → UNLOCKED
- │   ├── rf.initialise() + selfTest() × 3
- │   └── gsmStack/umtsStack/lteStack → start()
+ │   ├── rf.initialise() + selfTest()  (только активные RAT)
+ │   ├── запуск выбранных стеков
+ │   └── баннер ONLINE [GSM (2G) | UMTS (3G) | LTE (4G) | …]
  │
  ├── runDemo()
- │   ├── admitUE GSM  (IMSI=100000000000001)
- │   ├── admitUE UMTS (IMSI=200000000000002)
- │   ├── admitUE LTE  (IMSI=300000000000003, CQI=12)
- │   ├── sleep(2s)
- │   ├── printStats() × 3
- │   ├── OMS.printPerformanceReport()
- │   └── releaseUE × 3
+ │   └── для каждого активного RAT:
+ │       admitUE → отправить данные → sleep(2s) → printStats() → releaseUE
+ │       OMS.printPerformanceReport()
  │
  └── mainLoop()
      └── каждые 30 с: OMS.printPerformanceReport()
@@ -373,11 +371,12 @@ RadioBaseStation(configPath)
 ```cpp
 int main(int argc, char* argv[]) {
     // 1. Установка обработчиков сигналов (SIGINT, SIGTERM)
-    // 2. Инициализация логгера (уровень + имя файла из конфига)
-    // 3. Создание и запуск RadioBaseStation
-    // 4. runDemo() — демонстрация работы всех трёх RAT
+    // 2. Парсинг argv[1]=configPath, argv[2]=rat (gsm|umts|lte)
+    //    если argv[2] отсутствует или неизвестен — режим ALL
+    // 3. Создание и запуск RadioBaseStation(configPath, rat)
+    // 4. runDemo() — демонстрация работы выбранного RAT
     // 5. mainLoop() — периодические PM-отчёты до Ctrl+C
-    // 6. stop() — остановка всех стеков и потоков
+    // 6. stop() — остановка активных стеков и потоков
 }
 ```
 
@@ -498,7 +497,10 @@ cmake --build build --config Release
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j$(nproc)
 
-./build/rbs_node rbs.conf
+./build/rbs_node rbs.conf gsm    # только GSM
+./build/rbs_node rbs.conf umts   # только UMTS
+./build/rbs_node rbs.conf lte    # только LTE
+./build/rbs_node rbs.conf        # все три RAT
 ```
 
 ### Опции CMake
@@ -537,16 +539,17 @@ cmake --build build -j$(nproc)
 
 **Пример вывода (режим `lte`):**
 ```
-2026-04-07 16:40:05 [INFO ] [RBS] Radio Base Station v1.0.0 starting...
-2026-04-07 16:40:05 [INFO ] [RBS] Config: rbs.conf  RAT: LTE (4G)
-2026-04-07 16:40:05 [INFO ] [Config] Loaded configuration from rbs.conf
-2026-04-07 16:40:05 [INFO ] [OMS] Node state → UNLOCKED
-2026-04-07 16:40:05 [INFO ] [RFHardware] Self-test PASSED
-2026-04-07 16:40:05 [INFO ] [LTEStack] LTE cell 3 started
-2026-04-07 16:40:05 [INFO ] [RBS] ====================================================
-2026-04-07 16:40:05 [INFO ] [RBS]   Radio Base Station ONLINE  [LTE (4G)]
-2026-04-07 16:40:05 [INFO ] [RBS]   LTE  cell 3  EARFCN=1300  PCI=36  BW=20 MHz
-2026-04-07 16:40:05 [INFO ] [RBS] ====================================================
+2026-04-08 00:32:03.829 [INFO ] [RBS] Radio Base Station v1.0.0 starting...
+2026-04-08 00:32:03.830 [INFO ] [RBS] Config: rbs.conf  RAT: LTE (4G)
+2026-04-08 00:32:03.831 [INFO ] [Config] Loaded configuration from rbs.conf
+2026-04-08 00:32:03.831 [INFO ] [OMS] Node state → UNLOCKED
+2026-04-08 00:32:03.832 [INFO ] [RFHardware] Self-test PASSED
+2026-04-08 00:32:03.859 [INFO ] [LTEStack] LTE cell 3 started (PCI=300, BW=100 RBs)
+2026-04-08 00:32:03.859 [INFO ] [RBS] ====================================================
+2026-04-08 00:32:03.859 [INFO ] [RBS]   Radio Base Station ONLINE  [LTE (4G)]
+2026-04-08 00:32:03.859 [INFO ] [RBS]   LTE  cell 3  EARFCN=1800  PCI=300  BW=20 MHz
+2026-04-08 00:32:03.859 [INFO ] [RBS] ====================================================
+2026-04-08 00:32:03.860 [INFO ] [RBS] [LTE ] UE RNTI=1 admitted on EARFCN=1800 PCI=300 CQI=12 → MCS=17
 ```
 
 ---
