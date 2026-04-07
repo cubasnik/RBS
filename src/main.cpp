@@ -156,7 +156,7 @@ public:
             gsmStack_->sendData(rnti, voice);
             RBS_LOG_INFO("RBS", "[GSM ] UE RNTI=", rnti,
                          " admitted on ARFCN=", gsmStack_->config().arfcn,
-                         " BSIC=", gsmStack_->config().bsic);
+                         " BSIC=", +gsmStack_->config().bsic);
             std::this_thread::sleep_for(std::chrono::seconds(2));
             gsmStack_->printStats();
             oms.updateCounter("gsm.connectedUEs",

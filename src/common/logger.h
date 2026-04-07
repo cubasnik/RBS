@@ -63,28 +63,57 @@ inline const char* ansiRed()       { return "\033[91m"; }
 inline const char* ansiMagenta()   { return "\033[95m"; }
 inline const char* ansiLightBlue() { return "\033[38;5;153m"; }
 
-// Wrap every run of digits (incl. decimals like 43.0) in green,
-// returning to baseColour for the surrounding text.
+// Wrap tokens in green:
+//  - version strings:  v1.0.0
+//  - RAT generation:   2G / 3G / 4G
+//  - freq with unit:   947 MHz / 902 MHz
+//  - bare numbers:     60, 300, 1, 0, 43.0
+// All other text uses baseColour.
 inline std::string colouriseNumbers(const std::string& text, const char* baseColour) {
     std::string result;
     result += baseColour;
     size_t i = 0;
     while (i < text.size()) {
         unsigned char c = static_cast<unsigned char>(text[i]);
-        if (std::isdigit(c)) {
+
+        // Version string: v<digits>[.<digits>]*  e.g. v1.0.0
+        if (text[i] == 'v' && i + 1 < text.size() &&
+            std::isdigit(static_cast<unsigned char>(text[i + 1]))) {
             result += ansiGreen();
+            result += text[i++]; // 'v'
             while (i < text.size()) {
-                unsigned char d = static_cast<unsigned char>(text[i]);
-                bool isDecimalDot = (text[i] == '.' &&
-                                     i + 1 < text.size() &&
-                                     std::isdigit(static_cast<unsigned char>(text[i+1])));
-                if (std::isdigit(d) || isDecimalDot)
+                bool dot = (text[i] == '.' && i + 1 < text.size() &&
+                            std::isdigit(static_cast<unsigned char>(text[i + 1])));
+                if (std::isdigit(static_cast<unsigned char>(text[i])) || dot)
                     result += text[i++];
                 else
                     break;
             }
             result += baseColour;
-        } else {
+        }
+        // Digit run  →  check suffix: G (2G/3G/4G)  or  " MHz"
+        else if (std::isdigit(c)) {
+            result += ansiGreen();
+            while (i < text.size()) {
+                bool dot = (text[i] == '.' && i + 1 < text.size() &&
+                            std::isdigit(static_cast<unsigned char>(text[i + 1])));
+                if (std::isdigit(static_cast<unsigned char>(text[i])) || dot)
+                    result += text[i++];
+                else
+                    break;
+            }
+            // "G" suffix  (2G, 3G, 4G)
+            if (i < text.size() && text[i] == 'G') {
+                result += text[i++];
+            }
+            // " MHz" suffix
+            else if (i + 4 <= text.size() && text.substr(i, 4) == " MHz") {
+                result += " MHz";
+                i += 4;
+            }
+            result += baseColour;
+        }
+        else {
             result += text[i++];
         }
     }
