@@ -13,6 +13,8 @@
 #include <thread>
 #include <chrono>
 #include <memory>
+#include <string>
+#include <algorithm>
 
 // ────────────────────────────────────────────────────────────────
 // Signal handler for graceful shutdown (SIGINT / SIGTERM)
@@ -25,128 +27,176 @@ static void signalHandler(int sig) {
 }
 
 // ────────────────────────────────────────────────────────────────
+// Helpers
+// ────────────────────────────────────────────────────────────────
+static const char* lteBwMHz(rbs::LTEBandwidth bw) {
+    switch (bw) {
+        case rbs::LTEBandwidth::BW1_4: return "1.4";
+        case rbs::LTEBandwidth::BW3:   return "3";
+        case rbs::LTEBandwidth::BW5:   return "5";
+        case rbs::LTEBandwidth::BW10:  return "10";
+        case rbs::LTEBandwidth::BW15:  return "15";
+        case rbs::LTEBandwidth::BW20:  return "20";
+    }
+    return "?";
+}
+
+// ────────────────────────────────────────────────────────────────
+// RAT selection
+// ────────────────────────────────────────────────────────────────
+enum class SelectedRAT { GSM, UMTS, LTE, ALL };
+
+static SelectedRAT parseRAT(const std::string& arg) {
+    std::string s = arg;
+    std::transform(s.begin(), s.end(), s.begin(), ::tolower);
+    if (s == "gsm")  return SelectedRAT::GSM;
+    if (s == "umts") return SelectedRAT::UMTS;
+    if (s == "lte")  return SelectedRAT::LTE;
+    return SelectedRAT::ALL;
+}
+
+static const char* ratName(SelectedRAT r) {
+    switch (r) {
+        case SelectedRAT::GSM:  return "GSM (2G)";
+        case SelectedRAT::UMTS: return "UMTS (3G)";
+        case SelectedRAT::LTE:  return "LTE (4G)";
+        case SelectedRAT::ALL:  return "GSM + UMTS + LTE";
+    }
+    return "";
+}
+
+// ────────────────────────────────────────────────────────────────
 // RBS – Radio Base Station top-level controller
 // ────────────────────────────────────────────────────────────────
 class RadioBaseStation {
 public:
-    explicit RadioBaseStation(const std::string& configPath) {
+    explicit RadioBaseStation(const std::string& configPath, SelectedRAT rat)
+        : rat_(rat)
+    {
         auto& cfg = rbs::Config::instance();
         if (!configPath.empty()) cfg.loadFile(configPath);
 
-        // Shared RF hardware (one frontend per RAT in a real system;
-        // here we share one simulated instance to keep the demo compact)
-        gsmRF_  = std::make_shared<rbs::hal::RFHardware>(2, 2);
-        umtsRF_ = std::make_shared<rbs::hal::RFHardware>(2, 2);
-        lteRF_  = std::make_shared<rbs::hal::RFHardware>(2, 4);
-
-        // Wire hardware alarms into OMS
         auto alarmCb = [](rbs::HardwareStatus s, const std::string& msg) {
             rbs::oms::AlarmSeverity sev = rbs::oms::AlarmSeverity::WARNING;
             if (s == rbs::HardwareStatus::FAULT)
                 sev = rbs::oms::AlarmSeverity::CRITICAL;
             rbs::oms::OMS::instance().raiseAlarm("RFHardware", msg, sev);
         };
-        gsmRF_->setAlarmCallback(alarmCb);
-        umtsRF_->setAlarmCallback(alarmCb);
-        lteRF_->setAlarmCallback(alarmCb);
 
-        // Build stacks from config
-        gsmStack_  = std::make_unique<rbs::gsm::GSMStack> (gsmRF_,  cfg.buildGSMConfig());
-        umtsStack_ = std::make_unique<rbs::umts::UMTSStack>(umtsRF_, cfg.buildUMTSConfig());
-        lteStack_  = std::make_unique<rbs::lte::LTEStack>  (lteRF_,  cfg.buildLTEConfig());
+        if (rat_ == SelectedRAT::GSM || rat_ == SelectedRAT::ALL) {
+            gsmRF_ = std::make_shared<rbs::hal::RFHardware>(2, 2);
+            gsmRF_->setAlarmCallback(alarmCb);
+            gsmStack_ = std::make_unique<rbs::gsm::GSMStack>(gsmRF_, cfg.buildGSMConfig());
+        }
+        if (rat_ == SelectedRAT::UMTS || rat_ == SelectedRAT::ALL) {
+            umtsRF_ = std::make_shared<rbs::hal::RFHardware>(2, 2);
+            umtsRF_->setAlarmCallback(alarmCb);
+            umtsStack_ = std::make_unique<rbs::umts::UMTSStack>(umtsRF_, cfg.buildUMTSConfig());
+        }
+        if (rat_ == SelectedRAT::LTE || rat_ == SelectedRAT::ALL) {
+            lteRF_ = std::make_shared<rbs::hal::RFHardware>(2, 4);
+            lteRF_->setAlarmCallback(alarmCb);
+            lteStack_ = std::make_unique<rbs::lte::LTEStack>(lteRF_, cfg.buildLTEConfig());
+        }
     }
 
     // ── Lifecycle ─────────────────────────────────────────────────
     bool start() {
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::UNLOCKED);
 
-        // Initialise and self-test RF frontends
-        for (auto& rf : {gsmRF_, umtsRF_, lteRF_}) {
-            if (!rf->initialise() || !rf->selfTest()) {
-                RBS_LOG_CRITICAL("RBS", "RF hardware initialisation failed – aborting");
-                return false;
-            }
-        }
+        auto initRF = [](std::shared_ptr<rbs::hal::RFHardware>& rf) -> bool {
+            return rf && rf->initialise() && rf->selfTest();
+        };
 
-        // Start protocol stacks
-        if (!gsmStack_->start())  { RBS_LOG_CRITICAL("RBS", "GSM stack start failed");  return false; }
-        if (!umtsStack_->start()) { RBS_LOG_CRITICAL("RBS", "UMTS stack start failed"); return false; }
-        if (!lteStack_->start())  { RBS_LOG_CRITICAL("RBS", "LTE stack start failed");  return false; }
+        if (gsmRF_  && !initRF(gsmRF_))  { RBS_LOG_CRITICAL("RBS", "GSM RF init failed");  return false; }
+        if (umtsRF_ && !initRF(umtsRF_)) { RBS_LOG_CRITICAL("RBS", "UMTS RF init failed"); return false; }
+        if (lteRF_  && !initRF(lteRF_))  { RBS_LOG_CRITICAL("RBS", "LTE RF init failed");  return false; }
+
+        if (gsmStack_  && !gsmStack_->start())  { RBS_LOG_CRITICAL("RBS", "GSM stack start failed");  return false; }
+        if (umtsStack_ && !umtsStack_->start()) { RBS_LOG_CRITICAL("RBS", "UMTS stack start failed"); return false; }
+        if (lteStack_  && !lteStack_->start())  { RBS_LOG_CRITICAL("RBS", "LTE stack start failed");  return false; }
 
         RBS_LOG_INFO("RBS", "====================================================");
-        RBS_LOG_INFO("RBS", "  Radio Base Station ONLINE");
-        RBS_LOG_INFO("RBS", "  GSM  cell ", gsmStack_->config().cellId,
-                     "  ARFCN=",  gsmStack_->config().arfcn);
-        RBS_LOG_INFO("RBS", "  UMTS cell ", umtsStack_->config().cellId,
-                     "  UARFCN=", umtsStack_->config().uarfcn);
-        RBS_LOG_INFO("RBS", "  LTE  cell ", lteStack_->config().cellId,
-                     "  EARFCN=", lteStack_->config().earfcn,
-                     "  PCI=",    lteStack_->config().pci);
+        RBS_LOG_INFO("RBS", "  Radio Base Station ONLINE  [", ratName(rat_), "]");
+        if (gsmStack_)
+            RBS_LOG_INFO("RBS", "  GSM  cell ", gsmStack_->config().cellId,
+                         "  ARFCN=",  gsmStack_->config().arfcn,
+                         "  DL=",     gsmStack_->config().arfcn * 0.2 + 935.0, " MHz");
+        if (umtsStack_)
+            RBS_LOG_INFO("RBS", "  UMTS cell ", umtsStack_->config().cellId,
+                         "  UARFCN=", umtsStack_->config().uarfcn,
+                         "  PSC=",    umtsStack_->config().primaryScrCode);
+        if (lteStack_)
+            RBS_LOG_INFO("RBS", "  LTE  cell ", lteStack_->config().cellId,
+                         "  EARFCN=", lteStack_->config().earfcn,
+                         "  PCI=",    lteStack_->config().pci,
+                         "  BW=",     lteBwMHz(lteStack_->config().bandwidth), " MHz");
         RBS_LOG_INFO("RBS", "====================================================");
         return true;
     }
 
     void stop() {
-        RBS_LOG_INFO("RBS", "Stopping all cells...");
+        RBS_LOG_INFO("RBS", "Stopping cell(s)...");
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::SHUTTING_DOWN);
-        lteStack_->stop();
-        umtsStack_->stop();
-        gsmStack_->stop();
-        lteRF_->shutdown();
-        umtsRF_->shutdown();
-        gsmRF_->shutdown();
+        if (lteStack_)  { lteStack_->stop();  lteRF_->shutdown(); }
+        if (umtsStack_) { umtsStack_->stop(); umtsRF_->shutdown(); }
+        if (gsmStack_)  { gsmStack_->stop();  gsmRF_->shutdown(); }
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::LOCKED);
         RBS_LOG_INFO("RBS", "Radio Base Station OFFLINE");
     }
 
-    // ── Demo: admit test UEs and exchange data ────────────────────
+    // ── Demo ─────────────────────────────────────────────────────
     void runDemo() {
-        RBS_LOG_INFO("RBS", "--- Running multi-RAT demo ---");
+        RBS_LOG_INFO("RBS", "--- Running demo [", ratName(rat_), "] ---");
+        auto& oms = rbs::oms::OMS::instance();
 
-        // Admit one UE per RAT
-        rbs::RNTI gsmRnti  = gsmStack_->admitUE(100000000000001ULL);
-        rbs::RNTI umtsRnti = umtsStack_->admitUE(200000000000002ULL);
-        rbs::RNTI lteRnti  = lteStack_->admitUE(300000000000003ULL, 12);
-
-        // Simulate CQI feedback for LTE UE
-        lteStack_->updateCQI(lteRnti, 12);
-
-        // Send IP packets over LTE
-        for (int i = 0; i < 3; ++i) {
-            rbs::ByteBuffer pkt(100, static_cast<uint8_t>(i));
-            lteStack_->sendIPPacket(lteRnti, 1, pkt);
+        if (gsmStack_) {
+            rbs::RNTI rnti = gsmStack_->admitUE(100000000000001ULL);
+            rbs::ByteBuffer voice(13, 0xAA);
+            gsmStack_->sendData(rnti, voice);
+            RBS_LOG_INFO("RBS", "[GSM ] UE RNTI=", rnti,
+                         " admitted on ARFCN=", gsmStack_->config().arfcn,
+                         " BSIC=", gsmStack_->config().bsic);
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            gsmStack_->printStats();
+            oms.updateCounter("gsm.connectedUEs",
+                              static_cast<double>(gsmStack_->connectedUECount()));
+            gsmStack_->releaseUE(rnti);
         }
 
-        // Send voice data over GSM (TCH payload)
-        rbs::ByteBuffer voice(13, 0xAA);
-        gsmStack_->sendData(gsmRnti, voice);
+        if (umtsStack_) {
+            rbs::RNTI rnti = umtsStack_->admitUE(200000000000002ULL);
+            rbs::ByteBuffer data(32, 0xBB);
+            umtsStack_->sendData(rnti, data);
+            RBS_LOG_INFO("RBS", "[UMTS] UE RNTI=", rnti,
+                         " admitted on UARFCN=", umtsStack_->config().uarfcn,
+                         " PSC=", umtsStack_->config().primaryScrCode);
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            umtsStack_->printStats();
+            oms.updateCounter("umts.connectedUEs",
+                              static_cast<double>(umtsStack_->connectedUECount()));
+            umtsStack_->releaseUE(rnti);
+        }
 
-        // Send user data over UMTS DCH
-        rbs::ByteBuffer data(32, 0xBB);
-        umtsStack_->sendData(umtsRnti, data);
+        if (lteStack_) {
+            rbs::RNTI rnti = lteStack_->admitUE(300000000000003ULL, 12);
+            lteStack_->updateCQI(rnti, 12);
+            for (int i = 0; i < 3; ++i) {
+                rbs::ByteBuffer pkt(100, static_cast<uint8_t>(i));
+                lteStack_->sendIPPacket(rnti, 1, pkt);
+            }
+            RBS_LOG_INFO("RBS", "[LTE ] UE RNTI=", rnti,
+                         " admitted on EARFCN=", lteStack_->config().earfcn,
+                         " PCI=", lteStack_->config().pci,
+                         " CQI=12 → MCS=17");
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            lteStack_->printStats();
+            oms.updateCounter("lte.connectedUEs",
+                              static_cast<double>(lteStack_->connectedUECount()));
+            lteStack_->releaseUE(rnti);
+        }
 
-        // Let stacks run for 2 seconds
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-
-        // Print statistics
-        gsmStack_->printStats();
-        umtsStack_->printStats();
-        lteStack_->printStats();
-        rbs::oms::OMS::instance().printPerformanceReport();
-
-        // Update OMS performance counters
-        auto& oms = rbs::oms::OMS::instance();
-        oms.updateCounter("gsm.connectedUEs",
-                          static_cast<double>(gsmStack_->connectedUECount()));
-        oms.updateCounter("umts.connectedUEs",
-                          static_cast<double>(umtsStack_->connectedUECount()));
-        oms.updateCounter("lte.connectedUEs",
-                          static_cast<double>(lteStack_->connectedUECount()));
-
-        // Release UEs
-        gsmStack_->releaseUE(gsmRnti);
-        umtsStack_->releaseUE(umtsRnti);
-        lteStack_->releaseUE(lteRnti);
+        oms.printPerformanceReport();
     }
 
     // ── Main loop ─────────────────────────────────────────────────
@@ -156,18 +206,21 @@ public:
         while (!gShutdown.load()) {
             std::this_thread::sleep_for(std::chrono::seconds(10));
             ++tick;
-            // Periodic PM report every 10 s
-            oms.updateCounter("gsm.connectedUEs",
-                              static_cast<double>(gsmStack_->connectedUECount()));
-            oms.updateCounter("umts.connectedUEs",
-                              static_cast<double>(umtsStack_->connectedUECount()));
-            oms.updateCounter("lte.connectedUEs",
-                              static_cast<double>(lteStack_->connectedUECount()));
+            if (gsmStack_)
+                oms.updateCounter("gsm.connectedUEs",
+                                  static_cast<double>(gsmStack_->connectedUECount()));
+            if (umtsStack_)
+                oms.updateCounter("umts.connectedUEs",
+                                  static_cast<double>(umtsStack_->connectedUECount()));
+            if (lteStack_)
+                oms.updateCounter("lte.connectedUEs",
+                                  static_cast<double>(lteStack_->connectedUECount()));
             if (tick % 3 == 0) oms.printPerformanceReport();
         }
     }
 
 private:
+    SelectedRAT rat_;
     std::shared_ptr<rbs::hal::RFHardware>   gsmRF_;
     std::shared_ptr<rbs::hal::RFHardware>   umtsRF_;
     std::shared_ptr<rbs::hal::RFHardware>   lteRF_;
@@ -179,32 +232,51 @@ private:
 // ────────────────────────────────────────────────────────────────
 // Entry point
 // ────────────────────────────────────────────────────────────────
+static void printUsage(const char* exe) {
+    std::cerr << "Usage: " << exe << " [config] [gsm|umts|lte]\n"
+              << "  config  path to rbs.conf  (default: rbs.conf)\n"
+              << "  gsm     start GSM  (2G) cell only\n"
+              << "  umts    start UMTS (3G) cell only\n"
+              << "  lte     start LTE  (4G) cell only\n"
+              << "  <none>  start all three RATs\n";
+}
+
 int main(int argc, char* argv[]) {
-    // Set up logging
     rbs::Logger::instance().setLevel(rbs::LogLevel::INFO);
     rbs::Logger::instance().enableFile("rbs.log");
 
     std::signal(SIGINT,  signalHandler);
     std::signal(SIGTERM, signalHandler);
 
-    std::string configPath = (argc > 1) ? argv[1] : "rbs.conf";
+    std::string configPath = "rbs.conf";
+    SelectedRAT rat = SelectedRAT::ALL;
+
+    for (int i = 1; i < argc; ++i) {
+        std::string a = argv[i];
+        std::string al = a;
+        std::transform(al.begin(), al.end(), al.begin(), ::tolower);
+        if (al == "gsm" || al == "umts" || al == "lte") {
+            rat = parseRAT(al);
+        } else if (al == "--help" || al == "-h") {
+            printUsage(argv[0]);
+            return EXIT_SUCCESS;
+        } else {
+            configPath = a;
+        }
+    }
 
     RBS_LOG_INFO("RBS", "Radio Base Station v1.0.0 starting...");
-    RBS_LOG_INFO("RBS", "Config: ", configPath);
+    RBS_LOG_INFO("RBS", "Config: ", configPath, "  RAT: ", ratName(rat));
 
-    RadioBaseStation node(configPath);
+    RadioBaseStation node(configPath, rat);
 
     if (!node.start()) {
         RBS_LOG_CRITICAL("RBS", "Failed to start – exiting");
         return EXIT_FAILURE;
     }
 
-    // Run a quick multi-RAT demonstration
     node.runDemo();
-
-    // Stay alive until SIGINT/SIGTERM
     node.mainLoop();
-
     node.stop();
     return EXIT_SUCCESS;
 }

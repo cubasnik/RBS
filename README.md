@@ -512,24 +512,41 @@ cmake --build build -j$(nproc)
 
 ## Запуск
 
+Второй аргумент задаёт стандарт радиодоступа. При отсутствии аргумента запускаются все три стека одновременно.
+
 ```powershell
-# Windows
+# Только GSM (2G)
+.\build\Release\rbs_node.exe rbs.conf gsm
+
+# Только UMTS (3G)
+.\build\Release\rbs_node.exe rbs.conf umts
+
+# Только LTE (4G)
+.\build\Release\rbs_node.exe rbs.conf lte
+
+# Все три RAT одновременно (режим по умолчанию)
 .\build\Release\rbs_node.exe rbs.conf
+
+# Справка по аргументам
+.\build\Release\rbs_node.exe --help
 
 # Остановка — Ctrl+C (SIGINT)
 # Узел переходит в состояние SHUTTING_DOWN и корректно
-# останавливает все потоки перед выходом.
+# останавливает все инициализированные потоки перед выходом.
 ```
 
-**Первые строки вывода:**
+**Пример вывода (режим `lte`):**
 ```
 2026-04-07 16:40:05 [INFO ] [RBS] Radio Base Station v1.0.0 starting...
+2026-04-07 16:40:05 [INFO ] [RBS] Config: rbs.conf  RAT: LTE (4G)
 2026-04-07 16:40:05 [INFO ] [Config] Loaded configuration from rbs.conf
 2026-04-07 16:40:05 [INFO ] [OMS] Node state → UNLOCKED
-2026-04-07 16:40:05 [INFO ] [RFHardware] Self-test PASSED        (× 3)
-2026-04-07 16:40:05 [INFO ] [GSMStack] GSM cell 1 started
-2026-04-07 16:40:05 [INFO ] [UMTSStack] UMTS cell 2 started
+2026-04-07 16:40:05 [INFO ] [RFHardware] Self-test PASSED
 2026-04-07 16:40:05 [INFO ] [LTEStack] LTE cell 3 started
+2026-04-07 16:40:05 [INFO ] [RBS] ====================================================
+2026-04-07 16:40:05 [INFO ] [RBS]   Radio Base Station ONLINE  [LTE (4G)]
+2026-04-07 16:40:05 [INFO ] [RBS]   LTE  cell 3  EARFCN=1300  PCI=36  BW=20 MHz
+2026-04-07 16:40:05 [INFO ] [RBS] ====================================================
 ```
 
 ---
