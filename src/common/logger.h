@@ -46,6 +46,8 @@ inline void enableConsoleColours() {
         DWORD mode = 0;
         if (GetConsoleMode(h, &mode))
             SetConsoleMode(h, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+        SetConsoleOutputCP(CP_UTF8);  // render UTF-8 chars (–, →, …) correctly
+        SetConsoleCP(CP_UTF8);
         done = true;
     }
 #endif
@@ -59,7 +61,7 @@ inline const char* ansiGreen()     { return "\033[92m"; }
 inline const char* ansiCyan()      { return "\033[96m"; }
 inline const char* ansiRed()       { return "\033[91m"; }
 inline const char* ansiMagenta()   { return "\033[95m"; }
-inline const char* ansiLightBlue() { return "\033[94m"; }
+inline const char* ansiLightBlue() { return "\033[38;5;153m"; }
 
 // Wrap every run of digits (incl. decimals like 43.0) in green,
 // returning to baseColour for the surrounding text.
