@@ -6,7 +6,7 @@
 #include <chrono>
 #include <iomanip>
 #include <iostream>
-#include <array>
+#include <cctype>
 
 // ── Windows headers (must come before enum definitions) ──────────────────────
 #ifdef _WIN32
@@ -51,29 +51,43 @@ inline void enableConsoleColours() {
 #endif
 }
 
-// Returns true when the message body contains a "completed action" keyword.
-inline bool logIsCompletedAction(const std::string& text) {
-    static const std::array<const char*, 24> kWords = {{
-        "starting",  "started",     "Loaded",       "loaded",
-        "UNLOCKED",  "PASSED",      "ONLINE",        "OFFLINE",
-        "stopped",   "Stopped",     "initialised",   "Initialised",
-        "admitted",  "released",    "Released",      "assigned",
-        "Assigned",  "completed",   "Completed",     "success",
-        "Success",   "LOCKED",      "SHUTTING_DOWN", "self-test"
-    }};
-    for (const char* w : kWords)
-        if (text.find(w) != std::string::npos) return true;
-    return false;
-}
-
 // ANSI escape codes as inline functions (avoids constexpr linkage issues).
-inline const char* ansiReset()   { return "\033[0m";  }
-inline const char* ansiWhite()   { return "\033[97m"; }
-inline const char* ansiYellow()  { return "\033[93m"; }
-inline const char* ansiGreen()   { return "\033[92m"; }
-inline const char* ansiCyan()    { return "\033[96m"; }
-inline const char* ansiRed()     { return "\033[91m"; }
-inline const char* ansiMagenta() { return "\033[95m"; }
+inline const char* ansiReset()     { return "\033[0m";  }
+inline const char* ansiWhite()     { return "\033[97m"; }
+inline const char* ansiYellow()    { return "\033[93m"; }
+inline const char* ansiGreen()     { return "\033[92m"; }
+inline const char* ansiCyan()      { return "\033[96m"; }
+inline const char* ansiRed()       { return "\033[91m"; }
+inline const char* ansiMagenta()   { return "\033[95m"; }
+inline const char* ansiLightBlue() { return "\033[94m"; }
+
+// Wrap every run of digits (incl. decimals like 43.0) in green,
+// returning to baseColour for the surrounding text.
+inline std::string colouriseNumbers(const std::string& text, const char* baseColour) {
+    std::string result;
+    result += baseColour;
+    size_t i = 0;
+    while (i < text.size()) {
+        unsigned char c = static_cast<unsigned char>(text[i]);
+        if (std::isdigit(c)) {
+            result += ansiGreen();
+            while (i < text.size()) {
+                unsigned char d = static_cast<unsigned char>(text[i]);
+                bool isDecimalDot = (text[i] == '.' &&
+                                     i + 1 < text.size() &&
+                                     std::isdigit(static_cast<unsigned char>(text[i+1])));
+                if (std::isdigit(d) || isDecimalDot)
+                    result += text[i++];
+                else
+                    break;
+            }
+            result += baseColour;
+        } else {
+            result += text[i++];
+        }
+    }
+    return result;
+}
 
 inline const char* logLevelColour(LogLevel l) {
     switch (l) {
@@ -118,11 +132,9 @@ public:
         std::string msg = ts + " [" + lv + "] [" + component + "] " + bodyText;
 
         // Coloured output for the console:
-        //   timestamp  → white
-        //   [LEVEL]    → level colour (yellow for INFO, etc.)
-        //   [cmp] msg  → green when bodyText contains a completed-action keyword,
-        //                default otherwise.
-        bool isGreen = logIsCompletedAction(bodyText);
+        //   timestamp       → white
+        //   [LEVEL]         → level colour (yellow for INFO, etc.)
+        //   [component] msg → light blue; numeric values inside → green
         std::string coloured;
         // Timestamp: white
         coloured  = ansiWhite();
@@ -136,13 +148,10 @@ public:
         coloured += "]";
         coloured += ansiReset();
         coloured += " ";
-        // [component] message: green or default
-        if (isGreen) coloured += ansiGreen();
-        coloured += "[";
-        coloured += component;
-        coloured += "] ";
-        coloured += bodyText;
-        if (isGreen) coloured += ansiReset();
+        // [component] message: light blue with green numbers
+        std::string bodyPart = std::string("[") + component + "] " + bodyText;
+        coloured += colouriseNumbers(bodyPart, ansiLightBlue());
+        coloured += ansiReset();
 
         std::lock_guard<std::mutex> lock(mutex_);
         std::cout << coloured << "\n";
