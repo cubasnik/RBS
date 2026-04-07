@@ -6,11 +6,87 @@
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include <array>
+
+// ── Windows headers (must come before enum definitions) ──────────────────────
+#ifdef _WIN32
+#  ifndef WIN32_LEAN_AND_MEAN
+#    define WIN32_LEAN_AND_MEAN
+#  endif
+#  ifndef NOMINMAX
+#    define NOMINMAX
+#  endif
+// NOGDI prevents wingdi.h which defines ERROR=0, conflicting with our enum.
+#  ifndef NOGDI
+#    define NOGDI
+#  endif
+#  include <windows.h>
+#endif
 
 namespace rbs {
 
-enum class LogLevel : uint8_t { DEBUG = 0, INFO, WARNING, ERROR, CRITICAL };
+// Make sure Windows SDK macros don't poison our enum names.
+#ifdef ERROR
+#  undef ERROR
+#endif
+#ifdef DEBUG
+#  undef DEBUG
+#endif
 
+enum class LogLevel : uint8_t { DBG = 0, INFO, WARNING, ERR, CRITICAL };
+
+// ── ANSI colour helpers ───────────────────────────────────────────────────────
+
+// One-time setup: enable ANSI Virtual Terminal Processing on Windows.
+inline void enableConsoleColours() {
+#ifdef _WIN32
+    static bool done = false;
+    if (!done) {
+        HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+        DWORD mode = 0;
+        if (GetConsoleMode(h, &mode))
+            SetConsoleMode(h, mode | ENABLE_VIRTUAL_TERMINAL_PROCESSING);
+        done = true;
+    }
+#endif
+}
+
+// Returns true when the message body contains a "completed action" keyword.
+inline bool logIsCompletedAction(const std::string& text) {
+    static const std::array<const char*, 24> kWords = {{
+        "starting",  "started",     "Loaded",       "loaded",
+        "UNLOCKED",  "PASSED",      "ONLINE",        "OFFLINE",
+        "stopped",   "Stopped",     "initialised",   "Initialised",
+        "admitted",  "released",    "Released",      "assigned",
+        "Assigned",  "completed",   "Completed",     "success",
+        "Success",   "LOCKED",      "SHUTTING_DOWN", "self-test"
+    }};
+    for (const char* w : kWords)
+        if (text.find(w) != std::string::npos) return true;
+    return false;
+}
+
+// ANSI escape codes as inline functions (avoids constexpr linkage issues).
+inline const char* ansiReset()   { return "\033[0m";  }
+inline const char* ansiWhite()   { return "\033[97m"; }
+inline const char* ansiYellow()  { return "\033[93m"; }
+inline const char* ansiGreen()   { return "\033[92m"; }
+inline const char* ansiCyan()    { return "\033[96m"; }
+inline const char* ansiRed()     { return "\033[91m"; }
+inline const char* ansiMagenta() { return "\033[95m"; }
+
+inline const char* logLevelColour(LogLevel l) {
+    switch (l) {
+        case LogLevel::DBG:      return ansiCyan();
+        case LogLevel::INFO:     return ansiYellow();
+        case LogLevel::WARNING:  return ansiMagenta();
+        case LogLevel::ERR:      return ansiRed();
+        case LogLevel::CRITICAL: return ansiRed();
+    }
+    return ansiWhite();
+}
+
+// ── Thread-safe singleton logger ─────────────────────────────────────────────
 class Logger {
 public:
     static Logger& instance() {
@@ -19,6 +95,7 @@ public:
     }
 
     void setLevel(LogLevel level) { minLevel_ = level; }
+
     void enableFile(const std::string& path) {
         std::lock_guard<std::mutex> lock(mutex_);
         fileStream_.open(path, std::ios::app);
@@ -27,27 +104,63 @@ public:
     template<typename... Args>
     void log(LogLevel level, const char* component, Args&&... args) {
         if (level < minLevel_) return;
-        std::ostringstream oss;
-        oss << timestamp() << " [" << levelStr(level) << "] [" << component << "] ";
-        (oss << ... << std::forward<Args>(args));
-        std::string msg = oss.str();
+        enableConsoleColours();
+
+        // Build message body — expand pack into ostringstream one arg at a time.
+        std::ostringstream body;
+        int dummy[] = { 0, (body << args, 0)... };
+        (void)dummy;
+        std::string bodyText = body.str();
+
+        // Plain text for the log file (no ANSI escape codes).
+        std::string ts  = timestamp();
+        std::string lv  = levelStr(level);
+        std::string msg = ts + " [" + lv + "] [" + component + "] " + bodyText;
+
+        // Coloured output for the console.
+        std::string coloured;
+        if (logIsCompletedAction(bodyText)) {
+            // Entire line in green.
+            coloured  = ansiGreen();
+            coloured += msg;
+            coloured += ansiReset();
+        } else {
+            // Timestamp: white  |  [LEVEL]: level colour  |  rest: default.
+            coloured  = ansiWhite();
+            coloured += ts;
+            coloured += ansiReset();
+            coloured += " ";
+            coloured += logLevelColour(level);
+            coloured += "[";
+            coloured += lv;
+            coloured += "]";
+            coloured += ansiReset();
+            coloured += " [";
+            coloured += component;
+            coloured += "] ";
+            coloured += bodyText;
+        }
+
         std::lock_guard<std::mutex> lock(mutex_);
-        std::cout << msg << "\n";
-        if (fileStream_.is_open()) { fileStream_ << msg << "\n"; fileStream_.flush(); }
+        std::cout << coloured << "\n";
+        if (fileStream_.is_open()) {
+            fileStream_ << msg << "\n";
+            fileStream_.flush();
+        }
     }
 
 private:
     Logger() = default;
-    LogLevel    minLevel_  = LogLevel::INFO;
-    std::mutex  mutex_;
+    LogLevel      minLevel_ = LogLevel::INFO;
+    std::mutex    mutex_;
     std::ofstream fileStream_;
 
     static const char* levelStr(LogLevel l) {
         switch (l) {
-            case LogLevel::DEBUG:    return "DEBUG";
+            case LogLevel::DBG:      return "DEBUG";
             case LogLevel::INFO:     return "INFO ";
             case LogLevel::WARNING:  return "WARN ";
-            case LogLevel::ERROR:    return "ERROR";
+            case LogLevel::ERR:      return "ERROR";
             case LogLevel::CRITICAL: return "CRIT ";
         }
         return "?????";
@@ -72,10 +185,10 @@ private:
 };
 
 // Convenience macros
-#define RBS_LOG_DEBUG(comp, ...)    rbs::Logger::instance().log(rbs::LogLevel::DEBUG,    comp, __VA_ARGS__)
+#define RBS_LOG_DEBUG(comp, ...)    rbs::Logger::instance().log(rbs::LogLevel::DBG,      comp, __VA_ARGS__)
 #define RBS_LOG_INFO(comp, ...)     rbs::Logger::instance().log(rbs::LogLevel::INFO,     comp, __VA_ARGS__)
 #define RBS_LOG_WARNING(comp, ...)  rbs::Logger::instance().log(rbs::LogLevel::WARNING,  comp, __VA_ARGS__)
-#define RBS_LOG_ERROR(comp, ...)    rbs::Logger::instance().log(rbs::LogLevel::ERROR,    comp, __VA_ARGS__)
+#define RBS_LOG_ERROR(comp, ...)    rbs::Logger::instance().log(rbs::LogLevel::ERR,      comp, __VA_ARGS__)
 #define RBS_LOG_CRITICAL(comp, ...) rbs::Logger::instance().log(rbs::LogLevel::CRITICAL, comp, __VA_ARGS__)
 
 }  // namespace rbs
