@@ -3,6 +3,7 @@
 #include "gsm_phy.h"
 #include "gsm_mac.h"
 #include "../hal/rf_interface.h"
+#include "igsm_stack.h"
 #include <memory>
 #include <unordered_map>
 #include <thread>
@@ -14,30 +15,26 @@ namespace rbs::gsm {
 // GSM Stack – top-level controller for the 2G cell
 // Wires PHY → MAC → RLC layers and drives the TDMA clock.
 // ────────────────────────────────────────────────────────────────
-class GSMStack {
+class GSMStack : public IGSMStack {
 public:
     explicit GSMStack(std::shared_ptr<hal::IRFHardware> rf,
                       const GSMCellConfig& cfg);
     ~GSMStack();
 
-    bool  start();
-    void  stop();
-    bool  isRunning() const { return running_.load(); }
+    bool  start()                                        override;
+    void  stop()                                         override;
+    bool  isRunning() const                              override { return running_.load(); }
 
-    // Send user-plane data to a connected UE
-    bool  sendData(RNTI rnti, ByteBuffer data);
-    // Receive user-plane data from a connected UE
-    bool  receiveData(RNTI rnti, ByteBuffer& data);
+    bool  sendData(RNTI rnti, ByteBuffer data)           override;
+    bool  receiveData(RNTI rnti, ByteBuffer& data)       override;
 
-    // Admit / release a UE
-    RNTI  admitUE(IMSI imsi);
-    void  releaseUE(RNTI rnti);
+    RNTI  admitUE(IMSI imsi)                             override;
+    void  releaseUE(RNTI rnti)                           override;
 
-    // Statistics
-    size_t connectedUECount() const;
-    void   printStats() const;
+    size_t connectedUECount() const                      override;
+    void   printStats() const                            override;
 
-    const GSMCellConfig& config() const { return cfg_; }
+    const GSMCellConfig& config() const                  override { return cfg_; }
 
 private:
     GSMCellConfig cfg_;

@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "../hal/rf_interface.h"
+#include "iumts_phy.h"
 #include <memory>
 #include <functional>
 #include <vector>
@@ -13,24 +14,24 @@ namespace rbs::umts {
 // and pilot signal generation.
 // References: 3GPP TS 25.211, 25.212, 25.213
 // ────────────────────────────────────────────────────────────────
-class UMTSPhy {
+class UMTSPhy : public IUMTSPhy {
 public:
     explicit UMTSPhy(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig& cfg);
 
-    bool start();
-    void stop();
-    void tick();   // Called each 10 ms radio frame
+    bool start()                                                           override;
+    void stop()                                                            override;
+    void tick()                                                            override;
 
-    // Transmit / Receive on a code channel
-    bool transmit(uint16_t channelCode, SF spreadingFactor, const ByteBuffer& data);
-    bool receive (uint16_t channelCode, SF spreadingFactor, ByteBuffer& data,
-                  uint32_t numBits);
+    bool transmit(uint16_t channelCode, SF spreadingFactor,
+                  const ByteBuffer& data)                                  override;
+    bool receive (uint16_t channelCode, SF spreadingFactor,
+                  ByteBuffer& data, uint32_t numBits)                      override;
 
     using RxFrameCb = std::function<void(const UMTSFrame&)>;
-    void setRxCallback(RxFrameCb cb) { rxCb_ = std::move(cb); }
+    void setRxCallback(RxFrameCb cb)                                       override { rxCb_ = std::move(cb); }
 
-    uint32_t  currentFrameNumber() const { return frameNumber_; }
-    double    measuredRSCP()        const { return rscp_dBm_; }
+    uint32_t  currentFrameNumber() const                                   override { return frameNumber_; }
+    double    measuredRSCP()        const                                   override { return rscp_dBm_; }
 
 private:
     std::shared_ptr<hal::IRFHardware> rf_;

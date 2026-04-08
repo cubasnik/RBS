@@ -4,6 +4,7 @@
 #include "lte_mac.h"
 #include "lte_pdcp.h"
 #include "../hal/rf_interface.h"
+#include "ilte_stack.h"
 #include <memory>
 #include <unordered_map>
 #include <thread>
@@ -16,29 +17,27 @@ namespace rbs::lte {
 // Wires PDCP → (RLC stub) → MAC → PHY and drives the 1 ms
 // subframe clock.
 // ────────────────────────────────────────────────────────────────
-class LTEStack {
+class LTEStack : public ILTEStack {
 public:
     explicit LTEStack(std::shared_ptr<hal::IRFHardware> rf,
                       const LTECellConfig& cfg);
     ~LTEStack();
 
-    bool  start();
-    void  stop();
-    bool  isRunning() const { return running_.load(); }
+    bool  start()                                                              override;
+    void  stop()                                                               override;
+    bool  isRunning() const                                                    override { return running_.load(); }
 
-    // IP-level send / receive (user plane via PDCP)
-    bool  sendIPPacket (RNTI rnti, uint16_t bearerId, ByteBuffer ipPacket);
-    bool  receiveIPPacket(RNTI rnti, uint16_t bearerId, ByteBuffer& ipPacket);
+    bool  sendIPPacket  (RNTI rnti, uint16_t bearerId, ByteBuffer ipPacket)    override;
+    bool  receiveIPPacket(RNTI rnti, uint16_t bearerId, ByteBuffer& ipPacket)  override;
 
-    // UE admission
-    RNTI  admitUE(IMSI imsi, uint8_t defaultCQI = 9);
-    void  releaseUE(RNTI rnti);
-    void  updateCQI(RNTI rnti, uint8_t cqi);
+    RNTI  admitUE(IMSI imsi, uint8_t defaultCQI = 9)                           override;
+    void  releaseUE(RNTI rnti)                                                 override;
+    void  updateCQI(RNTI rnti, uint8_t cqi)                                   override;
 
-    size_t connectedUECount() const;
-    void   printStats() const;
+    size_t connectedUECount() const                                            override;
+    void   printStats() const                                                  override;
 
-    const LTECellConfig& config() const { return cfg_; }
+    const LTECellConfig& config() const                                        override { return cfg_; }
 
 private:
     LTECellConfig cfg_;

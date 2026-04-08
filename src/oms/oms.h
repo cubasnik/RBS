@@ -1,4 +1,5 @@
 #pragma once
+#include "ioms.h"
 #include "../common/types.h"
 #include <string>
 #include <unordered_map>
@@ -9,27 +10,7 @@
 namespace rbs::oms {
 
 // ────────────────────────────────────────────────────────────────
-// Alarm severity levels (aligned with 3GPP TS 32.111)
-// ────────────────────────────────────────────────────────────────
-enum class AlarmSeverity : uint8_t {
-    CLEARED   = 0,
-    WARNING   = 1,
-    MINOR     = 2,
-    MAJOR     = 3,
-    CRITICAL  = 4
-};
-
-struct Alarm {
-    uint32_t    alarmId;
-    std::string source;
-    std::string description;
-    AlarmSeverity severity;
-    std::chrono::system_clock::time_point raisedAt;
-    bool        active;
-};
-
-// ────────────────────────────────────────────────────────────────
-// Performance counter
+// Performance counter (internal to OMS)
 // ────────────────────────────────────────────────────────────────
 struct PerfCounter {
     std::string name;
@@ -43,7 +24,7 @@ struct PerfCounter {
 // management, and software management hooks.
 // Aligned with 3GPP TS 32.600 (NRM) and TS 28.623 (IOC).
 // ────────────────────────────────────────────────────────────────
-class OMS {
+class OMS : public IOMS {
 public:
     static OMS& instance() {
         static OMS inst;
@@ -53,26 +34,24 @@ public:
     // ── Fault Management ──────────────────────────────────────────
     uint32_t raiseAlarm(const std::string& source,
                         const std::string& description,
-                        AlarmSeverity severity);
-    void     clearAlarm(uint32_t alarmId);
-    void     clearAllAlarms(const std::string& source);
+                        AlarmSeverity severity)                     override;
+    void     clearAlarm(uint32_t alarmId)                           override;
+    void     clearAllAlarms(const std::string& source)              override;
 
-    std::vector<Alarm> getActiveAlarms() const;
+    std::vector<Alarm> getActiveAlarms() const                      override;
 
     // ── Performance Monitoring ────────────────────────────────────
     void  updateCounter(const std::string& name, double value,
-                        const std::string& unit = "");
-    double getCounter(const std::string& name) const;
-    void  printPerformanceReport() const;
+                        const std::string& unit = "")               override;
+    double getCounter(const std::string& name) const                override;
+    void  printPerformanceReport() const                            override;
 
     // ── Notification callback ─────────────────────────────────────
-    using AlarmNotifyCb = std::function<void(const Alarm&)>;
-    void setAlarmCallback(AlarmNotifyCb cb) { notifyCb_ = std::move(cb); }
+    void setAlarmCallback(AlarmNotifyCb cb) override { notifyCb_ = std::move(cb); }
 
     // ── Node state ────────────────────────────────────────────────
-    enum class NodeState { UNLOCKED, LOCKED, SHUTTING_DOWN };
-    void      setNodeState(NodeState s);
-    NodeState getNodeState() const { return nodeState_; }
+    void      setNodeState(NodeState s)                             override;
+    NodeState getNodeState() const                                  override { return nodeState_; }
 
 private:
     OMS() = default;

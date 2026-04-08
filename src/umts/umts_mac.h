@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "umts_phy.h"
+#include "iumts_mac.h"
 #include <unordered_map>
 #include <queue>
 #include <memory>
@@ -25,23 +26,21 @@ struct UMTSUEContext {
 // Handles transport-channel multiplexing, RACH/FACH management,
 // and DCH scheduling. References: 3GPP TS 25.321
 // ────────────────────────────────────────────────────────────────
-class UMTSMAC {
+class UMTSMAC : public IUMTSMAC {
 public:
     explicit UMTSMAC(std::shared_ptr<UMTSPhy> phy, const UMTSCellConfig& cfg);
 
-    bool start();
-    void stop();
-    void tick();   // called every 10 ms frame
+    bool start()                                       override;
+    void stop()                                        override;
+    void tick()                                        override;
 
-    // ── Channel management ────────────────────────────────────────
-    RNTI  assignDCH(SF sf = SF::SF16);
-    bool  releaseDCH(RNTI rnti);
+    RNTI  assignDCH(SF sf = SF::SF16)                  override;
+    bool  releaseDCH(RNTI rnti)                        override;
 
-    // ── Data plane ────────────────────────────────────────────────
-    bool  enqueueDlData(RNTI rnti, ByteBuffer data);
-    bool  dequeueUlData(RNTI rnti, ByteBuffer& data);
+    bool  enqueueDlData(RNTI rnti, ByteBuffer data)    override;
+    bool  dequeueUlData(RNTI rnti, ByteBuffer& data)   override;
 
-    size_t activeChannelCount() const { return channels_.size(); }
+    size_t activeChannelCount() const override { return channels_.size(); }
 
 private:
     std::shared_ptr<UMTSPhy> phy_;

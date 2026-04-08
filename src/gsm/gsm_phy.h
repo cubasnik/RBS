@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "../hal/rf_interface.h"
+#include "igsm_phy.h"
 #include <memory>
 #include <functional>
 
@@ -11,23 +12,21 @@ namespace rbs::gsm {
 // Implements TDMA frame/slot structure, burst formatting,
 // frequency hopping, and channel encoding (fire code / RECC).
 // ────────────────────────────────────────────────────────────────
-class GSMPhy {
+class GSMPhy : public IGSMPhy {
 public:
     explicit GSMPhy(std::shared_ptr<hal::IRFHardware> rf, const GSMCellConfig& cfg);
 
-    bool  start();
-    void  stop();
-    void  tick();   // Called once per timeslot (~577 µs)
+    bool  start()                                    override;
+    void  stop()                                     override;
+    void  tick()                                     override;
 
-    // Transmit a formatted burst on the given time-slot
-    bool  transmitBurst(const GSMBurst& burst);
+    bool  transmitBurst(const GSMBurst& burst)       override;
 
-    // Register callback for received bursts
     using RxBurstCb = std::function<void(const GSMBurst&)>;
-    void  setRxCallback(RxBurstCb cb) { rxCb_ = std::move(cb); }
+    void  setRxCallback(RxBurstCb cb)                override { rxCb_ = std::move(cb); }
 
-    uint32_t currentFrameNumber()  const { return frameNumber_; }
-    uint8_t  currentTimeSlot()     const { return currentSlot_; }
+    uint32_t currentFrameNumber()  const             override { return frameNumber_; }
+    uint8_t  currentTimeSlot()     const             override { return currentSlot_; }
 
 private:
     std::shared_ptr<hal::IRFHardware> rf_;

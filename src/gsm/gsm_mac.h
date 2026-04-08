@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "gsm_phy.h"
+#include "igsm_mac.h"
 #include <unordered_map>
 #include <queue>
 #include <memory>
@@ -24,26 +25,23 @@ struct GSMUEChannel {
 // GSM MAC layer (TDMA channel assignment, random access, paging)
 // References: 3GPP TS 44.003, TS 44.006
 // ────────────────────────────────────────────────────────────────
-class GSMMAC {
+class GSMMAC : public IGSMMAC {
 public:
     explicit GSMMAC(std::shared_ptr<GSMPhy> phy, const GSMCellConfig& cfg);
 
-    bool start();
-    void stop();
-    void tick();   // synchronised with PHY tick
+    bool start()                                                      override;
+    void stop()                                                       override;
+    void tick()                                                       override;
 
-    // ── Channel management ────────────────────────────────────────
-    RNTI  assignChannel(uint8_t preferredSlot, GSMChannelType type);
-    bool  releaseChannel(RNTI rnti);
+    RNTI  assignChannel(uint8_t preferredSlot, GSMChannelType type)  override;
+    bool  releaseChannel(RNTI rnti)                                  override;
 
-    // ── Data plane ────────────────────────────────────────────────
-    bool  enqueueDlData(RNTI rnti, ByteBuffer data);
-    bool  dequeueUlData(RNTI rnti, ByteBuffer& data);
+    bool  enqueueDlData(RNTI rnti, ByteBuffer data)                  override;
+    bool  dequeueUlData(RNTI rnti, ByteBuffer& data)                 override;
 
-    // ── Broadcast ─────────────────────────────────────────────────
-    void  broadcastSIMessage(uint8_t siType, const ByteBuffer& payload);
+    void  broadcastSIMessage(uint8_t siType, const ByteBuffer& payload) override;
 
-    size_t activeChannelCount() const { return channels_.size(); }
+    size_t activeChannelCount() const override { return channels_.size(); }
 
 private:
     std::shared_ptr<GSMPhy> phy_;

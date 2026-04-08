@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "../hal/rf_interface.h"
+#include "ilte_phy.h"
 #include <memory>
 #include <functional>
 #include <vector>
@@ -13,31 +14,27 @@ namespace rbs::lte {
 // resource block mapping, reference signals and physical channels.
 // References: 3GPP TS 36.211, 36.212, 36.213
 // ────────────────────────────────────────────────────────────────
-class LTEPhy {
+class LTEPhy : public ILTEPhy {
 public:
     explicit LTEPhy(std::shared_ptr<hal::IRFHardware> rf, const LTECellConfig& cfg);
 
-    bool start();
-    void stop();
-    void tick();   // Called once per 1 ms subframe
+    bool start()                                                   override;
+    void stop()                                                    override;
+    void tick()                                                    override;
 
-    // Map a grant list onto physical resource blocks and transmit
-    bool transmitSubframe(const LTESubframe& sf);
-
-    // Receive UL subframe and decode
-    bool receiveSubframe(LTESubframe& sf);
+    bool transmitSubframe(const LTESubframe& sf)                   override;
+    bool receiveSubframe(LTESubframe& sf)                          override;
 
     using RxSubframeCb = std::function<void(const LTESubframe&)>;
-    void setRxCallback(RxSubframeCb cb) { rxCb_ = std::move(cb); }
+    void setRxCallback(RxSubframeCb cb)                            override { rxCb_ = std::move(cb); }
 
-    uint32_t currentSFN()           const { return sfn_; }
-    uint8_t  currentSubframeIndex() const { return sfIdx_; }
-    uint8_t  numResourceBlocks()    const {
+    uint32_t currentSFN()           const                          override { return sfn_; }
+    uint8_t  currentSubframeIndex() const                          override { return sfIdx_; }
+    uint8_t  numResourceBlocks()    const                          override {
         return lteBandwidthToRB(cfg_.bandwidth);
     }
 
-    // RSRP measurement of reference signal (simulated)
-    double measuredRSRP() const { return rsrp_dBm_; }
+    double measuredRSRP() const                                    override { return rsrp_dBm_; }
 
 private:
     std::shared_ptr<hal::IRFHardware> rf_;

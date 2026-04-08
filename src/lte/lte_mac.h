@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "lte_phy.h"
+#include "ilte_mac.h"
 #include <unordered_map>
 #include <queue>
 #include <memory>
@@ -28,7 +29,7 @@ struct LTEMACContext {
 // BSR / SR processing, and transport format selection.
 // References: 3GPP TS 36.321
 // ────────────────────────────────────────────────────────────────
-class LTEMAC {
+class LTEMAC : public ILTEMAC {
 public:
     explicit LTEMAC(std::shared_ptr<LTEPhy> phy, const LTECellConfig& cfg);
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "../common/types.h"
+#include "ilte_pdcp.h"
 #include <unordered_map>
 #include <queue>
 
@@ -33,19 +34,16 @@ struct PDCPEntity {
     std::queue<ByteBuffer> rxQueue;
 };
 
-class PDCP {
+class PDCP : public IPDCP {
 public:
-    // Create a PDCP entity for a radio bearer
-    bool addBearer(RNTI rnti, const PDCPConfig& cfg);
-    bool removeBearer(RNTI rnti, uint16_t bearerId);
+    bool addBearer(RNTI rnti, const PDCPConfig& cfg)                override;
+    bool removeBearer(RNTI rnti, uint16_t bearerId)                  override;
 
-    // ── Downlink path: IP packet in  → PDCP PDU out ───────────────
     ByteBuffer processDlPacket(RNTI rnti, uint16_t bearerId,
-                               const ByteBuffer& ipPacket);
+                               const ByteBuffer& ipPacket)           override;
 
-    // ── Uplink path: PDCP PDU in → IP packet out ─────────────────
     ByteBuffer processUlPDU(RNTI rnti, uint16_t bearerId,
-                            const ByteBuffer& pdcpPDU);
+                            const ByteBuffer& pdcpPDU)               override;
 
 private:
     // key: (rnti << 16) | bearerId
