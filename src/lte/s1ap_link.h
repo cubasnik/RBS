@@ -1,5 +1,7 @@
 #pragma once
 #include "s1ap_interface.h"
+#include "gtp_u.h"
+#include "../common/udp_socket.h"
 #include "../common/logger.h"
 #include <queue>
 #include <mutex>
@@ -76,14 +78,17 @@ private:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// S1ULink — симуляционная реализация S1-U GTP-U туннелей (TS 29.274).
+// S1ULink — реальная GTP-U реализация поверх UDP/Winsock2 (TS 29.060 / 29.274).
 //
-// В реальной системе: UDP/IP дейтаграммы на порт 2152.
-// В симуляции: per-(RNTI,erabId) очереди IP-пакетов.
+// eNB слушает UDP-порт GTPU_PORT (2152) для входящих DL-пакетов от SGW.
+// UL-пакеты отправляются на sgwEndpoint.remoteIp:GTPU_PORT.
+//
+// Поток приёма: фоновый (rxThread_ в UdpSocket).
+// DL-пакеты декодируются по TEID и кладутся в dlQueues_[key].
 // ─────────────────────────────────────────────────────────────────────────────
 class S1ULink : public IS1U {
 public:
-    explicit S1ULink(const std::string& enbId);
+    explicit S1ULink(const std::string& enbId, uint16_t localPort = GTPU_PORT);
 
     bool createTunnel(RNTI rnti, uint8_t erabId,
                       const GTPUTunnel& sgwEndpoint)             override;
@@ -94,7 +99,10 @@ public:
                       ByteBuffer& ipPacket)                      override;
 
 private:
-    std::string enbId_;
+    std::string    enbId_;
+    uint16_t       localPort_;
+    net::UdpSocket socket_;
+    bool           socketReady_ = false;
 
     // Ключ туннеля: (rnti << 8) | erabId
     static uint32_t tunnelKey(RNTI rnti, uint8_t erabId) {
@@ -102,8 +110,12 @@ private:
     }
 
     std::unordered_map<uint32_t, GTPUTunnel>              tunnels_;
+    // teid → tunnelKey (для маршрутизации входящих DL-пакетов)
+    std::unordered_map<uint32_t, uint32_t>                teidToKey_;
     std::unordered_map<uint32_t, std::queue<ByteBuffer>>  dlQueues_;
     mutable std::mutex                                    mtx_;
+
+    void onRxPacket(const net::UdpPacket& pkt);
 };
 
 } // namespace rbs::lte

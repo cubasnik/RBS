@@ -196,32 +196,55 @@ bool S1APLink::recvS1APMsg(S1APMessage& msg)
 //  S1ULink
 // ─────────────────────────────────────────────────────────────────────────────
 
-S1ULink::S1ULink(const std::string& enbId)
+S1ULink::S1ULink(const std::string& enbId, uint16_t localPort)
     : enbId_(enbId)
+    , localPort_(localPort)
+    , socket_("S1U-" + enbId)
 {}
 
 bool S1ULink::createTunnel(RNTI rnti, uint8_t erabId, const GTPUTunnel& sgwEndpoint)
 {
     uint32_t key = tunnelKey(rnti, erabId);
-    tunnels_[key] = sgwEndpoint;
-    RBS_LOG_INFO("S1U", "[{}] GTP-U туннель создан rnti={} erabId={} teid=0x{:X}",
-                 enbId_, rnti, erabId, sgwEndpoint.teid);
+
+    // Привязать сокет при создании первого туннеля
+    if (!socketReady_) {
+        if (!socket_.bind(localPort_)) {
+            RBS_LOG_ERROR("S1U", "[{}] createTunnel: UDP bind ошибка", enbId_);
+            return false;
+        }
+        socket_.startReceive([this](const net::UdpPacket& pkt) { onRxPacket(pkt); });
+        socketReady_ = true;
+    }
+
+    {
+        std::lock_guard<std::mutex> lk(mtx_);
+        tunnels_[key]                = sgwEndpoint;
+        teidToKey_[sgwEndpoint.teid] = key;
+    }
+
+    // Конвертируем uint32_t (network byte order) → строку для лога
+    char ipStr[INET_ADDRSTRLEN] = {};
+    struct in_addr addr{ sgwEndpoint.remoteIPv4 };
+    ::inet_ntop(AF_INET, &addr, ipStr, sizeof(ipStr));
+
+    RBS_LOG_INFO("S1U", "[{}] GTP-U туннель создан rnti=", rnti, " erabId=", erabId,
+                 " teid=0x", sgwEndpoint.teid, " sgw=", ipStr);
     return true;
 }
 
 bool S1ULink::deleteTunnel(RNTI rnti, uint8_t erabId)
 {
     uint32_t key = tunnelKey(rnti, erabId);
-    if (!tunnels_.count(key)) {
+    std::lock_guard<std::mutex> lk(mtx_);
+    auto it = tunnels_.find(key);
+    if (it == tunnels_.end()) {
         RBS_LOG_WARNING("S1U", "[{}] deleteTunnel: туннель rnti={} erabId={} не найден",
                          enbId_, rnti, erabId);
         return false;
     }
-    tunnels_.erase(key);
-    {
-        std::lock_guard<std::mutex> lk(mtx_);
-        dlQueues_.erase(key);
-    }
+    teidToKey_.erase(it->second.teid);
+    tunnels_.erase(it);
+    dlQueues_.erase(key);
     RBS_LOG_INFO("S1U", "[{}] GTP-U туннель удалён rnti={} erabId={}", enbId_, rnti, erabId);
     return true;
 }
@@ -229,14 +252,28 @@ bool S1ULink::deleteTunnel(RNTI rnti, uint8_t erabId)
 bool S1ULink::sendGtpuPdu(RNTI rnti, uint8_t erabId, const ByteBuffer& ipPacket)
 {
     uint32_t key = tunnelKey(rnti, erabId);
-    if (!tunnels_.count(key)) {
-        RBS_LOG_ERROR("S1U", "[{}] sendGtpuPdu: нет туннеля rnti={} erabId={}",
-                       enbId_, rnti, erabId);
-        return false;
+    GTPUTunnel t;
+    {
+        std::lock_guard<std::mutex> lk(mtx_);
+        auto it = tunnels_.find(key);
+        if (it == tunnels_.end()) {
+            RBS_LOG_ERROR("S1U", "[", enbId_, "] sendGtpuPdu: нет туннеля rnti=", rnti,
+                          " erabId=", erabId);
+            return false;
+        }
+        t = it->second;
     }
-    const auto& t = tunnels_[key];
-    RBS_LOG_DEBUG("S1U", "[{}] GTP-U UL teid=0x{:X} len={}", enbId_, t.teid, ipPacket.size());
-    return true;  // в симуляции пакет «улетает» к SGW
+
+    // Конвертируем uint32_t (network byte order) → строку
+    char ipStr[INET_ADDRSTRLEN] = {};
+    struct in_addr addr{ t.remoteIPv4 };
+    ::inet_ntop(AF_INET, &addr, ipStr, sizeof(ipStr));
+
+    ByteBuffer frame = gtpuEncode(t.teid, ipPacket);
+    bool ok = socket_.send(std::string(ipStr), GTPU_PORT, frame);
+    RBS_LOG_DEBUG("S1U", "[", enbId_, "] GTP-U UL teid=0x", t.teid, " → ", ipStr,
+                  " len=", ipPacket.size(), ok ? " OK" : " FAIL");
+    return ok;
 }
 
 bool S1ULink::recvGtpuPdu(RNTI rnti, uint8_t erabId, ByteBuffer& ipPacket)
@@ -250,6 +287,21 @@ bool S1ULink::recvGtpuPdu(RNTI rnti, uint8_t erabId, ByteBuffer& ipPacket)
     RBS_LOG_DEBUG("S1U", "[{}] GTP-U DL rnti={} erabId={} len={}",
                   enbId_, rnti, erabId, ipPacket.size());
     return true;
+}
+
+void S1ULink::onRxPacket(const net::UdpPacket& pkt)
+{
+    uint32_t teid;
+    ByteBuffer payload;
+    if (!gtpuDecode(pkt.data, teid, payload)) return;
+
+    std::lock_guard<std::mutex> lk(mtx_);
+    auto it = teidToKey_.find(teid);
+    if (it == teidToKey_.end()) {
+        RBS_LOG_WARNING("S1U", "[{}] входящий GTP-U: неизвестный teid=0x{:X}", enbId_, teid);
+        return;
+    }
+    dlQueues_[it->second].push(std::move(payload));
 }
 
 } // namespace rbs::lte

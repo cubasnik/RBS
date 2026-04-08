@@ -197,11 +197,25 @@ bool X2APLink::recvX2APMsg(X2APMessage& msg)
 
 X2ULink::X2ULink(const std::string& enbId)
     : enbId_(enbId)
+    , socket_("X2U-" + enbId)
 {}
 
 bool X2ULink::openForwardingTunnel(RNTI rnti, const std::string& targetAddr, uint32_t teid)
 {
-    tunnels_[rnti] = {targetAddr, teid};
+    // Лениво привязываем сокет (порт выдаёт ОС) при открытии первого туннеля
+    if (!socketReady_) {
+        if (!socket_.bind(0)) {
+            RBS_LOG_ERROR("X2U", "[{}] openForwardingTunnel: UDP bind ошибка", enbId_);
+            return false;
+        }
+        // Для X2-U входящих пакетов не ждём — только отправка
+        socketReady_ = true;
+    }
+
+    {
+        std::lock_guard<std::mutex> lk(mtx_);
+        tunnels_[rnti] = {targetAddr, teid};
+    }
     RBS_LOG_INFO("X2U", "[{}] GTP-U forwarding tunnel открыт rnti={} target={} teid=0x{:X}",
                  enbId_, rnti, targetAddr, teid);
     return true;
@@ -209,26 +223,33 @@ bool X2ULink::openForwardingTunnel(RNTI rnti, const std::string& targetAddr, uin
 
 bool X2ULink::forwardPacket(RNTI rnti, const ByteBuffer& pdcpPdu)
 {
-    auto it = tunnels_.find(rnti);
-    if (it == tunnels_.end()) {
-        RBS_LOG_ERROR("X2U", "[{}] forwardPacket: нет туннеля для rnti={}", enbId_, rnti);
-        return false;
-    }
-    RBS_LOG_DEBUG("X2U", "[{}] X2-U пересылка rnti={} → {} teid=0x{:X} len={}",
-                  enbId_, rnti, it->second.targetAddr, it->second.teid, pdcpPdu.size());
+    ForwardTunnel t;
     {
         std::lock_guard<std::mutex> lk(mtx_);
-        fwdBuffers_[rnti].push(pdcpPdu);
+        auto it = tunnels_.find(rnti);
+        if (it == tunnels_.end()) {
+            RBS_LOG_ERROR("X2U", "[{}] forwardPacket: нет туннеля для rnti={}", enbId_, rnti);
+            return false;
+        }
+        t = it->second;
     }
-    return true;
+
+    ByteBuffer frame = gtpuEncode(t.teid, pdcpPdu);
+    bool ok = socket_.send(t.targetAddr, GTPU_PORT, frame);
+    RBS_LOG_DEBUG("X2U", "[{}] X2-U пересылка rnti={} → {} teid=0x{:X} len={} {}",
+                  enbId_, rnti, t.targetAddr, t.teid, pdcpPdu.size(), ok ? "OK" : "FAIL");
+    return ok;
 }
 
 void X2ULink::closeForwardingTunnel(RNTI rnti)
 {
-    tunnels_.erase(rnti);
     {
         std::lock_guard<std::mutex> lk(mtx_);
-        fwdBuffers_.erase(rnti);
+        tunnels_.erase(rnti);
+    }
+    if (socketReady_ && tunnels_.empty()) {
+        socket_.close();
+        socketReady_ = false;
     }
     RBS_LOG_INFO("X2U", "[{}] GTP-U forwarding tunnel закрыт rnti={}", enbId_, rnti);
 }

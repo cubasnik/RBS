@@ -26,8 +26,13 @@ endif()
 # ─────────────────────────────────────────────────────────────────
 add_library(rbs_common STATIC
     src/common/config.cpp
+    src/common/udp_socket.cpp
 )
 target_include_directories(rbs_common PUBLIC src)
+# Winsock2 требуется для UdpSocket на Windows
+if(WIN32)
+    target_link_libraries(rbs_common PUBLIC ws2_32)
+endif()
 
 # ─────────────────────────────────────────────────────────────────
 # Library: HAL
@@ -69,6 +74,7 @@ add_library(rbs_lte STATIC
     src/lte/lte_stack.cpp
     src/lte/s1ap_link.cpp
     src/lte/x2ap_link.cpp
+    src/lte/gtp_u.cpp
 )
 target_link_libraries(rbs_lte PUBLIC rbs_hal)
 

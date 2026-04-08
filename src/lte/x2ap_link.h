@@ -1,5 +1,7 @@
 #pragma once
 #include "x2ap_interface.h"
+#include "gtp_u.h"
+#include "../common/udp_socket.h"
 #include "../common/logger.h"
 #include <queue>
 #include <mutex>
@@ -73,10 +75,14 @@ private:
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
-// X2ULink — симуляционная реализация X2-U GTP-U (TS 36.425).
+// X2ULink — реальная GTP-U реализация X2-U поверх UDP/Winsock2 (TS 36.425).
 //
-// Пересылка DL PDCP PDU от source eNB к target eNB во время хэндовера.
-// В симуляции — in-memory очереди пакетов.
+// Source eNB пересылает DL PDCP PDU на target eNB во время хэндовера.
+// Транспорт: UDP, порт 2152, минимальный GTP-U заголовок.
+//
+// openForwardingTunnel()  — bind(0) + startReceive
+// forwardPacket()         — gtpuEncode + socket_.send
+// closeForwardingTunnel() — socket_.close
 // ─────────────────────────────────────────────────────────────────────────────
 class X2ULink : public IX2U {
 public:
@@ -89,14 +95,13 @@ public:
     void closeForwardingTunnel(RNTI rnti)                        override;
 
 private:
-    std::string enbId_;
+    std::string    enbId_;
+    net::UdpSocket socket_;
+    bool           socketReady_ = false;
 
     struct ForwardTunnel { std::string targetAddr; uint32_t teid; };
     std::unordered_map<RNTI, ForwardTunnel> tunnels_;
-
-    // Буфер перенаправленных пакетов (читается target eNB)
-    std::unordered_map<RNTI, std::queue<ByteBuffer>> fwdBuffers_;
-    mutable std::mutex                               mtx_;
+    mutable std::mutex                      mtx_;
 };
 
 } // namespace rbs::lte
