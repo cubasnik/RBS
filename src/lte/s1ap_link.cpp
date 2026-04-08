@@ -1,4 +1,5 @@
 #include "s1ap_link.h"
+#include "s1ap_codec.h"
 
 namespace rbs::lte {
 
@@ -47,22 +48,19 @@ bool S1APLink::s1Setup(uint32_t enbId, const std::string& enbName,
         RBS_LOG_ERROR("S1AP", "[{}] s1Setup: нет соединения с MME", enbId_);
         return false;
     }
+    enbIdNum_ = enbId;
+    tac_      = static_cast<uint16_t>(tac);
+    plmnId_   = plmnId;
+
     RBS_LOG_INFO("S1AP",
                  "[{}] S1 SETUP enbId=0x{:07X} name={} TAC=0x{:04X} PLMN=0x{:06X}",
                  enbId_, enbId, enbName, tac, plmnId);
 
-    ByteBuffer payload{
-        static_cast<uint8_t>(enbId >> 24), static_cast<uint8_t>(enbId >> 16),
-        static_cast<uint8_t>(enbId >> 8),  static_cast<uint8_t>(enbId),
-        static_cast<uint8_t>(tac >> 8),    static_cast<uint8_t>(tac),
-        static_cast<uint8_t>(plmnId >> 16),static_cast<uint8_t>(plmnId >> 8),
-        static_cast<uint8_t>(plmnId)
-    };
-    payload.insert(payload.end(), enbName.begin(), enbName.end());
+    ByteBuffer payload = s1ap_encode_S1SetupRequest(enbId, enbName, plmnId, tac_);
     S1APMessage msg{S1APProcedure::S1_SETUP, 0, 0, std::move(payload)};
     bool ok = sendS1APMsg(msg);
 
-    // Симуляция: MME сразу отвечает успехом (S1 Setup Response содержит MME name)
+    // Симуляция: MME сразу отвечает успехом
     if (ok) {
         std::lock_guard<std::mutex> lk(rxMtx_);
         ByteBuffer resp{'S','1','_','O','K'};
@@ -81,11 +79,9 @@ bool S1APLink::initialUEMessage(RNTI rnti, IMSI imsi, const ByteBuffer& nasPdu)
     RBS_LOG_INFO("S1AP", "[{}] S1AP INITIAL UE MSG rnti={} mmeId=0x{:X} nasLen={}",
                  enbId_, rnti, mmeId, nasPdu.size());
 
-    ByteBuffer payload;
-    const auto* imsiBytes = reinterpret_cast<const uint8_t*>(&imsi);
-    payload.insert(payload.end(), imsiBytes, imsiBytes + sizeof(imsi));
-    payload.insert(payload.end(), nasPdu.begin(), nasPdu.end());
-
+    ByteBuffer payload = s1ap_encode_InitialUEMessage(
+        static_cast<uint32_t>(rnti), nasPdu, plmnId_, tac_, cellId_,
+        1 /*mo-Signalling*/);
     S1APMessage msg{S1APProcedure::INITIAL_UE_MESSAGE, mmeId,
                     static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
@@ -96,8 +92,10 @@ bool S1APLink::downlinkNASTransport(uint32_t mmeUeS1apId, RNTI rnti,
 {
     RBS_LOG_INFO("S1AP", "[{}] S1AP DL NAS TRANSPORT rnti={} nasLen={}",
                  enbId_, rnti, nasPdu.size());
+    ByteBuffer payload = s1ap_encode_DownlinkNASTransport(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), nasPdu);
     S1APMessage msg{S1APProcedure::DOWNLINK_NAS_TRANSPORT,
-                    mmeUeS1apId, static_cast<uint32_t>(rnti), nasPdu};
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
 }
 
@@ -106,8 +104,10 @@ bool S1APLink::uplinkNASTransport(uint32_t mmeUeS1apId, RNTI rnti,
 {
     RBS_LOG_INFO("S1AP", "[{}] S1AP UL NAS TRANSPORT rnti={} nasLen={}",
                  enbId_, rnti, nasPdu.size());
+    ByteBuffer payload = s1ap_encode_UplinkNASTransport(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), nasPdu, plmnId_, tac_, cellId_);
     S1APMessage msg{S1APProcedure::UPLINK_NAS_TRANSPORT,
-                    mmeUeS1apId, static_cast<uint32_t>(rnti), nasPdu};
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
 }
 
@@ -116,11 +116,8 @@ bool S1APLink::initialContextSetupResponse(uint32_t mmeUeS1apId, RNTI rnti,
 {
     RBS_LOG_INFO("S1AP", "[{}] S1AP INITIAL CONTEXT SETUP RESP rnti={} erabs={}",
                  enbId_, rnti, erabs.size());
-    ByteBuffer payload;
-    for (const auto& e : erabs) {
-        payload.push_back(e.erabId);
-        payload.push_back(e.qci);
-    }
+    ByteBuffer payload = s1ap_encode_InitialContextSetupResponse(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), erabs);
     S1APMessage msg{S1APProcedure::INITIAL_CONTEXT_SETUP,
                     mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
@@ -131,7 +128,9 @@ bool S1APLink::ueContextReleaseRequest(uint32_t mmeUeS1apId, RNTI rnti,
 {
     RBS_LOG_INFO("S1AP", "[{}] S1AP UE CTX RELEASE REQUEST rnti={} причина={}",
                  enbId_, rnti, cause);
-    ByteBuffer payload(cause.begin(), cause.end());
+    // Map string cause to Cause group/value: default radioNetwork/unspecified
+    ByteBuffer payload = s1ap_encode_UEContextReleaseRequest(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), 0 /*radioNetwork*/, 0 /*unspecified*/);
     S1APMessage msg{S1APProcedure::UE_CONTEXT_RELEASE_REQUEST,
                     mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     bool ok = sendS1APMsg(msg);
@@ -149,8 +148,10 @@ bool S1APLink::ueContextReleaseComplete(uint32_t mmeUeS1apId, RNTI rnti)
 {
     RBS_LOG_INFO("S1AP", "[{}] S1AP UE CTX RELEASE COMPLETE rnti={}", enbId_, rnti);
     ueS1apIds_.erase(rnti);
+    ByteBuffer payload = s1ap_encode_UEContextReleaseComplete(
+        mmeUeS1apId, static_cast<uint32_t>(rnti));
     S1APMessage msg{S1APProcedure::UE_CONTEXT_RELEASE_COMPLETE,
-                    mmeUeS1apId, static_cast<uint32_t>(rnti), {}};
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
 }
 
@@ -161,14 +162,59 @@ bool S1APLink::pathSwitchRequest(uint32_t mmeUeS1apId, RNTI rnti,
     RBS_LOG_INFO("S1AP",
                  "[{}] S1AP PATH SWITCH REQUEST rnti={} targetEnb=0x{:X} erabs={}",
                  enbId_, rnti, targetEnbId, erabs.size());
-    ByteBuffer payload{
-        static_cast<uint8_t>(targetEnbId >> 24),
-        static_cast<uint8_t>(targetEnbId >> 16),
-        static_cast<uint8_t>(targetEnbId >> 8),
-        static_cast<uint8_t>(targetEnbId)
-    };
-    for (const auto& e : erabs) payload.push_back(e.erabId);
+    ByteBuffer payload = s1ap_encode_PathSwitchRequest(
+        mmeUeS1apId, static_cast<uint32_t>(rnti),
+        targetEnbId, erabs, plmnId_, cellId_, tac_);
     S1APMessage msg{S1APProcedure::PATH_SWITCH_REQUEST,
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::erabSetupResponse(uint32_t mmeUeS1apId, RNTI rnti,
+                                 const std::vector<ERAB>& erabs,
+                                 const std::vector<uint8_t>& failedErabIds)
+{
+    RBS_LOG_INFO("S1AP", "[{}] S1AP E-RAB SETUP RESP rnti={} ok={} fail={}",
+                 enbId_, rnti, erabs.size(), failedErabIds.size());
+    ByteBuffer payload = s1ap_encode_ERABSetupResponse(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), erabs, failedErabIds);
+    S1APMessage msg{S1APProcedure::E_RAB_SETUP,
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::erabReleaseResponse(uint32_t mmeUeS1apId, RNTI rnti,
+                                   const std::vector<uint8_t>& releasedErabIds)
+{
+    RBS_LOG_INFO("S1AP", "[{}] S1AP E-RAB RELEASE RESP rnti={} released={}",
+                 enbId_, rnti, releasedErabIds.size());
+    ByteBuffer payload = s1ap_encode_ERABReleaseResponse(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), releasedErabIds);
+    S1APMessage msg{S1APProcedure::E_RAB_RELEASE,
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::handoverRequired(uint32_t mmeUeS1apId, RNTI rnti,
+                                uint32_t targetEnbId,
+                                const ByteBuffer& rrcContainer)
+{
+    RBS_LOG_INFO("S1AP", "[{}] S1AP HANDOVER REQUIRED rnti={} targetEnb=0x{:X}",
+                 enbId_, rnti, targetEnbId);
+    ByteBuffer payload = s1ap_encode_HandoverRequired(
+        mmeUeS1apId, static_cast<uint32_t>(rnti),
+        targetEnbId, plmnId_, cellId_, rrcContainer);
+    S1APMessage msg{S1APProcedure::HANDOVER_REQUIRED,
+                    mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::handoverNotify(uint32_t mmeUeS1apId, RNTI rnti)
+{
+    RBS_LOG_INFO("S1AP", "[{}] S1AP HANDOVER NOTIFY rnti={}", enbId_, rnti);
+    ByteBuffer payload = s1ap_encode_HandoverNotify(
+        mmeUeS1apId, static_cast<uint32_t>(rnti), plmnId_, tac_, cellId_);
+    S1APMessage msg{S1APProcedure::HANDOVER_NOTIFY,
                     mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
     return sendS1APMsg(msg);
 }

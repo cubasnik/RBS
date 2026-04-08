@@ -52,10 +52,21 @@ public:
     bool ueContextReleaseComplete(uint32_t mmeUeS1apId,
                                   RNTI rnti)                     override;
 
+    // ── E-RAB management ─────────────────────────────────────────────────────
+    bool erabSetupResponse (uint32_t mmeUeS1apId, RNTI rnti,
+                            const std::vector<ERAB>& erabs,
+                            const std::vector<uint8_t>& failedErabIds) override;
+    bool erabReleaseResponse(uint32_t mmeUeS1apId, RNTI rnti,
+                             const std::vector<uint8_t>& releasedErabIds) override;
+
     // ── Хэндовер ──────────────────────────────────────────────────────────────
     bool pathSwitchRequest(uint32_t mmeUeS1apId, RNTI rnti,
                            uint32_t targetEnbId,
                            const std::vector<ERAB>& erabs)       override;
+    bool handoverRequired  (uint32_t mmeUeS1apId, RNTI rnti,
+                            uint32_t targetEnbId,
+                            const ByteBuffer& rrcContainer)      override;
+    bool handoverNotify    (uint32_t mmeUeS1apId, RNTI rnti)     override;
 
     // ── Сырой обмен ───────────────────────────────────────────────────────────
     bool sendS1APMsg(const S1APMessage& msg)                     override;
@@ -66,6 +77,10 @@ private:
     std::string mmeAddr_;
     uint16_t    mmePort_   = 0;
     bool        connected_ = false;
+    uint32_t    enbIdNum_  = 0;  ///< Numeric eNB ID (20-bit macro)
+    uint32_t    plmnId_    = 0;  ///< Cached PLMN identity from s1Setup
+    uint16_t    tac_       = 0;  ///< Tracking Area Code from s1Setup
+    uint32_t    cellId_    = 1;  ///< E-UTRAN cell identity (default 1)
 
     // RNTI → mmeUeS1apId
     std::unordered_map<RNTI, uint32_t> ueS1apIds_;

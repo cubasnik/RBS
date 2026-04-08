@@ -103,11 +103,29 @@ public:
     virtual bool ueContextReleaseComplete(uint32_t mmeUeS1apId,
                                           RNTI rnti) = 0;
 
+    // ── E-RAB bearer management ───────────────────────────────────────────────
+    /// Confirm E-RABs set up (TS 36.413 §8.4.1).
+    virtual bool erabSetupResponse(uint32_t mmeUeS1apId, RNTI rnti,
+                                   const std::vector<ERAB>& erabs,
+                                   const std::vector<uint8_t>& failedErabIds) = 0;
+
+    /// Confirm E-RABs released (TS 36.413 §8.4.3).
+    virtual bool erabReleaseResponse(uint32_t mmeUeS1apId, RNTI rnti,
+                                     const std::vector<uint8_t>& releasedErabIds) = 0;
+
     // ── Handover ──────────────────────────────────────────────────────────────
     /// Path Switch Request — after successful X2 handover, re-anchor S1 path.
     virtual bool pathSwitchRequest(uint32_t mmeUeS1apId, RNTI rnti,
                                    uint32_t targetEnbId,
                                    const std::vector<ERAB>& erabs) = 0;
+
+    /// Handover Required — notify MME that UE needs to move to target eNB (TS 36.413 §8.5.1).
+    virtual bool handoverRequired(uint32_t mmeUeS1apId, RNTI rnti,
+                                  uint32_t targetEnbId,
+                                  const ByteBuffer& rrcContainer) = 0;
+
+    /// Handover Notify — confirm UE arrived at target cell (TS 36.413 §8.5.2).
+    virtual bool handoverNotify(uint32_t mmeUeS1apId, RNTI rnti) = 0;
 
     // ── Raw message pump ──────────────────────────────────────────────────────
     virtual bool sendS1APMsg(const S1APMessage& msg) = 0;
