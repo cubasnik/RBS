@@ -1798,7 +1798,7 @@ Secondary-CCPCH-LCR-parameterItem-CTCH-SetupRqstTDD ::= SEQUENCE {
 
 Secondary-CCPCH-LCR-parameterItem-CTCH-SetupRqstTDD-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID	id-MBSFN-SpecialTimeSlot-LCR			CRITICALITY ignore		EXTENSION	TimeslotLCR-Extension			PRESENCE optional },
-	-- Only for 1.28 Mcps TDD MBSFN only mode, this IE indicates the MBSFN Special Time Slot (TS 25.221 [19]). The IE ”Time Slot LCR” shall be ignored if this IE appears
+	-- Only for 1.28 Mcps TDD MBSFN only mode, this IE indicates the MBSFN Special Time Slot (TS 25.221 [19]). The IE "Time Slot LCR" shall be ignored if this IE appears
 	...
 }
 
@@ -1996,7 +1996,7 @@ MICH-LCR-Parameters-CTCH-SetupRqstTDD ::= SEQUENCE {
 
 MICH-LCR-Parameters-CTCH-SetupRqstTDD-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID	id-MBSFN-SpecialTimeSlot-LCR			CRITICALITY ignore		EXTENSION TimeslotLCR-Extension			PRESENCE optional },
-	-- Only for 1.28 Mcps TDD MBSFN only mode, this IE indicates the MBSFN Special Time Slot (TS 25.221 [19]). The IE ”Time Slot LCR” shall be ignored if this IE appears
+	-- Only for 1.28 Mcps TDD MBSFN only mode, this IE indicates the MBSFN Special Time Slot (TS 25.221 [19]). The IE "Time Slot LCR" shall be ignored if this IE appears
 	...
 }
 
@@ -3187,24 +3187,24 @@ Local-Cell-InformationItem-AuditRsp-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-HSDPA-Capability					CRITICALITY ignore	EXTENSION HSDPA-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-Capability					CRITICALITY ignore	EXTENSION E-DCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TTI2ms-Capability				CRITICALITY ignore	EXTENSION E-DCH-TTI2ms-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-SF-Capability					CRITICALITY ignore	EXTENSION E-DCH-SF-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-HARQ-Combining-Capability		CRITICALITY ignore	EXTENSION E-DCH-HARQ-Combining-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-CapacityConsumptionLaw		CRITICALITY ignore	EXTENSION E-DCHCapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-F-DPCH-Capability					CRITICALITY ignore	EXTENSION F-DPCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TDD-CapacityConsumptionLaw	CRITICALITY ignore	EXTENSION E-DCH-TDD-CapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivityDTX-DRX-Capability	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityDTX-DRX-Capability	PRESENCE optional }|
 	{ ID id-Max-UE-DTX-Cycle					CRITICALITY ignore	EXTENSION Max-UE-DTX-Cycle			PRESENCE conditional }|
-	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to ”Continuous Packet Connectivity DTX-DRX Capable”.
+	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to "Continuous Packet Connectivity DTX-DRX Capable".
 	{ ID id-ContinuousPacketConnectivityHS-SCCH-less-Capability		CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityHS-SCCH-less-Capability	PRESENCE optional }|
 	{ ID id-MIMO-Capability						CRITICALITY ignore	EXTENSION MIMO-Capability			PRESENCE optional }|
 	{ ID id-SixtyfourQAM-DL-Capability			CRITICALITY ignore	EXTENSION SixtyfourQAM-DL-Capability		PRESENCE optional }|
 	{ ID id-MBMS-Capability						CRITICALITY ignore	EXTENSION MBMS-Capability			PRESENCE optional }|
 	{ ID id-Enhanced-FACH-Capability			CRITICALITY ignore	EXTENSION Enhanced-FACH-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-PCH-Capability				CRITICALITY ignore	EXTENSION Enhanced-PCH-Capability		PRESENCE conditional }|
-	-- The IE shall be present if Enhanced FACH Capability IE is set to ”Enhanced FACH Capable”.
+	-- The IE shall be present if Enhanced FACH Capability IE is set to "Enhanced FACH Capable".
 	{ ID id-SixteenQAM-UL-Capability			CRITICALITY ignore	EXTENSION SixteenQAM-UL-Capability		PRESENCE optional }|
 	{ ID id-HSDSCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION HSDSCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-MBSFN-Only-Mode-Capability			CRITICALITY ignore	EXTENSION MBSFN-Only-Mode-Capability		PRESENCE optional }|
@@ -3212,7 +3212,7 @@ Local-Cell-InformationItem-AuditRsp-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-E-DCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION E-DCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-Common-EDCH-Capability				CRITICALITY ignore	EXTENSION Common-EDCH-Capability		PRESENCE optional }|
 	{ ID id-E-AI-Capability						CRITICALITY ignore	EXTENSION E-AI-Capability			PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-Enhanced-UE-DRX-Capability			CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-UE-DRX-CapabilityLCR		CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-E-DPCCH-Power-Boosting-Capability	CRITICALITY ignore	EXTENSION E-DPCCH-Power-Boosting-Capability		PRESENCE optional }|
@@ -3221,7 +3221,7 @@ Local-Cell-InformationItem-AuditRsp-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-Semi-PersistentScheduling-CapabilityLCR		CRITICALITY ignore	EXTENSION Semi-PersistentScheduling-CapabilityLCR	PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivity-DRX-CapabilityLCR	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivity-DRX-CapabilityLCR	PRESENCE optional }|
 	{ ID id-Common-E-DCH-HSDPCCH-Capability		CRITICALITY ignore	EXTENSION Common-E-DCH-HSDPCCH-Capability		PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-MIMO-Power-Offset-For-S-CPICH-Capability	CRITICALITY ignore	EXTENSION MIMO-PowerOffsetForS-CPICHCapability	PRESENCE optional }|
 	{ ID id-TxDiversityOnDLControlChannelsByMIMOUECapability	CRITICALITY ignore	EXTENSION TxDiversityOnDLControlChannelsByMIMOUECapability	PRESENCE optional }|
 	{ ID id-Single-Stream-MIMO-Capability		CRITICALITY ignore	EXTENSION Single-Stream-MIMO-Capability		PRESENCE optional }|
@@ -4566,18 +4566,18 @@ Local-Cell-InformationItem-ResourceStatusInd ::= SEQUENCE {
 	local-CellID								Local-Cell-ID,
 	addorDeleteIndicator						AddorDeleteIndicator,
 	dl-or-global-capacityCredit					DL-or-Global-CapacityCredit					OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	ul-capacityCredit							UL-CapacityCredit							OPTIONAL,
 	commonChannelsCapacityConsumptionLaw 		CommonChannelsCapacityConsumptionLaw		OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	dedicatedChannelsCapacityConsumptionLaw 	DedicatedChannelsCapacityConsumptionLaw		OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	maximumDL-PowerCapability					MaximumDL-PowerCapability					OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	minSpreadingFactor							MinSpreadingFactor							OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	minimumDL-PowerCapability					MinimumDL-PowerCapability					OPTIONAL,
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add”
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add"
 	local-Cell-Group-ID							Local-Cell-ID								OPTIONAL,
 	iE-Extensions								ProtocolExtensionContainer { { Local-Cell-InformationItem-ResourceStatusInd-ExtIEs} }	OPTIONAL,
 	...
@@ -4585,29 +4585,29 @@ Local-Cell-InformationItem-ResourceStatusInd ::= SEQUENCE {
 
 Local-Cell-InformationItem-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-ReferenceClockAvailability			CRITICALITY ignore	EXTENSION ReferenceClockAvailability		PRESENCE optional }|
-	-- This IE shall be present if AddorDeleteIndicator IE is set to “add“ and the Local Cell is related to a TDD cell
+	-- This IE shall be present if AddorDeleteIndicator IE is set to "add" and the Local Cell is related to a TDD cell
 	{ ID id-Power-Local-Cell-Group-ID			CRITICALITY ignore	EXTENSION Local-Cell-ID				PRESENCE optional }|
 	{ ID id-HSDPA-Capability					CRITICALITY ignore	EXTENSION HSDPA-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-Capability					CRITICALITY ignore	EXTENSION E-DCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TTI2ms-Capability				CRITICALITY ignore	EXTENSION E-DCH-TTI2ms-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-SF-Capability					CRITICALITY ignore	EXTENSION E-DCH-SF-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-HARQ-Combining-Capability		CRITICALITY ignore	EXTENSION E-DCH-HARQ-Combining-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-CapacityConsumptionLaw		CRITICALITY ignore	EXTENSION E-DCHCapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-F-DPCH-Capability					CRITICALITY ignore	EXTENSION F-DPCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TDD-CapacityConsumptionLaw	CRITICALITY ignore	EXTENSION E-DCH-TDD-CapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivityDTX-DRX-Capability	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityDTX-DRX-Capability	PRESENCE optional }|
 	{ ID id-Max-UE-DTX-Cycle					CRITICALITY ignore	EXTENSION Max-UE-DTX-Cycle			PRESENCE conditional }|
-	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to ”Continuous Packet Connectivity DTX-DRX Capable”.
+	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to "Continuous Packet Connectivity DTX-DRX Capable".
 	{ ID id-ContinuousPacketConnectivityHS-SCCH-less-Capability		CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityHS-SCCH-less-Capability		PRESENCE optional }|
 	{ ID id-MIMO-Capability						CRITICALITY ignore	EXTENSION MIMO-Capability			PRESENCE optional }|
 	{ ID id-SixtyfourQAM-DL-Capability			CRITICALITY ignore	EXTENSION SixtyfourQAM-DL-Capability		PRESENCE optional }|
 	{ ID id-MBMS-Capability						CRITICALITY ignore	EXTENSION MBMS-Capability			PRESENCE optional }|
 	{ ID id-Enhanced-FACH-Capability			CRITICALITY ignore	EXTENSION Enhanced-FACH-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-PCH-Capability				CRITICALITY ignore	EXTENSION Enhanced-PCH-Capability		PRESENCE conditional }|
-	-- The IE shall be present if Enhanced FACH Capability IE is set to ”Enhanced FACH Capable”.
+	-- The IE shall be present if Enhanced FACH Capability IE is set to "Enhanced FACH Capable".
 	{ ID id-SixteenQAM-UL-Capability			CRITICALITY ignore	EXTENSION SixteenQAM-UL-Capability		PRESENCE optional }|
 	{ ID id-HSDSCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION HSDSCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-MBSFN-Only-Mode-Capability			CRITICALITY ignore	EXTENSION MBSFN-Only-Mode-Capability		PRESENCE optional }|
@@ -4615,7 +4615,7 @@ Local-Cell-InformationItem-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::= 
 	{ ID id-E-DCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION E-DCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-Common-EDCH-Capability				CRITICALITY ignore	EXTENSION Common-EDCH-Capability		PRESENCE optional }|
 	{ ID id-E-AI-Capability						CRITICALITY ignore	EXTENSION E-AI-Capability			PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-Enhanced-UE-DRX-Capability			CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-UE-DRX-CapabilityLCR		CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-E-DPCCH-Power-Boosting-Capability	CRITICALITY ignore	EXTENSION E-DPCCH-Power-Boosting-Capability		PRESENCE optional }|
@@ -4624,7 +4624,7 @@ Local-Cell-InformationItem-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::= 
 	{ ID id-Semi-PersistentScheduling-CapabilityLCR	CRITICALITY ignore	EXTENSION Semi-PersistentScheduling-CapabilityLCR	PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivity-DRX-CapabilityLCR	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivity-DRX-CapabilityLCR	PRESENCE optional }|
 	{ ID id-Common-E-DCH-HSDPCCH-Capability		CRITICALITY ignore	EXTENSION Common-E-DCH-HSDPCCH-Capability		PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-MIMO-Power-Offset-For-S-CPICH-Capability	CRITICALITY ignore	EXTENSION MIMO-PowerOffsetForS-CPICHCapability	PRESENCE optional }|
 	{ ID id-TxDiversityOnDLControlChannelsByMIMOUECapability	CRITICALITY ignore	EXTENSION TxDiversityOnDLControlChannelsByMIMOUECapability 		PRESENCE optional }|
 	{ ID id-Single-Stream-MIMO-Capability		CRITICALITY ignore	EXTENSION Single-Stream-MIMO-Capability		PRESENCE optional }|
@@ -4717,24 +4717,24 @@ Local-Cell-InformationItem2-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::=
 	{ ID id-HSDPA-Capability					CRITICALITY ignore	EXTENSION HSDPA-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-Capability					CRITICALITY ignore	EXTENSION E-DCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TTI2ms-Capability				CRITICALITY ignore	EXTENSION E-DCH-TTI2ms-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-SF-Capability					CRITICALITY ignore	EXTENSION E-DCH-SF-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-HARQ-Combining-Capability		CRITICALITY ignore	EXTENSION E-DCH-HARQ-Combining-Capability		PRESENCE conditional }|
-	-- The IE shall be present if E-DCH Capability IE is set to ”E-DCH Capable”.
+	-- The IE shall be present if E-DCH Capability IE is set to "E-DCH Capable".
 	{ ID id-E-DCH-CapacityConsumptionLaw		CRITICALITY ignore	EXTENSION E-DCHCapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-F-DPCH-Capability					CRITICALITY ignore	EXTENSION F-DPCH-Capability			PRESENCE optional }|
 	{ ID id-E-DCH-TDD-CapacityConsumptionLaw	CRITICALITY ignore	EXTENSION E-DCH-TDD-CapacityConsumptionLaw		PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivityDTX-DRX-Capability	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityDTX-DRX-Capability	PRESENCE optional }|
 	{ ID id-Max-UE-DTX-Cycle					CRITICALITY ignore	EXTENSION Max-UE-DTX-Cycle			PRESENCE conditional }|
-	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to ”Continuous Packet Connectivity DTX-DRX Capable”.
+	-- The IE shall be present if Continuous Packet Connectivity DTX-DRX Capability IE is present and set to "Continuous Packet Connectivity DTX-DRX Capable".
 	{ ID id-ContinuousPacketConnectivityHS-SCCH-less-Capability		CRITICALITY ignore	EXTENSION ContinuousPacketConnectivityHS-SCCH-less-Capability	PRESENCE optional }|
 	{ ID id-MIMO-Capability						CRITICALITY ignore	EXTENSION MIMO-Capability			PRESENCE optional }|
 	{ ID id-SixtyfourQAM-DL-Capability			CRITICALITY ignore	EXTENSION SixtyfourQAM-DL-Capability		PRESENCE optional }|
 	{ ID id-MBMS-Capability						CRITICALITY ignore	EXTENSION MBMS-Capability			PRESENCE optional }|
 	{ ID id-Enhanced-FACH-Capability			CRITICALITY ignore	EXTENSION Enhanced-FACH-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-PCH-Capability				CRITICALITY ignore	EXTENSION Enhanced-PCH-Capability		PRESENCE conditional }|
-	-- The IE shall be present if Enhanced FACH Capability IE is set to ”Enhanced FACH Capable”.
+	-- The IE shall be present if Enhanced FACH Capability IE is set to "Enhanced FACH Capable".
 	{ ID id-SixteenQAM-UL-Capability			CRITICALITY ignore	EXTENSION SixteenQAM-UL-Capability		PRESENCE optional }|
 	{ ID id-HSDSCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION HSDSCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-MBSFN-Only-Mode-Capability			CRITICALITY ignore	EXTENSION MBSFN-Only-Mode-Capability		PRESENCE optional }|
@@ -4742,7 +4742,7 @@ Local-Cell-InformationItem2-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::=
 	{ ID id-E-DCH-MACdPDU-SizeCapability		CRITICALITY ignore	EXTENSION E-DCH-MACdPDU-SizeCapability		PRESENCE optional }|
 	{ ID id-Common-EDCH-Capability				CRITICALITY ignore	EXTENSION Common-EDCH-Capability		PRESENCE optional }|
 	{ ID id-E-AI-Capability						CRITICALITY ignore	EXTENSION E-AI-Capability			PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-Enhanced-UE-DRX-Capability			CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-Enhanced-UE-DRX-CapabilityLCR		CRITICALITY ignore	EXTENSION Enhanced-UE-DRX-Capability		PRESENCE optional }|
 	{ ID id-E-DPCCH-Power-Boosting-Capability	CRITICALITY ignore	EXTENSION E-DPCCH-Power-Boosting-Capability		PRESENCE optional }|
@@ -4751,7 +4751,7 @@ Local-Cell-InformationItem2-ResourceStatusInd-ExtIEs NBAP-PROTOCOL-EXTENSION ::=
 	{ ID id-Semi-PersistentScheduling-CapabilityLCR	CRITICALITY ignore	EXTENSION Semi-PersistentScheduling-CapabilityLCR	PRESENCE optional }|
 	{ ID id-ContinuousPacketConnectivity-DRX-CapabilityLCR	CRITICALITY ignore	EXTENSION ContinuousPacketConnectivity-DRX-CapabilityLCR	PRESENCE optional }|
 	{ ID id-Common-E-DCH-HSDPCCH-Capability		CRITICALITY ignore	EXTENSION Common-E-DCH-HSDPCCH-Capability		PRESENCE optional }|
-	-- The IE shall be present if Common E-DCH Capability IE is present and set to ”Common E-DCH Capable”.
+	-- The IE shall be present if Common E-DCH Capability IE is present and set to "Common E-DCH Capable".
 	{ ID id-MIMO-Power-Offset-For-S-CPICH-Capability	CRITICALITY ignore	EXTENSION MIMO-PowerOffsetForS-CPICHCapability	PRESENCE optional } |
 	{ ID id-TxDiversityOnDLControlChannelsByMIMOUECapability	CRITICALITY ignore	EXTENSION TxDiversityOnDLControlChannelsByMIMOUECapability	PRESENCE optional }|
 	{ ID id-Single-Stream-MIMO-Capability		CRITICALITY ignore	EXTENSION Single-Stream-MIMO-Capability		PRESENCE optional }|
@@ -5364,7 +5364,7 @@ RL-InformationItem-RL-SetupRqstFDD ::= SEQUENCE {
 	minimumDL-power						DL-Power,
 	not-Used-sSDT-Cell-Identity			NULL							OPTIONAL,
 	transmitDiversityIndicator			TransmitDiversityIndicator		OPTIONAL,
-	-- This IE shall be present if Diversity Mode IE in UL DPCH Information group is not set to “none”
+	-- This IE shall be present if Diversity Mode IE in UL DPCH Information group is not set to "none"
 	iE-Extensions						ProtocolExtensionContainer { { RL-InformationItem-RL-SetupRqstFDD-ExtIEs} }		OPTIONAL,
 	...
 }
@@ -6926,7 +6926,7 @@ RL-InformationItem-RL-ReconfPrepFDD ::= SEQUENCE {
 	not-Used-sSDT-Indication						NULL										OPTIONAL,
 	not-Used-sSDT-Cell-Identity						NULL										OPTIONAL,
 	transmitDiversityIndicator						TransmitDiversityIndicator					OPTIONAL,
-	-- This IE shall be present if Diversity Mode IE is present in UL DPCH Information IE and it is not set to “none”
+	-- This IE shall be present if Diversity Mode IE is present in UL DPCH Information IE and it is not set to "none"
 	iE-Extensions									ProtocolExtensionContainer { { RL-InformationItem-RL-ReconfPrepFDD-ExtIEs} }		OPTIONAL,
 	...
 }
@@ -8660,11 +8660,11 @@ DedicatedMeasurementInitiationRequest-IEs NBAP-PROTOCOL-IES ::= {
 
 DedicatedMeasurementInitiationRequest-Extensions NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-NumberOfReportedCellPortions			CRITICALITY reject	EXTENSION NumberOfReportedCellPortions			PRESENCE conditional	}|
-	-- The IE shall be present if the Dedicated Measurement Type IE is set to ”Best Cell Portions”, FDD only.
+	-- The IE shall be present if the Dedicated Measurement Type IE is set to "Best Cell Portions", FDD only.
 	{ ID id-MeasurementRecoveryBehavior				CRITICALITY ignore	EXTENSION MeasurementRecoveryBehavior					PRESENCE optional	}|
 	{ ID id-AlternativeFormatReportingIndicator		CRITICALITY ignore	EXTENSION AlternativeFormatReportingIndicator		PRESENCE optional	}|
 	{ ID id-NumberOfReportedCellPortionsLCR			CRITICALITY reject	EXTENSION NumberOfReportedCellPortionsLCR			PRESENCE conditional	},
-	-- The IE shall be present if the Dedicated Measurement Type IE is set to ”Best Cell Portions LCR”, 1.28Mcps only.
+	-- The IE shall be present if the Dedicated Measurement Type IE is set to "Best Cell Portions LCR", 1.28Mcps only.
 	...
 }
 

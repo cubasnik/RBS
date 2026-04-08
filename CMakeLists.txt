@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(RBS VERSION 1.0.0 LANGUAGES CXX)
+project(RBS VERSION 1.0.0 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -76,7 +76,7 @@ add_library(rbs_lte STATIC
     src/lte/x2ap_link.cpp
     src/lte/gtp_u.cpp
 )
-target_link_libraries(rbs_lte PUBLIC rbs_hal)
+target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap)
 
 # ─────────────────────────────────────────────────────────────────
 # Library: OMS
@@ -85,6 +85,36 @@ add_library(rbs_oms STATIC
     src/oms/oms.cpp
 )
 target_link_libraries(rbs_oms PUBLIC rbs_common)
+
+# ─────────────────────────────────────────────────────────────────
+# Generated ASN.1 codec libraries (asn1c-mouse, APER-only)
+#   Warnings suppressed — generated code, not maintained by hand.
+# ─────────────────────────────────────────────────────────────────
+file(GLOB S1AP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/s1ap/*.c")
+add_library(rbs_asn1_s1ap STATIC ${S1AP_SOURCES})
+set_target_properties(rbs_asn1_s1ap PROPERTIES C_STANDARD 11)
+target_compile_definitions(rbs_asn1_s1ap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_include_directories(rbs_asn1_s1ap PUBLIC
+    "${CMAKE_SOURCE_DIR}/src/generated/s1ap"
+)
+if(MSVC)
+    target_compile_options(rbs_asn1_s1ap PRIVATE /W0 /wd4244 /wd4267 /wd4996 /Ze /std:c11)
+else()
+    target_compile_options(rbs_asn1_s1ap PRIVATE -w)
+endif()
+
+file(GLOB X2AP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/x2ap/*.c")
+add_library(rbs_asn1_x2ap STATIC ${X2AP_SOURCES})
+set_target_properties(rbs_asn1_x2ap PROPERTIES C_STANDARD 11)
+target_compile_definitions(rbs_asn1_x2ap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_include_directories(rbs_asn1_x2ap PUBLIC
+    "${CMAKE_SOURCE_DIR}/src/generated/x2ap"
+)
+if(MSVC)
+    target_compile_options(rbs_asn1_x2ap PRIVATE /W0 /wd4244 /wd4267 /wd4996 /Ze /std:c11)
+else()
+    target_compile_options(rbs_asn1_x2ap PRIVATE -w)
+endif()
 
 # ─────────────────────────────────────────────────────────────────
 # Executable: RBS node

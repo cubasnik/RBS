@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/cmake_install.cmake",
+		"C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

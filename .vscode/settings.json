@@ -1,0 +1,23 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        ".\\build\\Release\\rbs_node.exe": true,
+        "Test-Path": true,
+        "/^\\$text = Get-Content \"C:\\\\Users\\\\Alexey\\\\Desktop\\\\min\\\\vNE\\\\RBS\\\\RBS\\\\src\\\\generated\\\\s1ap\\\\ProtocolIE-Field\\.c\" -Raw; \\$names = \\[regex\\]::Matches\\(\\$text, '\\(\\?m\\)\\^static const asn_per_constraints_t\\\\s\\+\\(\\\\w\\+\\)'\\) \\| ForEach-Object \\{\\$_\\.Groups\\[1\\]\\.Value\\}; \\$names \\| Group-Object \\| Where-Object \\{\\$_\\.Count -gt 1\\} \\| Select-Object Name, Count \\| Select-Object -First 10$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 -c \"\nimport re\nwith open\\(r'C:\\\\Users\\\\Alexey\\\\Desktop\\\\min\\\\vNE\\\\RBS\\\\RBS\\\\src\\\\generated\\\\s1ap\\\\ProtocolIE-Field\\.c', encoding='utf-8', errors='replace'\\) as f:\n    text = f\\.read\\(\\)\nnames = re\\.findall\\(r'\\^static const asn_per_constraints_t\\\\s\\+\\(\\\\w\\+\\)', text, re\\.MULTILINE\\)\nfrom collections import Counter\nc = Counter\\(names\\)\ndupes = \\[\\(k,v\\) for k,v in c\\.items\\(\\) if v>1\\]\nprint\\('Count of duplicate per_constraints vars:', len\\(dupes\\)\\)\nprint\\('First 5:', dupes\\[:5\\]\\)\nfnnames = re\\.findall\\(r'\\^static int\\\\n\\(\\\\w\\+\\)\\\\s\\*\\\\\\(', text, re\\.MULTILINE\\)\nfc = Counter\\(fnnames\\)\nfdupes = \\[\\(k,v\\) for k,v in fc\\.items\\(\\) if v>1\\]\nprint\\('Count of duplicate static functions:', len\\(fdupes\\)\\)\nprint\\('First 5:', fdupes\\[:5\\]\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 -c \"\nimport re\nwith open\\(r'C:\\\\Users\\\\Alexey\\\\Desktop\\\\min\\\\vNE\\\\RBS\\\\RBS\\\\src\\\\generated\\\\s1ap\\\\ProtocolIE-Field\\.c', encoding='utf-8', errors='replace'\\) as f:\n    text = f\\.read\\(\\)\n# Match: 'asn_PER_memb_criticality_constr_0' as static var\nnames = re\\.findall\\(r'\\^\\(\\?:static\\|extern\\)\\[\\^\\\\n\\]\\*\\\\n\\?\\(\\\\w\\+\\)\\\\s\\*\\(\\?:CC_NOTUSED\\)\\?\\\\s\\*=', text, re\\.MULTILINE\\)\nfrom collections import Counter\nc = Counter\\(names\\)\ndupes = \\[\\(k,v\\) for k,v in c\\.items\\(\\) if v>1\\]\nprint\\('Multiple init vars:', len\\(dupes\\), dupes\\[:5\\]\\)\n# Check number of 'asn_PER_memb_criticality_constr_0 CC_NOTUSED =' occurrences\nn = len\\(re\\.findall\\(r'asn_PER_memb_criticality_constr_0\\\\s\\*\\(\\?:CC_NOTUSED\\\\s\\*\\)\\?=', text\\)\\)\nprint\\('asn_PER_memb_criticality_constr_0 definitions:', n\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 -c \"\nimport re\nwith open\\(r'C:\\\\Users\\\\Alexey\\\\Desktop\\\\min\\\\vNE\\\\RBS\\\\RBS\\\\src\\\\generated\\\\s1ap\\\\ProtocolIE-Field\\.c', encoding='utf-8', errors='replace'\\) as f:\n    text = f\\.read\\(\\)\n# More targeted: find all static var definitions with _constr_ or _tag2el_ patterns\nnames = re\\.findall\\(r'\\\\basn_PER_memb_\\\\w\\+_constr_\\\\d\\+\\\\b', text\\)\nfrom collections import Counter\nc = Counter\\(names\\)\ndupes = \\[\\(k,v\\) for k,v in c\\.items\\(\\) if v>1\\]\nprint\\('Duplicate asn_PER_memb_\\*_constr_ vars:', len\\(dupes\\)\\)\nprint\\(dupes\\[:5\\]\\)\n\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    },
+    "python-envs.defaultEnvManager": "ms-python.python:system"
+}

@@ -2578,7 +2578,7 @@ DCH-ENH-Information ::= SEQUENCE {
 	pO-SRB				PowerOffset,
 	dl-FET-Mode			DL-FET-Mode,
 	dCH-ENH-Concat		DCH-ENH-Concat		OPTIONAL
--- This IE shall be present if dl-FET-Mode is equal to “full” --,
+-- This IE shall be present if dl-FET-Mode is equal to "full" --,
 	iE-Extensions							ProtocolExtensionContainer { { DCH-ENH-Information-ExtIEs } }	OPTIONAL,
 	...
 }
@@ -2591,7 +2591,7 @@ DCH-ENH-Information-to-Modify ::= SEQUENCE {
 	pO-SRB				PowerOffset			OPTIONAL,
 	dl-FET-Mode			DL-FET-Mode			OPTIONAL,
 	dCH-ENH-Concat		DCH-ENH-Concat		OPTIONAL
--- This IE shall be present if dl-FET-Mode is equal to “full” --,
+-- This IE shall be present if dl-FET-Mode is equal to "full" --,
 	iE-Extensions							ProtocolExtensionContainer { { DCH-ENH-Information-to-Modify-ExtIEs } }		OPTIONAL,
 	...
 }
@@ -2969,7 +2969,7 @@ DGANSS-Information ::= SEQUENCE (SIZE (1..maxSgnType)) OF DGANSS-InformationItem
 DGANSS-InformationItem ::= SEQUENCE {
 	gANSS-SignalId						GANSS-Signal-ID												OPTIONAL,
 	gANSS-StatusHealth					GANSS-StatusHealth,
--- The following IE shall be present if the Status Health IE value is not equal to “no data” or “invalid data”
+-- The following IE shall be present if the Status Health IE value is not equal to "no data" or "invalid data"
 	dGANSS-SignalInformation			DGANSS-SignalInformation									OPTIONAL,
 	ie-Extensions		 				ProtocolExtensionContainer { { DGANSS-InformationItem-ExtIEs } }	OPTIONAL,
 	...
@@ -3629,7 +3629,7 @@ E-DCH-FDD-Information-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-E-DCH-PowerOffset-for-SchedulingInfo	CRITICALITY ignore	EXTENSION E-DCH-PowerOffset-for-SchedulingInfo			PRESENCE optional}|
 	{ ID id-SixteenQAM-UL-Operation-Indicator		CRITICALITY reject	EXTENSION SixteenQAM-UL-Operation-Indicator				PRESENCE optional}|
 	{ ID id-E-AGCH-Table-Choice						CRITICALITY ignore	EXTENSION E-AGCH-Table-Choice								PRESENCE conditional}|
-	-- The IE shall be present if the SixteenQAM UL Operation Indicator IE is set to “Activate”--
+	-- The IE shall be present if the SixteenQAM UL Operation Indicator IE is set to "Activate"--
 	{ ID id-SixtyfourQAM-UL-Operation-Indicator		CRITICALITY reject	EXTENSION SixtyfourQAM-UL-Operation-Indicator			PRESENCE optional}|
 	{ ID id-UL-MIMO-Information						CRITICALITY reject	EXTENSION UL-MIMO-Information								PRESENCE optional}|
 	{ ID id-UPH-Filtering-Measurement-Forwarding-Request	CRITICALITY reject	EXTENSION UPH-Filtering-Measurement-Forwarding-Request	PRESENCE optional},
@@ -3670,7 +3670,7 @@ E-DCH-FDD-Information-to-Modify-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-E-DCH-MACdPDUSizeFormat 					CRITICALITY reject	EXTENSION E-DCH-MACdPDUSizeFormat						PRESENCE optional}|
 	{ ID id-E-DCH-DL-Control-Channel-Grant-Information	CRITICALITY ignore	EXTENSION E-DCH-DL-Control-Channel-Grant-Information	PRESENCE optional}|
 	{ ID id-E-AGCH-Table-Choice							CRITICALITY ignore	EXTENSION E-AGCH-Table-Choice							PRESENCE conditional}|
-	-- The IE shall be present if the SixteenQAM UL Operation Indicator IE is set to “Activate”--
+	-- The IE shall be present if the SixteenQAM UL Operation Indicator IE is set to "Activate"--
 	{ ID id-SixtyfourQAM-UL-Operation-Indicator			CRITICALITY reject	EXTENSION SixtyfourQAM-UL-Operation-Indicator		PRESENCE optional}|
 	{ ID id-UL-MIMO-Reconfiguration						CRITICALITY reject	EXTENSION UL-MIMO-Reconfiguration						PRESENCE optional}|
 	{ ID id-Fast-TTI-switching-Mode-synchronized		CRITICALITY reject	EXTENSION Fast-TTI-switching-Mode-synchronized	PRESENCE optional}|
@@ -4103,7 +4103,7 @@ E-TFCI-BetaEC-Boost ::= INTEGER (0..127,...)
 E-TFCI-Boost-Information ::= SEQUENCE {
 	e-TFCI-BetaEC-Boost								E-TFCI-BetaEC-Boost,
 	uL-Delta-T2TP									UL-Delta-T2TP			OPTIONAL,
-	-- This IE shall be present if the E-TFCI BetaEC Boost IE value is not set to 127.
+	-- This IE shall be present if the E-TFCI BetaEC Boost IE value is not set to 127.
 	iE-Extensions									ProtocolExtensionContainer { { E-TFCI-Boost-Information-ExtIEs} }		OPTIONAL,
 	...
 }
@@ -5267,7 +5267,7 @@ GANSS-GenericDataInfoReqItem-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ID id-GANSS-AddNavigationModelsReq	CRITICALITY ignore	EXTENSION GANSS-AddNavigationModelsReq			PRESENCE optional} |
 	{ID id-GANSS-AddUTCModelsReq		CRITICALITY ignore	EXTENSION GANSS-AddUTCModelsReq						PRESENCE optional} |
 	{ID id-GANSS-AuxInfoReq				CRITICALITY ignore	EXTENSION GANSS-AuxInfoReq							PRESENCE optional} |
--- The following IE shall be present if ‘GANSS-ID’ in ‘GANSS-GenericDataInfoReqItem’ is ‘0’ (SBAS)
+-- The following IE shall be present if 'GANSS-ID' in 'GANSS-GenericDataInfoReqItem' is '0' (SBAS)
 	{ID id-GANSS-SBAS-ID				CRITICALITY ignore	EXTENSION GANSS-SBAS-ID								PRESENCE optional} |
 	{ID id-DBDS-CorrectionsReq			CRITICALITY ignore	EXTENSION DBDS-CorrectionsReq						PRESENCE optional}|
 	{ID id-BDS-IonosphericGridModelReq	CRITICALITY ignore	EXTENSION BDS-IonosphericGridModelReq				PRESENCE optional},
@@ -5294,7 +5294,7 @@ GANSS-Generic-DataItem-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 	{ ID id-GANSS-Additional-Navigation-Models		CRITICALITY ignore	EXTENSION GANSS-Additional-Navigation-Models	PRESENCE optional }|
 	{ ID id-GANSS-Additional-UTC-Models				CRITICALITY ignore	EXTENSION GANSS-Additional-UTC-Models				PRESENCE optional }|
 	{ ID id-GANSS-Auxiliary-Information				CRITICALITY ignore	EXTENSION GANSS-Auxiliary-Information				PRESENCE optional }|
-	-- The following element shall be present if ‘GANSS-ID’ in ‘GANSS-Generic-DataItem’ is ‘0’ (‘SBAS’)
+	-- The following element shall be present if 'GANSS-ID' in 'GANSS-Generic-DataItem' is '0' ('SBAS')
 	{ ID id-GANSS-SBAS-ID							CRITICALITY ignore	EXTENSION GANSS-SBAS-ID									PRESENCE optional }|
 	{ ID id-DBDS-Corrections						CRITICALITY ignore	EXTENSION DBDS-Corrections							PRESENCE optional }|
 	{ ID id-BDS-Ionospheric-Grid-Model				CRITICALITY ignore	EXTENSION BDS-Ionospheric-Grid-Model				PRESENCE optional },
@@ -5524,7 +5524,7 @@ GANSS-NavModel-NAVKeplerianSet-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 }
 
 GANSS-NavModel-SBASecef ::= SEQUENCE {
-	-- The following IE shall be present if ‘GANSS-SBASclockModel’ in ‘GANSS-AddClockModels’ is not included in ‘Ganss-Sat-Info-AddNavList’
+	-- The following IE shall be present if 'GANSS-SBASclockModel' in 'GANSS-AddClockModels' is not included in 'Ganss-Sat-Info-AddNavList'
 	sbasTo					BIT STRING (SIZE (13))												OPTIONAL,
 	sbasAccuracy			BIT STRING (SIZE (4)),
 	sbasXg					BIT STRING (SIZE (30)),
@@ -5644,7 +5644,7 @@ GANSS-SAT-Info-Almanac-BDS ::= SEQUENCE {
 	bdsAlmA0					BIT STRING (SIZE (11)),
 	bdsAlmA1					BIT STRING (SIZE (11)),
 	bdsSvHealth					BIT STRING (SIZE(9))	OPTIONAL,
--- Mondatory if the IE “Sat ID” is between 0 and 29 and not needed otherwise
+-- Mondatory if the IE "Sat ID" is between 0 and 29 and not needed otherwise
 	ie-Extensions				ProtocolExtensionContainer { { GANSS-SAT-Info-Almanac-BDS-ExtIEs } } OPTIONAL,
 ...
 }
@@ -5962,7 +5962,7 @@ GPS-Ionospheric-Model-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 }
 
 GPS-Information ::= SEQUENCE (SIZE (0..maxNoGPSItems)) OF GPS-Information-Item
--- This IE shall be present if the Information Type Item IE indicates ‘GPS Information’
+-- This IE shall be present if the Information Type Item IE indicates 'GPS Information'
 
 GPS-Information-Item ::= ENUMERATED {
 	gps-navigation-model-and-time-recovery,
@@ -6554,7 +6554,7 @@ HS-DSCH-Secondary-Serving-Information-To-Modify-ExtIEs NBAP-PROTOCOL-EXTENSION :
 	{ID id-Single-Stream-MIMO-Mode-Indicator	CRITICALITY reject	EXTENSION Single-Stream-MIMO-Mode-Indicator			PRESENCE optional}|
 	{ID id-DiversityMode						CRITICALITY reject	EXTENSION DiversityMode										PRESENCE optional}|
 	{ID id-TransmitDiversityIndicator			CRITICALITY reject	EXTENSION TransmitDiversityIndicator					PRESENCE optional}|
--- This IE shall be present if Diversity Mode IE is present and is not set to “none”
+-- This IE shall be present if Diversity Mode IE is present and is not set to "none"
 	{ID id-NonCellSpecificTxDiversity			CRITICALITY reject	EXTENSION NonCellSpecificTxDiversity					PRESENCE optional}|
 	{ID id-OrdinalNumberOfFrequency				CRITICALITY reject	EXTENSION OrdinalNumberOfFrequency						PRESENCE optional}|
 	{ID id-MIMO-withfourtransmitantennas-Mode-Indicator		CRITICALITY reject	EXTENSION MIMO-withfourtransmitantennas-Mode-Indicator	PRESENCE optional}|
@@ -7630,9 +7630,9 @@ InformationType ::= SEQUENCE {
 }
 
 Information-Type-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
--- The following IE shall be present if the Information Type Item IE indicates ‘GANSS Information’
+-- The following IE shall be present if the Information Type Item IE indicates 'GANSS Information'
 	{ ID id-GANSS-Information			CRITICALITY ignore	EXTENSION GANSS-Information			PRESENCE conditional }|
--- The following IE shall be present if the Information Type Item IE indicates ‘DGANSS Corrections’
+-- The following IE shall be present if the Information Type Item IE indicates 'DGANSS Corrections'
 	{ ID id-DGANSS-Corrections-Req		CRITICALITY ignore	EXTENSION DGANSS-Corrections-Req	PRESENCE conditional },
 	...
 }
@@ -9067,7 +9067,7 @@ PrimaryAndSecondaryCPICHContainer-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 }
 
 PrimaryCPICH-Power ::= INTEGER(-100..500)
--- step 0.1 (Range –10.0..50.0) Unit is dBm
+-- step 0.1 (Range -10.0..50.0) Unit is dBm
 
 Primary-CPICH-Usage-for-Channel-Estimation ::= ENUMERATED {
 primary-CPICH-may-be-used,
@@ -10274,7 +10274,7 @@ SyncFrameNumber ::= INTEGER (1..10)
 SynchronisationReportCharacteristics ::= SEQUENCE {
 	synchronisationReportCharacteristicsType	SynchronisationReportCharacteristicsType,
 	synchronisationReportCharactThreExc			SynchronisationReportCharactThreExc		OPTIONAL,
-		-- This IE shall be included if the synchronisationReportCharacteristicsType IE is set to “thresholdExceeding”.
+		-- This IE shall be included if the synchronisationReportCharacteristicsType IE is set to "thresholdExceeding".
 	iE-Extensions								ProtocolExtensionContainer { { SynchronisationReportCharacteristics-ExtIEs } }	OPTIONAL,
 	...
 }
@@ -10390,7 +10390,7 @@ T-PROTECT ::= ENUMERATED {v40,v60,v80,v100,v120,v200,v400,...}
 T-SYNC ::= ENUMERATED {v40,v80,v120,v160,v200,v300,v400,v500,...}
 
 TDD-AckNack-Power-Offset ::= INTEGER (-7..8,...)
--- Unit dB, Range –7dB .. +8dB, Step 1dB
+-- Unit dB, Range -7dB .. +8dB, Step 1dB
 
 TDD-ChannelisationCode ::= ENUMERATED {
 	chCode1div1,
@@ -10558,7 +10558,7 @@ TDD-DL-DPCH-TimeSlotFormat-LCR ::= CHOICE {
 QPSK-DL-DPCH-TimeSlotFormatTDD-LCR ::= INTEGER(0..24,...)
 
 EightPSK-DL-DPCH-TimeSlotFormatTDD-LCR ::= INTEGER(0..24,...)
--- For 1.28 Mcps TDD, if the cell is operating in MBSFN only mode, this IE denotes MBSFN S-CCPCH time slot format，INTEGER(0..11,...)
+-- For 1.28 Mcps TDD, if the cell is operating in MBSFN only mode, this IE denotes MBSFN S-CCPCH time slot format INTEGER(0..11,...)
 
 TDD-DPCHOffset ::= CHOICE {
 	initialOffset		INTEGER (0..255),
@@ -10890,7 +10890,7 @@ TFCS-TFCSList ::= SEQUENCE (SIZE (1..maxNrOfTFCs)) OF
 	SEQUENCE {
 		cTFC				TFCS-CTFC,
 		tFC-Beta		TransportFormatCombination-Beta 	OPTIONAL,
-		-- The IE shall be present if the TFCS concerns a UL DPCH or PRACH channel [FDD – or PCPCH channel].
+		-- The IE shall be present if the TFCS concerns a UL DPCH or PRACH channel [FDD - or PCPCH channel].
 		iE-Extensions		ProtocolExtensionContainer  { { TFCS-TFCSList-ExtIEs} }		OPTIONAL,
 		...
 }
@@ -10978,7 +10978,7 @@ TransportFormatSet-DynamicPartList-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
 
 TDD-TransportFormatSet-ModeDP ::= SEQUENCE {
 	transmissionTimeIntervalInformation		TransmissionTimeIntervalInformation		OPTIONAL,
-	-- This IE shall be present if the Transmission Time Interval IE in the Semi-static Transport Format Information IE is set to “dynamic”
+	-- This IE shall be present if the Transmission Time Interval IE in the Semi-static Transport Format Information IE is set to "dynamic"
 	iE-Extensions							ProtocolExtensionContainer { {TDD-TransportFormatSet-ModeDP-ExtIEs} } OPTIONAL,
 	...
 	}

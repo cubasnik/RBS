@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<BuildType Name="MinSizeRel"/>
+		<BuildType Name="RelWithDebInfo"/>
+		<Platform Name="x64"/>
+	</Configurations>
+	<Project Path="ALL_BUILD.vcxproj" Id="243dc775-8048-33d3-8e9c-49760fbd3c8c">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_s1ap.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_x2ap.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_gsm.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+		<BuildDependency Project="rbs_lte.vcxproj"/>
+		<BuildDependency Project="rbs_node.vcxproj"/>
+		<BuildDependency Project="rbs_oms.vcxproj"/>
+		<BuildDependency Project="rbs_umts.vcxproj"/>
+		<BuildDependency Project="tests/test_config.vcxproj"/>
+		<BuildDependency Project="tests/test_gsm_phy.vcxproj"/>
+		<BuildDependency Project="tests/test_lte_mac.vcxproj"/>
+		<BuildDependency Project="tests/test_pdcp.vcxproj"/>
+	</Project>
+	<Project Path="INSTALL.vcxproj" Id="2a033504-d3e7-367f-9269-69627ed973e2">
+		<BuildDependency Project="ALL_BUILD.vcxproj"/>
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="RUN_TESTS.vcxproj" Id="04f2c6ee-da37-33cb-bae6-4a9967e4ed32">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="ZERO_CHECK.vcxproj" Id="3c3b6e1b-c23a-3344-bb91-c847d1d9eecd"/>
+	<Project Path="rbs_asn1_s1ap.vcxproj" Id="a6fb7807-fd42-3bbc-a533-35c7e72156e6">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="rbs_asn1_x2ap.vcxproj" Id="fc8b1759-6ef4-35ba-8ee4-f99ea697de23">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="rbs_common.vcxproj" Id="6ec53748-5488-3899-80ac-4bfdb9007714">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="rbs_gsm.vcxproj" Id="cd8660f3-a399-3e61-91d1-e3be12764603">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+	</Project>
+	<Project Path="rbs_hal.vcxproj" Id="a5dc57f0-2062-3323-afb1-1b4404e1b66c">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+	</Project>
+	<Project Path="rbs_lte.vcxproj" Id="1396fde1-a538-3d77-8601-8fe5be88b0c2">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_s1ap.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_x2ap.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+	</Project>
+	<Project Path="rbs_node.vcxproj" Id="eb6eb2ec-d2d7-3faf-a5d3-3a624b540a14">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_s1ap.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_x2ap.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_gsm.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+		<BuildDependency Project="rbs_lte.vcxproj"/>
+		<BuildDependency Project="rbs_oms.vcxproj"/>
+		<BuildDependency Project="rbs_umts.vcxproj"/>
+	</Project>
+	<Project Path="rbs_oms.vcxproj" Id="0c144055-58ea-39fe-84b8-a00cf0f2eca3">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+	</Project>
+	<Project Path="rbs_umts.vcxproj" Id="03362aea-688c-3843-ad8c-ca740c4735c9">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+	</Project>
+	<Project Path="tests/test_config.vcxproj" Id="301e1b98-7240-3613-9a47-06ab761668f8">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+	</Project>
+	<Project Path="tests/test_gsm_phy.vcxproj" Id="ce6f843e-cc5e-3da7-8b51-7eb417d59523">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_gsm.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+	</Project>
+	<Project Path="tests/test_lte_mac.vcxproj" Id="f679f0f1-ef3a-322b-b611-104a5118d3f2">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_s1ap.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_x2ap.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+		<BuildDependency Project="rbs_lte.vcxproj"/>
+	</Project>
+	<Project Path="tests/test_pdcp.vcxproj" Id="5659e6cf-5d30-3212-b546-b1ab7356e398">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_s1ap.vcxproj"/>
+		<BuildDependency Project="rbs_asn1_x2ap.vcxproj"/>
+		<BuildDependency Project="rbs_common.vcxproj"/>
+		<BuildDependency Project="rbs_hal.vcxproj"/>
+		<BuildDependency Project="rbs_lte.vcxproj"/>
+	</Project>
+</Solution>

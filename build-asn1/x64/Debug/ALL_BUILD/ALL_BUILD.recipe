@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\x64\Debug\ZERO_CHECK</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\Debug\rbs_node.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_config.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gsm_phy.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_mac.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_pdcp.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\x64\Debug\ALL_BUILD</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

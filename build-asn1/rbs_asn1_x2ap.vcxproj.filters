@@ -1,0 +1,2188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ABS-Status.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ABSInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ABSInformationFDD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ABSInformationTDD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ANY.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AS-SecurityInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ActivatedCellList-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ActivatedCellList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ActivatedNRCellList-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ActivatedNRCellList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ActivationID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AdditionalPLMNs-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AdditionalSpecialSubframe-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AdditionalSpecialSubframeExtension-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AdditionalSpecialSubframePatterns.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AdditionalSpecialSubframePatternsExtension.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AerialUEsubscriptionInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AllocationAndRetentionPriority.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AreaScopeOfMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\AreaScopeOfQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BIT_STRING.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BOOLEAN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BPLMN-ID-Info-EUTRA-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BPLMN-ID-Info-EUTRA.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BPLMN-ID-Info-NR-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BPLMN-ID-Info-NR.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BandInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BandwidthReducedSI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BearerType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BenefitMetric.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BitRate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BluetoothMeasConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BluetoothMeasConfigNameList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BluetoothMeasurementConfiguration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BluetoothName.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BroadcastPLMNs-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\BroadcastextPLMNs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CNTypeRestrictions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CNTypeRestrictionsItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\COUNTValueExtended.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\COUNTvalue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\COUNTvaluePDCP-SNlength18.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CRNTI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CSG-Id.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CSGMembershipStatus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CSIReportList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CSIReportPerCSIProcess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CSIReportPerCSIProcessItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CapacityValue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Cause.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CauseMisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CauseProtocol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CauseRadioNetwork.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CauseTransport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Cell-Size.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellActivationFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellActivationRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellActivationResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellAssistanceInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellBasedMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellBasedQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellCapacityClassValue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellDeploymentStatusIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellIdListforMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellIdListforQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellInformation-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellInformation-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellMeasurementResult-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellMeasurementResult-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellReplacingInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellReportingIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellToReport-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellToReport-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CellType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoMPHypothesisSet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoMPHypothesisSetItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoMPInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoMPInformationItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoMPInformationStartTime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CompleteFailureCauseInformation-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CompleteFailureCauseInformation-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CompositeAvailableCapacity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CompositeAvailableCapacityGroup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Correlation-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoverageModification-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CoverageModificationList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Criticality.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CriticalityDiagnostics-IE-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CriticalityDiagnostics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CyclicPrefixDL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\CyclicPrefixUL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-ABS-status.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-Forwarding.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-GBR-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-Total-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-non-GBR-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DL-scheduling-PDCCH-CCE-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DLResourceBitmapULandDLSharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DLResourcesULandDLSharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DRB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DataForwardingAddressIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DataTrafficResourceIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DataTrafficResources.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DeactivateTrace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DeactivationIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DeliveryStatus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DesiredActNotificationLevel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DuplicationActivation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DynamicDLTransmissionInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\DynamicNAICSInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RAB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RAB-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RAB-Level-QoS-Parameters.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RAB-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABUsageReport-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABUsageReportList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-Item-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-Item-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-ModAckItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-ModAckItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-ModAckItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-ModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBAddReqAck-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBAddReqAck-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBAddReqAck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBAddReqAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBModAck-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBModAck-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBModAck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeAdded-SgNBModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-ModAckItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-ModAckItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-ModAckItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-ModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-SgNBModAck-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-SgNBModAck-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-SgNBModAck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeModified-SgNBModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-ModAckItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-ModAckItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-ModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-SgNBModAck-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-SgNBModAck-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-SgNBModAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-SgNBRelReqAck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToBeReleased-SgNBRelReqAckList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToReleased-ModAckItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-Admitted-ToReleased-SgNBModAck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-AdmittedToBeModified-SgNBModConf-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-AdmittedToBeModified-SgNBModConf-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-AdmittedToBeModified-SgNBModConf-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-AdmittedToBeModified-SgNBModConfList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-DataForwardingAddress-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-DataForwardingAddress-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToCounterCheck-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToCounterCheckItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToSgNBCounterCheck-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToSgNBCounterCheck-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToStatusTransfer-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-SubjectToStatusTransfer-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-Item-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-Item-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-List-ModReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-ModReqItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-ModReqItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-ModReqItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBAddReq-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBAddReq-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBAddReq-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBAddReqList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBModReq-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBModReq-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBModReq-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeAdded-SgNBModReq-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-List-ModReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-ModReqItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-ModReqItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-ModReqItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReq-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReq-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReq-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReq-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReqd-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReqd-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReqd-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeModified-SgNBModReqdList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-List-ModReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-List-RelConf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-List-RelReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-ModReqItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-ModReqItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-ModReqItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-ModReqd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-ModReqdItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelConfItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelConfItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelConfItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelReqItem-SCG-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelReqItem-Split-Bearer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-RelReqItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBChaConf-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBChaConf-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBChaConf-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBChaConfList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReq-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReq-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReq-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReq-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReqd-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBModReqdList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelConf-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelConf-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelConf-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelConfList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReq-Item-SgNBPDCPnotpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReq-Item-SgNBPDCPpresent.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReq-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReqList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReqd-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeReleased-SgNBRelReqdList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeSetup-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeSetup-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeSetup-ListRetrieve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\E-RABs-ToBeSetupRetrieve-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EARFCN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EARFCNExtension.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ECGI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EN-DC-ResourceConfiguration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENBConfigurationUpdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENBConfigurationUpdateAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENBConfigurationUpdateFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCCellActivationFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCCellActivationRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCCellActivationResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCConfigurationTransfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCConfigurationUpdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCConfigurationUpdateAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCConfigurationUpdateFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCPartialResetConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCPartialResetRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2RemovalFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2RemovalRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2RemovalResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2SetupFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2SetupRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ENDCX2SetupResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EPCHandoverRestrictionListContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EPLMNs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ERABActivityNotifyItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ERABActivityNotifyItemList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EUTRA-Mode-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EUTRANCellIdentifier.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EUTRANRCellResourceCoordinationRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EUTRANRCellResourceCoordinationResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EUTRANTraceID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EncryptionAlgorithms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EndcSONConfigurationTransfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EnhancedRNTP.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EnhancedRNTPStartTime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ErrorIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\EventType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExpectedActivityPeriod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExpectedHOInterval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExpectedIdlePeriod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExpectedUEActivityBehaviour.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExpectedUEBehaviour.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExtendedBitRate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ExtendedULInterferenceOverloadInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FDD-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FDD-InfoNeighbourServedNRCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FDD-InfoServedNRCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FiveGS-TAC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenInterRATs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenLACs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenLAs-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenLAs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenTACs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenTAs-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ForbiddenTAs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Fourframes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FreqBandIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FreqBandIndicatorPriority.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\FreqBandNrItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GBR-QosInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GNB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GNBOverloadInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GNBStatusIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GTP-TEI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GTPtunnelEndpoint.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GU-Group-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GUGroupIDList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GUMMEI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GlobalENB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\GlobalGNB-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HFN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HFNModified.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HFNforPDCP-SNlength18.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HWLoadIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverCancel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverPreparationFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverReport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverReportType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\HandoverRestrictionList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\INTEGER.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InitiatingMessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InitiatingNodeType-EndcConfigUpdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InitiatingNodeType-EndcX2Removal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InitiatingNodeType-EndcX2Setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InitiatingNodeType-EutranrCellResourceCoordination.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\IntegrityProtectionAlgorithms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InterfaceInstanceIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InterfacesToTrace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\InvokeIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Key-eNodeB-Star.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LAC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LCID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LHN-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LastVisitedCell-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LastVisitedEUTRANCellInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LastVisitedGERANCellInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LastVisitedNGRANCellInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LastVisitedUTRANCellInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Limited-list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Links-to-log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ListofEUTRACellsinEUTRACoordinationReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ListofEUTRACellsinEUTRACoordinationResp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ListofEUTRACellsinNRCoordinationReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ListofNRCellsinNRCoordinationReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ListofNRCellsinNRCoordinationResp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LoadIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LoadInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LocationInformationSgNB.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LocationInformationSgNBReporting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\LocationReportingInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M1PeriodicReporting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M1ReportingTrigger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M1ThresholdEventA2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M3Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M3period.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M4Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M4period.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M5Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M5period.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M6Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M6delay-threshold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M6report-interval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M7Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\M7period.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MBMS-Service-Area-Identity-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MBMS-Service-Area-Identity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MBSFN-Subframe-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MBSFN-Subframe-Infolist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MDT-Activation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MDT-Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MDT-Location-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MDTPLMNList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MME-Code.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MME-Group-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MakeBeforeBreakIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ManagementBasedMDTallowed.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Masked-IMEISV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeNBCoordinationAssistanceInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeNBResourceCoordinationInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeNBtoSeNBContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeNBtoSgNBContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Measurement-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementFailureCause-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementFailureCause-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementInitiationResult-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementInitiationResult-List.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementThresholdA2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MeasurementsToActivate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityChangeAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityChangeFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityChangeRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityParametersInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MobilityParametersModificationRange.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\MultibandInfoList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NBIoT-UL-DL-AlignmentOffset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NR-TxBW.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRCGI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRCellIdentifier.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRFreqInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRNRB.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRNeighbour-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRPCI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRS-NSSS-PowerOffset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRSCS.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRUESecurityCapabilities.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRUeReport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRencryptionAlgorithms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRintegrityProtectionAlgorithms.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRrestrictionin5GS.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NRrestrictioninEPSasSecondaryRAT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NSSS-NumOccasionDifferentPrecoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NULL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NativeEnumerated.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NativeInteger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Neighbour-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NewDRBIDrequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\NextHopChainingCount.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Number-of-Antennaports.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\OBJECT_IDENTIFIER.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\OCTET_STRING.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\OPEN_TYPE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\OffsetOfNbiotChannelNumberToEARFCN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Old-ECGIs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Oneframe.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PA-Values.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PCI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PDCP-SN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PDCP-SNExtended.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PDCP-SNlength18.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PDCPChangeIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PDCPSnLength.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PLMN-Identity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PLMNAreaBasedQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PLMNListforQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PRACH-Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Packet-LossRate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PartialSuccessIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PedestrianUE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Port-Number.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Pre-emptionCapability.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Pre-emptionVulnerability.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Presence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PriorityLevel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PrivateIE-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PrivateIE-Field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PrivateIE-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\PrivateMessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProSeAuthorized.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProSeDirectCommunication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProSeDirectDiscovery.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProSeUEtoNetworkRelaying.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProcedureCode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtectedEUTRAResourceIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtectedFootprintTimePattern.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtectedResourceList-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtectedResourceList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolExtensionContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolExtensionField.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-ContainerList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-ContainerPair.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-ContainerPairList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-Field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-FieldPair.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ProtocolIE-Single-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\QCI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RLC-Status.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RLCMode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RLFIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RNL-Header.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RNTP-Threshold.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRC-Config-Ind.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRC-Context.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRCConnReestabIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRCConnSetupIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRCContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RRCTransfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RSRPMRList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RSRPMeasurementResult.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RadioResourceStatus.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RadioframeAllocationOffset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RadioframeAllocationPeriod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReceiveStatusOfULPDCPSDUsExtended.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReceiveStatusOfULPDCPSDUsPDCP-SNlength18.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReceiveStatusofULPDCPSDUs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Reestablishment-Indication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Registration-Request.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RelativeNarrowbandTxPower.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReplacingCellsList-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReplacingCellsList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportAmountMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportArea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportCharacteristics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportIntervalMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportingPeriodicity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportingPeriodicityCSIR.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReportingPeriodicityRSRPMR.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ReservedSubframePattern.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResetRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResetResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResourceStatusFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResourceStatusRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResourceStatusResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResourceStatusUpdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResourceType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RespondingNodeType-EndcConfigUpdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RespondingNodeType-EndcX2Removal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RespondingNodeType-EndcX2Setup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RespondingNodeType-EutranrCellResourceCoordination.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSeNBReconfComp-RejectByMeNBItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSeNBReconfComp-SuccessItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSeNBReconfComp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSgNBReconfComp-RejectByMeNBItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSgNBReconfComp-SuccessItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResponseInformationSgNBReconfComp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ResumeID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RetrieveUEContextFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RetrieveUEContextRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\RetrieveUEContextResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\S1TNLLoadIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SCGChangeIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SCGConfigurationQuery.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SGNB-Addition-Trigger-Ind.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SIPTOBearerDeactivationIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SNStatusTransfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SRBType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SRVCCOperationPossible.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SULInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ScheduledCommunicationTime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBAdditionRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBAdditionRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBAdditionRequestReject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBCounterCheckRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationRefuse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationRequestReject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBModificationRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBReconfigurationComplete.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBReleaseConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBReleaseRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBReleaseRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBSecurityKey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SeNBtoMeNBContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SecondaryRATDataUsageReport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SecondaryRATUsageReport-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SecondaryRATUsageReportList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCells.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCellsToActivate-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCellsToActivate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCellsToModify-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedCellsToModify.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedEUTRAcellsENDCX2ManagementList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedEUTRAcellsToDeleteListENDCConfUpd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedEUTRAcellsToModifyListENDCConfUpd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRCellsToActivate-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRCellsToActivate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRCellsToModify-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRcellsENDCX2ManagementList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRcellsToDeleteENDCConfUpdList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServedNRcellsToModifyENDCConfUpdList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ServiceType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNB-UE-X2AP-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBActivityNotification.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBAdditionRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBAdditionRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBAdditionRequestReject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBChangeConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBChangeRefuse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBChangeRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBCoordinationAssistanceInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBCounterCheckRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationRefuse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationRequestReject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBModificationRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReconfigurationComplete.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReleaseConfirm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReleaseRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReleaseRequestAcknowledge.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReleaseRequestReject.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBReleaseRequired.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBResourceCoordinationInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBSecurityKey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SgNBtoMeNBContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SharedResourceType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ShortMAC-I.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SourceOfUEActivityBehaviourInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SpecialSubframe-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SpecialSubframePatterns.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SpectrumSharingGroupID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SplitSRB.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SplitSRBs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandCQI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandCQICodeword0.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandCQICodeword1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandCQIItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandCQIList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubbandSize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubframeAllocation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubframeAssignment.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubframeType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SubscriberProfileIDforRFP.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Subscription-Based-UE-DifferentiationInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SuccessfulOutcome.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\SupportedSULFreqBandItem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TABasedMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TABasedQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAI-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAIBasedMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAIBasedQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAIListforMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAIListforQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAListforMDT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TAListforQMC.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TDD-Info.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TDD-InfoNeighbourServedNRCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TDD-InfoServedNRCell-Information.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TargetCellInUTRAN.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TargeteNBtoSource-eNBTransparentContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Threshold-RSRP.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Threshold-RSRQ.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Time-UE-StayedInCell-EnhancedGranularity.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Time-UE-StayedInCell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TimeToWait.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TraceActivation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TraceCollectionEntityIPAddress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TraceDepth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TraceStart.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\Transmission-Bandwidth.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TransportLayerAddress.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TriggeringMessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TunnelInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\TypeOfError.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextInformation-SgNBModReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextInformationRetrieve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextInformationSeNBModReq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextKeptIndicator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextReferenceAtSeNB.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextReferenceAtSgNB.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-ContextReferenceAtWT.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-HistoryInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-HistoryInformationFromTheUE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-RLF-Report-Container-for-extended-bands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-RLF-Report-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-S1AP-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-X2AP-ID-Extension.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UE-X2AP-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEAggregateMaximumBitRate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEAppLayerMeasConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEContextRelease.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UESecurityCapabilities.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UESidelinkAggregateMaximumBitRate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEsToBeResetList-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UEsToBeResetList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-GBR-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-HighInterferenceIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-HighInterferenceIndicationInfo-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-HighInterferenceIndicationInfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-InterferenceOverloadIndication-Item.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-InterferenceOverloadIndication.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-Total-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-UE-Configuration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-non-GBR-PRB-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UL-scheduling-PDCCH-CCE-usage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ULConfiguration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ULOnlySharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ULResourceBitmapULandDLSharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ULResourcesULandDLSharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ULandDLSharing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UnsuccessfulOutcome.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UsableABSInformation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UsableABSInformationFDD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UsableABSInformationTDD.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\UserPlaneTrafficActivityReport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\V2XServicesAuthorized.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\VehicleUE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WLANMeasConfig.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WLANMeasConfigNameList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WLANMeasurementConfiguration.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WLANName.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WT-UE-XwAP-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WTID-Long-Type2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WTID-Type1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WTID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WidebandCQI.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\WidebandCQICodeword1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2AP-Message.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2AP-PDU.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2APMessageTransfer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2BenefitValue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2Release.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2RemovalFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2RemovalRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2RemovalResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2SetupFailure.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2SetupRequest.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\X2SetupResponse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_SEQUENCE_OF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_SET_OF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_application.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_bit_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_codecs_prim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_internal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\asn_random_fill.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ber_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ber_tlv_length.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\ber_tlv_tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constr_CHOICE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constr_SEQUENCE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constr_SEQUENCE_OF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constr_SET_OF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constr_TYPE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\constraints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\der_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\per_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\per_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\per_opentype.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\per_support.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\xer_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\xer_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap\xer_support.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4C9D107F-6793-3196-AB84-A5C0AD017206}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

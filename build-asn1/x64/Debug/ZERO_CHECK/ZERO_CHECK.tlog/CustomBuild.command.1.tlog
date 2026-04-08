@@ -1,0 +1,10 @@
+^C:\USERS\ALEXEY\DESKTOP\MIN\VNE\RBS\RBS\BUILD-ASN1\CMAKEFILES\7C808B3A56D870E4E39FB3E4E48E1517\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Alexey/Desktop/min/vNE/RBS/RBS -BC:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1 --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/RBS.slnx
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

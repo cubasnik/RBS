@@ -1,0 +1,968 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A6FB7807-FD42-3BBC-A533-35C7E72156E6}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>rbs_asn1_s1ap</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v145</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rbs_asn1_s1ap.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">rbs_asn1_s1ap</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rbs_asn1_s1ap.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">rbs_asn1_s1ap</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">rbs_asn1_s1ap.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">rbs_asn1_s1ap</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">rbs_asn1_s1ap.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">rbs_asn1_s1ap</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Ze</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Ze</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Ze</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /Ze</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <BufferSecurityCheck></BufferSecurityCheck>
+      <CallingConvention></CallingConvention>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4244;4267;4996</DisableSpecificWarnings>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <FloatingPointModel></FloatingPointModel>
+      <ForceConformanceInForLoopScope></ForceConformanceInForLoopScope>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard_C>stdc11</LanguageStandard_C>
+      <MinimalRebuild></MinimalRebuild>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RemoveUnreferencedCodeData></RemoveUnreferencedCodeData>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <SupportJustMyCode></SupportJustMyCode>
+      <TreatWChar_tAsBuiltInType></TreatWChar_tAsBuiltInType>
+      <TreatWarningAsError>false</TreatWarningAsError>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Alexey/Desktop/min/vNE/RBS/RBS -BC:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1 --check-stamp-file C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCXXCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeRCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Alexey/Desktop/min/vNE/RBS/RBS -BC:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1 --check-stamp-file C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCXXCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeRCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Alexey/Desktop/min/vNE/RBS/RBS -BC:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1 --check-stamp-file C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCXXCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeRCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/Alexey/Desktop/min/vNE/RBS/RBS -BC:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1 --check-stamp-file C:/Users/Alexey/Desktop/min/vNE/RBS/RBS/build-asn1/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCXXLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Internal\CMakeCommonLinkerInformation.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Linker\MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Linker\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.2\Modules\Platform\WindowsPaths.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeCXXCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeRCCompiler.cmake;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\4.2.0-rc2\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ANY.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Additional-GUTI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AdditionalCSFallbackIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AerialUEsubscriptionInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AllocationAndRetentionPriority.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AreaScopeOfMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AreaScopeOfQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AssistanceDataForCECapableUEs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AssistanceDataForPaging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\AssistanceDataForRecommendedCells.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BIT_STRING.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BPLMNs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BearerType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Bearers-SubjectToStatusTransfer-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Bearers-SubjectToStatusTransferList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BitRate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BluetoothMeasConfig.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BluetoothMeasConfigNameList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BluetoothMeasurementConfiguration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BluetoothName.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BroadcastCancelledAreaList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\BroadcastCompletedAreaList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CE-ModeBRestricted.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CE-mode-B-SupportIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CELevel.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CGI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CNDomain.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CNType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CNTypeRestrictions-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CNTypeRestrictions.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\COUNTValueExtended.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\COUNTvalue.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\COUNTvaluePDCP-SNlength18.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSFallbackIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSG-Id.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSG-IdList-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSG-IdList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSGMembershipInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CSGMembershipStatus.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CancelledCellinEAI-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CancelledCellinEAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CancelledCellinTAI-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CancelledCellinTAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cause.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CauseMisc.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CauseNas.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CauseProtocol.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CauseRadioNetwork.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CauseTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000HORequiredIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000HOStatus.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000OneXMEID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000OneXMSI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000OneXPilot.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000OneXRAND.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000OneXSRVCCInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000PDU.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000RATType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cdma2000SectorID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Cell-Size.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellAccessMode.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellBasedMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellBasedQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellID-Broadcast-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellID-Broadcast.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellID-Cancelled-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellID-Cancelled.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellIdListforMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellIdListforQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellIdentifierAndCELevelForCECapableUEs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellIdentity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellTrafficTrace.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CellType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CompletedCellinEAI-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CompletedCellinEAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CompletedCellinTAI-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CompletedCellinTAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ConcurrentWarningMessageIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ConnectedengNBItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ConnectedengNBList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ConnectionEstablishmentIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Correlation-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Coverage-Level.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Criticality.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CriticalityDiagnostics-IE-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CriticalityDiagnostics-IE-List.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\CriticalityDiagnostics.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DCN-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DL-CP-SecurityInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DL-Forwarding.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DL-NAS-MAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DLNASPDUDeliveryAckRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Data-Forwarding-Not-Possible.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DataCodingScheme.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DeactivateTrace.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Direct-Forwarding-Path-Availability.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DownlinkNASTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DownlinkNonUEAssociatedLPPaTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DownlinkS1cdma2000tunnelling.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\DownlinkUEAssociatedLPPaTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RAB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RAB-IE-ContainerList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RAB-IE-ContainerPairList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABAdmittedItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABAdmittedList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABDataForwardingItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedToResumeItemResumeReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedToResumeItemResumeRes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedToResumeListResumeReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedToResumeListResumeRes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedToSetupItemHOReqAck.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABFailedtoSetupListHOReqAck.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABInformationList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABInformationListItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABLevelQoSParameters.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModificationConfirm.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModificationIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyItemBearerModConf.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyItemBearerModRes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyListBearerModConf.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyListBearerModRes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABModifyResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABNotToBeModifiedItemBearerModInd.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABNotToBeModifiedListBearerModInd.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABReleaseCommand.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABReleaseIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABReleaseItemBearerRelComp.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABReleaseListBearerRelComp.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABReleaseResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupItemBearerSURes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupItemCtxtSURes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupListBearerSURes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupListCtxtSURes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSetupResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABSubjecttoDataForwardingList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeModifiedItemBearerModInd.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeModifiedItemBearerModReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeModifiedListBearerModInd.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeModifiedListBearerModReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupItemBearerSUReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupItemCtxtSUReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupItemHOReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupListBearerSUReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupListCtxtSUReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSetupListHOReq.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSwitchedDLItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSwitchedDLList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSwitchedULItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABToBeSwitchedULList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABUsageReportItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-RABUsageReportList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\E-UTRAN-Trace-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EARFCN.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ECGI-List.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ECGIList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ECGIListForRestart.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EDT-Session.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCSONConfigurationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCSONTransferType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCSONeNBIdentification.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCSONengNBIdentification.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCTransferTypeReply.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EN-DCTransferTypeRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENB-StatusTransfer-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENB-UE-S1AP-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBCPRelocationIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBConfigurationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBConfigurationUpdate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBConfigurationUpdateAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBConfigurationUpdateFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBDirectInformationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBIndirectX2TransportLayerAddresses.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBStatusTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBX2ExtTLA.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBX2ExtTLAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBX2GTPTLAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBX2TLAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ENBname.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EPLMNs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EUTRAN-CGI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EUTRANRoundTripDelayEstimationInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaID-Broadcast-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaID-Broadcast.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaID-Cancelled-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaID-Cancelled.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaIDList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EmergencyAreaIDListForRestart.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\En-gNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EncryptionAlgorithms.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EndIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EnhancedCoverageRestricted.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ErrorIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\EventType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExpectedActivityPeriod.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExpectedHOInterval.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExpectedIdlePeriod.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExpectedUEActivityBehaviour.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExpectedUEBehaviour.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Extended-UEIdentityIndexValue.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExtendedBitRate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExtendedRNC-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ExtendedRepetitionPeriod.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\FiveGSTAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\FiveGSTAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenInterRATs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenLACs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenLAs-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenLAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenTACs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenTAs-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ForbiddenTAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GBR-QosInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GERAN-Cell-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GNB-Identity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GNB.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GTP-TEID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GUMMEI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GUMMEIList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GUMMEIType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\GWContextReleaseIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Global-ENB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Global-GNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Global-RAN-NODE-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Global-en-gNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HFN.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HFNModified.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HFNforPDCP-SNlength18.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverCancel.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverCancelAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverCommand.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverFlag.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverNotify.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverPreparationFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverRequestAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverRequired.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverRestrictionList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\HandoverType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\IMSI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\IMSvoiceEPSfallbackfrom5G.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\INTEGER.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ImmediateMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InformationOnRecommendedCellsAndENBsForPaging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InitialContextSetupFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InitialContextSetupRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InitialContextSetupResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InitialUEMessage.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InitiatingMessage.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\IntegrityProtectionAlgorithms.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\IntendedNumberOfPagingAttempts.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Inter-SystemInformationTransferType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\InterfacesToTrace.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\KillAllWarningMessages.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\KillRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\KillResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\L3-Information.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LHN-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LPPa-PDU.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LTE-M-Indication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LastVisitedCell-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LastVisitedEUTRANCellInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LastVisitedGERANCellInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LastVisitedNGRANCellInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LastVisitedUTRANCellInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Links-to-log.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ListeningSubframePattern.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LocationReport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LocationReportingControl.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LocationReportingFailureIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LoggedMBSFNMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LoggedMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LoggingDuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\LoggingInterval.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M-TMSI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M1PeriodicReporting.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M1ReportingTrigger.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M1ThresholdEventA2.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M3Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M3period.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M4Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M4period.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M5Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M5period.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M6Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M6delay-threshold.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M6report-Interval.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M7Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\M7period.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MBSFN-ResultToLog.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MBSFN-ResultToLogInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDT-Activation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDT-Configuration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDT-Location-Info.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDTMode-Extension.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDTMode.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MDTPLMNList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MME-Code.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MME-Group-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MME-UE-S1AP-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMECPRelocationIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEConfigurationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEConfigurationUpdate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEConfigurationUpdateAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEConfigurationUpdateFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEDirectInformationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEPagingTarget.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMERelaySupportIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEStatusTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MMEname.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MSClassmark2.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MSClassmark3.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ManagementBasedMDTAllowed.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Masked-IMEISV.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MeasurementThresholdA2.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MeasurementsToActivate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MessageIdentifier.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MobilityInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MutingAvailabilityIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\MutingPatternInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NAS-PDU.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NASDeliveryIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NASNonDeliveryIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NASSecurityParametersfromE-UTRAN.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NASSecurityParameterstoE-UTRAN.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NB-IoT-DefaultPagingDRX.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NB-IoT-Paging-eDRX-Cycle.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NB-IoT-Paging-eDRXInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NB-IoT-PagingTimeWindow.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NB-IoT-UEIdentityIndexValue.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NG-eNB.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NR-CGI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRCellIdentity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRUESecurityCapabilities.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRencryptionAlgorithms.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRintegrityProtectionAlgorithms.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRrestrictionin5GS.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NRrestrictioninEPSasSecondaryRAT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NULL.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NativeEnumerated.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NativeInteger.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NextPagingAreaScope.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NumberOfBroadcasts.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\NumberofBroadcastRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OBJECT_IDENTIFIER.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OCTET_STRING.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OPEN_TYPE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OldBSS-ToNewBSS-Information.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OverloadAction.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OverloadResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OverloadStart.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\OverloadStop.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PDCP-SN.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PDCP-SNExtended.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PDCP-SNlength18.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PLMNAreaBasedQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PLMNListforQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PLMNidentity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PS-ServiceNotAvailable.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PSCellInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PWSFailureIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PWSRestartIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PWSfailedECGIList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Packet-LossRate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Paging-eDRX-Cycle.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Paging-eDRXInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Paging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PagingAttemptCount.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PagingAttemptInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PagingDRX.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PagingPriority.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PagingTimeWindow.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PathSwitchRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PathSwitchRequestAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PathSwitchRequestFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PedestrianUE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PendingDataIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Port-Number.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Pre-emptionCapability.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Pre-emptionVulnerability.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Presence.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrintableString.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PriorityLevel.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrivacyIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrivateIE-Container.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrivateIE-Field.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrivateIE-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\PrivateMessage.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProSeAuthorized.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProSeDirectCommunication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProSeDirectDiscovery.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProSeUEtoNetworkRelaying.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProcedureCode.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolError-IE-ContainerList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolExtensionContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolExtensionField.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolExtensionID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-Container.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-ContainerList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-ContainerPair.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-ContainerPairList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-Field.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-FieldPair.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ProtocolIE-SingleContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\QCI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RAT-Type.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RIMInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RIMRoutingAddress.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RIMTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RLFReportInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RNC-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RRC-Container.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RRC-Establishment-Cause.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReceiveStatusOfULPDCPSDUsExtended.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReceiveStatusOfULPDCPSDUsPDCP-SNlength18.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReceiveStatusofULPDCPSDUs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedCellItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedCellList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedCellsForPaging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedENBItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedENBList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RecommendedENBsForPaging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RelativeMMECapacity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RelayNode-Indicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RepetitionPeriod.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReportAmountMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReportArea.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ReportIntervalMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RequestType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RequestTypeAdditionalInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RerouteNASRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Reset.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ResetAcknowledge.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ResetAll.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ResetType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\RetrieveUEInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Routing-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\S-TMSI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\S1AP-PDU.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\S1SetupFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\S1SetupRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\S1SetupResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONConfigurationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONInformation-Extension.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONInformationReply.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONInformationReport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SONInformationRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SRVCCHOIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SRVCCOperationNotPossible.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SRVCCOperationPossible.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ScheduledCommunicationTime.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecondaryRATDataUsageReport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecondaryRATDataUsageReportItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecondaryRATDataUsageReportList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecondaryRATDataUsageRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecondaryRATType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecurityContext.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SecurityKey.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SerialNumber.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedDCNs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedDCNsItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedGUMMEIs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedGUMMEIsItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedGroupIDs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedMMECs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServedPLMNs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ServiceType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Source-ToTarget-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceBSS-ToTargetBSS-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceNgRanNode-ToTargetNgRanNode-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceOfUEActivityBehaviourInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceRNC-ToTargetRNC-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceeNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SourceeNB-ToTargeteNB-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\StratumLevel.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SubscriberProfileIDforRFP.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Subscription-Based-UE-DifferentiationInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SuccessfulOutcome.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SupportedTAs-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SupportedTAs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SynchronisationInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\SynchronisationStatus.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TABasedMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TABasedQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAI-Broadcast-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAI-Broadcast.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAI-Cancelled-Item.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAI-Cancelled.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAI.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIBasedMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIBasedQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIListForRestart.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIListforMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIListforQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAIListforWarning.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAListforMDT.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TAListforQMC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TBCD-STRING.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Target-ToSource-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetBSS-ToSourceBSS-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetNgRanNode-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetNgRanNode-ToSourceNgRanNode-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetRNC-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargetRNC-ToSourceRNC-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargeteNB-ID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TargeteNB-ToSourceeNB-TransparentContainer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Threshold-RSRP.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Threshold-RSRQ.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Time-UE-StayedInCell-EnhancedGranularity.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\Time-UE-StayedInCell.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TimeSinceSecondaryNodeRelease.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TimeSynchronisationInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TimeToWait.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TraceActivation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TraceDepth.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TraceFailureIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TraceStart.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TrafficLoadReductionIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TransportInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TransportLayerAddress.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TriggeringMessage.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TunnelInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\TypeOfError.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-Application-Layer-Measurement-Capability.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-HistoryInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-HistoryInformationFromTheUE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-RLF-Report-Container-for-extended-bands.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-RLF-Report-Container.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-RetentionInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-S1AP-ID-pair.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-S1AP-IDs.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-Usage-Type.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-associatedLogicalS1-ConnectionItem.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-associatedLogicalS1-ConnectionListRes.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UE-associatedLogicalS1-ConnectionListResAck.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEAggregateMaximumBitrate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEAppLayerMeasConfig.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UECapabilityInfoIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UECapabilityInfoRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextModificationConfirm.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextModificationFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextModificationIndication.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextModificationRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextModificationResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextReleaseCommand.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextReleaseComplete.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextReleaseRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextResumeFailure.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextResumeRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextResumeResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextSuspendRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEContextSuspendResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEIdentityIndexValue.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEInformationTransfer.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEPagingID.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UERadioCapability.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UERadioCapabilityForPaging.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UERadioCapabilityMatchRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UERadioCapabilityMatchResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UESecurityCapabilities.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UESidelinkAggregateMaximumBitrate.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UEUserPlaneCIoTSupportIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UL-CP-SecurityInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UL-NAS-Count.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UL-NAS-MAC.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UnlicensedSpectrumRestriction.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UnsuccessfulOutcome.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UplinkNASTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UplinkNonUEAssociatedLPPaTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UplinkS1cdma2000tunnelling.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UplinkUEAssociatedLPPaTransport.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\UserLocationInformation.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\V2XServicesAuthorized.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\VehicleUE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\VoiceSupportMatchIndicator.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WLANMeasConfig.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WLANMeasConfigNameList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WLANMeasurementConfiguration.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WLANName.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WarningAreaCoordinates.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WarningAreaList.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WarningMessageContents.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WarningSecurityInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WarningType.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WriteReplaceWarningRequest.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\WriteReplaceWarningResponse.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\X2TNLConfigurationInfo.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_SEQUENCE_OF.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_SET_OF.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_application.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_bit_data.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_codecs_prim.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_internal.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\asn_random_fill.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ber_decoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ber_tlv_length.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\ber_tlv_tag.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constr_CHOICE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constr_SEQUENCE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constr_SEQUENCE_OF.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constr_SET_OF.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constr_TYPE.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\constraints.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\der_encoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\per_decoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\per_encoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\per_opentype.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\per_support.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\xer_decoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\xer_encoder.c" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap\xer_support.c" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\ZERO_CHECK.vcxproj">
+      <Project>{3C3B6E1B-C23A-3344-BB91-C847D1D9EECD}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
