@@ -74,6 +74,7 @@ add_library(rbs_lte STATIC
     src/lte/lte_stack.cpp
     src/lte/s1ap_codec.cpp
     src/lte/s1ap_link.cpp
+    src/lte/x2ap_codec.cpp
     src/lte/x2ap_link.cpp
     src/lte/gtp_u.cpp
 )

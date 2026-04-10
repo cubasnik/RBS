@@ -1,4 +1,5 @@
 #include "x2ap_link.h"
+#include "x2ap_codec.h"
 
 namespace rbs::lte {
 
@@ -8,6 +9,7 @@ namespace rbs::lte {
 
 X2APLink::X2APLink(const std::string& enbId)
     : enbId_(enbId)
+    , socket_("X2AP-" + enbId)
 {}
 
 bool X2APLink::connect(uint32_t targetEnbId, const std::string& addr, uint16_t port)
@@ -18,8 +20,20 @@ bool X2APLink::connect(uint32_t targetEnbId, const std::string& addr, uint16_t p
         return true;
     }
     p = {addr, port, true};
-    RBS_LOG_INFO("X2AP", "[{}] X2AP-соединение с eNB 0x{:X} {}:{} установлено",
-                 enbId_, targetEnbId, addr, port);
+
+    if (!socketReady_) {
+        net::UdpSocket::wsaInit();
+        if (!socket_.bind(0)) {
+            RBS_LOG_ERROR("X2AP", "[{}] connect: UDP bind failed", enbId_);
+            p.connected = false;
+            return false;
+        }
+        socket_.startReceive([this](const net::UdpPacket& pkt) { onRxPacket(pkt); });
+        socketReady_ = true;
+    }
+
+    RBS_LOG_INFO("X2AP", "[{}] X2AP-соединение с eNB 0x{:X} {}:{} установлено (UDP port {})",
+                 enbId_, targetEnbId, addr, port, socket_.localPort());
     return true;
 }
 
@@ -46,20 +60,22 @@ bool X2APLink::x2Setup(uint32_t localEnbId, uint32_t targetEnbId)
     RBS_LOG_INFO("X2AP", "[{}] X2 SETUP local=0x{:X} target=0x{:X}",
                  enbId_, localEnbId, targetEnbId);
 
-    ByteBuffer payload{
-        static_cast<uint8_t>(localEnbId >> 24), static_cast<uint8_t>(localEnbId >> 16),
-        static_cast<uint8_t>(localEnbId >> 8),  static_cast<uint8_t>(localEnbId)
-    };
+    // TS 36.423 §8.3.4 — encode X2 Setup Request with APER
+    // Default PLMN 208-01, PCI=1, EARFCN DL=1850 (Band 3), TAC=1
+    ByteBuffer payload = x2ap_encode_X2SetupRequest(
+                             localEnbId, 0x208001u, 1, 1850, 1);
+    if (payload.empty()) {
+        RBS_LOG_ERROR("X2AP", "[{}] x2Setup: encode failed", enbId_);
+        return false;
+    }
     X2APMessage msg{X2APProcedure::X2_SETUP, 0, 0, std::move(payload)};
     bool ok = sendX2APMsg(msg);
 
     // Симуляция: target eNB сразу отвечает X2 Setup Response
     if (ok) {
         std::lock_guard<std::mutex> lk(rxMtx_);
-        ByteBuffer resp{
-            static_cast<uint8_t>(targetEnbId >> 24), static_cast<uint8_t>(targetEnbId >> 16),
-            static_cast<uint8_t>(targetEnbId >> 8),  static_cast<uint8_t>(targetEnbId)
-        };
+        ByteBuffer resp = x2ap_encode_X2SetupResponse(
+                              targetEnbId, 0x208001u, 1, 1850, 1);
         rxQueue_.push({X2APProcedure::X2_SETUP_RESPONSE, 0, 0, std::move(resp)});
     }
     return ok;
@@ -79,22 +95,29 @@ bool X2APLink::handoverRequest(const X2HORequest& req)
                  "[{}] X2AP HO REQUEST rnti={} srcCell=0x{:X} targetCell=0x{:X} erabs={}",
                  enbId_, req.rnti, req.sourceEnbId, req.targetCellId, req.erabs.size());
 
-    ByteBuffer payload{
-        static_cast<uint8_t>(req.rnti >> 8), static_cast<uint8_t>(req.rnti),
-        static_cast<uint8_t>(req.causeType)
-    };
-    for (const auto& e : req.erabs) payload.push_back(e.erabId);
-    payload.insert(payload.end(), req.rrcContainer.begin(), req.rrcContainer.end());
-
+    // TS 36.423 §8.5.1 — Handover Request (APER encoded)
+    // mmeUeS1apId proxied from RNTI in simulator; plmnId=208-01
+    ByteBuffer payload = x2ap_encode_HandoverRequest(
+                             srcId, static_cast<uint32_t>(req.rnti),
+                             req.causeType, 0x208001u,
+                             req.erabs, req.rrcContainer);
+    if (payload.empty()) {
+        RBS_LOG_ERROR("X2AP", "[{}] handoverRequest: encode failed rnti={}",
+                      enbId_, req.rnti);
+        return false;
+    }
     X2APMessage msg{X2APProcedure::HANDOVER_REQUEST, srcId, 0, std::move(payload)};
     bool ok = sendX2APMsg(msg);
 
     // Симуляция: target eNB немедленно принимает все E-RABs
     if (ok) {
         std::lock_guard<std::mutex> lk(rxMtx_);
-        ByteBuffer ackPayload{static_cast<uint8_t>(req.rnti >> 8), static_cast<uint8_t>(req.rnti)};
-        for (const auto& e : req.erabs) ackPayload.push_back(e.erabId);
         uint32_t tgtId = 0x200 + req.rnti;
+        ByteBuffer ackPayload = x2ap_encode_HandoverRequestAck(
+                                    srcId, tgtId,
+                                    req.erabs,       // all admitted
+                                    {},              // none refused
+                                    req.rrcContainer);
         rxQueue_.push({X2APProcedure::HANDOVER_REQUEST_ACK, srcId, tgtId,
                        std::move(ackPayload)});
     }
@@ -105,13 +128,22 @@ bool X2APLink::handoverRequestAck(const X2HORequestAck& ack)
 {
     RBS_LOG_INFO("X2AP", "[{}] X2AP HO REQUEST ACK rnti={} admitted={}",
                  enbId_, ack.rnti, ack.admittedErabs.size());
-    ByteBuffer payload{static_cast<uint8_t>(ack.rnti >> 8), static_cast<uint8_t>(ack.rnti)};
-    for (const auto& e : ack.admittedErabs)      payload.push_back(e.erabId);
-    for (uint8_t id : ack.notAdmittedErabIds)    payload.push_back(id);
-    payload.insert(payload.end(), ack.rrcContainer.begin(), ack.rrcContainer.end());
 
     uint32_t srcId = hoIds_.count(ack.rnti) ? hoIds_[ack.rnti] : 0;
-    X2APMessage msg{X2APProcedure::HANDOVER_REQUEST_ACK, srcId, 0, std::move(payload)};
+    uint32_t tgtId = nextSrcX2Id_++;
+
+    // TS 36.423 §8.5.1 — Handover Request Acknowledge (APER encoded)
+    ByteBuffer payload = x2ap_encode_HandoverRequestAck(
+                             srcId, tgtId,
+                             ack.admittedErabs, ack.notAdmittedErabIds,
+                             ack.rrcContainer);
+    if (payload.empty()) {
+        RBS_LOG_ERROR("X2AP", "[{}] handoverRequestAck: encode failed rnti={}",
+                      enbId_, ack.rnti);
+        return false;
+    }
+    X2APMessage msg{X2APProcedure::HANDOVER_REQUEST_ACK, srcId, tgtId,
+                    std::move(payload)};
     return sendX2APMsg(msg);
 }
 
@@ -138,15 +170,16 @@ bool X2APLink::snStatusTransfer(RNTI rnti, const std::vector<SNStatusItem>& item
 {
     RBS_LOG_INFO("X2AP", "[{}] X2AP SN STATUS TRANSFER rnti={} drbs={}",
                  enbId_, rnti, items.size());
-    ByteBuffer payload{static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
-    for (const auto& it : items) {
-        payload.push_back(it.drbId);
-        payload.push_back(static_cast<uint8_t>(it.ulPdcpSN >> 8));
-        payload.push_back(static_cast<uint8_t>(it.ulPdcpSN));
-        payload.push_back(static_cast<uint8_t>(it.dlPdcpSN >> 8));
-        payload.push_back(static_cast<uint8_t>(it.dlPdcpSN));
-    }
+
     uint32_t srcId = hoIds_.count(rnti) ? hoIds_[rnti] : 0;
+
+    // TS 36.423 §8.5.3 — SN Status Transfer (APER encoded)
+    ByteBuffer payload = x2ap_encode_SNStatusTransfer(srcId, 0, items);
+    if (payload.empty()) {
+        RBS_LOG_ERROR("X2AP", "[{}] snStatusTransfer: encode failed rnti={}",
+                      enbId_, rnti);
+        return false;
+    }
     X2APMessage msg{X2APProcedure::SN_STATUS_TRANSFER, srcId, 0, std::move(payload)};
     return sendX2APMsg(msg);
 }
@@ -154,9 +187,18 @@ bool X2APLink::snStatusTransfer(RNTI rnti, const std::vector<SNStatusItem>& item
 bool X2APLink::ueContextRelease(RNTI rnti)
 {
     RBS_LOG_INFO("X2AP", "[{}] X2AP UE CONTEXT RELEASE rnti={}", enbId_, rnti);
+
+    uint32_t srcId = hoIds_.count(rnti) ? hoIds_[rnti] : 0;
     hoIds_.erase(rnti);
-    ByteBuffer payload{static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
-    X2APMessage msg{X2APProcedure::UE_CONTEXT_RELEASE, 0, 0, std::move(payload)};
+
+    // TS 36.423 §8.5.5 — UE Context Release (APER encoded)
+    ByteBuffer payload = x2ap_encode_UEContextRelease(srcId, 0);
+    if (payload.empty()) {
+        RBS_LOG_ERROR("X2AP", "[{}] ueContextRelease: encode failed rnti={}",
+                      enbId_, rnti);
+        return false;
+    }
+    X2APMessage msg{X2APProcedure::UE_CONTEXT_RELEASE, srcId, 0, std::move(payload)};
     return sendX2APMsg(msg);
 }
 
@@ -175,9 +217,44 @@ bool X2APLink::loadIndication(uint32_t targetEnbId,
 
 bool X2APLink::sendX2APMsg(const X2APMessage& msg)
 {
-    RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} srcId=0x{:X}",
-                  enbId_, static_cast<uint8_t>(msg.procedure), msg.sourceEnbUeX2apId);
-    return true;  // симуляция
+    // Find the peer address by matching hoIds / last-known peer
+    // Use first connected peer as default target if no exact routing
+    std::string targetAddr;
+    uint16_t    targetPort = 0;
+    for (const auto& [id, peer] : peers_) {
+        if (peer.connected) { targetAddr = peer.addr; targetPort = peer.port; break; }
+    }
+    if (targetAddr.empty() || !socketReady_) {
+        RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} (no connected peer, dropped)",
+                      enbId_, static_cast<uint8_t>(msg.procedure));
+        return false;
+    }
+
+    // Frame: [proc:1][srcId:4][tgtId:4][payloadLen:4][payload...]
+    const auto& pl = msg.payload;
+    const uint32_t plLen = static_cast<uint32_t>(pl.size());
+    ByteBuffer frame;
+    frame.reserve(13 + plLen);
+    frame.push_back(static_cast<uint8_t>(msg.procedure));
+    frame.push_back(static_cast<uint8_t>(msg.sourceEnbUeX2apId >> 24));
+    frame.push_back(static_cast<uint8_t>(msg.sourceEnbUeX2apId >> 16));
+    frame.push_back(static_cast<uint8_t>(msg.sourceEnbUeX2apId >>  8));
+    frame.push_back(static_cast<uint8_t>(msg.sourceEnbUeX2apId));
+    frame.push_back(static_cast<uint8_t>(msg.targetEnbUeX2apId >> 24));
+    frame.push_back(static_cast<uint8_t>(msg.targetEnbUeX2apId >> 16));
+    frame.push_back(static_cast<uint8_t>(msg.targetEnbUeX2apId >>  8));
+    frame.push_back(static_cast<uint8_t>(msg.targetEnbUeX2apId));
+    frame.push_back(static_cast<uint8_t>(plLen >> 24));
+    frame.push_back(static_cast<uint8_t>(plLen >> 16));
+    frame.push_back(static_cast<uint8_t>(plLen >>  8));
+    frame.push_back(static_cast<uint8_t>(plLen));
+    frame.insert(frame.end(), pl.begin(), pl.end());
+
+    bool ok = socket_.send(targetAddr, targetPort, frame);
+    RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} len={} {}",
+                  enbId_, static_cast<uint8_t>(msg.procedure), plLen,
+                  ok ? "OK" : "FAIL");
+    return ok;
 }
 
 bool X2APLink::recvX2APMsg(X2APMessage& msg)
@@ -189,6 +266,31 @@ bool X2APLink::recvX2APMsg(X2APMessage& msg)
     RBS_LOG_DEBUG("X2AP", "[{}] X2AP ← eNB  proc=0x{:02X}",
                   enbId_, static_cast<uint8_t>(msg.procedure));
     return true;
+}
+
+void X2APLink::onRxPacket(const net::UdpPacket& pkt)
+{
+    if (pkt.data.size() < 13) return;
+    const auto& d = pkt.data;
+    const auto     proc  = static_cast<X2APProcedure>(d[0]);
+    const uint32_t srcId = (static_cast<uint32_t>(d[1]) << 24)
+                          | (static_cast<uint32_t>(d[2]) << 16)
+                          | (static_cast<uint32_t>(d[3]) <<  8)
+                          |  static_cast<uint32_t>(d[4]);
+    const uint32_t tgtId = (static_cast<uint32_t>(d[5]) << 24)
+                          | (static_cast<uint32_t>(d[6]) << 16)
+                          | (static_cast<uint32_t>(d[7]) <<  8)
+                          |  static_cast<uint32_t>(d[8]);
+    const uint32_t plLen = (static_cast<uint32_t>(d[9]) << 24)
+                          | (static_cast<uint32_t>(d[10]) << 16)
+                          | (static_cast<uint32_t>(d[11]) <<  8)
+                          |  static_cast<uint32_t>(d[12]);
+    if (plLen > pkt.data.size() - 13) return;
+    ByteBuffer payload(d.begin() + 13, d.begin() + 13 + plLen);
+    RBS_LOG_DEBUG("X2AP", "[{}] X2AP ← eNB  proc=0x{:02X} srcId=0x{:X} len={}",
+                  enbId_, static_cast<uint8_t>(proc), srcId, plLen);
+    std::lock_guard<std::mutex> lk(rxMtx_);
+    rxQueue_.push({proc, srcId, tgtId, std::move(payload)});
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
