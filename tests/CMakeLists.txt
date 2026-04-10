@@ -78,3 +78,53 @@ add_test(NAME test_umts_stack COMMAND test_umts_stack)
 add_executable(test_oms test_oms.cpp)
 target_link_libraries(test_oms PRIVATE rbs_oms)
 add_test(NAME test_oms COMMAND test_oms)
+
+# ── test_gsm_rlc ──────────────────────────────────────────────────
+add_executable(test_gsm_rlc test_gsm_rlc.cpp)
+target_link_libraries(test_gsm_rlc PRIVATE rbs_gsm)
+add_test(NAME test_gsm_rlc COMMAND test_gsm_rlc)
+
+# ── test_gsm_rr ───────────────────────────────────────────────────
+add_executable(test_gsm_rr test_gsm_rr.cpp)
+target_link_libraries(test_gsm_rr PRIVATE rbs_gsm)
+add_test(NAME test_gsm_rr COMMAND test_gsm_rr)
+
+# ── test_umts_phy ─────────────────────────────────────────────────
+add_executable(test_umts_phy test_umts_phy.cpp)
+target_link_libraries(test_umts_phy PRIVATE rbs_umts)
+add_test(NAME test_umts_phy COMMAND test_umts_phy)
+
+# ── test_umts_rlc ─────────────────────────────────────────────────
+add_executable(test_umts_rlc test_umts_rlc.cpp)
+target_link_libraries(test_umts_rlc PRIVATE rbs_umts)
+add_test(NAME test_umts_rlc COMMAND test_umts_rlc)
+
+# ── test_umts_rrc ─────────────────────────────────────────────────
+add_executable(test_umts_rrc test_umts_rrc.cpp)
+target_link_libraries(test_umts_rrc PRIVATE rbs_umts)
+add_test(NAME test_umts_rrc COMMAND test_umts_rrc)
+
+# ── test_lte_rrc ──────────────────────────────────────────────────
+add_executable(test_lte_rrc test_lte_rrc.cpp)
+target_link_libraries(test_lte_rrc PRIVATE rbs_lte)
+add_test(NAME test_lte_rrc COMMAND test_lte_rrc)
+
+# ── test_s1ap_link ────────────────────────────────────────────────
+add_executable(test_s1ap_link test_s1ap_link.cpp)
+target_link_libraries(test_s1ap_link PRIVATE rbs_lte)
+add_test(NAME test_s1ap_link COMMAND test_s1ap_link)
+
+# ── test_x2ap_link ────────────────────────────────────────────────
+add_executable(test_x2ap_link test_x2ap_link.cpp)
+target_link_libraries(test_x2ap_link PRIVATE rbs_lte)
+add_test(NAME test_x2ap_link COMMAND test_x2ap_link)
+
+# ── test_abis_link ────────────────────────────────────────────────
+add_executable(test_abis_link test_abis_link.cpp)
+target_link_libraries(test_abis_link PRIVATE rbs_gsm)
+add_test(NAME test_abis_link COMMAND test_abis_link)
+
+# ── test_iub_link ─────────────────────────────────────────────────
+add_executable(test_iub_link test_iub_link.cpp)
+target_link_libraries(test_iub_link PRIVATE rbs_umts)
+add_test(NAME test_iub_link COMMAND test_iub_link)
