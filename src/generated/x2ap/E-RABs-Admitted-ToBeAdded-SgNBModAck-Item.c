@@ -91,18 +91,7 @@ asn_TYPE_descriptor_t asn_DEF_resource_configuration_4 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_resource_configuration_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_resource_configuration_constr_4, .general_constraints = CHOICE_constraint },
 	asn_MBR_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item__resource_configuration_4,
 	2,	/* Elements count */
 	&asn_SPC_resource_configuration_specs_4	/* Additional specs */
@@ -219,18 +208,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item = {
 	asn_DEF_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item_tags_1,	/* Same as above */
 	sizeof(asn_DEF_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item_tags_1)
 		/sizeof(asn_DEF_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item_1,
 	4,	/* Elements count */
 	&asn_SPC_E_RABs_Admitted_ToBeAdded_SgNBModAck_Item_specs_1	/* Additional specs */

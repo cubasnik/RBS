@@ -390,18 +390,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P0 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P0_tags_1,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P0_tags_1)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P0_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P0_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P0_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P0_constr_1, .general_constraints = E_RAB_IE_ContainerList_448P0_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P0_1,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P0_specs_1	/* Additional specs */
@@ -420,18 +409,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P1 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P1_tags_2,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P1_tags_2)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P1_tags_2[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P1_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P1_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P1_constr_2, .general_constraints = E_RAB_IE_ContainerList_448P1_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P1_3,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P1_specs_3	/* Additional specs */
@@ -450,18 +428,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P2 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P2_tags_3,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P2_tags_3)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P2_tags_3[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P2_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P2_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P2_constr_3, .general_constraints = E_RAB_IE_ContainerList_448P2_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P2_5,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P2_specs_5	/* Additional specs */
@@ -480,18 +447,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P3 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P3_tags_4,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P3_tags_4)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P3_tags_4[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P3_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P3_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P3_constr_4, .general_constraints = E_RAB_IE_ContainerList_448P3_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P3_7,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P3_specs_7	/* Additional specs */
@@ -510,18 +466,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P4 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P4_tags_5,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P4_tags_5)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P4_tags_5[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P4_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P4_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P4_constr_5, .general_constraints = E_RAB_IE_ContainerList_448P4_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P4_9,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P4_specs_9	/* Additional specs */
@@ -540,18 +485,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P5 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P5_tags_6,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P5_tags_6)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P5_tags_6[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P5_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P5_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P5_constr_6, .general_constraints = E_RAB_IE_ContainerList_448P5_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P5_11,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P5_specs_11	/* Additional specs */
@@ -570,18 +504,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P6 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P6_tags_7,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P6_tags_7)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P6_tags_7[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P6_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P6_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P6_constr_7, .general_constraints = E_RAB_IE_ContainerList_448P6_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P6_13,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P6_specs_13	/* Additional specs */
@@ -600,18 +523,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P7 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P7_tags_8,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P7_tags_8)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P7_tags_8[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P7_constr_8,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P7_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P7_constr_8, .general_constraints = E_RAB_IE_ContainerList_448P7_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P7_15,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P7_specs_15	/* Additional specs */
@@ -630,18 +542,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P8 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P8_tags_9,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P8_tags_9)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P8_tags_9[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P8_constr_9,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P8_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P8_constr_9, .general_constraints = E_RAB_IE_ContainerList_448P8_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P8_17,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P8_specs_17	/* Additional specs */
@@ -660,18 +561,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RAB_IE_ContainerList_448P9 = {
 	asn_DEF_E_RAB_IE_ContainerList_448P9_tags_10,	/* Same as above */
 	sizeof(asn_DEF_E_RAB_IE_ContainerList_448P9_tags_10)
 		/sizeof(asn_DEF_E_RAB_IE_ContainerList_448P9_tags_10[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_E_RAB_IE_ContainerList_448P9_constr_10,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		E_RAB_IE_ContainerList_448P9_constraint
-	},
+	{ .per_constraints = &asn_PER_type_E_RAB_IE_ContainerList_448P9_constr_10, .general_constraints = E_RAB_IE_ContainerList_448P9_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P9_19,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P9_specs_19	/* Additional specs */

@@ -99,18 +99,7 @@ asn_TYPE_descriptor_t asn_DEF_WarningAreaList = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_WarningAreaList_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_WarningAreaList_constr_1, .general_constraints = CHOICE_constraint },
 	asn_MBR_WarningAreaList_1,
 	3,	/* Elements count */
 	&asn_SPC_WarningAreaList_specs_1	/* Additional specs */

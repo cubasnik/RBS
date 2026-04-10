@@ -121,18 +121,7 @@ asn_TYPE_descriptor_t asn_DEF_pDCPatSgNB_2 = {
 	asn_DEF_pDCPatSgNB_tags_2,	/* Same as above */
 	sizeof(asn_DEF_pDCPatSgNB_tags_2)
 		/sizeof(asn_DEF_pDCPatSgNB_tags_2[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_pDCPatSgNB_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_pDCPatSgNB_2
-	},
+	{ .per_constraints = &asn_PER_type_pDCPatSgNB_constr_2, .general_constraints = asn_validate_pDCPatSgNB_2 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_pDCPatSgNB_specs_2	/* Additional specs */
 };
@@ -184,18 +173,7 @@ asn_TYPE_descriptor_t asn_DEF_mCGresources_6 = {
 	asn_DEF_mCGresources_tags_6,	/* Same as above */
 	sizeof(asn_DEF_mCGresources_tags_6)
 		/sizeof(asn_DEF_mCGresources_tags_6[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_mCGresources_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_mCGresources_6
-	},
+	{ .per_constraints = &asn_PER_type_mCGresources_constr_6, .general_constraints = asn_validate_mCGresources_6 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_mCGresources_specs_6	/* Additional specs */
 };
@@ -247,18 +225,7 @@ asn_TYPE_descriptor_t asn_DEF_sCGresources_10 = {
 	asn_DEF_sCGresources_tags_10,	/* Same as above */
 	sizeof(asn_DEF_sCGresources_tags_10)
 		/sizeof(asn_DEF_sCGresources_tags_10[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_sCGresources_constr_10,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_sCGresources_10
-	},
+	{ .per_constraints = &asn_PER_type_sCGresources_constr_10, .general_constraints = asn_validate_sCGresources_10 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_sCGresources_specs_10	/* Additional specs */
 };
@@ -374,18 +341,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DC_ResourceConfiguration = {
 	asn_DEF_EN_DC_ResourceConfiguration_tags_1,	/* Same as above */
 	sizeof(asn_DEF_EN_DC_ResourceConfiguration_tags_1)
 		/sizeof(asn_DEF_EN_DC_ResourceConfiguration_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DC_ResourceConfiguration_1,
 	4,	/* Elements count */
 	&asn_SPC_EN_DC_ResourceConfiguration_specs_1	/* Additional specs */

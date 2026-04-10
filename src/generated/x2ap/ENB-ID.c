@@ -172,18 +172,7 @@ asn_TYPE_member_t asn_MBR_ENB_ID_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_macro_eNB_ID_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_macro_eNB_ID_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_macro_eNB_ID_constr_2, .general_constraints = memb_macro_eNB_ID_constraint_1 },
 		0, 0, /* No default value */
 		"macro-eNB-ID"
 		},
@@ -192,18 +181,7 @@ asn_TYPE_member_t asn_MBR_ENB_ID_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_home_eNB_ID_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_home_eNB_ID_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_home_eNB_ID_constr_3, .general_constraints = memb_home_eNB_ID_constraint_1 },
 		0, 0, /* No default value */
 		"home-eNB-ID"
 		},
@@ -212,18 +190,7 @@ asn_TYPE_member_t asn_MBR_ENB_ID_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_short_Macro_eNB_ID_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_short_Macro_eNB_ID_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_short_Macro_eNB_ID_constr_5, .general_constraints = memb_short_Macro_eNB_ID_constraint_1 },
 		0, 0, /* No default value */
 		"short-Macro-eNB-ID"
 		},
@@ -232,18 +199,7 @@ asn_TYPE_member_t asn_MBR_ENB_ID_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_long_Macro_eNB_ID_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_long_Macro_eNB_ID_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_long_Macro_eNB_ID_constr_6, .general_constraints = memb_long_Macro_eNB_ID_constraint_1 },
 		0, 0, /* No default value */
 		"long-Macro-eNB-ID"
 		},
@@ -272,18 +228,7 @@ asn_TYPE_descriptor_t asn_DEF_ENB_ID = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ENB_ID_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ENB_ID_constr_1, .general_constraints = CHOICE_constraint },
 	asn_MBR_ENB_ID_1,
 	4,	/* Elements count */
 	&asn_SPC_ENB_ID_specs_1	/* Additional specs */

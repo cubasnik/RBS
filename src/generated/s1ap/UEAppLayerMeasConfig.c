@@ -46,18 +46,7 @@ asn_TYPE_member_t asn_MBR_UEAppLayerMeasConfig_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_OCTET_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_containerForAppLayerMeasConfig_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_containerForAppLayerMeasConfig_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_containerForAppLayerMeasConfig_constr_2, .general_constraints = memb_containerForAppLayerMeasConfig_constraint_1 },
 		0, 0, /* No default value */
 		"containerForAppLayerMeasConfig"
 		},
@@ -130,18 +119,7 @@ asn_TYPE_descriptor_t asn_DEF_UEAppLayerMeasConfig = {
 	asn_DEF_UEAppLayerMeasConfig_tags_1,	/* Same as above */
 	sizeof(asn_DEF_UEAppLayerMeasConfig_tags_1)
 		/sizeof(asn_DEF_UEAppLayerMeasConfig_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UEAppLayerMeasConfig_1,
 	3,	/* Elements count */
 	&asn_SPC_UEAppLayerMeasConfig_specs_1	/* Additional specs */

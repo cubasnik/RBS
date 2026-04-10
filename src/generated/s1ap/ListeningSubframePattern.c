@@ -114,18 +114,7 @@ asn_TYPE_descriptor_t asn_DEF_pattern_period_2 = {
 	asn_DEF_pattern_period_tags_2,	/* Same as above */
 	sizeof(asn_DEF_pattern_period_tags_2)
 		/sizeof(asn_DEF_pattern_period_tags_2[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_pattern_period_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_pattern_period_2
-	},
+	{ .per_constraints = &asn_PER_type_pattern_period_constr_2, .general_constraints = asn_validate_pattern_period_2 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_pattern_period_specs_2	/* Additional specs */
 };
@@ -156,18 +145,7 @@ asn_TYPE_member_t asn_MBR_ListeningSubframePattern_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_pattern_offset_constr_8,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_pattern_offset_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_pattern_offset_constr_8, .general_constraints = memb_pattern_offset_constraint_1 },
 		0, 0, /* No default value */
 		"pattern-offset"
 		},
@@ -220,18 +198,7 @@ asn_TYPE_descriptor_t asn_DEF_ListeningSubframePattern = {
 	asn_DEF_ListeningSubframePattern_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ListeningSubframePattern_tags_1)
 		/sizeof(asn_DEF_ListeningSubframePattern_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ListeningSubframePattern_1,
 	3,	/* Elements count */
 	&asn_SPC_ListeningSubframePattern_specs_1	/* Additional specs */

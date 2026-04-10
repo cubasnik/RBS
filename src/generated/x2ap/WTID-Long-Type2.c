@@ -62,18 +62,7 @@ asn_TYPE_descriptor_t asn_DEF_WTID_Long_Type2 = {
 	asn_DEF_WTID_Long_Type2_tags_1,	/* Same as above */
 	sizeof(asn_DEF_WTID_Long_Type2_tags_1)
 		/sizeof(asn_DEF_WTID_Long_Type2_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_WTID_Long_Type2_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		WTID_Long_Type2_constraint
-	},
+	{ .per_constraints = &asn_PER_type_WTID_Long_Type2_constr_1, .general_constraints = WTID_Long_Type2_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_BIT_STRING_specs	/* Additional specs */
 };

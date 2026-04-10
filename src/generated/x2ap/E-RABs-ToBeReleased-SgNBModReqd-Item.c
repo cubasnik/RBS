@@ -98,18 +98,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABs_ToBeReleased_SgNBModReqd_Item = {
 	asn_DEF_E_RABs_ToBeReleased_SgNBModReqd_Item_tags_1,	/* Same as above */
 	sizeof(asn_DEF_E_RABs_ToBeReleased_SgNBModReqd_Item_tags_1)
 		/sizeof(asn_DEF_E_RABs_ToBeReleased_SgNBModReqd_Item_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABs_ToBeReleased_SgNBModReqd_Item_1,
 	3,	/* Elements count */
 	&asn_SPC_E_RABs_ToBeReleased_SgNBModReqd_Item_specs_1	/* Additional specs */

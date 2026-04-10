@@ -78,18 +78,7 @@ asn_TYPE_descriptor_t asn_DEF_InitiatingNodeType_EndcX2Removal = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_InitiatingNodeType_EndcX2Removal_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_InitiatingNodeType_EndcX2Removal_constr_1, .general_constraints = CHOICE_constraint },
 	asn_MBR_InitiatingNodeType_EndcX2Removal_1,
 	2,	/* Elements count */
 	&asn_SPC_InitiatingNodeType_EndcX2Removal_specs_1	/* Additional specs */

@@ -175,18 +175,7 @@ asn_TYPE_descriptor_t asn_DEF_periodicCommunicationIndicator_2 = {
 	asn_DEF_periodicCommunicationIndicator_tags_2,	/* Same as above */
 	sizeof(asn_DEF_periodicCommunicationIndicator_tags_2)
 		/sizeof(asn_DEF_periodicCommunicationIndicator_tags_2[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_periodicCommunicationIndicator_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_periodicCommunicationIndicator_2
-	},
+	{ .per_constraints = &asn_PER_type_periodicCommunicationIndicator_constr_2, .general_constraints = asn_validate_periodicCommunicationIndicator_2 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_periodicCommunicationIndicator_specs_2	/* Additional specs */
 };
@@ -238,18 +227,7 @@ asn_TYPE_descriptor_t asn_DEF_stationaryIndication_8 = {
 	asn_DEF_stationaryIndication_tags_8,	/* Same as above */
 	sizeof(asn_DEF_stationaryIndication_tags_8)
 		/sizeof(asn_DEF_stationaryIndication_tags_8[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_stationaryIndication_constr_8,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_stationaryIndication_8
-	},
+	{ .per_constraints = &asn_PER_type_stationaryIndication_constr_8, .general_constraints = asn_validate_stationaryIndication_8 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_stationaryIndication_specs_8	/* Additional specs */
 };
@@ -304,18 +282,7 @@ asn_TYPE_descriptor_t asn_DEF_trafficProfile_12 = {
 	asn_DEF_trafficProfile_tags_12,	/* Same as above */
 	sizeof(asn_DEF_trafficProfile_tags_12)
 		/sizeof(asn_DEF_trafficProfile_tags_12[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_trafficProfile_constr_12,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_trafficProfile_12
-	},
+	{ .per_constraints = &asn_PER_type_trafficProfile_constr_12, .general_constraints = asn_validate_trafficProfile_12 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_trafficProfile_specs_12	/* Additional specs */
 };
@@ -370,18 +337,7 @@ asn_TYPE_descriptor_t asn_DEF_batteryIndication_17 = {
 	asn_DEF_batteryIndication_tags_17,	/* Same as above */
 	sizeof(asn_DEF_batteryIndication_tags_17)
 		/sizeof(asn_DEF_batteryIndication_tags_17[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_batteryIndication_constr_17,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_batteryIndication_17
-	},
+	{ .per_constraints = &asn_PER_type_batteryIndication_constr_17, .general_constraints = asn_validate_batteryIndication_17 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_batteryIndication_specs_17	/* Additional specs */
 };
@@ -412,18 +368,7 @@ asn_TYPE_member_t asn_MBR_Subscription_Based_UE_DifferentiationInfo_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_periodicTime_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_periodicTime_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_periodicTime_constr_6, .general_constraints = memb_periodicTime_constraint_1 },
 		0, 0, /* No default value */
 		"periodicTime"
 		},
@@ -560,18 +505,7 @@ asn_TYPE_descriptor_t asn_DEF_Subscription_Based_UE_DifferentiationInfo = {
 	asn_DEF_Subscription_Based_UE_DifferentiationInfo_tags_1,	/* Same as above */
 	sizeof(asn_DEF_Subscription_Based_UE_DifferentiationInfo_tags_1)
 		/sizeof(asn_DEF_Subscription_Based_UE_DifferentiationInfo_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Subscription_Based_UE_DifferentiationInfo_1,
 	7,	/* Elements count */
 	&asn_SPC_Subscription_Based_UE_DifferentiationInfo_specs_1	/* Additional specs */

@@ -1629,18 +1629,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P0 = {
 	asn_DEF_ProtocolExtensionContainer_162P0_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P0_tags_1)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P0_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P0_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P0_constr_1, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P0_1,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P0_specs_1	/* Additional specs */
@@ -1686,18 +1675,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P1 = {
 	asn_DEF_ProtocolExtensionContainer_162P1_tags_3,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P1_tags_3)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P1_tags_3[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P1_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P1_constr_3, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P1_3,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P1_specs_3	/* Additional specs */
@@ -1743,18 +1721,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P2 = {
 	asn_DEF_ProtocolExtensionContainer_162P2_tags_5,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P2_tags_5)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P2_tags_5[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P2_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P2_constr_5, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P2_5,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P2_specs_5	/* Additional specs */
@@ -1800,18 +1767,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P3 = {
 	asn_DEF_ProtocolExtensionContainer_162P3_tags_7,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P3_tags_7)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P3_tags_7[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P3_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P3_constr_7, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P3_7,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P3_specs_7	/* Additional specs */
@@ -1857,18 +1813,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P4 = {
 	asn_DEF_ProtocolExtensionContainer_162P4_tags_9,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P4_tags_9)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P4_tags_9[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P4_constr_9,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P4_constr_9, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P4_9,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P4_specs_9	/* Additional specs */
@@ -1914,18 +1859,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P5 = {
 	asn_DEF_ProtocolExtensionContainer_162P5_tags_11,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P5_tags_11)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P5_tags_11[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P5_constr_11,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P5_constr_11, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P5_11,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P5_specs_11	/* Additional specs */
@@ -1971,18 +1905,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P6 = {
 	asn_DEF_ProtocolExtensionContainer_162P6_tags_13,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P6_tags_13)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P6_tags_13[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P6_constr_13,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P6_constr_13, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P6_13,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P6_specs_13	/* Additional specs */
@@ -2028,18 +1951,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P7 = {
 	asn_DEF_ProtocolExtensionContainer_162P7_tags_15,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P7_tags_15)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P7_tags_15[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P7_constr_15,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P7_constr_15, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P7_15,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P7_specs_15	/* Additional specs */
@@ -2085,18 +1997,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P8 = {
 	asn_DEF_ProtocolExtensionContainer_162P8_tags_17,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P8_tags_17)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P8_tags_17[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P8_constr_17,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P8_constr_17, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P8_17,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P8_specs_17	/* Additional specs */
@@ -2142,18 +2043,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P9 = {
 	asn_DEF_ProtocolExtensionContainer_162P9_tags_19,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P9_tags_19)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P9_tags_19[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P9_constr_19,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P9_constr_19, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P9_19,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P9_specs_19	/* Additional specs */
@@ -2199,18 +2089,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P10 = {
 	asn_DEF_ProtocolExtensionContainer_162P10_tags_21,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P10_tags_21)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P10_tags_21[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P10_constr_21,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P10_constr_21, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P10_21,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P10_specs_21	/* Additional specs */
@@ -2256,18 +2135,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P11 = {
 	asn_DEF_ProtocolExtensionContainer_162P11_tags_23,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P11_tags_23)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P11_tags_23[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P11_constr_23,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P11_constr_23, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P11_23,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P11_specs_23	/* Additional specs */
@@ -2313,18 +2181,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P12 = {
 	asn_DEF_ProtocolExtensionContainer_162P12_tags_25,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P12_tags_25)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P12_tags_25[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P12_constr_25,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P12_constr_25, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P12_25,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P12_specs_25	/* Additional specs */
@@ -2370,18 +2227,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P13 = {
 	asn_DEF_ProtocolExtensionContainer_162P13_tags_27,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P13_tags_27)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P13_tags_27[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P13_constr_27,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P13_constr_27, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P13_27,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P13_specs_27	/* Additional specs */
@@ -2427,18 +2273,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P14 = {
 	asn_DEF_ProtocolExtensionContainer_162P14_tags_29,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P14_tags_29)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P14_tags_29[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P14_constr_29,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P14_constr_29, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P14_29,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P14_specs_29	/* Additional specs */
@@ -2484,18 +2319,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P15 = {
 	asn_DEF_ProtocolExtensionContainer_162P15_tags_31,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P15_tags_31)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P15_tags_31[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P15_constr_31,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P15_constr_31, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P15_31,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P15_specs_31	/* Additional specs */
@@ -2541,18 +2365,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P16 = {
 	asn_DEF_ProtocolExtensionContainer_162P16_tags_33,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P16_tags_33)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P16_tags_33[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P16_constr_33,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P16_constr_33, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P16_33,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P16_specs_33	/* Additional specs */
@@ -2598,18 +2411,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P17 = {
 	asn_DEF_ProtocolExtensionContainer_162P17_tags_35,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P17_tags_35)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P17_tags_35[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P17_constr_35,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P17_constr_35, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P17_35,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P17_specs_35	/* Additional specs */
@@ -2655,18 +2457,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P18 = {
 	asn_DEF_ProtocolExtensionContainer_162P18_tags_37,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P18_tags_37)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P18_tags_37[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P18_constr_37,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P18_constr_37, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P18_37,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P18_specs_37	/* Additional specs */
@@ -2712,18 +2503,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P19 = {
 	asn_DEF_ProtocolExtensionContainer_162P19_tags_39,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P19_tags_39)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P19_tags_39[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P19_constr_39,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P19_constr_39, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P19_39,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P19_specs_39	/* Additional specs */
@@ -2769,18 +2549,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P20 = {
 	asn_DEF_ProtocolExtensionContainer_162P20_tags_41,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P20_tags_41)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P20_tags_41[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P20_constr_41,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P20_constr_41, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P20_41,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P20_specs_41	/* Additional specs */
@@ -2826,18 +2595,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P21 = {
 	asn_DEF_ProtocolExtensionContainer_162P21_tags_43,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P21_tags_43)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P21_tags_43[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P21_constr_43,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P21_constr_43, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P21_43,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P21_specs_43	/* Additional specs */
@@ -2883,18 +2641,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P22 = {
 	asn_DEF_ProtocolExtensionContainer_162P22_tags_45,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P22_tags_45)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P22_tags_45[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P22_constr_45,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P22_constr_45, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P22_45,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P22_specs_45	/* Additional specs */
@@ -2940,18 +2687,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P23 = {
 	asn_DEF_ProtocolExtensionContainer_162P23_tags_47,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P23_tags_47)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P23_tags_47[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P23_constr_47,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P23_constr_47, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P23_47,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P23_specs_47	/* Additional specs */
@@ -2997,18 +2733,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P24 = {
 	asn_DEF_ProtocolExtensionContainer_162P24_tags_49,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P24_tags_49)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P24_tags_49[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P24_constr_49,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P24_constr_49, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P24_49,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P24_specs_49	/* Additional specs */
@@ -3054,18 +2779,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P25 = {
 	asn_DEF_ProtocolExtensionContainer_162P25_tags_51,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P25_tags_51)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P25_tags_51[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P25_constr_51,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P25_constr_51, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P25_51,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P25_specs_51	/* Additional specs */
@@ -3111,18 +2825,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P26 = {
 	asn_DEF_ProtocolExtensionContainer_162P26_tags_53,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P26_tags_53)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P26_tags_53[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P26_constr_53,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P26_constr_53, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P26_53,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P26_specs_53	/* Additional specs */
@@ -3168,18 +2871,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P27 = {
 	asn_DEF_ProtocolExtensionContainer_162P27_tags_55,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P27_tags_55)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P27_tags_55[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P27_constr_55,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P27_constr_55, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P27_55,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P27_specs_55	/* Additional specs */
@@ -3225,18 +2917,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P28 = {
 	asn_DEF_ProtocolExtensionContainer_162P28_tags_57,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P28_tags_57)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P28_tags_57[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P28_constr_57,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P28_constr_57, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P28_57,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P28_specs_57	/* Additional specs */
@@ -3282,18 +2963,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P29 = {
 	asn_DEF_ProtocolExtensionContainer_162P29_tags_59,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P29_tags_59)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P29_tags_59[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P29_constr_59,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P29_constr_59, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P29_59,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P29_specs_59	/* Additional specs */
@@ -3339,18 +3009,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P30 = {
 	asn_DEF_ProtocolExtensionContainer_162P30_tags_61,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P30_tags_61)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P30_tags_61[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P30_constr_61,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P30_constr_61, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P30_61,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P30_specs_61	/* Additional specs */
@@ -3396,18 +3055,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P31 = {
 	asn_DEF_ProtocolExtensionContainer_162P31_tags_63,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P31_tags_63)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P31_tags_63[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P31_constr_63,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P31_constr_63, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P31_63,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P31_specs_63	/* Additional specs */
@@ -3453,18 +3101,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P32 = {
 	asn_DEF_ProtocolExtensionContainer_162P32_tags_65,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P32_tags_65)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P32_tags_65[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P32_constr_65,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P32_constr_65, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P32_65,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P32_specs_65	/* Additional specs */
@@ -3510,18 +3147,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P33 = {
 	asn_DEF_ProtocolExtensionContainer_162P33_tags_67,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P33_tags_67)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P33_tags_67[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P33_constr_67,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P33_constr_67, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P33_67,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P33_specs_67	/* Additional specs */
@@ -3567,18 +3193,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P34 = {
 	asn_DEF_ProtocolExtensionContainer_162P34_tags_69,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P34_tags_69)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P34_tags_69[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P34_constr_69,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P34_constr_69, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P34_69,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P34_specs_69	/* Additional specs */
@@ -3624,18 +3239,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P35 = {
 	asn_DEF_ProtocolExtensionContainer_162P35_tags_71,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P35_tags_71)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P35_tags_71[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P35_constr_71,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P35_constr_71, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P35_71,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P35_specs_71	/* Additional specs */
@@ -3681,18 +3285,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P36 = {
 	asn_DEF_ProtocolExtensionContainer_162P36_tags_73,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P36_tags_73)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P36_tags_73[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P36_constr_73,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P36_constr_73, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P36_73,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P36_specs_73	/* Additional specs */
@@ -3738,18 +3331,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P37 = {
 	asn_DEF_ProtocolExtensionContainer_162P37_tags_75,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P37_tags_75)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P37_tags_75[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P37_constr_75,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P37_constr_75, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P37_75,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P37_specs_75	/* Additional specs */
@@ -3795,18 +3377,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P38 = {
 	asn_DEF_ProtocolExtensionContainer_162P38_tags_77,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P38_tags_77)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P38_tags_77[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P38_constr_77,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P38_constr_77, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P38_77,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P38_specs_77	/* Additional specs */
@@ -3852,18 +3423,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P39 = {
 	asn_DEF_ProtocolExtensionContainer_162P39_tags_79,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P39_tags_79)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P39_tags_79[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P39_constr_79,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P39_constr_79, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P39_79,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P39_specs_79	/* Additional specs */
@@ -3909,18 +3469,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P40 = {
 	asn_DEF_ProtocolExtensionContainer_162P40_tags_81,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P40_tags_81)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P40_tags_81[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P40_constr_81,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P40_constr_81, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P40_81,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P40_specs_81	/* Additional specs */
@@ -3966,18 +3515,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P41 = {
 	asn_DEF_ProtocolExtensionContainer_162P41_tags_83,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P41_tags_83)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P41_tags_83[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P41_constr_83,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P41_constr_83, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P41_83,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P41_specs_83	/* Additional specs */
@@ -4023,18 +3561,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P42 = {
 	asn_DEF_ProtocolExtensionContainer_162P42_tags_85,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P42_tags_85)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P42_tags_85[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P42_constr_85,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P42_constr_85, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P42_85,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P42_specs_85	/* Additional specs */
@@ -4080,18 +3607,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P43 = {
 	asn_DEF_ProtocolExtensionContainer_162P43_tags_87,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P43_tags_87)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P43_tags_87[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P43_constr_87,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P43_constr_87, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P43_87,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P43_specs_87	/* Additional specs */
@@ -4137,18 +3653,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P44 = {
 	asn_DEF_ProtocolExtensionContainer_162P44_tags_89,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P44_tags_89)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P44_tags_89[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P44_constr_89,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P44_constr_89, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P44_89,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P44_specs_89	/* Additional specs */
@@ -4194,18 +3699,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P45 = {
 	asn_DEF_ProtocolExtensionContainer_162P45_tags_91,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P45_tags_91)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P45_tags_91[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P45_constr_91,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P45_constr_91, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P45_91,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P45_specs_91	/* Additional specs */
@@ -4251,18 +3745,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P46 = {
 	asn_DEF_ProtocolExtensionContainer_162P46_tags_93,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P46_tags_93)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P46_tags_93[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P46_constr_93,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P46_constr_93, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P46_93,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P46_specs_93	/* Additional specs */
@@ -4308,18 +3791,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P47 = {
 	asn_DEF_ProtocolExtensionContainer_162P47_tags_95,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P47_tags_95)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P47_tags_95[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P47_constr_95,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P47_constr_95, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P47_95,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P47_specs_95	/* Additional specs */
@@ -4365,18 +3837,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P48 = {
 	asn_DEF_ProtocolExtensionContainer_162P48_tags_97,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P48_tags_97)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P48_tags_97[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P48_constr_97,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P48_constr_97, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P48_97,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P48_specs_97	/* Additional specs */
@@ -4422,18 +3883,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P49 = {
 	asn_DEF_ProtocolExtensionContainer_162P49_tags_99,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P49_tags_99)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P49_tags_99[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P49_constr_99,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P49_constr_99, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P49_99,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P49_specs_99	/* Additional specs */
@@ -4479,18 +3929,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P50 = {
 	asn_DEF_ProtocolExtensionContainer_162P50_tags_101,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P50_tags_101)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P50_tags_101[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P50_constr_101,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P50_constr_101, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P50_101,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P50_specs_101	/* Additional specs */
@@ -4536,18 +3975,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P51 = {
 	asn_DEF_ProtocolExtensionContainer_162P51_tags_103,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P51_tags_103)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P51_tags_103[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P51_constr_103,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P51_constr_103, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P51_103,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P51_specs_103	/* Additional specs */
@@ -4593,18 +4021,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P52 = {
 	asn_DEF_ProtocolExtensionContainer_162P52_tags_105,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P52_tags_105)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P52_tags_105[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P52_constr_105,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P52_constr_105, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P52_105,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P52_specs_105	/* Additional specs */
@@ -4650,18 +4067,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P53 = {
 	asn_DEF_ProtocolExtensionContainer_162P53_tags_107,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P53_tags_107)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P53_tags_107[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P53_constr_107,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P53_constr_107, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P53_107,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P53_specs_107	/* Additional specs */
@@ -4707,18 +4113,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P54 = {
 	asn_DEF_ProtocolExtensionContainer_162P54_tags_109,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P54_tags_109)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P54_tags_109[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P54_constr_109,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P54_constr_109, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P54_109,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P54_specs_109	/* Additional specs */
@@ -4764,18 +4159,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P55 = {
 	asn_DEF_ProtocolExtensionContainer_162P55_tags_111,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P55_tags_111)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P55_tags_111[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P55_constr_111,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P55_constr_111, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P55_111,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P55_specs_111	/* Additional specs */
@@ -4821,18 +4205,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P56 = {
 	asn_DEF_ProtocolExtensionContainer_162P56_tags_113,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P56_tags_113)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P56_tags_113[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P56_constr_113,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P56_constr_113, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P56_113,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P56_specs_113	/* Additional specs */
@@ -4878,18 +4251,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P57 = {
 	asn_DEF_ProtocolExtensionContainer_162P57_tags_115,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P57_tags_115)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P57_tags_115[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P57_constr_115,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P57_constr_115, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P57_115,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P57_specs_115	/* Additional specs */
@@ -4935,18 +4297,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P58 = {
 	asn_DEF_ProtocolExtensionContainer_162P58_tags_117,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P58_tags_117)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P58_tags_117[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P58_constr_117,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P58_constr_117, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P58_117,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P58_specs_117	/* Additional specs */
@@ -4992,18 +4343,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P59 = {
 	asn_DEF_ProtocolExtensionContainer_162P59_tags_119,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P59_tags_119)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P59_tags_119[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P59_constr_119,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P59_constr_119, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P59_119,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P59_specs_119	/* Additional specs */
@@ -5049,18 +4389,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P60 = {
 	asn_DEF_ProtocolExtensionContainer_162P60_tags_121,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P60_tags_121)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P60_tags_121[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P60_constr_121,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P60_constr_121, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P60_121,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P60_specs_121	/* Additional specs */
@@ -5106,18 +4435,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P61 = {
 	asn_DEF_ProtocolExtensionContainer_162P61_tags_123,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P61_tags_123)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P61_tags_123[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P61_constr_123,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P61_constr_123, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P61_123,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P61_specs_123	/* Additional specs */
@@ -5163,18 +4481,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P62 = {
 	asn_DEF_ProtocolExtensionContainer_162P62_tags_125,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P62_tags_125)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P62_tags_125[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P62_constr_125,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P62_constr_125, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P62_125,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P62_specs_125	/* Additional specs */
@@ -5220,18 +4527,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P63 = {
 	asn_DEF_ProtocolExtensionContainer_162P63_tags_127,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P63_tags_127)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P63_tags_127[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P63_constr_127,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P63_constr_127, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P63_127,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P63_specs_127	/* Additional specs */
@@ -5277,18 +4573,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P64 = {
 	asn_DEF_ProtocolExtensionContainer_162P64_tags_129,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P64_tags_129)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P64_tags_129[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P64_constr_129,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P64_constr_129, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P64_129,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P64_specs_129	/* Additional specs */
@@ -5334,18 +4619,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P65 = {
 	asn_DEF_ProtocolExtensionContainer_162P65_tags_131,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P65_tags_131)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P65_tags_131[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P65_constr_131,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P65_constr_131, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P65_131,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P65_specs_131	/* Additional specs */
@@ -5391,18 +4665,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P66 = {
 	asn_DEF_ProtocolExtensionContainer_162P66_tags_133,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P66_tags_133)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P66_tags_133[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P66_constr_133,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P66_constr_133, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P66_133,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P66_specs_133	/* Additional specs */
@@ -5448,18 +4711,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P67 = {
 	asn_DEF_ProtocolExtensionContainer_162P67_tags_135,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P67_tags_135)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P67_tags_135[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P67_constr_135,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P67_constr_135, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P67_135,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P67_specs_135	/* Additional specs */
@@ -5505,18 +4757,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P68 = {
 	asn_DEF_ProtocolExtensionContainer_162P68_tags_137,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P68_tags_137)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P68_tags_137[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P68_constr_137,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P68_constr_137, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P68_137,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P68_specs_137	/* Additional specs */
@@ -5562,18 +4803,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P69 = {
 	asn_DEF_ProtocolExtensionContainer_162P69_tags_139,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P69_tags_139)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P69_tags_139[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P69_constr_139,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P69_constr_139, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P69_139,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P69_specs_139	/* Additional specs */
@@ -5619,18 +4849,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P70 = {
 	asn_DEF_ProtocolExtensionContainer_162P70_tags_141,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P70_tags_141)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P70_tags_141[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P70_constr_141,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P70_constr_141, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P70_141,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P70_specs_141	/* Additional specs */
@@ -5676,18 +4895,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P71 = {
 	asn_DEF_ProtocolExtensionContainer_162P71_tags_143,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P71_tags_143)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P71_tags_143[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P71_constr_143,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P71_constr_143, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P71_143,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P71_specs_143	/* Additional specs */
@@ -5733,18 +4941,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P72 = {
 	asn_DEF_ProtocolExtensionContainer_162P72_tags_145,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P72_tags_145)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P72_tags_145[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P72_constr_145,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P72_constr_145, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P72_145,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P72_specs_145	/* Additional specs */
@@ -5790,18 +4987,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P73 = {
 	asn_DEF_ProtocolExtensionContainer_162P73_tags_147,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P73_tags_147)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P73_tags_147[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P73_constr_147,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P73_constr_147, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P73_147,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P73_specs_147	/* Additional specs */
@@ -5847,18 +5033,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P74 = {
 	asn_DEF_ProtocolExtensionContainer_162P74_tags_149,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P74_tags_149)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P74_tags_149[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P74_constr_149,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P74_constr_149, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P74_149,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P74_specs_149	/* Additional specs */
@@ -5904,18 +5079,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P75 = {
 	asn_DEF_ProtocolExtensionContainer_162P75_tags_151,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P75_tags_151)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P75_tags_151[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P75_constr_151,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P75_constr_151, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P75_151,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P75_specs_151	/* Additional specs */
@@ -5961,18 +5125,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P76 = {
 	asn_DEF_ProtocolExtensionContainer_162P76_tags_153,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P76_tags_153)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P76_tags_153[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P76_constr_153,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P76_constr_153, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P76_153,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P76_specs_153	/* Additional specs */
@@ -6018,18 +5171,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P77 = {
 	asn_DEF_ProtocolExtensionContainer_162P77_tags_155,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P77_tags_155)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P77_tags_155[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P77_constr_155,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P77_constr_155, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P77_155,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P77_specs_155	/* Additional specs */
@@ -6075,18 +5217,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P78 = {
 	asn_DEF_ProtocolExtensionContainer_162P78_tags_157,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P78_tags_157)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P78_tags_157[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P78_constr_157,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P78_constr_157, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P78_157,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P78_specs_157	/* Additional specs */
@@ -6132,18 +5263,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P79 = {
 	asn_DEF_ProtocolExtensionContainer_162P79_tags_159,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P79_tags_159)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P79_tags_159[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P79_constr_159,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P79_constr_159, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P79_159,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P79_specs_159	/* Additional specs */
@@ -6189,18 +5309,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P80 = {
 	asn_DEF_ProtocolExtensionContainer_162P80_tags_161,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P80_tags_161)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P80_tags_161[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P80_constr_161,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P80_constr_161, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P80_161,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P80_specs_161	/* Additional specs */
@@ -6246,18 +5355,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P81 = {
 	asn_DEF_ProtocolExtensionContainer_162P81_tags_163,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P81_tags_163)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P81_tags_163[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P81_constr_163,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P81_constr_163, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P81_163,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P81_specs_163	/* Additional specs */
@@ -6303,18 +5401,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P82 = {
 	asn_DEF_ProtocolExtensionContainer_162P82_tags_165,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P82_tags_165)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P82_tags_165[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P82_constr_165,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P82_constr_165, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P82_165,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P82_specs_165	/* Additional specs */
@@ -6360,18 +5447,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P83 = {
 	asn_DEF_ProtocolExtensionContainer_162P83_tags_167,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P83_tags_167)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P83_tags_167[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P83_constr_167,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P83_constr_167, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P83_167,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P83_specs_167	/* Additional specs */
@@ -6417,18 +5493,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P84 = {
 	asn_DEF_ProtocolExtensionContainer_162P84_tags_169,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P84_tags_169)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P84_tags_169[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P84_constr_169,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P84_constr_169, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P84_169,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P84_specs_169	/* Additional specs */
@@ -6474,18 +5539,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P85 = {
 	asn_DEF_ProtocolExtensionContainer_162P85_tags_171,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P85_tags_171)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P85_tags_171[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P85_constr_171,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P85_constr_171, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P85_171,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P85_specs_171	/* Additional specs */
@@ -6531,18 +5585,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P86 = {
 	asn_DEF_ProtocolExtensionContainer_162P86_tags_173,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P86_tags_173)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P86_tags_173[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P86_constr_173,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P86_constr_173, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P86_173,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P86_specs_173	/* Additional specs */
@@ -6588,18 +5631,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P87 = {
 	asn_DEF_ProtocolExtensionContainer_162P87_tags_175,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P87_tags_175)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P87_tags_175[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P87_constr_175,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P87_constr_175, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P87_175,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P87_specs_175	/* Additional specs */
@@ -6645,18 +5677,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P88 = {
 	asn_DEF_ProtocolExtensionContainer_162P88_tags_177,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P88_tags_177)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P88_tags_177[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P88_constr_177,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P88_constr_177, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P88_177,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P88_specs_177	/* Additional specs */
@@ -6702,18 +5723,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P89 = {
 	asn_DEF_ProtocolExtensionContainer_162P89_tags_179,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P89_tags_179)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P89_tags_179[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P89_constr_179,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P89_constr_179, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P89_179,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P89_specs_179	/* Additional specs */
@@ -6759,18 +5769,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P90 = {
 	asn_DEF_ProtocolExtensionContainer_162P90_tags_181,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P90_tags_181)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P90_tags_181[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P90_constr_181,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P90_constr_181, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P90_181,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P90_specs_181	/* Additional specs */
@@ -6816,18 +5815,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P91 = {
 	asn_DEF_ProtocolExtensionContainer_162P91_tags_183,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P91_tags_183)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P91_tags_183[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P91_constr_183,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P91_constr_183, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P91_183,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P91_specs_183	/* Additional specs */
@@ -6873,18 +5861,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P92 = {
 	asn_DEF_ProtocolExtensionContainer_162P92_tags_185,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P92_tags_185)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P92_tags_185[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P92_constr_185,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P92_constr_185, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P92_185,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P92_specs_185	/* Additional specs */
@@ -6930,18 +5907,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P93 = {
 	asn_DEF_ProtocolExtensionContainer_162P93_tags_187,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P93_tags_187)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P93_tags_187[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P93_constr_187,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P93_constr_187, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P93_187,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P93_specs_187	/* Additional specs */
@@ -6987,18 +5953,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P94 = {
 	asn_DEF_ProtocolExtensionContainer_162P94_tags_189,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P94_tags_189)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P94_tags_189[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P94_constr_189,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P94_constr_189, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P94_189,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P94_specs_189	/* Additional specs */
@@ -7044,18 +5999,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P95 = {
 	asn_DEF_ProtocolExtensionContainer_162P95_tags_191,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P95_tags_191)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P95_tags_191[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P95_constr_191,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P95_constr_191, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P95_191,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P95_specs_191	/* Additional specs */
@@ -7101,18 +6045,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P96 = {
 	asn_DEF_ProtocolExtensionContainer_162P96_tags_193,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P96_tags_193)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P96_tags_193[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P96_constr_193,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P96_constr_193, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P96_193,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P96_specs_193	/* Additional specs */
@@ -7158,18 +6091,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P97 = {
 	asn_DEF_ProtocolExtensionContainer_162P97_tags_195,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P97_tags_195)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P97_tags_195[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P97_constr_195,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P97_constr_195, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P97_195,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P97_specs_195	/* Additional specs */
@@ -7215,18 +6137,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P98 = {
 	asn_DEF_ProtocolExtensionContainer_162P98_tags_197,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P98_tags_197)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P98_tags_197[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P98_constr_197,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P98_constr_197, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P98_197,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P98_specs_197	/* Additional specs */
@@ -7272,18 +6183,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P99 = {
 	asn_DEF_ProtocolExtensionContainer_162P99_tags_199,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P99_tags_199)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P99_tags_199[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P99_constr_199,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P99_constr_199, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P99_199,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P99_specs_199	/* Additional specs */
@@ -7329,18 +6229,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P100 = {
 	asn_DEF_ProtocolExtensionContainer_162P100_tags_201,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P100_tags_201)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P100_tags_201[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P100_constr_201,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P100_constr_201, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P100_201,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P100_specs_201	/* Additional specs */
@@ -7386,18 +6275,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P101 = {
 	asn_DEF_ProtocolExtensionContainer_162P101_tags_203,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P101_tags_203)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P101_tags_203[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P101_constr_203,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P101_constr_203, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P101_203,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P101_specs_203	/* Additional specs */
@@ -7443,18 +6321,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P102 = {
 	asn_DEF_ProtocolExtensionContainer_162P102_tags_205,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P102_tags_205)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P102_tags_205[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P102_constr_205,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P102_constr_205, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P102_205,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P102_specs_205	/* Additional specs */
@@ -7500,18 +6367,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P103 = {
 	asn_DEF_ProtocolExtensionContainer_162P103_tags_207,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P103_tags_207)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P103_tags_207[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P103_constr_207,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P103_constr_207, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P103_207,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P103_specs_207	/* Additional specs */
@@ -7557,18 +6413,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P104 = {
 	asn_DEF_ProtocolExtensionContainer_162P104_tags_209,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P104_tags_209)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P104_tags_209[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P104_constr_209,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P104_constr_209, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P104_209,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P104_specs_209	/* Additional specs */
@@ -7614,18 +6459,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P105 = {
 	asn_DEF_ProtocolExtensionContainer_162P105_tags_211,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P105_tags_211)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P105_tags_211[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P105_constr_211,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P105_constr_211, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P105_211,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P105_specs_211	/* Additional specs */
@@ -7671,18 +6505,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P106 = {
 	asn_DEF_ProtocolExtensionContainer_162P106_tags_213,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P106_tags_213)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P106_tags_213[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P106_constr_213,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P106_constr_213, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P106_213,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P106_specs_213	/* Additional specs */
@@ -7728,18 +6551,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P107 = {
 	asn_DEF_ProtocolExtensionContainer_162P107_tags_215,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P107_tags_215)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P107_tags_215[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P107_constr_215,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P107_constr_215, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P107_215,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P107_specs_215	/* Additional specs */
@@ -7785,18 +6597,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P108 = {
 	asn_DEF_ProtocolExtensionContainer_162P108_tags_217,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P108_tags_217)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P108_tags_217[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P108_constr_217,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P108_constr_217, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P108_217,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P108_specs_217	/* Additional specs */
@@ -7842,18 +6643,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P109 = {
 	asn_DEF_ProtocolExtensionContainer_162P109_tags_219,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P109_tags_219)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P109_tags_219[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P109_constr_219,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P109_constr_219, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P109_219,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P109_specs_219	/* Additional specs */
@@ -7899,18 +6689,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P110 = {
 	asn_DEF_ProtocolExtensionContainer_162P110_tags_221,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P110_tags_221)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P110_tags_221[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P110_constr_221,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P110_constr_221, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P110_221,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P110_specs_221	/* Additional specs */
@@ -7956,18 +6735,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P111 = {
 	asn_DEF_ProtocolExtensionContainer_162P111_tags_223,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P111_tags_223)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P111_tags_223[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P111_constr_223,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P111_constr_223, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P111_223,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P111_specs_223	/* Additional specs */
@@ -8013,18 +6781,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P112 = {
 	asn_DEF_ProtocolExtensionContainer_162P112_tags_225,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P112_tags_225)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P112_tags_225[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P112_constr_225,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P112_constr_225, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P112_225,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P112_specs_225	/* Additional specs */
@@ -8070,18 +6827,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P113 = {
 	asn_DEF_ProtocolExtensionContainer_162P113_tags_227,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P113_tags_227)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P113_tags_227[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P113_constr_227,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P113_constr_227, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P113_227,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P113_specs_227	/* Additional specs */
@@ -8127,18 +6873,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P114 = {
 	asn_DEF_ProtocolExtensionContainer_162P114_tags_229,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P114_tags_229)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P114_tags_229[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P114_constr_229,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P114_constr_229, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P114_229,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P114_specs_229	/* Additional specs */
@@ -8184,18 +6919,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P115 = {
 	asn_DEF_ProtocolExtensionContainer_162P115_tags_231,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P115_tags_231)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P115_tags_231[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P115_constr_231,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P115_constr_231, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P115_231,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P115_specs_231	/* Additional specs */
@@ -8241,18 +6965,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P116 = {
 	asn_DEF_ProtocolExtensionContainer_162P116_tags_233,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P116_tags_233)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P116_tags_233[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P116_constr_233,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P116_constr_233, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P116_233,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P116_specs_233	/* Additional specs */
@@ -8298,18 +7011,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P117 = {
 	asn_DEF_ProtocolExtensionContainer_162P117_tags_235,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P117_tags_235)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P117_tags_235[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P117_constr_235,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P117_constr_235, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P117_235,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P117_specs_235	/* Additional specs */
@@ -8355,18 +7057,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P118 = {
 	asn_DEF_ProtocolExtensionContainer_162P118_tags_237,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P118_tags_237)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P118_tags_237[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P118_constr_237,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P118_constr_237, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P118_237,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P118_specs_237	/* Additional specs */
@@ -8412,18 +7103,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P119 = {
 	asn_DEF_ProtocolExtensionContainer_162P119_tags_239,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P119_tags_239)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P119_tags_239[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P119_constr_239,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P119_constr_239, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P119_239,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P119_specs_239	/* Additional specs */
@@ -8469,18 +7149,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P120 = {
 	asn_DEF_ProtocolExtensionContainer_162P120_tags_241,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P120_tags_241)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P120_tags_241[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P120_constr_241,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P120_constr_241, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P120_241,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P120_specs_241	/* Additional specs */
@@ -8526,18 +7195,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P121 = {
 	asn_DEF_ProtocolExtensionContainer_162P121_tags_243,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P121_tags_243)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P121_tags_243[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P121_constr_243,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P121_constr_243, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P121_243,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P121_specs_243	/* Additional specs */
@@ -8583,18 +7241,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P122 = {
 	asn_DEF_ProtocolExtensionContainer_162P122_tags_245,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P122_tags_245)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P122_tags_245[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P122_constr_245,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P122_constr_245, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P122_245,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P122_specs_245	/* Additional specs */
@@ -8640,18 +7287,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P123 = {
 	asn_DEF_ProtocolExtensionContainer_162P123_tags_247,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P123_tags_247)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P123_tags_247[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P123_constr_247,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P123_constr_247, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P123_247,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P123_specs_247	/* Additional specs */
@@ -8697,18 +7333,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P124 = {
 	asn_DEF_ProtocolExtensionContainer_162P124_tags_249,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P124_tags_249)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P124_tags_249[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P124_constr_249,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P124_constr_249, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P124_249,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P124_specs_249	/* Additional specs */
@@ -8754,18 +7379,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P125 = {
 	asn_DEF_ProtocolExtensionContainer_162P125_tags_251,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P125_tags_251)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P125_tags_251[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P125_constr_251,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P125_constr_251, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P125_251,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P125_specs_251	/* Additional specs */
@@ -8811,18 +7425,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P126 = {
 	asn_DEF_ProtocolExtensionContainer_162P126_tags_253,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P126_tags_253)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P126_tags_253[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P126_constr_253,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P126_constr_253, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P126_253,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P126_specs_253	/* Additional specs */
@@ -8868,18 +7471,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P127 = {
 	asn_DEF_ProtocolExtensionContainer_162P127_tags_255,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P127_tags_255)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P127_tags_255[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P127_constr_255,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P127_constr_255, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P127_255,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P127_specs_255	/* Additional specs */
@@ -8925,18 +7517,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P128 = {
 	asn_DEF_ProtocolExtensionContainer_162P128_tags_257,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P128_tags_257)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P128_tags_257[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P128_constr_257,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P128_constr_257, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P128_257,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P128_specs_257	/* Additional specs */
@@ -8982,18 +7563,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P129 = {
 	asn_DEF_ProtocolExtensionContainer_162P129_tags_259,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P129_tags_259)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P129_tags_259[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P129_constr_259,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P129_constr_259, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P129_259,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P129_specs_259	/* Additional specs */
@@ -9039,18 +7609,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P130 = {
 	asn_DEF_ProtocolExtensionContainer_162P130_tags_261,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P130_tags_261)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P130_tags_261[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P130_constr_261,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P130_constr_261, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P130_261,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P130_specs_261	/* Additional specs */
@@ -9096,18 +7655,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P131 = {
 	asn_DEF_ProtocolExtensionContainer_162P131_tags_263,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P131_tags_263)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P131_tags_263[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P131_constr_263,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P131_constr_263, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P131_263,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P131_specs_263	/* Additional specs */
@@ -9153,18 +7701,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P132 = {
 	asn_DEF_ProtocolExtensionContainer_162P132_tags_265,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P132_tags_265)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P132_tags_265[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P132_constr_265,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P132_constr_265, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P132_265,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P132_specs_265	/* Additional specs */
@@ -9210,18 +7747,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P133 = {
 	asn_DEF_ProtocolExtensionContainer_162P133_tags_267,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P133_tags_267)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P133_tags_267[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P133_constr_267,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P133_constr_267, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P133_267,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P133_specs_267	/* Additional specs */
@@ -9267,18 +7793,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P134 = {
 	asn_DEF_ProtocolExtensionContainer_162P134_tags_269,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P134_tags_269)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P134_tags_269[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P134_constr_269,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P134_constr_269, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P134_269,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P134_specs_269	/* Additional specs */
@@ -9324,18 +7839,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P135 = {
 	asn_DEF_ProtocolExtensionContainer_162P135_tags_271,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P135_tags_271)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P135_tags_271[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P135_constr_271,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P135_constr_271, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P135_271,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P135_specs_271	/* Additional specs */
@@ -9381,18 +7885,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P136 = {
 	asn_DEF_ProtocolExtensionContainer_162P136_tags_273,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P136_tags_273)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P136_tags_273[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P136_constr_273,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P136_constr_273, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P136_273,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P136_specs_273	/* Additional specs */
@@ -9438,18 +7931,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P137 = {
 	asn_DEF_ProtocolExtensionContainer_162P137_tags_275,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P137_tags_275)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P137_tags_275[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P137_constr_275,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P137_constr_275, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P137_275,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P137_specs_275	/* Additional specs */
@@ -9495,18 +7977,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P138 = {
 	asn_DEF_ProtocolExtensionContainer_162P138_tags_277,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P138_tags_277)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P138_tags_277[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P138_constr_277,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P138_constr_277, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P138_277,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P138_specs_277	/* Additional specs */
@@ -9552,18 +8023,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P139 = {
 	asn_DEF_ProtocolExtensionContainer_162P139_tags_279,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P139_tags_279)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P139_tags_279[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P139_constr_279,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P139_constr_279, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P139_279,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P139_specs_279	/* Additional specs */
@@ -9609,18 +8069,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P140 = {
 	asn_DEF_ProtocolExtensionContainer_162P140_tags_281,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P140_tags_281)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P140_tags_281[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P140_constr_281,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P140_constr_281, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P140_281,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P140_specs_281	/* Additional specs */
@@ -9666,18 +8115,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P141 = {
 	asn_DEF_ProtocolExtensionContainer_162P141_tags_283,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P141_tags_283)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P141_tags_283[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P141_constr_283,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P141_constr_283, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P141_283,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P141_specs_283	/* Additional specs */
@@ -9723,18 +8161,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P142 = {
 	asn_DEF_ProtocolExtensionContainer_162P142_tags_285,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P142_tags_285)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P142_tags_285[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P142_constr_285,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P142_constr_285, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P142_285,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P142_specs_285	/* Additional specs */
@@ -9780,18 +8207,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P143 = {
 	asn_DEF_ProtocolExtensionContainer_162P143_tags_287,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P143_tags_287)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P143_tags_287[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P143_constr_287,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P143_constr_287, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P143_287,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P143_specs_287	/* Additional specs */
@@ -9837,18 +8253,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P144 = {
 	asn_DEF_ProtocolExtensionContainer_162P144_tags_289,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P144_tags_289)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P144_tags_289[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P144_constr_289,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P144_constr_289, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P144_289,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P144_specs_289	/* Additional specs */
@@ -9894,18 +8299,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P145 = {
 	asn_DEF_ProtocolExtensionContainer_162P145_tags_291,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P145_tags_291)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P145_tags_291[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P145_constr_291,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P145_constr_291, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P145_291,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P145_specs_291	/* Additional specs */
@@ -9951,18 +8345,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P146 = {
 	asn_DEF_ProtocolExtensionContainer_162P146_tags_293,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P146_tags_293)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P146_tags_293[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P146_constr_293,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P146_constr_293, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P146_293,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P146_specs_293	/* Additional specs */
@@ -10008,18 +8391,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P147 = {
 	asn_DEF_ProtocolExtensionContainer_162P147_tags_295,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P147_tags_295)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P147_tags_295[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P147_constr_295,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P147_constr_295, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P147_295,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P147_specs_295	/* Additional specs */
@@ -10065,18 +8437,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P148 = {
 	asn_DEF_ProtocolExtensionContainer_162P148_tags_297,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P148_tags_297)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P148_tags_297[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P148_constr_297,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P148_constr_297, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P148_297,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P148_specs_297	/* Additional specs */
@@ -10122,18 +8483,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P149 = {
 	asn_DEF_ProtocolExtensionContainer_162P149_tags_299,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P149_tags_299)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P149_tags_299[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P149_constr_299,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P149_constr_299, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P149_299,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P149_specs_299	/* Additional specs */
@@ -10179,18 +8529,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P150 = {
 	asn_DEF_ProtocolExtensionContainer_162P150_tags_301,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P150_tags_301)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P150_tags_301[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P150_constr_301,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P150_constr_301, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P150_301,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P150_specs_301	/* Additional specs */
@@ -10236,18 +8575,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P151 = {
 	asn_DEF_ProtocolExtensionContainer_162P151_tags_303,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P151_tags_303)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P151_tags_303[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P151_constr_303,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P151_constr_303, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P151_303,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P151_specs_303	/* Additional specs */
@@ -10293,18 +8621,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P152 = {
 	asn_DEF_ProtocolExtensionContainer_162P152_tags_305,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P152_tags_305)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P152_tags_305[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P152_constr_305,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P152_constr_305, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P152_305,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P152_specs_305	/* Additional specs */
@@ -10350,18 +8667,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P153 = {
 	asn_DEF_ProtocolExtensionContainer_162P153_tags_307,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P153_tags_307)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P153_tags_307[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P153_constr_307,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P153_constr_307, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P153_307,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P153_specs_307	/* Additional specs */
@@ -10407,18 +8713,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P154 = {
 	asn_DEF_ProtocolExtensionContainer_162P154_tags_309,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P154_tags_309)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P154_tags_309[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P154_constr_309,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P154_constr_309, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P154_309,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P154_specs_309	/* Additional specs */
@@ -10464,18 +8759,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P155 = {
 	asn_DEF_ProtocolExtensionContainer_162P155_tags_311,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P155_tags_311)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P155_tags_311[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P155_constr_311,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P155_constr_311, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P155_311,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P155_specs_311	/* Additional specs */
@@ -10521,18 +8805,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P156 = {
 	asn_DEF_ProtocolExtensionContainer_162P156_tags_313,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P156_tags_313)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P156_tags_313[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P156_constr_313,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P156_constr_313, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P156_313,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P156_specs_313	/* Additional specs */
@@ -10578,18 +8851,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P157 = {
 	asn_DEF_ProtocolExtensionContainer_162P157_tags_315,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P157_tags_315)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P157_tags_315[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P157_constr_315,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P157_constr_315, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P157_315,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P157_specs_315	/* Additional specs */
@@ -10635,18 +8897,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P158 = {
 	asn_DEF_ProtocolExtensionContainer_162P158_tags_317,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P158_tags_317)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P158_tags_317[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P158_constr_317,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P158_constr_317, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P158_317,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P158_specs_317	/* Additional specs */
@@ -10692,18 +8943,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P159 = {
 	asn_DEF_ProtocolExtensionContainer_162P159_tags_319,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P159_tags_319)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P159_tags_319[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P159_constr_319,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P159_constr_319, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P159_319,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P159_specs_319	/* Additional specs */
@@ -10749,18 +8989,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P160 = {
 	asn_DEF_ProtocolExtensionContainer_162P160_tags_321,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P160_tags_321)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P160_tags_321[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P160_constr_321,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P160_constr_321, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P160_321,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P160_specs_321	/* Additional specs */
@@ -10806,18 +9035,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P161 = {
 	asn_DEF_ProtocolExtensionContainer_162P161_tags_323,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P161_tags_323)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P161_tags_323[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P161_constr_323,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P161_constr_323, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P161_323,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P161_specs_323	/* Additional specs */
@@ -10863,18 +9081,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P162 = {
 	asn_DEF_ProtocolExtensionContainer_162P162_tags_325,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P162_tags_325)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P162_tags_325[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P162_constr_325,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P162_constr_325, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P162_325,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P162_specs_325	/* Additional specs */
@@ -10920,18 +9127,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P163 = {
 	asn_DEF_ProtocolExtensionContainer_162P163_tags_327,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P163_tags_327)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P163_tags_327[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P163_constr_327,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P163_constr_327, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P163_327,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P163_specs_327	/* Additional specs */
@@ -10977,18 +9173,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P164 = {
 	asn_DEF_ProtocolExtensionContainer_162P164_tags_329,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P164_tags_329)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P164_tags_329[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P164_constr_329,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P164_constr_329, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P164_329,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P164_specs_329	/* Additional specs */
@@ -11034,18 +9219,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P165 = {
 	asn_DEF_ProtocolExtensionContainer_162P165_tags_331,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P165_tags_331)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P165_tags_331[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P165_constr_331,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P165_constr_331, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P165_331,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P165_specs_331	/* Additional specs */
@@ -11091,18 +9265,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P166 = {
 	asn_DEF_ProtocolExtensionContainer_162P166_tags_333,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P166_tags_333)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P166_tags_333[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P166_constr_333,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P166_constr_333, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P166_333,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P166_specs_333	/* Additional specs */
@@ -11148,18 +9311,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P167 = {
 	asn_DEF_ProtocolExtensionContainer_162P167_tags_335,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P167_tags_335)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P167_tags_335[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P167_constr_335,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P167_constr_335, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P167_335,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P167_specs_335	/* Additional specs */
@@ -11205,18 +9357,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P168 = {
 	asn_DEF_ProtocolExtensionContainer_162P168_tags_337,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P168_tags_337)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P168_tags_337[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P168_constr_337,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P168_constr_337, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P168_337,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P168_specs_337	/* Additional specs */
@@ -11262,18 +9403,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P169 = {
 	asn_DEF_ProtocolExtensionContainer_162P169_tags_339,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P169_tags_339)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P169_tags_339[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P169_constr_339,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P169_constr_339, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P169_339,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P169_specs_339	/* Additional specs */
@@ -11319,18 +9449,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P170 = {
 	asn_DEF_ProtocolExtensionContainer_162P170_tags_341,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P170_tags_341)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P170_tags_341[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P170_constr_341,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P170_constr_341, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P170_341,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P170_specs_341	/* Additional specs */
@@ -11376,18 +9495,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P171 = {
 	asn_DEF_ProtocolExtensionContainer_162P171_tags_343,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P171_tags_343)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P171_tags_343[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P171_constr_343,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P171_constr_343, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P171_343,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P171_specs_343	/* Additional specs */
@@ -11433,18 +9541,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P172 = {
 	asn_DEF_ProtocolExtensionContainer_162P172_tags_345,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P172_tags_345)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P172_tags_345[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P172_constr_345,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P172_constr_345, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P172_345,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P172_specs_345	/* Additional specs */
@@ -11490,18 +9587,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P173 = {
 	asn_DEF_ProtocolExtensionContainer_162P173_tags_347,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P173_tags_347)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P173_tags_347[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P173_constr_347,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P173_constr_347, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P173_347,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P173_specs_347	/* Additional specs */
@@ -11547,18 +9633,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P174 = {
 	asn_DEF_ProtocolExtensionContainer_162P174_tags_349,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P174_tags_349)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P174_tags_349[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P174_constr_349,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P174_constr_349, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P174_349,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P174_specs_349	/* Additional specs */
@@ -11604,18 +9679,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P175 = {
 	asn_DEF_ProtocolExtensionContainer_162P175_tags_351,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P175_tags_351)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P175_tags_351[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P175_constr_351,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P175_constr_351, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P175_351,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P175_specs_351	/* Additional specs */
@@ -11661,18 +9725,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P176 = {
 	asn_DEF_ProtocolExtensionContainer_162P176_tags_353,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P176_tags_353)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P176_tags_353[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P176_constr_353,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P176_constr_353, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P176_353,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P176_specs_353	/* Additional specs */
@@ -11718,18 +9771,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P177 = {
 	asn_DEF_ProtocolExtensionContainer_162P177_tags_355,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P177_tags_355)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P177_tags_355[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P177_constr_355,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P177_constr_355, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P177_355,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P177_specs_355	/* Additional specs */
@@ -11775,18 +9817,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P178 = {
 	asn_DEF_ProtocolExtensionContainer_162P178_tags_357,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P178_tags_357)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P178_tags_357[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P178_constr_357,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P178_constr_357, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P178_357,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P178_specs_357	/* Additional specs */
@@ -11832,18 +9863,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P179 = {
 	asn_DEF_ProtocolExtensionContainer_162P179_tags_359,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P179_tags_359)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P179_tags_359[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P179_constr_359,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P179_constr_359, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P179_359,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P179_specs_359	/* Additional specs */
@@ -11889,18 +9909,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P180 = {
 	asn_DEF_ProtocolExtensionContainer_162P180_tags_361,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P180_tags_361)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P180_tags_361[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P180_constr_361,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P180_constr_361, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P180_361,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P180_specs_361	/* Additional specs */
@@ -11946,18 +9955,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P181 = {
 	asn_DEF_ProtocolExtensionContainer_162P181_tags_363,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P181_tags_363)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P181_tags_363[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P181_constr_363,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P181_constr_363, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P181_363,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P181_specs_363	/* Additional specs */
@@ -12003,18 +10001,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P182 = {
 	asn_DEF_ProtocolExtensionContainer_162P182_tags_365,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P182_tags_365)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P182_tags_365[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P182_constr_365,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P182_constr_365, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P182_365,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P182_specs_365	/* Additional specs */
@@ -12060,18 +10047,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P183 = {
 	asn_DEF_ProtocolExtensionContainer_162P183_tags_367,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P183_tags_367)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P183_tags_367[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P183_constr_367,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P183_constr_367, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P183_367,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P183_specs_367	/* Additional specs */
@@ -12117,18 +10093,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P184 = {
 	asn_DEF_ProtocolExtensionContainer_162P184_tags_369,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P184_tags_369)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P184_tags_369[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P184_constr_369,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P184_constr_369, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P184_369,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P184_specs_369	/* Additional specs */
@@ -12174,18 +10139,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P185 = {
 	asn_DEF_ProtocolExtensionContainer_162P185_tags_371,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P185_tags_371)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P185_tags_371[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P185_constr_371,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P185_constr_371, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P185_371,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P185_specs_371	/* Additional specs */
@@ -12231,18 +10185,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P186 = {
 	asn_DEF_ProtocolExtensionContainer_162P186_tags_373,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P186_tags_373)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P186_tags_373[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P186_constr_373,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P186_constr_373, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P186_373,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P186_specs_373	/* Additional specs */
@@ -12288,18 +10231,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P187 = {
 	asn_DEF_ProtocolExtensionContainer_162P187_tags_375,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P187_tags_375)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P187_tags_375[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P187_constr_375,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P187_constr_375, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P187_375,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P187_specs_375	/* Additional specs */
@@ -12345,18 +10277,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P188 = {
 	asn_DEF_ProtocolExtensionContainer_162P188_tags_377,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P188_tags_377)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P188_tags_377[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P188_constr_377,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P188_constr_377, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P188_377,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P188_specs_377	/* Additional specs */
@@ -12402,18 +10323,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P189 = {
 	asn_DEF_ProtocolExtensionContainer_162P189_tags_379,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P189_tags_379)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P189_tags_379[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P189_constr_379,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P189_constr_379, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P189_379,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P189_specs_379	/* Additional specs */
@@ -12459,18 +10369,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P190 = {
 	asn_DEF_ProtocolExtensionContainer_162P190_tags_381,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P190_tags_381)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P190_tags_381[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P190_constr_381,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P190_constr_381, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P190_381,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P190_specs_381	/* Additional specs */
@@ -12516,18 +10415,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P191 = {
 	asn_DEF_ProtocolExtensionContainer_162P191_tags_383,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P191_tags_383)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P191_tags_383[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P191_constr_383,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P191_constr_383, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P191_383,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P191_specs_383	/* Additional specs */
@@ -12573,18 +10461,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P192 = {
 	asn_DEF_ProtocolExtensionContainer_162P192_tags_385,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P192_tags_385)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P192_tags_385[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P192_constr_385,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P192_constr_385, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P192_385,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P192_specs_385	/* Additional specs */
@@ -12630,18 +10507,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P193 = {
 	asn_DEF_ProtocolExtensionContainer_162P193_tags_387,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P193_tags_387)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P193_tags_387[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P193_constr_387,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P193_constr_387, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P193_387,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P193_specs_387	/* Additional specs */
@@ -12687,18 +10553,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P194 = {
 	asn_DEF_ProtocolExtensionContainer_162P194_tags_389,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P194_tags_389)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P194_tags_389[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P194_constr_389,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P194_constr_389, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P194_389,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P194_specs_389	/* Additional specs */
@@ -12744,18 +10599,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P195 = {
 	asn_DEF_ProtocolExtensionContainer_162P195_tags_391,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P195_tags_391)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P195_tags_391[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P195_constr_391,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P195_constr_391, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P195_391,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P195_specs_391	/* Additional specs */
@@ -12801,18 +10645,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P196 = {
 	asn_DEF_ProtocolExtensionContainer_162P196_tags_393,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P196_tags_393)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P196_tags_393[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P196_constr_393,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P196_constr_393, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P196_393,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P196_specs_393	/* Additional specs */
@@ -12858,18 +10691,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P197 = {
 	asn_DEF_ProtocolExtensionContainer_162P197_tags_395,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P197_tags_395)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P197_tags_395[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P197_constr_395,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P197_constr_395, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P197_395,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P197_specs_395	/* Additional specs */
@@ -12915,18 +10737,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P198 = {
 	asn_DEF_ProtocolExtensionContainer_162P198_tags_397,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P198_tags_397)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P198_tags_397[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P198_constr_397,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P198_constr_397, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P198_397,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P198_specs_397	/* Additional specs */
@@ -12972,18 +10783,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P199 = {
 	asn_DEF_ProtocolExtensionContainer_162P199_tags_399,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P199_tags_399)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P199_tags_399[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P199_constr_399,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P199_constr_399, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P199_399,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P199_specs_399	/* Additional specs */
@@ -13029,18 +10829,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P200 = {
 	asn_DEF_ProtocolExtensionContainer_162P200_tags_401,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P200_tags_401)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P200_tags_401[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P200_constr_401,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P200_constr_401, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P200_401,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P200_specs_401	/* Additional specs */
@@ -13086,18 +10875,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P201 = {
 	asn_DEF_ProtocolExtensionContainer_162P201_tags_403,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P201_tags_403)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P201_tags_403[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P201_constr_403,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P201_constr_403, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P201_403,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P201_specs_403	/* Additional specs */
@@ -13143,18 +10921,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P202 = {
 	asn_DEF_ProtocolExtensionContainer_162P202_tags_405,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P202_tags_405)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P202_tags_405[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P202_constr_405,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P202_constr_405, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P202_405,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P202_specs_405	/* Additional specs */
@@ -13200,18 +10967,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P203 = {
 	asn_DEF_ProtocolExtensionContainer_162P203_tags_407,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P203_tags_407)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P203_tags_407[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P203_constr_407,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P203_constr_407, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P203_407,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P203_specs_407	/* Additional specs */
@@ -13257,18 +11013,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P204 = {
 	asn_DEF_ProtocolExtensionContainer_162P204_tags_409,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P204_tags_409)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P204_tags_409[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P204_constr_409,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P204_constr_409, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P204_409,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P204_specs_409	/* Additional specs */
@@ -13314,18 +11059,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P205 = {
 	asn_DEF_ProtocolExtensionContainer_162P205_tags_411,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P205_tags_411)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P205_tags_411[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P205_constr_411,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P205_constr_411, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P205_411,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P205_specs_411	/* Additional specs */
@@ -13371,18 +11105,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P206 = {
 	asn_DEF_ProtocolExtensionContainer_162P206_tags_413,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P206_tags_413)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P206_tags_413[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P206_constr_413,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P206_constr_413, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P206_413,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P206_specs_413	/* Additional specs */
@@ -13428,18 +11151,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P207 = {
 	asn_DEF_ProtocolExtensionContainer_162P207_tags_415,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P207_tags_415)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P207_tags_415[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P207_constr_415,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P207_constr_415, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P207_415,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P207_specs_415	/* Additional specs */
@@ -13485,18 +11197,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P208 = {
 	asn_DEF_ProtocolExtensionContainer_162P208_tags_417,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P208_tags_417)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P208_tags_417[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P208_constr_417,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P208_constr_417, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P208_417,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P208_specs_417	/* Additional specs */
@@ -13542,18 +11243,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P209 = {
 	asn_DEF_ProtocolExtensionContainer_162P209_tags_419,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P209_tags_419)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P209_tags_419[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P209_constr_419,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P209_constr_419, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P209_419,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P209_specs_419	/* Additional specs */
@@ -13599,18 +11289,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P210 = {
 	asn_DEF_ProtocolExtensionContainer_162P210_tags_421,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P210_tags_421)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P210_tags_421[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P210_constr_421,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P210_constr_421, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P210_421,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P210_specs_421	/* Additional specs */
@@ -13656,18 +11335,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P211 = {
 	asn_DEF_ProtocolExtensionContainer_162P211_tags_423,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P211_tags_423)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P211_tags_423[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P211_constr_423,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P211_constr_423, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P211_423,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P211_specs_423	/* Additional specs */
@@ -13713,18 +11381,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P212 = {
 	asn_DEF_ProtocolExtensionContainer_162P212_tags_425,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P212_tags_425)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P212_tags_425[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P212_constr_425,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P212_constr_425, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P212_425,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P212_specs_425	/* Additional specs */
@@ -13770,18 +11427,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P213 = {
 	asn_DEF_ProtocolExtensionContainer_162P213_tags_427,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P213_tags_427)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P213_tags_427[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P213_constr_427,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P213_constr_427, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P213_427,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P213_specs_427	/* Additional specs */
@@ -13827,18 +11473,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P214 = {
 	asn_DEF_ProtocolExtensionContainer_162P214_tags_429,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P214_tags_429)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P214_tags_429[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P214_constr_429,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P214_constr_429, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P214_429,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P214_specs_429	/* Additional specs */
@@ -13884,18 +11519,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P215 = {
 	asn_DEF_ProtocolExtensionContainer_162P215_tags_431,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P215_tags_431)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P215_tags_431[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P215_constr_431,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P215_constr_431, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P215_431,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P215_specs_431	/* Additional specs */
@@ -13941,18 +11565,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P216 = {
 	asn_DEF_ProtocolExtensionContainer_162P216_tags_433,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P216_tags_433)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P216_tags_433[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P216_constr_433,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P216_constr_433, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P216_433,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P216_specs_433	/* Additional specs */
@@ -13998,18 +11611,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P217 = {
 	asn_DEF_ProtocolExtensionContainer_162P217_tags_435,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P217_tags_435)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P217_tags_435[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P217_constr_435,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P217_constr_435, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P217_435,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P217_specs_435	/* Additional specs */
@@ -14055,18 +11657,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P218 = {
 	asn_DEF_ProtocolExtensionContainer_162P218_tags_437,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P218_tags_437)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P218_tags_437[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P218_constr_437,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P218_constr_437, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P218_437,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P218_specs_437	/* Additional specs */
@@ -14112,18 +11703,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P219 = {
 	asn_DEF_ProtocolExtensionContainer_162P219_tags_439,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P219_tags_439)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P219_tags_439[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P219_constr_439,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P219_constr_439, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P219_439,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P219_specs_439	/* Additional specs */
@@ -14169,18 +11749,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P220 = {
 	asn_DEF_ProtocolExtensionContainer_162P220_tags_441,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P220_tags_441)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P220_tags_441[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P220_constr_441,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P220_constr_441, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P220_441,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P220_specs_441	/* Additional specs */
@@ -14226,18 +11795,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P221 = {
 	asn_DEF_ProtocolExtensionContainer_162P221_tags_443,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P221_tags_443)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P221_tags_443[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P221_constr_443,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P221_constr_443, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P221_443,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P221_specs_443	/* Additional specs */
@@ -14283,18 +11841,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P222 = {
 	asn_DEF_ProtocolExtensionContainer_162P222_tags_445,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P222_tags_445)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P222_tags_445[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P222_constr_445,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P222_constr_445, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P222_445,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P222_specs_445	/* Additional specs */
@@ -14340,18 +11887,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P223 = {
 	asn_DEF_ProtocolExtensionContainer_162P223_tags_447,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P223_tags_447)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P223_tags_447[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P223_constr_447,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P223_constr_447, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P223_447,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P223_specs_447	/* Additional specs */
@@ -14397,18 +11933,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P224 = {
 	asn_DEF_ProtocolExtensionContainer_162P224_tags_449,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P224_tags_449)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P224_tags_449[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P224_constr_449,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P224_constr_449, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P224_449,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P224_specs_449	/* Additional specs */
@@ -14454,18 +11979,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolExtensionContainer_162P225 = {
 	asn_DEF_ProtocolExtensionContainer_162P225_tags_451,	/* Same as above */
 	sizeof(asn_DEF_ProtocolExtensionContainer_162P225_tags_451)
 		/sizeof(asn_DEF_ProtocolExtensionContainer_162P225_tags_451[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolExtensionContainer_162P225_constr_451,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolExtensionContainer_162P225_constr_451, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolExtensionContainer_162P225_451,
 	1,	/* Single element */
 	&asn_SPC_ProtocolExtensionContainer_162P225_specs_451	/* Additional specs */

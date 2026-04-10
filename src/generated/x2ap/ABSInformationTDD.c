@@ -156,18 +156,7 @@ asn_TYPE_descriptor_t asn_DEF_numberOfCellSpecificAntennaPorts_3 = {
 	asn_DEF_numberOfCellSpecificAntennaPorts_tags_3,	/* Same as above */
 	sizeof(asn_DEF_numberOfCellSpecificAntennaPorts_tags_3)
 		/sizeof(asn_DEF_numberOfCellSpecificAntennaPorts_tags_3[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_numberOfCellSpecificAntennaPorts_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_numberOfCellSpecificAntennaPorts_3
-	},
+	{ .per_constraints = &asn_PER_type_numberOfCellSpecificAntennaPorts_constr_3, .general_constraints = asn_validate_numberOfCellSpecificAntennaPorts_3 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_numberOfCellSpecificAntennaPorts_specs_3	/* Additional specs */
 };
@@ -178,18 +167,7 @@ asn_TYPE_member_t asn_MBR_ABSInformationTDD_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_abs_pattern_info_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_abs_pattern_info_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_abs_pattern_info_constr_2, .general_constraints = memb_abs_pattern_info_constraint_1 },
 		0, 0, /* No default value */
 		"abs-pattern-info"
 		},
@@ -218,18 +196,7 @@ asn_TYPE_member_t asn_MBR_ABSInformationTDD_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_measurement_subset_constr_8,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_measurement_subset_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_measurement_subset_constr_8, .general_constraints = memb_measurement_subset_constraint_1 },
 		0, 0, /* No default value */
 		"measurement-subset"
 		},
@@ -283,18 +250,7 @@ asn_TYPE_descriptor_t asn_DEF_ABSInformationTDD = {
 	asn_DEF_ABSInformationTDD_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ABSInformationTDD_tags_1)
 		/sizeof(asn_DEF_ABSInformationTDD_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ABSInformationTDD_1,
 	4,	/* Elements count */
 	&asn_SPC_ABSInformationTDD_specs_1	/* Additional specs */

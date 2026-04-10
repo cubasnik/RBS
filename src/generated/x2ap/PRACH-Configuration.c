@@ -142,18 +142,7 @@ asn_TYPE_member_t asn_MBR_PRACH_Configuration_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_rootSequenceIndex_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_rootSequenceIndex_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_rootSequenceIndex_constr_2, .general_constraints = memb_rootSequenceIndex_constraint_1 },
 		0, 0, /* No default value */
 		"rootSequenceIndex"
 		},
@@ -162,18 +151,7 @@ asn_TYPE_member_t asn_MBR_PRACH_Configuration_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_zeroCorrelationIndex_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_zeroCorrelationIndex_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_zeroCorrelationIndex_constr_3, .general_constraints = memb_zeroCorrelationIndex_constraint_1 },
 		0, 0, /* No default value */
 		"zeroCorrelationIndex"
 		},
@@ -202,18 +180,7 @@ asn_TYPE_member_t asn_MBR_PRACH_Configuration_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_prach_FreqOffset_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_prach_FreqOffset_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_prach_FreqOffset_constr_5, .general_constraints = memb_prach_FreqOffset_constraint_1 },
 		0, 0, /* No default value */
 		"prach-FreqOffset"
 		},
@@ -222,18 +189,7 @@ asn_TYPE_member_t asn_MBR_PRACH_Configuration_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_prach_ConfigIndex_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_prach_ConfigIndex_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_prach_ConfigIndex_constr_6, .general_constraints = memb_prach_ConfigIndex_constraint_1 },
 		0, 0, /* No default value */
 		"prach-ConfigIndex"
 		},
@@ -289,18 +245,7 @@ asn_TYPE_descriptor_t asn_DEF_PRACH_Configuration = {
 	asn_DEF_PRACH_Configuration_tags_1,	/* Same as above */
 	sizeof(asn_DEF_PRACH_Configuration_tags_1)
 		/sizeof(asn_DEF_PRACH_Configuration_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_PRACH_Configuration_1,
 	6,	/* Elements count */
 	&asn_SPC_PRACH_Configuration_specs_1	/* Additional specs */

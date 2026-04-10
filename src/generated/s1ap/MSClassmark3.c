@@ -24,18 +24,7 @@ asn_TYPE_descriptor_t asn_DEF_MSClassmark3 = {
 	asn_DEF_MSClassmark3_tags_1,	/* Same as above */
 	sizeof(asn_DEF_MSClassmark3_tags_1)
 		/sizeof(asn_DEF_MSClassmark3_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OCTET_STRING_constraint
-	},
+	{ .general_constraints = OCTET_STRING_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_OCTET_STRING_specs	/* Additional specs */
 };

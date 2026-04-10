@@ -14194,18 +14194,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_4 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_4	/* Additional specs */
 };
@@ -14216,18 +14205,7 @@ asn_TYPE_member_t asn_MBR_E_RABDataForwardingItem_ExtIEs_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_2, .general_constraints = memb_id_constraint_1 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14236,18 +14214,7 @@ asn_TYPE_member_t asn_MBR_E_RABDataForwardingItem_ExtIEs_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_3, .general_constraints = memb_criticality_constraint_1 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -14256,18 +14223,7 @@ asn_TYPE_member_t asn_MBR_E_RABDataForwardingItem_ExtIEs_1[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_4,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_4, .general_constraints = memb_extensionValue_constraint_1 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -14298,18 +14254,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABDataForwardingItem_ExtIEs = {
 	asn_DEF_E_RABDataForwardingItem_ExtIEs_tags_1,	/* Same as above */
 	sizeof(asn_DEF_E_RABDataForwardingItem_ExtIEs_tags_1)
 		/sizeof(asn_DEF_E_RABDataForwardingItem_ExtIEs_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABDataForwardingItem_ExtIEs_1,
 	3,	/* Elements count */
 	&asn_SPC_E_RABDataForwardingItem_ExtIEs_specs_1	/* Additional specs */
@@ -14380,18 +14325,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_8 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_E_RABToBeSetupItemHOReq_ExtIEs__extensionValue_8,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_8	/* Additional specs */
@@ -14403,18 +14337,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemHOReq_ExtIEs_5[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_6,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_5
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_6, .general_constraints = memb_id_constraint_5 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14423,18 +14346,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemHOReq_ExtIEs_5[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_E_RABToBeSetupItemHOReq_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_5
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_7, .general_constraints = memb_criticality_constraint_5 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -14443,18 +14355,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemHOReq_ExtIEs_5[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_8,
 		select_E_RABToBeSetupItemHOReq_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_8,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_5
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_8, .general_constraints = memb_extensionValue_constraint_5 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -14485,18 +14386,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeSetupItemHOReq_ExtIEs = {
 	asn_DEF_E_RABToBeSetupItemHOReq_ExtIEs_tags_5,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeSetupItemHOReq_ExtIEs_tags_5)
 		/sizeof(asn_DEF_E_RABToBeSetupItemHOReq_ExtIEs_tags_5[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemHOReq_ExtIEs_5,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemHOReq_ExtIEs_specs_5	/* Additional specs */
@@ -14521,18 +14411,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_12 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_12	/* Additional specs */
 };
@@ -14543,18 +14422,7 @@ asn_TYPE_member_t asn_MBR_E_RABAdmittedItem_ExtIEs_9[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_10,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_9
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_10, .general_constraints = memb_id_constraint_9 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14563,18 +14431,7 @@ asn_TYPE_member_t asn_MBR_E_RABAdmittedItem_ExtIEs_9[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_11,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_9
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_11, .general_constraints = memb_criticality_constraint_9 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -14583,18 +14440,7 @@ asn_TYPE_member_t asn_MBR_E_RABAdmittedItem_ExtIEs_9[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_12,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_12,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_9
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_12, .general_constraints = memb_extensionValue_constraint_9 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -14625,18 +14471,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABAdmittedItem_ExtIEs = {
 	asn_DEF_E_RABAdmittedItem_ExtIEs_tags_9,	/* Same as above */
 	sizeof(asn_DEF_E_RABAdmittedItem_ExtIEs_tags_9)
 		/sizeof(asn_DEF_E_RABAdmittedItem_ExtIEs_tags_9[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABAdmittedItem_ExtIEs_9,
 	3,	/* Elements count */
 	&asn_SPC_E_RABAdmittedItem_ExtIEs_specs_9	/* Additional specs */
@@ -14661,18 +14496,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_16 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_16	/* Additional specs */
 };
@@ -14683,18 +14507,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToSetupItemHOReqAckExtIEs_13[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_14,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_13
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_14, .general_constraints = memb_id_constraint_13 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14703,18 +14516,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToSetupItemHOReqAckExtIEs_13[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_15,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_13
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_15, .general_constraints = memb_criticality_constraint_13 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -14723,18 +14525,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToSetupItemHOReqAckExtIEs_13[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_16,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_16,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_13
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_16, .general_constraints = memb_extensionValue_constraint_13 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -14765,18 +14556,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABFailedToSetupItemHOReqAckExtIEs = {
 	asn_DEF_E_RABFailedToSetupItemHOReqAckExtIEs_tags_13,	/* Same as above */
 	sizeof(asn_DEF_E_RABFailedToSetupItemHOReqAckExtIEs_tags_13)
 		/sizeof(asn_DEF_E_RABFailedToSetupItemHOReqAckExtIEs_tags_13[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedToSetupItemHOReqAckExtIEs_13,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedToSetupItemHOReqAckExtIEs_specs_13	/* Additional specs */
@@ -14801,18 +14581,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_20 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_20	/* Additional specs */
 };
@@ -14823,18 +14592,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedDLItem_ExtIEs_17[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_18,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_17
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_18, .general_constraints = memb_id_constraint_17 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14843,18 +14601,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedDLItem_ExtIEs_17[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_19,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_17
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_19, .general_constraints = memb_criticality_constraint_17 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -14863,18 +14610,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedDLItem_ExtIEs_17[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_20,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_20,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_17
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_20, .general_constraints = memb_extensionValue_constraint_17 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -14905,18 +14641,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeSwitchedDLItem_ExtIEs = {
 	asn_DEF_E_RABToBeSwitchedDLItem_ExtIEs_tags_17,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeSwitchedDLItem_ExtIEs_tags_17)
 		/sizeof(asn_DEF_E_RABToBeSwitchedDLItem_ExtIEs_tags_17[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSwitchedDLItem_ExtIEs_17,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSwitchedDLItem_ExtIEs_specs_17	/* Additional specs */
@@ -14941,18 +14666,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_24 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_24	/* Additional specs */
 };
@@ -14963,18 +14677,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedULItem_ExtIEs_21[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_22,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_21
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_22, .general_constraints = memb_id_constraint_21 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -14983,18 +14686,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedULItem_ExtIEs_21[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_23,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_21
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_23, .general_constraints = memb_criticality_constraint_21 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15003,18 +14695,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSwitchedULItem_ExtIEs_21[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_24,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_24,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_21
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_24, .general_constraints = memb_extensionValue_constraint_21 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15045,18 +14726,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeSwitchedULItem_ExtIEs = {
 	asn_DEF_E_RABToBeSwitchedULItem_ExtIEs_tags_21,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeSwitchedULItem_ExtIEs_tags_21)
 		/sizeof(asn_DEF_E_RABToBeSwitchedULItem_ExtIEs_tags_21[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSwitchedULItem_ExtIEs_21,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSwitchedULItem_ExtIEs_specs_21	/* Additional specs */
@@ -15148,18 +14818,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_28 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_E_RABToBeSetupItemBearerSUReqExtIEs__extensionValue_28,
 	3,	/* Elements count */
 	&asn_SPC_extensionValue_specs_28	/* Additional specs */
@@ -15171,18 +14830,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemBearerSUReqExtIEs_25[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_26,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_25
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_26, .general_constraints = memb_id_constraint_25 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15191,18 +14839,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemBearerSUReqExtIEs_25[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_E_RABToBeSetupItemBearerSUReqExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_27,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_25
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_27, .general_constraints = memb_criticality_constraint_25 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15211,18 +14848,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemBearerSUReqExtIEs_25[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_28,
 		select_E_RABToBeSetupItemBearerSUReqExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_28,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_25
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_28, .general_constraints = memb_extensionValue_constraint_25 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15253,18 +14879,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeSetupItemBearerSUReqExtIEs = {
 	asn_DEF_E_RABToBeSetupItemBearerSUReqExtIEs_tags_25,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeSetupItemBearerSUReqExtIEs_tags_25)
 		/sizeof(asn_DEF_E_RABToBeSetupItemBearerSUReqExtIEs_tags_25[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemBearerSUReqExtIEs_25,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemBearerSUReqExtIEs_specs_25	/* Additional specs */
@@ -15289,18 +14904,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_32 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_32	/* Additional specs */
 };
@@ -15311,18 +14915,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemBearerSUResExtIEs_29[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_30,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_29
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_30, .general_constraints = memb_id_constraint_29 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15331,18 +14924,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemBearerSUResExtIEs_29[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_31,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_29
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_31, .general_constraints = memb_criticality_constraint_29 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15351,18 +14933,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemBearerSUResExtIEs_29[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_32,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_32,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_29
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_32, .general_constraints = memb_extensionValue_constraint_29 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15393,18 +14964,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABSetupItemBearerSUResExtIEs = {
 	asn_DEF_E_RABSetupItemBearerSUResExtIEs_tags_29,	/* Same as above */
 	sizeof(asn_DEF_E_RABSetupItemBearerSUResExtIEs_tags_29)
 		/sizeof(asn_DEF_E_RABSetupItemBearerSUResExtIEs_tags_29[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABSetupItemBearerSUResExtIEs_29,
 	3,	/* Elements count */
 	&asn_SPC_E_RABSetupItemBearerSUResExtIEs_specs_29	/* Additional specs */
@@ -15454,18 +15014,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_36 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_E_RABToBeModifyItemBearerModReqExtIEs__extensionValue_36,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_36	/* Additional specs */
@@ -15477,18 +15026,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifyItemBearerModReqExtIEs_33[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_34,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_33
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_34, .general_constraints = memb_id_constraint_33 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15497,18 +15035,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifyItemBearerModReqExtIEs_33[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_E_RABToBeModifyItemBearerModReqExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_35,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_33
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_35, .general_constraints = memb_criticality_constraint_33 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15517,18 +15044,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifyItemBearerModReqExtIEs_33[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_36,
 		select_E_RABToBeModifyItemBearerModReqExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_36,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_33
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_36, .general_constraints = memb_extensionValue_constraint_33 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15559,18 +15075,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeModifyItemBearerModReqExtIEs = {
 	asn_DEF_E_RABToBeModifyItemBearerModReqExtIEs_tags_33,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeModifyItemBearerModReqExtIEs_tags_33)
 		/sizeof(asn_DEF_E_RABToBeModifyItemBearerModReqExtIEs_tags_33[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeModifyItemBearerModReqExtIEs_33,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeModifyItemBearerModReqExtIEs_specs_33	/* Additional specs */
@@ -15595,18 +15100,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_40 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_40	/* Additional specs */
 };
@@ -15617,18 +15111,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModResExtIEs_37[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_38,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_37
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_38, .general_constraints = memb_id_constraint_37 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15637,18 +15120,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModResExtIEs_37[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_39,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_37
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_39, .general_constraints = memb_criticality_constraint_37 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15657,18 +15129,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModResExtIEs_37[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_40,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_40,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_37
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_40, .general_constraints = memb_extensionValue_constraint_37 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15699,18 +15160,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABModifyItemBearerModResExtIEs = {
 	asn_DEF_E_RABModifyItemBearerModResExtIEs_tags_37,	/* Same as above */
 	sizeof(asn_DEF_E_RABModifyItemBearerModResExtIEs_tags_37)
 		/sizeof(asn_DEF_E_RABModifyItemBearerModResExtIEs_tags_37[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABModifyItemBearerModResExtIEs_37,
 	3,	/* Elements count */
 	&asn_SPC_E_RABModifyItemBearerModResExtIEs_specs_37	/* Additional specs */
@@ -15735,18 +15185,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_44 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_44	/* Additional specs */
 };
@@ -15757,18 +15196,7 @@ asn_TYPE_member_t asn_MBR_E_RABReleaseItemBearerRelCompExtIEs_41[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_42,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_41
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_42, .general_constraints = memb_id_constraint_41 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15777,18 +15205,7 @@ asn_TYPE_member_t asn_MBR_E_RABReleaseItemBearerRelCompExtIEs_41[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_43,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_41
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_43, .general_constraints = memb_criticality_constraint_41 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -15797,18 +15214,7 @@ asn_TYPE_member_t asn_MBR_E_RABReleaseItemBearerRelCompExtIEs_41[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_44,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_44,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_41
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_44, .general_constraints = memb_extensionValue_constraint_41 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -15839,18 +15245,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABReleaseItemBearerRelCompExtIEs = {
 	asn_DEF_E_RABReleaseItemBearerRelCompExtIEs_tags_41,	/* Same as above */
 	sizeof(asn_DEF_E_RABReleaseItemBearerRelCompExtIEs_tags_41)
 		/sizeof(asn_DEF_E_RABReleaseItemBearerRelCompExtIEs_tags_41[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABReleaseItemBearerRelCompExtIEs_41,
 	3,	/* Elements count */
 	&asn_SPC_E_RABReleaseItemBearerRelCompExtIEs_specs_41	/* Additional specs */
@@ -15942,18 +15337,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_48 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_E_RABToBeSetupItemCtxtSUReqExtIEs__extensionValue_48,
 	3,	/* Elements count */
 	&asn_SPC_extensionValue_specs_48	/* Additional specs */
@@ -15965,18 +15349,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemCtxtSUReqExtIEs_45[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_46,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_45
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_46, .general_constraints = memb_id_constraint_45 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -15985,18 +15358,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemCtxtSUReqExtIEs_45[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_E_RABToBeSetupItemCtxtSUReqExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_47,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_45
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_47, .general_constraints = memb_criticality_constraint_45 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16005,18 +15367,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeSetupItemCtxtSUReqExtIEs_45[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_48,
 		select_E_RABToBeSetupItemCtxtSUReqExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_48,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_45
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_48, .general_constraints = memb_extensionValue_constraint_45 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16047,18 +15398,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeSetupItemCtxtSUReqExtIEs = {
 	asn_DEF_E_RABToBeSetupItemCtxtSUReqExtIEs_tags_45,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeSetupItemCtxtSUReqExtIEs_tags_45)
 		/sizeof(asn_DEF_E_RABToBeSetupItemCtxtSUReqExtIEs_tags_45[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemCtxtSUReqExtIEs_45,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemCtxtSUReqExtIEs_specs_45	/* Additional specs */
@@ -16083,18 +15423,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_52 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_52	/* Additional specs */
 };
@@ -16105,18 +15434,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemCtxtSUResExtIEs_49[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_50,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_49
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_50, .general_constraints = memb_id_constraint_49 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16125,18 +15443,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemCtxtSUResExtIEs_49[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_51,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_49
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_51, .general_constraints = memb_criticality_constraint_49 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16145,18 +15452,7 @@ asn_TYPE_member_t asn_MBR_E_RABSetupItemCtxtSUResExtIEs_49[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_52,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_52,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_49
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_52, .general_constraints = memb_extensionValue_constraint_49 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16187,18 +15483,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABSetupItemCtxtSUResExtIEs = {
 	asn_DEF_E_RABSetupItemCtxtSUResExtIEs_tags_49,	/* Same as above */
 	sizeof(asn_DEF_E_RABSetupItemCtxtSUResExtIEs_tags_49)
 		/sizeof(asn_DEF_E_RABSetupItemCtxtSUResExtIEs_tags_49[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABSetupItemCtxtSUResExtIEs_49,
 	3,	/* Elements count */
 	&asn_SPC_E_RABSetupItemCtxtSUResExtIEs_specs_49	/* Additional specs */
@@ -16223,18 +15508,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_56 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_56	/* Additional specs */
 };
@@ -16245,18 +15519,7 @@ asn_TYPE_member_t asn_MBR_TAIItemExtIEs_53[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_54,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_53
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_54, .general_constraints = memb_id_constraint_53 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16265,18 +15528,7 @@ asn_TYPE_member_t asn_MBR_TAIItemExtIEs_53[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_55,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_53
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_55, .general_constraints = memb_criticality_constraint_53 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16285,18 +15537,7 @@ asn_TYPE_member_t asn_MBR_TAIItemExtIEs_53[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_56,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_56,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_53
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_56, .general_constraints = memb_extensionValue_constraint_53 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16327,18 +15568,7 @@ asn_TYPE_descriptor_t asn_DEF_TAIItemExtIEs = {
 	asn_DEF_TAIItemExtIEs_tags_53,	/* Same as above */
 	sizeof(asn_DEF_TAIItemExtIEs_tags_53)
 		/sizeof(asn_DEF_TAIItemExtIEs_tags_53[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAIItemExtIEs_53,
 	3,	/* Elements count */
 	&asn_SPC_TAIItemExtIEs_specs_53	/* Additional specs */
@@ -16363,18 +15593,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_60 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_60	/* Additional specs */
 };
@@ -16385,18 +15604,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifiedItemBearerModInd_ExtIEs_57[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_58,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_57
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_58, .general_constraints = memb_id_constraint_57 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16405,18 +15613,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifiedItemBearerModInd_ExtIEs_57[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_59,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_57
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_59, .general_constraints = memb_criticality_constraint_57 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16425,18 +15622,7 @@ asn_TYPE_member_t asn_MBR_E_RABToBeModifiedItemBearerModInd_ExtIEs_57[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_60,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_60,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_57
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_60, .general_constraints = memb_extensionValue_constraint_57 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16467,18 +15653,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABToBeModifiedItemBearerModInd_ExtIEs = {
 	asn_DEF_E_RABToBeModifiedItemBearerModInd_ExtIEs_tags_57,	/* Same as above */
 	sizeof(asn_DEF_E_RABToBeModifiedItemBearerModInd_ExtIEs_tags_57)
 		/sizeof(asn_DEF_E_RABToBeModifiedItemBearerModInd_ExtIEs_tags_57[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeModifiedItemBearerModInd_ExtIEs_57,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeModifiedItemBearerModInd_ExtIEs_specs_57	/* Additional specs */
@@ -16503,18 +15678,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_64 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_64	/* Additional specs */
 };
@@ -16525,18 +15689,7 @@ asn_TYPE_member_t asn_MBR_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_61[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_62,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_61
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_62, .general_constraints = memb_id_constraint_61 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16545,18 +15698,7 @@ asn_TYPE_member_t asn_MBR_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_61[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_63,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_61
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_63, .general_constraints = memb_criticality_constraint_61 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16565,18 +15707,7 @@ asn_TYPE_member_t asn_MBR_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_61[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_64,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_64,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_61
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_64, .general_constraints = memb_extensionValue_constraint_61 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16607,18 +15738,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABNotToBeModifiedItemBearerModInd_ExtIEs = {
 	asn_DEF_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_tags_61,	/* Same as above */
 	sizeof(asn_DEF_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_tags_61)
 		/sizeof(asn_DEF_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_tags_61[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_61,
 	3,	/* Elements count */
 	&asn_SPC_E_RABNotToBeModifiedItemBearerModInd_ExtIEs_specs_61	/* Additional specs */
@@ -16643,18 +15763,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_68 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_68	/* Additional specs */
 };
@@ -16665,18 +15774,7 @@ asn_TYPE_member_t asn_MBR_CSGMembershipInfo_ExtIEs_65[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_66,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_65
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_66, .general_constraints = memb_id_constraint_65 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16685,18 +15783,7 @@ asn_TYPE_member_t asn_MBR_CSGMembershipInfo_ExtIEs_65[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_67,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_65
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_67, .general_constraints = memb_criticality_constraint_65 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16705,18 +15792,7 @@ asn_TYPE_member_t asn_MBR_CSGMembershipInfo_ExtIEs_65[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_68,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_68,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_65
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_68, .general_constraints = memb_extensionValue_constraint_65 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16747,18 +15823,7 @@ asn_TYPE_descriptor_t asn_DEF_CSGMembershipInfo_ExtIEs = {
 	asn_DEF_CSGMembershipInfo_ExtIEs_tags_65,	/* Same as above */
 	sizeof(asn_DEF_CSGMembershipInfo_ExtIEs_tags_65)
 		/sizeof(asn_DEF_CSGMembershipInfo_ExtIEs_tags_65[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CSGMembershipInfo_ExtIEs_65,
 	3,	/* Elements count */
 	&asn_SPC_CSGMembershipInfo_ExtIEs_specs_65	/* Additional specs */
@@ -16783,18 +15848,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_72 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_72	/* Additional specs */
 };
@@ -16805,18 +15859,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModConfExtIEs_69[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_70,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_69
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_70, .general_constraints = memb_id_constraint_69 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16825,18 +15868,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModConfExtIEs_69[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_71,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_69
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_71, .general_constraints = memb_criticality_constraint_69 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16845,18 +15877,7 @@ asn_TYPE_member_t asn_MBR_E_RABModifyItemBearerModConfExtIEs_69[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_72,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_72,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_69
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_72, .general_constraints = memb_extensionValue_constraint_69 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -16887,18 +15908,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABModifyItemBearerModConfExtIEs = {
 	asn_DEF_E_RABModifyItemBearerModConfExtIEs_tags_69,	/* Same as above */
 	sizeof(asn_DEF_E_RABModifyItemBearerModConfExtIEs_tags_69)
 		/sizeof(asn_DEF_E_RABModifyItemBearerModConfExtIEs_tags_69[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABModifyItemBearerModConfExtIEs_69,
 	3,	/* Elements count */
 	&asn_SPC_E_RABModifyItemBearerModConfExtIEs_specs_69	/* Additional specs */
@@ -16923,18 +15933,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_76 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_76	/* Additional specs */
 };
@@ -16945,18 +15944,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeReq_ExtIEs_73[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_74,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_73
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_74, .general_constraints = memb_id_constraint_73 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -16965,18 +15953,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeReq_ExtIEs_73[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_75,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_73
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_75, .general_constraints = memb_criticality_constraint_73 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -16985,18 +15962,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeReq_ExtIEs_73[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_76,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_76,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_73
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_76, .general_constraints = memb_extensionValue_constraint_73 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17027,18 +15993,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABFailedToResumeItemResumeReq_ExtIEs = {
 	asn_DEF_E_RABFailedToResumeItemResumeReq_ExtIEs_tags_73,	/* Same as above */
 	sizeof(asn_DEF_E_RABFailedToResumeItemResumeReq_ExtIEs_tags_73)
 		/sizeof(asn_DEF_E_RABFailedToResumeItemResumeReq_ExtIEs_tags_73[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedToResumeItemResumeReq_ExtIEs_73,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedToResumeItemResumeReq_ExtIEs_specs_73	/* Additional specs */
@@ -17063,18 +16018,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_80 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_80	/* Additional specs */
 };
@@ -17085,18 +16029,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeRes_ExtIEs_77[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_78,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_77
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_78, .general_constraints = memb_id_constraint_77 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17105,18 +16038,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeRes_ExtIEs_77[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_79,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_77
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_79, .general_constraints = memb_criticality_constraint_77 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17125,18 +16047,7 @@ asn_TYPE_member_t asn_MBR_E_RABFailedToResumeItemResumeRes_ExtIEs_77[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_80,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_80,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_77
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_80, .general_constraints = memb_extensionValue_constraint_77 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17167,18 +16078,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABFailedToResumeItemResumeRes_ExtIEs = {
 	asn_DEF_E_RABFailedToResumeItemResumeRes_ExtIEs_tags_77,	/* Same as above */
 	sizeof(asn_DEF_E_RABFailedToResumeItemResumeRes_ExtIEs_tags_77)
 		/sizeof(asn_DEF_E_RABFailedToResumeItemResumeRes_ExtIEs_tags_77[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedToResumeItemResumeRes_ExtIEs_77,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedToResumeItemResumeRes_ExtIEs_specs_77	/* Additional specs */
@@ -17203,18 +16103,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_84 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_84	/* Additional specs */
 };
@@ -17225,18 +16114,7 @@ asn_TYPE_member_t asn_MBR_Additional_GUTI_ExtIEs_81[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_82,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_81
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_82, .general_constraints = memb_id_constraint_81 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17245,18 +16123,7 @@ asn_TYPE_member_t asn_MBR_Additional_GUTI_ExtIEs_81[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_83,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_81
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_83, .general_constraints = memb_criticality_constraint_81 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17265,18 +16132,7 @@ asn_TYPE_member_t asn_MBR_Additional_GUTI_ExtIEs_81[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_84,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_84,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_81
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_84, .general_constraints = memb_extensionValue_constraint_81 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17307,18 +16163,7 @@ asn_TYPE_descriptor_t asn_DEF_Additional_GUTI_ExtIEs = {
 	asn_DEF_Additional_GUTI_ExtIEs_tags_81,	/* Same as above */
 	sizeof(asn_DEF_Additional_GUTI_ExtIEs_tags_81)
 		/sizeof(asn_DEF_Additional_GUTI_ExtIEs_tags_81[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Additional_GUTI_ExtIEs_81,
 	3,	/* Elements count */
 	&asn_SPC_Additional_GUTI_ExtIEs_specs_81	/* Additional specs */
@@ -17343,18 +16188,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_88 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_88	/* Additional specs */
 };
@@ -17365,18 +16199,7 @@ asn_TYPE_member_t asn_MBR_AllocationAndRetentionPriority_ExtIEs_85[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_86,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_85
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_86, .general_constraints = memb_id_constraint_85 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17385,18 +16208,7 @@ asn_TYPE_member_t asn_MBR_AllocationAndRetentionPriority_ExtIEs_85[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_87,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_85
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_87, .general_constraints = memb_criticality_constraint_85 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17405,18 +16217,7 @@ asn_TYPE_member_t asn_MBR_AllocationAndRetentionPriority_ExtIEs_85[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_88,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_88,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_85
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_88, .general_constraints = memb_extensionValue_constraint_85 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17447,18 +16248,7 @@ asn_TYPE_descriptor_t asn_DEF_AllocationAndRetentionPriority_ExtIEs = {
 	asn_DEF_AllocationAndRetentionPriority_ExtIEs_tags_85,	/* Same as above */
 	sizeof(asn_DEF_AllocationAndRetentionPriority_ExtIEs_tags_85)
 		/sizeof(asn_DEF_AllocationAndRetentionPriority_ExtIEs_tags_85[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_AllocationAndRetentionPriority_ExtIEs_85,
 	3,	/* Elements count */
 	&asn_SPC_AllocationAndRetentionPriority_ExtIEs_specs_85	/* Additional specs */
@@ -17483,18 +16273,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_92 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_92	/* Additional specs */
 };
@@ -17505,18 +16284,7 @@ asn_TYPE_member_t asn_MBR_InformationForCECapableUEs_ExtIEs_89[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_90,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_89
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_90, .general_constraints = memb_id_constraint_89 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17525,18 +16293,7 @@ asn_TYPE_member_t asn_MBR_InformationForCECapableUEs_ExtIEs_89[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_91,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_89
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_91, .general_constraints = memb_criticality_constraint_89 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17545,18 +16302,7 @@ asn_TYPE_member_t asn_MBR_InformationForCECapableUEs_ExtIEs_89[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_92,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_92,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_89
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_92, .general_constraints = memb_extensionValue_constraint_89 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17587,18 +16333,7 @@ asn_TYPE_descriptor_t asn_DEF_InformationForCECapableUEs_ExtIEs = {
 	asn_DEF_InformationForCECapableUEs_ExtIEs_tags_89,	/* Same as above */
 	sizeof(asn_DEF_InformationForCECapableUEs_ExtIEs_tags_89)
 		/sizeof(asn_DEF_InformationForCECapableUEs_ExtIEs_tags_89[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_InformationForCECapableUEs_ExtIEs_89,
 	3,	/* Elements count */
 	&asn_SPC_InformationForCECapableUEs_ExtIEs_specs_89	/* Additional specs */
@@ -17623,18 +16358,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_96 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_96	/* Additional specs */
 };
@@ -17645,18 +16369,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForPaging_ExtIEs_93[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_94,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_93
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_94, .general_constraints = memb_id_constraint_93 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17665,18 +16378,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForPaging_ExtIEs_93[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_95,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_93
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_95, .general_constraints = memb_criticality_constraint_93 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17685,18 +16387,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForPaging_ExtIEs_93[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_96,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_96,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_93
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_96, .general_constraints = memb_extensionValue_constraint_93 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17727,18 +16418,7 @@ asn_TYPE_descriptor_t asn_DEF_AssistanceDataForPaging_ExtIEs = {
 	asn_DEF_AssistanceDataForPaging_ExtIEs_tags_93,	/* Same as above */
 	sizeof(asn_DEF_AssistanceDataForPaging_ExtIEs_tags_93)
 		/sizeof(asn_DEF_AssistanceDataForPaging_ExtIEs_tags_93[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_AssistanceDataForPaging_ExtIEs_93,
 	3,	/* Elements count */
 	&asn_SPC_AssistanceDataForPaging_ExtIEs_specs_93	/* Additional specs */
@@ -17763,18 +16443,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_100 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_100	/* Additional specs */
 };
@@ -17785,18 +16454,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForRecommendedCells_ExtIEs_97[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_98,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_97
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_98, .general_constraints = memb_id_constraint_97 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -17805,18 +16463,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForRecommendedCells_ExtIEs_97[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_99,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_97
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_99, .general_constraints = memb_criticality_constraint_97 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -17825,18 +16472,7 @@ asn_TYPE_member_t asn_MBR_AssistanceDataForRecommendedCells_ExtIEs_97[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_100,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_100,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_97
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_100, .general_constraints = memb_extensionValue_constraint_97 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -17867,18 +16503,7 @@ asn_TYPE_descriptor_t asn_DEF_AssistanceDataForRecommendedCells_ExtIEs = {
 	asn_DEF_AssistanceDataForRecommendedCells_ExtIEs_tags_97,	/* Same as above */
 	sizeof(asn_DEF_AssistanceDataForRecommendedCells_ExtIEs_tags_97)
 		/sizeof(asn_DEF_AssistanceDataForRecommendedCells_ExtIEs_tags_97[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_AssistanceDataForRecommendedCells_ExtIEs_97,
 	3,	/* Elements count */
 	&asn_SPC_AssistanceDataForRecommendedCells_ExtIEs_specs_97	/* Additional specs */
@@ -18036,18 +16661,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_104 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_Bearers_SubjectToStatusTransfer_ItemExtIEs__extensionValue_104,
 	6,	/* Elements count */
 	&asn_SPC_extensionValue_specs_104	/* Additional specs */
@@ -18059,18 +16673,7 @@ asn_TYPE_member_t asn_MBR_Bearers_SubjectToStatusTransfer_ItemExtIEs_101[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_102,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_101
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_102, .general_constraints = memb_id_constraint_101 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18079,18 +16682,7 @@ asn_TYPE_member_t asn_MBR_Bearers_SubjectToStatusTransfer_ItemExtIEs_101[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_Bearers_SubjectToStatusTransfer_ItemExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_103,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_101
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_103, .general_constraints = memb_criticality_constraint_101 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18099,18 +16691,7 @@ asn_TYPE_member_t asn_MBR_Bearers_SubjectToStatusTransfer_ItemExtIEs_101[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_104,
 		select_Bearers_SubjectToStatusTransfer_ItemExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_104,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_101
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_104, .general_constraints = memb_extensionValue_constraint_101 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18141,18 +16722,7 @@ asn_TYPE_descriptor_t asn_DEF_Bearers_SubjectToStatusTransfer_ItemExtIEs = {
 	asn_DEF_Bearers_SubjectToStatusTransfer_ItemExtIEs_tags_101,	/* Same as above */
 	sizeof(asn_DEF_Bearers_SubjectToStatusTransfer_ItemExtIEs_tags_101)
 		/sizeof(asn_DEF_Bearers_SubjectToStatusTransfer_ItemExtIEs_tags_101[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Bearers_SubjectToStatusTransfer_ItemExtIEs_101,
 	3,	/* Elements count */
 	&asn_SPC_Bearers_SubjectToStatusTransfer_ItemExtIEs_specs_101	/* Additional specs */
@@ -18177,18 +16747,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_108 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_108	/* Additional specs */
 };
@@ -18199,18 +16758,7 @@ asn_TYPE_member_t asn_MBR_BluetoothMeasurementConfiguration_ExtIEs_105[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_106,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_105
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_106, .general_constraints = memb_id_constraint_105 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18219,18 +16767,7 @@ asn_TYPE_member_t asn_MBR_BluetoothMeasurementConfiguration_ExtIEs_105[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_107,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_105
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_107, .general_constraints = memb_criticality_constraint_105 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18239,18 +16776,7 @@ asn_TYPE_member_t asn_MBR_BluetoothMeasurementConfiguration_ExtIEs_105[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_108,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_108,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_105
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_108, .general_constraints = memb_extensionValue_constraint_105 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18281,18 +16807,7 @@ asn_TYPE_descriptor_t asn_DEF_BluetoothMeasurementConfiguration_ExtIEs = {
 	asn_DEF_BluetoothMeasurementConfiguration_ExtIEs_tags_105,	/* Same as above */
 	sizeof(asn_DEF_BluetoothMeasurementConfiguration_ExtIEs_tags_105)
 		/sizeof(asn_DEF_BluetoothMeasurementConfiguration_ExtIEs_tags_105[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_BluetoothMeasurementConfiguration_ExtIEs_105,
 	3,	/* Elements count */
 	&asn_SPC_BluetoothMeasurementConfiguration_ExtIEs_specs_105	/* Additional specs */
@@ -18317,18 +16832,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_112 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_112	/* Additional specs */
 };
@@ -18339,18 +16843,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinEAI_Item_ExtIEs_109[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_110,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_109
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_110, .general_constraints = memb_id_constraint_109 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18359,18 +16852,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinEAI_Item_ExtIEs_109[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_111,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_109
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_111, .general_constraints = memb_criticality_constraint_109 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18379,18 +16861,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinEAI_Item_ExtIEs_109[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_112,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_112,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_109
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_112, .general_constraints = memb_extensionValue_constraint_109 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18421,18 +16892,7 @@ asn_TYPE_descriptor_t asn_DEF_CancelledCellinEAI_Item_ExtIEs = {
 	asn_DEF_CancelledCellinEAI_Item_ExtIEs_tags_109,	/* Same as above */
 	sizeof(asn_DEF_CancelledCellinEAI_Item_ExtIEs_tags_109)
 		/sizeof(asn_DEF_CancelledCellinEAI_Item_ExtIEs_tags_109[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CancelledCellinEAI_Item_ExtIEs_109,
 	3,	/* Elements count */
 	&asn_SPC_CancelledCellinEAI_Item_ExtIEs_specs_109	/* Additional specs */
@@ -18457,18 +16917,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_116 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_116	/* Additional specs */
 };
@@ -18479,18 +16928,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinTAI_Item_ExtIEs_113[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_114,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_113
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_114, .general_constraints = memb_id_constraint_113 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18499,18 +16937,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinTAI_Item_ExtIEs_113[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_115,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_113
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_115, .general_constraints = memb_criticality_constraint_113 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18519,18 +16946,7 @@ asn_TYPE_member_t asn_MBR_CancelledCellinTAI_Item_ExtIEs_113[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_116,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_116,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_113
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_116, .general_constraints = memb_extensionValue_constraint_113 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18561,18 +16977,7 @@ asn_TYPE_descriptor_t asn_DEF_CancelledCellinTAI_Item_ExtIEs = {
 	asn_DEF_CancelledCellinTAI_Item_ExtIEs_tags_113,	/* Same as above */
 	sizeof(asn_DEF_CancelledCellinTAI_Item_ExtIEs_tags_113)
 		/sizeof(asn_DEF_CancelledCellinTAI_Item_ExtIEs_tags_113[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CancelledCellinTAI_Item_ExtIEs_113,
 	3,	/* Elements count */
 	&asn_SPC_CancelledCellinTAI_Item_ExtIEs_specs_113	/* Additional specs */
@@ -18597,18 +17002,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_120 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_120	/* Additional specs */
 };
@@ -18619,18 +17013,7 @@ asn_TYPE_member_t asn_MBR_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_117[] =
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_118,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_117
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_118, .general_constraints = memb_id_constraint_117 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18639,18 +17022,7 @@ asn_TYPE_member_t asn_MBR_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_117[] =
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_119,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_117
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_119, .general_constraints = memb_criticality_constraint_117 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18659,18 +17031,7 @@ asn_TYPE_member_t asn_MBR_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_117[] =
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_120,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_120,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_117
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_120, .general_constraints = memb_extensionValue_constraint_117 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18701,18 +17062,7 @@ asn_TYPE_descriptor_t asn_DEF_CellIdentifierAndCELevelForCECapableUEs_ExtIEs = {
 	asn_DEF_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_tags_117,	/* Same as above */
 	sizeof(asn_DEF_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_tags_117)
 		/sizeof(asn_DEF_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_tags_117[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_117,
 	3,	/* Elements count */
 	&asn_SPC_CellIdentifierAndCELevelForCECapableUEs_ExtIEs_specs_117	/* Additional specs */
@@ -18737,18 +17087,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_124 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_124	/* Additional specs */
 };
@@ -18759,18 +17098,7 @@ asn_TYPE_member_t asn_MBR_CellID_Broadcast_Item_ExtIEs_121[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_122,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_121
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_122, .general_constraints = memb_id_constraint_121 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18779,18 +17107,7 @@ asn_TYPE_member_t asn_MBR_CellID_Broadcast_Item_ExtIEs_121[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_123,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_121
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_123, .general_constraints = memb_criticality_constraint_121 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18799,18 +17116,7 @@ asn_TYPE_member_t asn_MBR_CellID_Broadcast_Item_ExtIEs_121[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_124,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_124,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_121
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_124, .general_constraints = memb_extensionValue_constraint_121 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18841,18 +17147,7 @@ asn_TYPE_descriptor_t asn_DEF_CellID_Broadcast_Item_ExtIEs = {
 	asn_DEF_CellID_Broadcast_Item_ExtIEs_tags_121,	/* Same as above */
 	sizeof(asn_DEF_CellID_Broadcast_Item_ExtIEs_tags_121)
 		/sizeof(asn_DEF_CellID_Broadcast_Item_ExtIEs_tags_121[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellID_Broadcast_Item_ExtIEs_121,
 	3,	/* Elements count */
 	&asn_SPC_CellID_Broadcast_Item_ExtIEs_specs_121	/* Additional specs */
@@ -18877,18 +17172,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_128 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_128	/* Additional specs */
 };
@@ -18899,18 +17183,7 @@ asn_TYPE_member_t asn_MBR_CellID_Cancelled_Item_ExtIEs_125[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_126,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_125
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_126, .general_constraints = memb_id_constraint_125 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -18919,18 +17192,7 @@ asn_TYPE_member_t asn_MBR_CellID_Cancelled_Item_ExtIEs_125[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_127,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_125
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_127, .general_constraints = memb_criticality_constraint_125 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -18939,18 +17201,7 @@ asn_TYPE_member_t asn_MBR_CellID_Cancelled_Item_ExtIEs_125[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_128,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_128,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_125
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_128, .general_constraints = memb_extensionValue_constraint_125 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -18981,18 +17232,7 @@ asn_TYPE_descriptor_t asn_DEF_CellID_Cancelled_Item_ExtIEs = {
 	asn_DEF_CellID_Cancelled_Item_ExtIEs_tags_125,	/* Same as above */
 	sizeof(asn_DEF_CellID_Cancelled_Item_ExtIEs_tags_125)
 		/sizeof(asn_DEF_CellID_Cancelled_Item_ExtIEs_tags_125[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellID_Cancelled_Item_ExtIEs_125,
 	3,	/* Elements count */
 	&asn_SPC_CellID_Cancelled_Item_ExtIEs_specs_125	/* Additional specs */
@@ -19017,18 +17257,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_132 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_132	/* Additional specs */
 };
@@ -19039,18 +17268,7 @@ asn_TYPE_member_t asn_MBR_CellBasedMDT_ExtIEs_129[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_130,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_129
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_130, .general_constraints = memb_id_constraint_129 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19059,18 +17277,7 @@ asn_TYPE_member_t asn_MBR_CellBasedMDT_ExtIEs_129[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_131,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_129
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_131, .general_constraints = memb_criticality_constraint_129 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19079,18 +17286,7 @@ asn_TYPE_member_t asn_MBR_CellBasedMDT_ExtIEs_129[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_132,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_132,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_129
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_132, .general_constraints = memb_extensionValue_constraint_129 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19121,18 +17317,7 @@ asn_TYPE_descriptor_t asn_DEF_CellBasedMDT_ExtIEs = {
 	asn_DEF_CellBasedMDT_ExtIEs_tags_129,	/* Same as above */
 	sizeof(asn_DEF_CellBasedMDT_ExtIEs_tags_129)
 		/sizeof(asn_DEF_CellBasedMDT_ExtIEs_tags_129[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellBasedMDT_ExtIEs_129,
 	3,	/* Elements count */
 	&asn_SPC_CellBasedMDT_ExtIEs_specs_129	/* Additional specs */
@@ -19157,18 +17342,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_136 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_136	/* Additional specs */
 };
@@ -19179,18 +17353,7 @@ asn_TYPE_member_t asn_MBR_CellBasedQMC_ExtIEs_133[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_134,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_133
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_134, .general_constraints = memb_id_constraint_133 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19199,18 +17362,7 @@ asn_TYPE_member_t asn_MBR_CellBasedQMC_ExtIEs_133[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_135,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_133
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_135, .general_constraints = memb_criticality_constraint_133 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19219,18 +17371,7 @@ asn_TYPE_member_t asn_MBR_CellBasedQMC_ExtIEs_133[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_136,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_136,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_133
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_136, .general_constraints = memb_extensionValue_constraint_133 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19261,18 +17402,7 @@ asn_TYPE_descriptor_t asn_DEF_CellBasedQMC_ExtIEs = {
 	asn_DEF_CellBasedQMC_ExtIEs_tags_133,	/* Same as above */
 	sizeof(asn_DEF_CellBasedQMC_ExtIEs_tags_133)
 		/sizeof(asn_DEF_CellBasedQMC_ExtIEs_tags_133[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellBasedQMC_ExtIEs_133,
 	3,	/* Elements count */
 	&asn_SPC_CellBasedQMC_ExtIEs_specs_133	/* Additional specs */
@@ -19297,18 +17427,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_140 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_140	/* Additional specs */
 };
@@ -19319,18 +17438,7 @@ asn_TYPE_member_t asn_MBR_Cdma2000OneXSRVCCInfo_ExtIEs_137[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_138,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_137
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_138, .general_constraints = memb_id_constraint_137 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19339,18 +17447,7 @@ asn_TYPE_member_t asn_MBR_Cdma2000OneXSRVCCInfo_ExtIEs_137[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_139,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_137
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_139, .general_constraints = memb_criticality_constraint_137 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19359,18 +17456,7 @@ asn_TYPE_member_t asn_MBR_Cdma2000OneXSRVCCInfo_ExtIEs_137[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_140,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_140,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_137
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_140, .general_constraints = memb_extensionValue_constraint_137 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19401,18 +17487,7 @@ asn_TYPE_descriptor_t asn_DEF_Cdma2000OneXSRVCCInfo_ExtIEs = {
 	asn_DEF_Cdma2000OneXSRVCCInfo_ExtIEs_tags_137,	/* Same as above */
 	sizeof(asn_DEF_Cdma2000OneXSRVCCInfo_ExtIEs_tags_137)
 		/sizeof(asn_DEF_Cdma2000OneXSRVCCInfo_ExtIEs_tags_137[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Cdma2000OneXSRVCCInfo_ExtIEs_137,
 	3,	/* Elements count */
 	&asn_SPC_Cdma2000OneXSRVCCInfo_ExtIEs_specs_137	/* Additional specs */
@@ -19437,18 +17512,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_144 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_144	/* Additional specs */
 };
@@ -19459,18 +17523,7 @@ asn_TYPE_member_t asn_MBR_CellType_ExtIEs_141[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_142,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_141
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_142, .general_constraints = memb_id_constraint_141 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19479,18 +17532,7 @@ asn_TYPE_member_t asn_MBR_CellType_ExtIEs_141[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_143,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_141
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_143, .general_constraints = memb_criticality_constraint_141 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19499,18 +17541,7 @@ asn_TYPE_member_t asn_MBR_CellType_ExtIEs_141[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_144,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_144,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_141
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_144, .general_constraints = memb_extensionValue_constraint_141 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19541,18 +17572,7 @@ asn_TYPE_descriptor_t asn_DEF_CellType_ExtIEs = {
 	asn_DEF_CellType_ExtIEs_tags_141,	/* Same as above */
 	sizeof(asn_DEF_CellType_ExtIEs_tags_141)
 		/sizeof(asn_DEF_CellType_ExtIEs_tags_141[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CellType_ExtIEs_141,
 	3,	/* Elements count */
 	&asn_SPC_CellType_ExtIEs_specs_141	/* Additional specs */
@@ -19577,18 +17597,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_148 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_148	/* Additional specs */
 };
@@ -19599,18 +17608,7 @@ asn_TYPE_member_t asn_MBR_CGI_ExtIEs_145[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_146,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_145
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_146, .general_constraints = memb_id_constraint_145 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19619,18 +17617,7 @@ asn_TYPE_member_t asn_MBR_CGI_ExtIEs_145[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_147,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_145
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_147, .general_constraints = memb_criticality_constraint_145 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19639,18 +17626,7 @@ asn_TYPE_member_t asn_MBR_CGI_ExtIEs_145[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_148,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_148,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_145
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_148, .general_constraints = memb_extensionValue_constraint_145 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19681,18 +17657,7 @@ asn_TYPE_descriptor_t asn_DEF_CGI_ExtIEs = {
 	asn_DEF_CGI_ExtIEs_tags_145,	/* Same as above */
 	sizeof(asn_DEF_CGI_ExtIEs_tags_145)
 		/sizeof(asn_DEF_CGI_ExtIEs_tags_145[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CGI_ExtIEs_145,
 	3,	/* Elements count */
 	&asn_SPC_CGI_ExtIEs_specs_145	/* Additional specs */
@@ -19717,18 +17682,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_152 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_152	/* Additional specs */
 };
@@ -19739,18 +17693,7 @@ asn_TYPE_member_t asn_MBR_CNTypeRestrictions_Item_ExtIEs_149[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_150,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_149
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_150, .general_constraints = memb_id_constraint_149 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19759,18 +17702,7 @@ asn_TYPE_member_t asn_MBR_CNTypeRestrictions_Item_ExtIEs_149[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_151,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_149
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_151, .general_constraints = memb_criticality_constraint_149 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19779,18 +17711,7 @@ asn_TYPE_member_t asn_MBR_CNTypeRestrictions_Item_ExtIEs_149[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_152,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_152,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_149
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_152, .general_constraints = memb_extensionValue_constraint_149 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19821,18 +17742,7 @@ asn_TYPE_descriptor_t asn_DEF_CNTypeRestrictions_Item_ExtIEs = {
 	asn_DEF_CNTypeRestrictions_Item_ExtIEs_tags_149,	/* Same as above */
 	sizeof(asn_DEF_CNTypeRestrictions_Item_ExtIEs_tags_149)
 		/sizeof(asn_DEF_CNTypeRestrictions_Item_ExtIEs_tags_149[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CNTypeRestrictions_Item_ExtIEs_149,
 	3,	/* Elements count */
 	&asn_SPC_CNTypeRestrictions_Item_ExtIEs_specs_149	/* Additional specs */
@@ -19857,18 +17767,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_156 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_156	/* Additional specs */
 };
@@ -19879,18 +17778,7 @@ asn_TYPE_member_t asn_MBR_ConnectedengNBItem_ExtIEs_153[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_154,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_153
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_154, .general_constraints = memb_id_constraint_153 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -19899,18 +17787,7 @@ asn_TYPE_member_t asn_MBR_ConnectedengNBItem_ExtIEs_153[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_155,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_153
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_155, .general_constraints = memb_criticality_constraint_153 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -19919,18 +17796,7 @@ asn_TYPE_member_t asn_MBR_ConnectedengNBItem_ExtIEs_153[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_156,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_156,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_153
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_156, .general_constraints = memb_extensionValue_constraint_153 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -19961,18 +17827,7 @@ asn_TYPE_descriptor_t asn_DEF_ConnectedengNBItem_ExtIEs = {
 	asn_DEF_ConnectedengNBItem_ExtIEs_tags_153,	/* Same as above */
 	sizeof(asn_DEF_ConnectedengNBItem_ExtIEs_tags_153)
 		/sizeof(asn_DEF_ConnectedengNBItem_ExtIEs_tags_153[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ConnectedengNBItem_ExtIEs_153,
 	3,	/* Elements count */
 	&asn_SPC_ConnectedengNBItem_ExtIEs_specs_153	/* Additional specs */
@@ -19997,18 +17852,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_160 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_160	/* Additional specs */
 };
@@ -20019,18 +17863,7 @@ asn_TYPE_member_t asn_MBR_CSG_IdList_Item_ExtIEs_157[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_158,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_157
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_158, .general_constraints = memb_id_constraint_157 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20039,18 +17872,7 @@ asn_TYPE_member_t asn_MBR_CSG_IdList_Item_ExtIEs_157[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_159,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_157
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_159, .general_constraints = memb_criticality_constraint_157 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20059,18 +17881,7 @@ asn_TYPE_member_t asn_MBR_CSG_IdList_Item_ExtIEs_157[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_160,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_160,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_157
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_160, .general_constraints = memb_extensionValue_constraint_157 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20101,18 +17912,7 @@ asn_TYPE_descriptor_t asn_DEF_CSG_IdList_Item_ExtIEs = {
 	asn_DEF_CSG_IdList_Item_ExtIEs_tags_157,	/* Same as above */
 	sizeof(asn_DEF_CSG_IdList_Item_ExtIEs_tags_157)
 		/sizeof(asn_DEF_CSG_IdList_Item_ExtIEs_tags_157[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CSG_IdList_Item_ExtIEs_157,
 	3,	/* Elements count */
 	&asn_SPC_CSG_IdList_Item_ExtIEs_specs_157	/* Additional specs */
@@ -20137,18 +17937,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_164 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_164	/* Additional specs */
 };
@@ -20159,18 +17948,7 @@ asn_TYPE_member_t asn_MBR_COUNTvalue_ExtIEs_161[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_162,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_161
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_162, .general_constraints = memb_id_constraint_161 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20179,18 +17957,7 @@ asn_TYPE_member_t asn_MBR_COUNTvalue_ExtIEs_161[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_163,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_161
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_163, .general_constraints = memb_criticality_constraint_161 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20199,18 +17966,7 @@ asn_TYPE_member_t asn_MBR_COUNTvalue_ExtIEs_161[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_164,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_164,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_161
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_164, .general_constraints = memb_extensionValue_constraint_161 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20241,18 +17997,7 @@ asn_TYPE_descriptor_t asn_DEF_COUNTvalue_ExtIEs = {
 	asn_DEF_COUNTvalue_ExtIEs_tags_161,	/* Same as above */
 	sizeof(asn_DEF_COUNTvalue_ExtIEs_tags_161)
 		/sizeof(asn_DEF_COUNTvalue_ExtIEs_tags_161[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_COUNTvalue_ExtIEs_161,
 	3,	/* Elements count */
 	&asn_SPC_COUNTvalue_ExtIEs_specs_161	/* Additional specs */
@@ -20277,18 +18022,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_168 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_168	/* Additional specs */
 };
@@ -20299,18 +18033,7 @@ asn_TYPE_member_t asn_MBR_COUNTValueExtended_ExtIEs_165[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_166,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_165
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_166, .general_constraints = memb_id_constraint_165 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20319,18 +18042,7 @@ asn_TYPE_member_t asn_MBR_COUNTValueExtended_ExtIEs_165[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_167,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_165
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_167, .general_constraints = memb_criticality_constraint_165 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20339,18 +18051,7 @@ asn_TYPE_member_t asn_MBR_COUNTValueExtended_ExtIEs_165[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_168,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_168,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_165
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_168, .general_constraints = memb_extensionValue_constraint_165 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20381,18 +18082,7 @@ asn_TYPE_descriptor_t asn_DEF_COUNTValueExtended_ExtIEs = {
 	asn_DEF_COUNTValueExtended_ExtIEs_tags_165,	/* Same as above */
 	sizeof(asn_DEF_COUNTValueExtended_ExtIEs_tags_165)
 		/sizeof(asn_DEF_COUNTValueExtended_ExtIEs_tags_165[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_COUNTValueExtended_ExtIEs_165,
 	3,	/* Elements count */
 	&asn_SPC_COUNTValueExtended_ExtIEs_specs_165	/* Additional specs */
@@ -20417,18 +18107,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_172 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_172	/* Additional specs */
 };
@@ -20439,18 +18118,7 @@ asn_TYPE_member_t asn_MBR_COUNTvaluePDCP_SNlength18_ExtIEs_169[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_170,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_169
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_170, .general_constraints = memb_id_constraint_169 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20459,18 +18127,7 @@ asn_TYPE_member_t asn_MBR_COUNTvaluePDCP_SNlength18_ExtIEs_169[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_171,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_169
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_171, .general_constraints = memb_criticality_constraint_169 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20479,18 +18136,7 @@ asn_TYPE_member_t asn_MBR_COUNTvaluePDCP_SNlength18_ExtIEs_169[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_172,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_172,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_169
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_172, .general_constraints = memb_extensionValue_constraint_169 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20521,18 +18167,7 @@ asn_TYPE_descriptor_t asn_DEF_COUNTvaluePDCP_SNlength18_ExtIEs = {
 	asn_DEF_COUNTvaluePDCP_SNlength18_ExtIEs_tags_169,	/* Same as above */
 	sizeof(asn_DEF_COUNTvaluePDCP_SNlength18_ExtIEs_tags_169)
 		/sizeof(asn_DEF_COUNTvaluePDCP_SNlength18_ExtIEs_tags_169[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_COUNTvaluePDCP_SNlength18_ExtIEs_169,
 	3,	/* Elements count */
 	&asn_SPC_COUNTvaluePDCP_SNlength18_ExtIEs_specs_169	/* Additional specs */
@@ -20557,18 +18192,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_176 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_176	/* Additional specs */
 };
@@ -20579,18 +18203,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_ExtIEs_173[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_174,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_173
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_174, .general_constraints = memb_id_constraint_173 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20599,18 +18212,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_ExtIEs_173[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_175,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_173
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_175, .general_constraints = memb_criticality_constraint_173 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20619,18 +18221,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_ExtIEs_173[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_176,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_176,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_173
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_176, .general_constraints = memb_extensionValue_constraint_173 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20661,18 +18252,7 @@ asn_TYPE_descriptor_t asn_DEF_CriticalityDiagnostics_ExtIEs = {
 	asn_DEF_CriticalityDiagnostics_ExtIEs_tags_173,	/* Same as above */
 	sizeof(asn_DEF_CriticalityDiagnostics_ExtIEs_tags_173)
 		/sizeof(asn_DEF_CriticalityDiagnostics_ExtIEs_tags_173[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CriticalityDiagnostics_ExtIEs_173,
 	3,	/* Elements count */
 	&asn_SPC_CriticalityDiagnostics_ExtIEs_specs_173	/* Additional specs */
@@ -20697,18 +18277,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_180 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_180	/* Additional specs */
 };
@@ -20719,18 +18288,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_IE_Item_ExtIEs_177[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_178,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_177
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_178, .general_constraints = memb_id_constraint_177 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20739,18 +18297,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_IE_Item_ExtIEs_177[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_179,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_177
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_179, .general_constraints = memb_criticality_constraint_177 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20759,18 +18306,7 @@ asn_TYPE_member_t asn_MBR_CriticalityDiagnostics_IE_Item_ExtIEs_177[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_180,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_180,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_177
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_180, .general_constraints = memb_extensionValue_constraint_177 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20801,18 +18337,7 @@ asn_TYPE_descriptor_t asn_DEF_CriticalityDiagnostics_IE_Item_ExtIEs = {
 	asn_DEF_CriticalityDiagnostics_IE_Item_ExtIEs_tags_177,	/* Same as above */
 	sizeof(asn_DEF_CriticalityDiagnostics_IE_Item_ExtIEs_tags_177)
 		/sizeof(asn_DEF_CriticalityDiagnostics_IE_Item_ExtIEs_tags_177[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CriticalityDiagnostics_IE_Item_ExtIEs_177,
 	3,	/* Elements count */
 	&asn_SPC_CriticalityDiagnostics_IE_Item_ExtIEs_specs_177	/* Additional specs */
@@ -20837,18 +18362,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_184 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_184	/* Additional specs */
 };
@@ -20859,18 +18373,7 @@ asn_TYPE_member_t asn_MBR_ServedDCNsItem_ExtIEs_181[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_182,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_181
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_182, .general_constraints = memb_id_constraint_181 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -20879,18 +18382,7 @@ asn_TYPE_member_t asn_MBR_ServedDCNsItem_ExtIEs_181[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_183,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_181
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_183, .general_constraints = memb_criticality_constraint_181 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -20899,18 +18391,7 @@ asn_TYPE_member_t asn_MBR_ServedDCNsItem_ExtIEs_181[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_184,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_184,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_181
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_184, .general_constraints = memb_extensionValue_constraint_181 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -20941,18 +18422,7 @@ asn_TYPE_descriptor_t asn_DEF_ServedDCNsItem_ExtIEs = {
 	asn_DEF_ServedDCNsItem_ExtIEs_tags_181,	/* Same as above */
 	sizeof(asn_DEF_ServedDCNsItem_ExtIEs_tags_181)
 		/sizeof(asn_DEF_ServedDCNsItem_ExtIEs_tags_181[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ServedDCNsItem_ExtIEs_181,
 	3,	/* Elements count */
 	&asn_SPC_ServedDCNsItem_ExtIEs_specs_181	/* Additional specs */
@@ -20977,18 +18447,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_188 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_188	/* Additional specs */
 };
@@ -20999,18 +18458,7 @@ asn_TYPE_member_t asn_MBR_DL_CP_SecurityInformation_ExtIEs_185[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_186,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_185
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_186, .general_constraints = memb_id_constraint_185 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21019,18 +18467,7 @@ asn_TYPE_member_t asn_MBR_DL_CP_SecurityInformation_ExtIEs_185[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_187,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_185
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_187, .general_constraints = memb_criticality_constraint_185 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21039,18 +18476,7 @@ asn_TYPE_member_t asn_MBR_DL_CP_SecurityInformation_ExtIEs_185[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_188,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_188,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_185
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_188, .general_constraints = memb_extensionValue_constraint_185 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21081,18 +18507,7 @@ asn_TYPE_descriptor_t asn_DEF_DL_CP_SecurityInformation_ExtIEs = {
 	asn_DEF_DL_CP_SecurityInformation_ExtIEs_tags_185,	/* Same as above */
 	sizeof(asn_DEF_DL_CP_SecurityInformation_ExtIEs_tags_185)
 		/sizeof(asn_DEF_DL_CP_SecurityInformation_ExtIEs_tags_185[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_DL_CP_SecurityInformation_ExtIEs_185,
 	3,	/* Elements count */
 	&asn_SPC_DL_CP_SecurityInformation_ExtIEs_specs_185	/* Additional specs */
@@ -21117,18 +18532,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_192 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_192	/* Additional specs */
 };
@@ -21139,18 +18543,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Broadcast_Item_ExtIEs_189[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_190,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_189
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_190, .general_constraints = memb_id_constraint_189 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21159,18 +18552,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Broadcast_Item_ExtIEs_189[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_191,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_189
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_191, .general_constraints = memb_criticality_constraint_189 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21179,18 +18561,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Broadcast_Item_ExtIEs_189[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_192,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_192,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_189
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_192, .general_constraints = memb_extensionValue_constraint_189 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21221,18 +18592,7 @@ asn_TYPE_descriptor_t asn_DEF_EmergencyAreaID_Broadcast_Item_ExtIEs = {
 	asn_DEF_EmergencyAreaID_Broadcast_Item_ExtIEs_tags_189,	/* Same as above */
 	sizeof(asn_DEF_EmergencyAreaID_Broadcast_Item_ExtIEs_tags_189)
 		/sizeof(asn_DEF_EmergencyAreaID_Broadcast_Item_ExtIEs_tags_189[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EmergencyAreaID_Broadcast_Item_ExtIEs_189,
 	3,	/* Elements count */
 	&asn_SPC_EmergencyAreaID_Broadcast_Item_ExtIEs_specs_189	/* Additional specs */
@@ -21257,18 +18617,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_196 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_196	/* Additional specs */
 };
@@ -21279,18 +18628,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Cancelled_Item_ExtIEs_193[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_194,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_193
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_194, .general_constraints = memb_id_constraint_193 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21299,18 +18637,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Cancelled_Item_ExtIEs_193[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_195,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_193
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_195, .general_constraints = memb_criticality_constraint_193 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21319,18 +18646,7 @@ asn_TYPE_member_t asn_MBR_EmergencyAreaID_Cancelled_Item_ExtIEs_193[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_196,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_196,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_193
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_196, .general_constraints = memb_extensionValue_constraint_193 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21361,18 +18677,7 @@ asn_TYPE_descriptor_t asn_DEF_EmergencyAreaID_Cancelled_Item_ExtIEs = {
 	asn_DEF_EmergencyAreaID_Cancelled_Item_ExtIEs_tags_193,	/* Same as above */
 	sizeof(asn_DEF_EmergencyAreaID_Cancelled_Item_ExtIEs_tags_193)
 		/sizeof(asn_DEF_EmergencyAreaID_Cancelled_Item_ExtIEs_tags_193[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EmergencyAreaID_Cancelled_Item_ExtIEs_193,
 	3,	/* Elements count */
 	&asn_SPC_EmergencyAreaID_Cancelled_Item_ExtIEs_specs_193	/* Additional specs */
@@ -21397,18 +18702,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_200 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_200	/* Additional specs */
 };
@@ -21419,18 +18713,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinEAI_Item_ExtIEs_197[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_198,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_197
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_198, .general_constraints = memb_id_constraint_197 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21439,18 +18722,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinEAI_Item_ExtIEs_197[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_199,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_197
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_199, .general_constraints = memb_criticality_constraint_197 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21459,18 +18731,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinEAI_Item_ExtIEs_197[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_200,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_200,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_197
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_200, .general_constraints = memb_extensionValue_constraint_197 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21501,18 +18762,7 @@ asn_TYPE_descriptor_t asn_DEF_CompletedCellinEAI_Item_ExtIEs = {
 	asn_DEF_CompletedCellinEAI_Item_ExtIEs_tags_197,	/* Same as above */
 	sizeof(asn_DEF_CompletedCellinEAI_Item_ExtIEs_tags_197)
 		/sizeof(asn_DEF_CompletedCellinEAI_Item_ExtIEs_tags_197[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CompletedCellinEAI_Item_ExtIEs_197,
 	3,	/* Elements count */
 	&asn_SPC_CompletedCellinEAI_Item_ExtIEs_specs_197	/* Additional specs */
@@ -21537,18 +18787,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_204 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_204	/* Additional specs */
 };
@@ -21559,18 +18798,7 @@ asn_TYPE_member_t asn_MBR_GERAN_Cell_ID_ExtIEs_201[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_202,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_201
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_202, .general_constraints = memb_id_constraint_201 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21579,18 +18807,7 @@ asn_TYPE_member_t asn_MBR_GERAN_Cell_ID_ExtIEs_201[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_203,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_201
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_203, .general_constraints = memb_criticality_constraint_201 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21599,18 +18816,7 @@ asn_TYPE_member_t asn_MBR_GERAN_Cell_ID_ExtIEs_201[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_204,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_204,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_201
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_204, .general_constraints = memb_extensionValue_constraint_201 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21641,18 +18847,7 @@ asn_TYPE_descriptor_t asn_DEF_GERAN_Cell_ID_ExtIEs = {
 	asn_DEF_GERAN_Cell_ID_ExtIEs_tags_201,	/* Same as above */
 	sizeof(asn_DEF_GERAN_Cell_ID_ExtIEs_tags_201)
 		/sizeof(asn_DEF_GERAN_Cell_ID_ExtIEs_tags_201[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_GERAN_Cell_ID_ExtIEs_201,
 	3,	/* Elements count */
 	&asn_SPC_GERAN_Cell_ID_ExtIEs_specs_201	/* Additional specs */
@@ -21677,18 +18872,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_208 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_208	/* Additional specs */
 };
@@ -21699,18 +18883,7 @@ asn_TYPE_member_t asn_MBR_GlobalENB_ID_ExtIEs_205[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_206,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_205
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_206, .general_constraints = memb_id_constraint_205 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21719,18 +18892,7 @@ asn_TYPE_member_t asn_MBR_GlobalENB_ID_ExtIEs_205[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_207,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_205
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_207, .general_constraints = memb_criticality_constraint_205 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21739,18 +18901,7 @@ asn_TYPE_member_t asn_MBR_GlobalENB_ID_ExtIEs_205[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_208,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_208,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_205
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_208, .general_constraints = memb_extensionValue_constraint_205 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21781,18 +18932,7 @@ asn_TYPE_descriptor_t asn_DEF_GlobalENB_ID_ExtIEs = {
 	asn_DEF_GlobalENB_ID_ExtIEs_tags_205,	/* Same as above */
 	sizeof(asn_DEF_GlobalENB_ID_ExtIEs_tags_205)
 		/sizeof(asn_DEF_GlobalENB_ID_ExtIEs_tags_205[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_GlobalENB_ID_ExtIEs_205,
 	3,	/* Elements count */
 	&asn_SPC_GlobalENB_ID_ExtIEs_specs_205	/* Additional specs */
@@ -21817,18 +18957,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_212 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_212	/* Additional specs */
 };
@@ -21839,18 +18968,7 @@ asn_TYPE_member_t asn_MBR_Global_en_gNB_ID_ExtIEs_209[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_210,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_209
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_210, .general_constraints = memb_id_constraint_209 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21859,18 +18977,7 @@ asn_TYPE_member_t asn_MBR_Global_en_gNB_ID_ExtIEs_209[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_211,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_209
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_211, .general_constraints = memb_criticality_constraint_209 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -21879,18 +18986,7 @@ asn_TYPE_member_t asn_MBR_Global_en_gNB_ID_ExtIEs_209[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_212,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_212,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_209
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_212, .general_constraints = memb_extensionValue_constraint_209 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -21921,18 +19017,7 @@ asn_TYPE_descriptor_t asn_DEF_Global_en_gNB_ID_ExtIEs = {
 	asn_DEF_Global_en_gNB_ID_ExtIEs_tags_209,	/* Same as above */
 	sizeof(asn_DEF_Global_en_gNB_ID_ExtIEs_tags_209)
 		/sizeof(asn_DEF_Global_en_gNB_ID_ExtIEs_tags_209[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Global_en_gNB_ID_ExtIEs_209,
 	3,	/* Elements count */
 	&asn_SPC_Global_en_gNB_ID_ExtIEs_specs_209	/* Additional specs */
@@ -21957,18 +19042,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_216 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_216	/* Additional specs */
 };
@@ -21979,18 +19053,7 @@ asn_TYPE_member_t asn_MBR_ENB_StatusTransfer_TransparentContainer_ExtIEs_213[] =
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_214,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_213
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_214, .general_constraints = memb_id_constraint_213 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -21999,18 +19062,7 @@ asn_TYPE_member_t asn_MBR_ENB_StatusTransfer_TransparentContainer_ExtIEs_213[] =
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_215,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_213
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_215, .general_constraints = memb_criticality_constraint_213 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22019,18 +19071,7 @@ asn_TYPE_member_t asn_MBR_ENB_StatusTransfer_TransparentContainer_ExtIEs_213[] =
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_216,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_216,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_213
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_216, .general_constraints = memb_extensionValue_constraint_213 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22061,18 +19102,7 @@ asn_TYPE_descriptor_t asn_DEF_ENB_StatusTransfer_TransparentContainer_ExtIEs = {
 	asn_DEF_ENB_StatusTransfer_TransparentContainer_ExtIEs_tags_213,	/* Same as above */
 	sizeof(asn_DEF_ENB_StatusTransfer_TransparentContainer_ExtIEs_tags_213)
 		/sizeof(asn_DEF_ENB_StatusTransfer_TransparentContainer_ExtIEs_tags_213[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ENB_StatusTransfer_TransparentContainer_ExtIEs_213,
 	3,	/* Elements count */
 	&asn_SPC_ENB_StatusTransfer_TransparentContainer_ExtIEs_specs_213	/* Additional specs */
@@ -22097,18 +19127,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_220 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_220	/* Additional specs */
 };
@@ -22119,18 +19138,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONConfigurationTransfer_ExtIEs_217[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_218,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_217
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_218, .general_constraints = memb_id_constraint_217 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22139,18 +19147,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONConfigurationTransfer_ExtIEs_217[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_219,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_217
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_219, .general_constraints = memb_criticality_constraint_217 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22159,18 +19156,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONConfigurationTransfer_ExtIEs_217[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_220,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_220,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_217
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_220, .general_constraints = memb_extensionValue_constraint_217 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22201,18 +19187,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DCSONConfigurationTransfer_ExtIEs = {
 	asn_DEF_EN_DCSONConfigurationTransfer_ExtIEs_tags_217,	/* Same as above */
 	sizeof(asn_DEF_EN_DCSONConfigurationTransfer_ExtIEs_tags_217)
 		/sizeof(asn_DEF_EN_DCSONConfigurationTransfer_ExtIEs_tags_217[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DCSONConfigurationTransfer_ExtIEs_217,
 	3,	/* Elements count */
 	&asn_SPC_EN_DCSONConfigurationTransfer_ExtIEs_specs_217	/* Additional specs */
@@ -22237,18 +19212,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_224 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_224	/* Additional specs */
 };
@@ -22259,18 +19223,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeRequest_ExtIEs_221[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_222,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_221
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_222, .general_constraints = memb_id_constraint_221 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22279,18 +19232,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeRequest_ExtIEs_221[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_223,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_221
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_223, .general_constraints = memb_criticality_constraint_221 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22299,18 +19241,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeRequest_ExtIEs_221[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_224,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_224,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_221
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_224, .general_constraints = memb_extensionValue_constraint_221 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22341,18 +19272,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DCTransferTypeRequest_ExtIEs = {
 	asn_DEF_EN_DCTransferTypeRequest_ExtIEs_tags_221,	/* Same as above */
 	sizeof(asn_DEF_EN_DCTransferTypeRequest_ExtIEs_tags_221)
 		/sizeof(asn_DEF_EN_DCTransferTypeRequest_ExtIEs_tags_221[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DCTransferTypeRequest_ExtIEs_221,
 	3,	/* Elements count */
 	&asn_SPC_EN_DCTransferTypeRequest_ExtIEs_specs_221	/* Additional specs */
@@ -22377,18 +19297,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_228 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_228	/* Additional specs */
 };
@@ -22399,18 +19308,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeReply_ExtIEs_225[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_226,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_225
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_226, .general_constraints = memb_id_constraint_225 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22419,18 +19317,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeReply_ExtIEs_225[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_227,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_225
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_227, .general_constraints = memb_criticality_constraint_225 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22439,18 +19326,7 @@ asn_TYPE_member_t asn_MBR_EN_DCTransferTypeReply_ExtIEs_225[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_228,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_228,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_225
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_228, .general_constraints = memb_extensionValue_constraint_225 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22481,18 +19357,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DCTransferTypeReply_ExtIEs = {
 	asn_DEF_EN_DCTransferTypeReply_ExtIEs_tags_225,	/* Same as above */
 	sizeof(asn_DEF_EN_DCTransferTypeReply_ExtIEs_tags_225)
 		/sizeof(asn_DEF_EN_DCTransferTypeReply_ExtIEs_tags_225[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DCTransferTypeReply_ExtIEs_225,
 	3,	/* Elements count */
 	&asn_SPC_EN_DCTransferTypeReply_ExtIEs_specs_225	/* Additional specs */
@@ -22517,18 +19382,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_232 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_232	/* Additional specs */
 };
@@ -22539,18 +19393,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONeNBIdentification_ExtIEs_229[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_230,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_229
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_230, .general_constraints = memb_id_constraint_229 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22559,18 +19402,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONeNBIdentification_ExtIEs_229[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_231,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_229
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_231, .general_constraints = memb_criticality_constraint_229 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22579,18 +19411,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONeNBIdentification_ExtIEs_229[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_232,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_232,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_229
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_232, .general_constraints = memb_extensionValue_constraint_229 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22621,18 +19442,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DCSONeNBIdentification_ExtIEs = {
 	asn_DEF_EN_DCSONeNBIdentification_ExtIEs_tags_229,	/* Same as above */
 	sizeof(asn_DEF_EN_DCSONeNBIdentification_ExtIEs_tags_229)
 		/sizeof(asn_DEF_EN_DCSONeNBIdentification_ExtIEs_tags_229[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DCSONeNBIdentification_ExtIEs_229,
 	3,	/* Elements count */
 	&asn_SPC_EN_DCSONeNBIdentification_ExtIEs_specs_229	/* Additional specs */
@@ -22657,18 +19467,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_236 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_236	/* Additional specs */
 };
@@ -22679,18 +19478,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONengNBIdentification_ExtIEs_233[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_234,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_233
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_234, .general_constraints = memb_id_constraint_233 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22699,18 +19487,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONengNBIdentification_ExtIEs_233[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_235,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_233
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_235, .general_constraints = memb_criticality_constraint_233 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22719,18 +19496,7 @@ asn_TYPE_member_t asn_MBR_EN_DCSONengNBIdentification_ExtIEs_233[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_236,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_236,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_233
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_236, .general_constraints = memb_extensionValue_constraint_233 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22761,18 +19527,7 @@ asn_TYPE_descriptor_t asn_DEF_EN_DCSONengNBIdentification_ExtIEs = {
 	asn_DEF_EN_DCSONengNBIdentification_ExtIEs_tags_233,	/* Same as above */
 	sizeof(asn_DEF_EN_DCSONengNBIdentification_ExtIEs_tags_233)
 		/sizeof(asn_DEF_EN_DCSONengNBIdentification_ExtIEs_tags_233[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EN_DCSONengNBIdentification_ExtIEs_233,
 	3,	/* Elements count */
 	&asn_SPC_EN_DCSONengNBIdentification_ExtIEs_specs_233	/* Additional specs */
@@ -22797,18 +19552,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_240 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_240	/* Additional specs */
 };
@@ -22819,18 +19563,7 @@ asn_TYPE_member_t asn_MBR_E_RABInformationListItem_ExtIEs_237[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_238,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_237
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_238, .general_constraints = memb_id_constraint_237 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22839,18 +19572,7 @@ asn_TYPE_member_t asn_MBR_E_RABInformationListItem_ExtIEs_237[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_239,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_237
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_239, .general_constraints = memb_criticality_constraint_237 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22859,18 +19581,7 @@ asn_TYPE_member_t asn_MBR_E_RABInformationListItem_ExtIEs_237[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_240,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_240,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_237
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_240, .general_constraints = memb_extensionValue_constraint_237 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -22901,18 +19612,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABInformationListItem_ExtIEs = {
 	asn_DEF_E_RABInformationListItem_ExtIEs_tags_237,	/* Same as above */
 	sizeof(asn_DEF_E_RABInformationListItem_ExtIEs_tags_237)
 		/sizeof(asn_DEF_E_RABInformationListItem_ExtIEs_tags_237[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABInformationListItem_ExtIEs_237,
 	3,	/* Elements count */
 	&asn_SPC_E_RABInformationListItem_ExtIEs_specs_237	/* Additional specs */
@@ -22937,18 +19637,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_244 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_244	/* Additional specs */
 };
@@ -22959,18 +19648,7 @@ asn_TYPE_member_t asn_MBR_E_RABItem_ExtIEs_241[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_242,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_241
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_242, .general_constraints = memb_id_constraint_241 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -22979,18 +19657,7 @@ asn_TYPE_member_t asn_MBR_E_RABItem_ExtIEs_241[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_243,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_241
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_243, .general_constraints = memb_criticality_constraint_241 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -22999,18 +19666,7 @@ asn_TYPE_member_t asn_MBR_E_RABItem_ExtIEs_241[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_244,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_244,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_241
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_244, .general_constraints = memb_extensionValue_constraint_241 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23041,18 +19697,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABItem_ExtIEs = {
 	asn_DEF_E_RABItem_ExtIEs_tags_241,	/* Same as above */
 	sizeof(asn_DEF_E_RABItem_ExtIEs_tags_241)
 		/sizeof(asn_DEF_E_RABItem_ExtIEs_tags_241[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABItem_ExtIEs_241,
 	3,	/* Elements count */
 	&asn_SPC_E_RABItem_ExtIEs_specs_241	/* Additional specs */
@@ -23123,18 +19768,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_248 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_E_RABQoSParameters_ExtIEs__extensionValue_248,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_248	/* Additional specs */
@@ -23146,18 +19780,7 @@ asn_TYPE_member_t asn_MBR_E_RABQoSParameters_ExtIEs_245[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_246,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_245
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_246, .general_constraints = memb_id_constraint_245 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23166,18 +19789,7 @@ asn_TYPE_member_t asn_MBR_E_RABQoSParameters_ExtIEs_245[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_E_RABQoSParameters_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_247,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_245
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_247, .general_constraints = memb_criticality_constraint_245 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23186,18 +19798,7 @@ asn_TYPE_member_t asn_MBR_E_RABQoSParameters_ExtIEs_245[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_248,
 		select_E_RABQoSParameters_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_248,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_245
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_248, .general_constraints = memb_extensionValue_constraint_245 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23228,18 +19829,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABQoSParameters_ExtIEs = {
 	asn_DEF_E_RABQoSParameters_ExtIEs_tags_245,	/* Same as above */
 	sizeof(asn_DEF_E_RABQoSParameters_ExtIEs_tags_245)
 		/sizeof(asn_DEF_E_RABQoSParameters_ExtIEs_tags_245[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABQoSParameters_ExtIEs_245,
 	3,	/* Elements count */
 	&asn_SPC_E_RABQoSParameters_ExtIEs_specs_245	/* Additional specs */
@@ -23264,18 +19854,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_252 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_252	/* Additional specs */
 };
@@ -23286,18 +19865,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReportItem_ExtIEs_249[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_250,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_249
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_250, .general_constraints = memb_id_constraint_249 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23306,18 +19874,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReportItem_ExtIEs_249[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_251,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_249
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_251, .general_constraints = memb_criticality_constraint_249 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23326,18 +19883,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReportItem_ExtIEs_249[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_252,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_252,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_249
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_252, .general_constraints = memb_extensionValue_constraint_249 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23368,18 +19914,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABUsageReportItem_ExtIEs = {
 	asn_DEF_E_RABUsageReportItem_ExtIEs_tags_249,	/* Same as above */
 	sizeof(asn_DEF_E_RABUsageReportItem_ExtIEs_tags_249)
 		/sizeof(asn_DEF_E_RABUsageReportItem_ExtIEs_tags_249[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABUsageReportItem_ExtIEs_249,
 	3,	/* Elements count */
 	&asn_SPC_E_RABUsageReportItem_ExtIEs_specs_249	/* Additional specs */
@@ -23404,18 +19939,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_256 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_256	/* Additional specs */
 };
@@ -23426,18 +19950,7 @@ asn_TYPE_member_t asn_MBR_EUTRAN_CGI_ExtIEs_253[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_254,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_253
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_254, .general_constraints = memb_id_constraint_253 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23446,18 +19959,7 @@ asn_TYPE_member_t asn_MBR_EUTRAN_CGI_ExtIEs_253[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_255,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_253
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_255, .general_constraints = memb_criticality_constraint_253 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23466,18 +19968,7 @@ asn_TYPE_member_t asn_MBR_EUTRAN_CGI_ExtIEs_253[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_256,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_256,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_253
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_256, .general_constraints = memb_extensionValue_constraint_253 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23508,18 +19999,7 @@ asn_TYPE_descriptor_t asn_DEF_EUTRAN_CGI_ExtIEs = {
 	asn_DEF_EUTRAN_CGI_ExtIEs_tags_253,	/* Same as above */
 	sizeof(asn_DEF_EUTRAN_CGI_ExtIEs_tags_253)
 		/sizeof(asn_DEF_EUTRAN_CGI_ExtIEs_tags_253[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_EUTRAN_CGI_ExtIEs_253,
 	3,	/* Elements count */
 	&asn_SPC_EUTRAN_CGI_ExtIEs_specs_253	/* Additional specs */
@@ -23544,18 +20024,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_260 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_260	/* Additional specs */
 };
@@ -23566,18 +20035,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEBehaviour_ExtIEs_257[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_258,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_257
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_258, .general_constraints = memb_id_constraint_257 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23586,18 +20044,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEBehaviour_ExtIEs_257[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_259,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_257
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_259, .general_constraints = memb_criticality_constraint_257 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23606,18 +20053,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEBehaviour_ExtIEs_257[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_260,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_260,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_257
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_260, .general_constraints = memb_extensionValue_constraint_257 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23648,18 +20084,7 @@ asn_TYPE_descriptor_t asn_DEF_ExpectedUEBehaviour_ExtIEs = {
 	asn_DEF_ExpectedUEBehaviour_ExtIEs_tags_257,	/* Same as above */
 	sizeof(asn_DEF_ExpectedUEBehaviour_ExtIEs_tags_257)
 		/sizeof(asn_DEF_ExpectedUEBehaviour_ExtIEs_tags_257[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ExpectedUEBehaviour_ExtIEs_257,
 	3,	/* Elements count */
 	&asn_SPC_ExpectedUEBehaviour_ExtIEs_specs_257	/* Additional specs */
@@ -23684,18 +20109,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_264 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_264	/* Additional specs */
 };
@@ -23706,18 +20120,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEActivityBehaviour_ExtIEs_261[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_262,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_261
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_262, .general_constraints = memb_id_constraint_261 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23726,18 +20129,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEActivityBehaviour_ExtIEs_261[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_263,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_261
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_263, .general_constraints = memb_criticality_constraint_261 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23746,18 +20138,7 @@ asn_TYPE_member_t asn_MBR_ExpectedUEActivityBehaviour_ExtIEs_261[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_264,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_264,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_261
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_264, .general_constraints = memb_extensionValue_constraint_261 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23788,18 +20169,7 @@ asn_TYPE_descriptor_t asn_DEF_ExpectedUEActivityBehaviour_ExtIEs = {
 	asn_DEF_ExpectedUEActivityBehaviour_ExtIEs_tags_261,	/* Same as above */
 	sizeof(asn_DEF_ExpectedUEActivityBehaviour_ExtIEs_tags_261)
 		/sizeof(asn_DEF_ExpectedUEActivityBehaviour_ExtIEs_tags_261[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ExpectedUEActivityBehaviour_ExtIEs_261,
 	3,	/* Elements count */
 	&asn_SPC_ExpectedUEActivityBehaviour_ExtIEs_specs_261	/* Additional specs */
@@ -23824,18 +20194,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_268 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_268	/* Additional specs */
 };
@@ -23846,18 +20205,7 @@ asn_TYPE_member_t asn_MBR_FiveGSTAI_ExtIEs_265[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_266,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_265
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_266, .general_constraints = memb_id_constraint_265 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -23866,18 +20214,7 @@ asn_TYPE_member_t asn_MBR_FiveGSTAI_ExtIEs_265[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_267,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_265
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_267, .general_constraints = memb_criticality_constraint_265 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -23886,18 +20223,7 @@ asn_TYPE_member_t asn_MBR_FiveGSTAI_ExtIEs_265[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_268,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_268,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_265
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_268, .general_constraints = memb_extensionValue_constraint_265 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -23928,18 +20254,7 @@ asn_TYPE_descriptor_t asn_DEF_FiveGSTAI_ExtIEs = {
 	asn_DEF_FiveGSTAI_ExtIEs_tags_265,	/* Same as above */
 	sizeof(asn_DEF_FiveGSTAI_ExtIEs_tags_265)
 		/sizeof(asn_DEF_FiveGSTAI_ExtIEs_tags_265[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_FiveGSTAI_ExtIEs_265,
 	3,	/* Elements count */
 	&asn_SPC_FiveGSTAI_ExtIEs_specs_265	/* Additional specs */
@@ -23964,18 +20279,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_272 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_272	/* Additional specs */
 };
@@ -23986,18 +20290,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenTAs_Item_ExtIEs_269[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_270,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_269
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_270, .general_constraints = memb_id_constraint_269 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -24006,18 +20299,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenTAs_Item_ExtIEs_269[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_271,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_269
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_271, .general_constraints = memb_criticality_constraint_269 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -24026,18 +20308,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenTAs_Item_ExtIEs_269[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_272,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_272,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_269
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_272, .general_constraints = memb_extensionValue_constraint_269 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -24068,18 +20339,7 @@ asn_TYPE_descriptor_t asn_DEF_ForbiddenTAs_Item_ExtIEs = {
 	asn_DEF_ForbiddenTAs_Item_ExtIEs_tags_269,	/* Same as above */
 	sizeof(asn_DEF_ForbiddenTAs_Item_ExtIEs_tags_269)
 		/sizeof(asn_DEF_ForbiddenTAs_Item_ExtIEs_tags_269[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ForbiddenTAs_Item_ExtIEs_269,
 	3,	/* Elements count */
 	&asn_SPC_ForbiddenTAs_Item_ExtIEs_specs_269	/* Additional specs */
@@ -24104,18 +20364,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_276 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_276	/* Additional specs */
 };
@@ -24126,18 +20375,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenLAs_Item_ExtIEs_273[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_274,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_273
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_274, .general_constraints = memb_id_constraint_273 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -24146,18 +20384,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenLAs_Item_ExtIEs_273[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_275,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_273
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_275, .general_constraints = memb_criticality_constraint_273 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -24166,18 +20393,7 @@ asn_TYPE_member_t asn_MBR_ForbiddenLAs_Item_ExtIEs_273[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_276,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_276,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_273
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_276, .general_constraints = memb_extensionValue_constraint_273 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -24208,18 +20424,7 @@ asn_TYPE_descriptor_t asn_DEF_ForbiddenLAs_Item_ExtIEs = {
 	asn_DEF_ForbiddenLAs_Item_ExtIEs_tags_273,	/* Same as above */
 	sizeof(asn_DEF_ForbiddenLAs_Item_ExtIEs_tags_273)
 		/sizeof(asn_DEF_ForbiddenLAs_Item_ExtIEs_tags_273[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ForbiddenLAs_Item_ExtIEs_273,
 	3,	/* Elements count */
 	&asn_SPC_ForbiddenLAs_Item_ExtIEs_specs_273	/* Additional specs */
@@ -24332,18 +20537,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_280 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_GBR_QosInformation_ExtIEs__extensionValue_280,
 	4,	/* Elements count */
 	&asn_SPC_extensionValue_specs_280	/* Additional specs */
@@ -24355,18 +20549,7 @@ asn_TYPE_member_t asn_MBR_GBR_QosInformation_ExtIEs_277[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_278,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_277
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_278, .general_constraints = memb_id_constraint_277 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -24375,18 +20558,7 @@ asn_TYPE_member_t asn_MBR_GBR_QosInformation_ExtIEs_277[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_GBR_QosInformation_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_279,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_277
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_279, .general_constraints = memb_criticality_constraint_277 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -24395,18 +20567,7 @@ asn_TYPE_member_t asn_MBR_GBR_QosInformation_ExtIEs_277[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_280,
 		select_GBR_QosInformation_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_280,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_277
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_280, .general_constraints = memb_extensionValue_constraint_277 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -24437,18 +20598,7 @@ asn_TYPE_descriptor_t asn_DEF_GBR_QosInformation_ExtIEs = {
 	asn_DEF_GBR_QosInformation_ExtIEs_tags_277,	/* Same as above */
 	sizeof(asn_DEF_GBR_QosInformation_ExtIEs_tags_277)
 		/sizeof(asn_DEF_GBR_QosInformation_ExtIEs_tags_277[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_GBR_QosInformation_ExtIEs_277,
 	3,	/* Elements count */
 	&asn_SPC_GBR_QosInformation_ExtIEs_specs_277	/* Additional specs */
@@ -24473,18 +20623,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_284 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_284	/* Additional specs */
 };
@@ -24495,18 +20634,7 @@ asn_TYPE_member_t asn_MBR_GUMMEI_ExtIEs_281[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_282,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_281
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_282, .general_constraints = memb_id_constraint_281 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -24515,18 +20643,7 @@ asn_TYPE_member_t asn_MBR_GUMMEI_ExtIEs_281[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_283,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_281
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_283, .general_constraints = memb_criticality_constraint_281 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -24535,18 +20652,7 @@ asn_TYPE_member_t asn_MBR_GUMMEI_ExtIEs_281[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_284,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_284,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_281
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_284, .general_constraints = memb_extensionValue_constraint_281 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -24577,18 +20683,7 @@ asn_TYPE_descriptor_t asn_DEF_GUMMEI_ExtIEs = {
 	asn_DEF_GUMMEI_ExtIEs_tags_281,	/* Same as above */
 	sizeof(asn_DEF_GUMMEI_ExtIEs_tags_281)
 		/sizeof(asn_DEF_GUMMEI_ExtIEs_tags_281[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_GUMMEI_ExtIEs_281,
 	3,	/* Elements count */
 	&asn_SPC_GUMMEI_ExtIEs_specs_281	/* Additional specs */
@@ -24725,18 +20820,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_288 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_HandoverRestrictionList_ExtIEs__extensionValue_288,
 	5,	/* Elements count */
 	&asn_SPC_extensionValue_specs_288	/* Additional specs */
@@ -24748,18 +20832,7 @@ asn_TYPE_member_t asn_MBR_HandoverRestrictionList_ExtIEs_285[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_286,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_285
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_286, .general_constraints = memb_id_constraint_285 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -24768,18 +20841,7 @@ asn_TYPE_member_t asn_MBR_HandoverRestrictionList_ExtIEs_285[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_HandoverRestrictionList_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_287,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_285
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_287, .general_constraints = memb_criticality_constraint_285 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -24788,18 +20850,7 @@ asn_TYPE_member_t asn_MBR_HandoverRestrictionList_ExtIEs_285[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_288,
 		select_HandoverRestrictionList_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_288,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_285
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_288, .general_constraints = memb_extensionValue_constraint_285 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -24830,18 +20881,7 @@ asn_TYPE_descriptor_t asn_DEF_HandoverRestrictionList_ExtIEs = {
 	asn_DEF_HandoverRestrictionList_ExtIEs_tags_285,	/* Same as above */
 	sizeof(asn_DEF_HandoverRestrictionList_ExtIEs_tags_285)
 		/sizeof(asn_DEF_HandoverRestrictionList_ExtIEs_tags_285[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_HandoverRestrictionList_ExtIEs_285,
 	3,	/* Elements count */
 	&asn_SPC_HandoverRestrictionList_ExtIEs_specs_285	/* Additional specs */
@@ -25041,18 +21081,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_292 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_ImmediateMDT_ExtIEs__extensionValue_292,
 	8,	/* Elements count */
 	&asn_SPC_extensionValue_specs_292	/* Additional specs */
@@ -25064,18 +21093,7 @@ asn_TYPE_member_t asn_MBR_ImmediateMDT_ExtIEs_289[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_290,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_289
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_290, .general_constraints = memb_id_constraint_289 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25084,18 +21102,7 @@ asn_TYPE_member_t asn_MBR_ImmediateMDT_ExtIEs_289[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_ImmediateMDT_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_291,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_289
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_291, .general_constraints = memb_criticality_constraint_289 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25104,18 +21111,7 @@ asn_TYPE_member_t asn_MBR_ImmediateMDT_ExtIEs_289[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_292,
 		select_ImmediateMDT_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_292,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_289
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_292, .general_constraints = memb_extensionValue_constraint_289 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25146,18 +21142,7 @@ asn_TYPE_descriptor_t asn_DEF_ImmediateMDT_ExtIEs = {
 	asn_DEF_ImmediateMDT_ExtIEs_tags_289,	/* Same as above */
 	sizeof(asn_DEF_ImmediateMDT_ExtIEs_tags_289)
 		/sizeof(asn_DEF_ImmediateMDT_ExtIEs_tags_289[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ImmediateMDT_ExtIEs_289,
 	3,	/* Elements count */
 	&asn_SPC_ImmediateMDT_ExtIEs_specs_289	/* Additional specs */
@@ -25182,18 +21167,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_296 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_296	/* Additional specs */
 };
@@ -25204,18 +21178,7 @@ asn_TYPE_member_t asn_MBR_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_2
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_294,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_293
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_294, .general_constraints = memb_id_constraint_293 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25224,18 +21187,7 @@ asn_TYPE_member_t asn_MBR_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_2
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_295,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_293
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_295, .general_constraints = memb_criticality_constraint_293 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25244,18 +21196,7 @@ asn_TYPE_member_t asn_MBR_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_2
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_296,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_296,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_293
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_296, .general_constraints = memb_extensionValue_constraint_293 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25286,18 +21227,7 @@ asn_TYPE_descriptor_t asn_DEF_InformationOnRecommendedCellsAndENBsForPaging_ExtI
 	asn_DEF_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_tags_293,	/* Same as above */
 	sizeof(asn_DEF_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_tags_293)
 		/sizeof(asn_DEF_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_tags_293[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_293,
 	3,	/* Elements count */
 	&asn_SPC_InformationOnRecommendedCellsAndENBsForPaging_ExtIEs_specs_293	/* Additional specs */
@@ -25322,18 +21252,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_300 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_300	/* Additional specs */
 };
@@ -25344,18 +21263,7 @@ asn_TYPE_member_t asn_MBR_LAI_ExtIEs_297[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_298,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_297
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_298, .general_constraints = memb_id_constraint_297 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25364,18 +21272,7 @@ asn_TYPE_member_t asn_MBR_LAI_ExtIEs_297[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_299,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_297
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_299, .general_constraints = memb_criticality_constraint_297 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25384,18 +21281,7 @@ asn_TYPE_member_t asn_MBR_LAI_ExtIEs_297[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_300,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_300,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_297
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_300, .general_constraints = memb_extensionValue_constraint_297 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25426,18 +21312,7 @@ asn_TYPE_descriptor_t asn_DEF_LAI_ExtIEs = {
 	asn_DEF_LAI_ExtIEs_tags_297,	/* Same as above */
 	sizeof(asn_DEF_LAI_ExtIEs_tags_297)
 		/sizeof(asn_DEF_LAI_ExtIEs_tags_297[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_LAI_ExtIEs_297,
 	3,	/* Elements count */
 	&asn_SPC_LAI_ExtIEs_specs_297	/* Additional specs */
@@ -25512,18 +21387,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_304 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_LastVisitedEUTRANCellInformation_ExtIEs__extensionValue_304,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_304	/* Additional specs */
@@ -25535,18 +21399,7 @@ asn_TYPE_member_t asn_MBR_LastVisitedEUTRANCellInformation_ExtIEs_301[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_302,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_301
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_302, .general_constraints = memb_id_constraint_301 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25555,18 +21408,7 @@ asn_TYPE_member_t asn_MBR_LastVisitedEUTRANCellInformation_ExtIEs_301[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_LastVisitedEUTRANCellInformation_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_303,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_301
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_303, .general_constraints = memb_criticality_constraint_301 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25575,18 +21417,7 @@ asn_TYPE_member_t asn_MBR_LastVisitedEUTRANCellInformation_ExtIEs_301[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_304,
 		select_LastVisitedEUTRANCellInformation_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_304,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_301
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_304, .general_constraints = memb_extensionValue_constraint_301 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25617,18 +21448,7 @@ asn_TYPE_descriptor_t asn_DEF_LastVisitedEUTRANCellInformation_ExtIEs = {
 	asn_DEF_LastVisitedEUTRANCellInformation_ExtIEs_tags_301,	/* Same as above */
 	sizeof(asn_DEF_LastVisitedEUTRANCellInformation_ExtIEs_tags_301)
 		/sizeof(asn_DEF_LastVisitedEUTRANCellInformation_ExtIEs_tags_301[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_LastVisitedEUTRANCellInformation_ExtIEs_301,
 	3,	/* Elements count */
 	&asn_SPC_LastVisitedEUTRANCellInformation_ExtIEs_specs_301	/* Additional specs */
@@ -25653,18 +21473,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_308 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_308	/* Additional specs */
 };
@@ -25675,18 +21484,7 @@ asn_TYPE_member_t asn_MBR_ListeningSubframePattern_ExtIEs_305[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_306,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_305
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_306, .general_constraints = memb_id_constraint_305 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25695,18 +21493,7 @@ asn_TYPE_member_t asn_MBR_ListeningSubframePattern_ExtIEs_305[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_307,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_305
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_307, .general_constraints = memb_criticality_constraint_305 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25715,18 +21502,7 @@ asn_TYPE_member_t asn_MBR_ListeningSubframePattern_ExtIEs_305[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_308,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_308,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_305
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_308, .general_constraints = memb_extensionValue_constraint_305 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25757,18 +21533,7 @@ asn_TYPE_descriptor_t asn_DEF_ListeningSubframePattern_ExtIEs = {
 	asn_DEF_ListeningSubframePattern_ExtIEs_tags_305,	/* Same as above */
 	sizeof(asn_DEF_ListeningSubframePattern_ExtIEs_tags_305)
 		/sizeof(asn_DEF_ListeningSubframePattern_ExtIEs_tags_305[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ListeningSubframePattern_ExtIEs_305,
 	3,	/* Elements count */
 	&asn_SPC_ListeningSubframePattern_ExtIEs_specs_305	/* Additional specs */
@@ -25839,18 +21604,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_312 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_LoggedMDT_ExtIEs__extensionValue_312,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_312	/* Additional specs */
@@ -25862,18 +21616,7 @@ asn_TYPE_member_t asn_MBR_LoggedMDT_ExtIEs_309[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_310,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_309
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_310, .general_constraints = memb_id_constraint_309 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -25882,18 +21625,7 @@ asn_TYPE_member_t asn_MBR_LoggedMDT_ExtIEs_309[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_LoggedMDT_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_311,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_309
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_311, .general_constraints = memb_criticality_constraint_309 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -25902,18 +21634,7 @@ asn_TYPE_member_t asn_MBR_LoggedMDT_ExtIEs_309[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_312,
 		select_LoggedMDT_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_312,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_309
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_312, .general_constraints = memb_extensionValue_constraint_309 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -25944,18 +21665,7 @@ asn_TYPE_descriptor_t asn_DEF_LoggedMDT_ExtIEs = {
 	asn_DEF_LoggedMDT_ExtIEs_tags_309,	/* Same as above */
 	sizeof(asn_DEF_LoggedMDT_ExtIEs_tags_309)
 		/sizeof(asn_DEF_LoggedMDT_ExtIEs_tags_309[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_LoggedMDT_ExtIEs_309,
 	3,	/* Elements count */
 	&asn_SPC_LoggedMDT_ExtIEs_specs_309	/* Additional specs */
@@ -25980,18 +21690,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_316 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_316	/* Additional specs */
 };
@@ -26002,18 +21701,7 @@ asn_TYPE_member_t asn_MBR_LoggedMBSFNMDT_ExtIEs_313[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_314,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_313
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_314, .general_constraints = memb_id_constraint_313 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26022,18 +21710,7 @@ asn_TYPE_member_t asn_MBR_LoggedMBSFNMDT_ExtIEs_313[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_315,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_313
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_315, .general_constraints = memb_criticality_constraint_313 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26042,18 +21719,7 @@ asn_TYPE_member_t asn_MBR_LoggedMBSFNMDT_ExtIEs_313[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_316,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_316,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_313
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_316, .general_constraints = memb_extensionValue_constraint_313 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26084,18 +21750,7 @@ asn_TYPE_descriptor_t asn_DEF_LoggedMBSFNMDT_ExtIEs = {
 	asn_DEF_LoggedMBSFNMDT_ExtIEs_tags_313,	/* Same as above */
 	sizeof(asn_DEF_LoggedMBSFNMDT_ExtIEs_tags_313)
 		/sizeof(asn_DEF_LoggedMBSFNMDT_ExtIEs_tags_313[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_LoggedMBSFNMDT_ExtIEs_313,
 	3,	/* Elements count */
 	&asn_SPC_LoggedMBSFNMDT_ExtIEs_specs_313	/* Additional specs */
@@ -26120,18 +21775,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_320 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_320	/* Additional specs */
 };
@@ -26142,18 +21786,7 @@ asn_TYPE_member_t asn_MBR_M3Configuration_ExtIEs_317[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_318,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_317
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_318, .general_constraints = memb_id_constraint_317 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26162,18 +21795,7 @@ asn_TYPE_member_t asn_MBR_M3Configuration_ExtIEs_317[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_319,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_317
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_319, .general_constraints = memb_criticality_constraint_317 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26182,18 +21804,7 @@ asn_TYPE_member_t asn_MBR_M3Configuration_ExtIEs_317[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_320,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_320,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_317
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_320, .general_constraints = memb_extensionValue_constraint_317 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26224,18 +21835,7 @@ asn_TYPE_descriptor_t asn_DEF_M3Configuration_ExtIEs = {
 	asn_DEF_M3Configuration_ExtIEs_tags_317,	/* Same as above */
 	sizeof(asn_DEF_M3Configuration_ExtIEs_tags_317)
 		/sizeof(asn_DEF_M3Configuration_ExtIEs_tags_317[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M3Configuration_ExtIEs_317,
 	3,	/* Elements count */
 	&asn_SPC_M3Configuration_ExtIEs_specs_317	/* Additional specs */
@@ -26260,18 +21860,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_324 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_324	/* Additional specs */
 };
@@ -26282,18 +21871,7 @@ asn_TYPE_member_t asn_MBR_M4Configuration_ExtIEs_321[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_322,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_321
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_322, .general_constraints = memb_id_constraint_321 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26302,18 +21880,7 @@ asn_TYPE_member_t asn_MBR_M4Configuration_ExtIEs_321[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_323,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_321
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_323, .general_constraints = memb_criticality_constraint_321 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26322,18 +21889,7 @@ asn_TYPE_member_t asn_MBR_M4Configuration_ExtIEs_321[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_324,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_324,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_321
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_324, .general_constraints = memb_extensionValue_constraint_321 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26364,18 +21920,7 @@ asn_TYPE_descriptor_t asn_DEF_M4Configuration_ExtIEs = {
 	asn_DEF_M4Configuration_ExtIEs_tags_321,	/* Same as above */
 	sizeof(asn_DEF_M4Configuration_ExtIEs_tags_321)
 		/sizeof(asn_DEF_M4Configuration_ExtIEs_tags_321[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M4Configuration_ExtIEs_321,
 	3,	/* Elements count */
 	&asn_SPC_M4Configuration_ExtIEs_specs_321	/* Additional specs */
@@ -26400,18 +21945,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_328 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_328	/* Additional specs */
 };
@@ -26422,18 +21956,7 @@ asn_TYPE_member_t asn_MBR_M5Configuration_ExtIEs_325[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_326,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_325
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_326, .general_constraints = memb_id_constraint_325 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26442,18 +21965,7 @@ asn_TYPE_member_t asn_MBR_M5Configuration_ExtIEs_325[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_327,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_325
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_327, .general_constraints = memb_criticality_constraint_325 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26462,18 +21974,7 @@ asn_TYPE_member_t asn_MBR_M5Configuration_ExtIEs_325[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_328,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_328,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_325
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_328, .general_constraints = memb_extensionValue_constraint_325 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26504,18 +22005,7 @@ asn_TYPE_descriptor_t asn_DEF_M5Configuration_ExtIEs = {
 	asn_DEF_M5Configuration_ExtIEs_tags_325,	/* Same as above */
 	sizeof(asn_DEF_M5Configuration_ExtIEs_tags_325)
 		/sizeof(asn_DEF_M5Configuration_ExtIEs_tags_325[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M5Configuration_ExtIEs_325,
 	3,	/* Elements count */
 	&asn_SPC_M5Configuration_ExtIEs_specs_325	/* Additional specs */
@@ -26540,18 +22030,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_332 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_332	/* Additional specs */
 };
@@ -26562,18 +22041,7 @@ asn_TYPE_member_t asn_MBR_M6Configuration_ExtIEs_329[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_330,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_329
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_330, .general_constraints = memb_id_constraint_329 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26582,18 +22050,7 @@ asn_TYPE_member_t asn_MBR_M6Configuration_ExtIEs_329[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_331,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_329
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_331, .general_constraints = memb_criticality_constraint_329 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26602,18 +22059,7 @@ asn_TYPE_member_t asn_MBR_M6Configuration_ExtIEs_329[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_332,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_332,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_329
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_332, .general_constraints = memb_extensionValue_constraint_329 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26644,18 +22090,7 @@ asn_TYPE_descriptor_t asn_DEF_M6Configuration_ExtIEs = {
 	asn_DEF_M6Configuration_ExtIEs_tags_329,	/* Same as above */
 	sizeof(asn_DEF_M6Configuration_ExtIEs_tags_329)
 		/sizeof(asn_DEF_M6Configuration_ExtIEs_tags_329[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M6Configuration_ExtIEs_329,
 	3,	/* Elements count */
 	&asn_SPC_M6Configuration_ExtIEs_specs_329	/* Additional specs */
@@ -26680,18 +22115,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_336 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_336	/* Additional specs */
 };
@@ -26702,18 +22126,7 @@ asn_TYPE_member_t asn_MBR_M7Configuration_ExtIEs_333[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_334,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_333
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_334, .general_constraints = memb_id_constraint_333 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26722,18 +22135,7 @@ asn_TYPE_member_t asn_MBR_M7Configuration_ExtIEs_333[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_335,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_333
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_335, .general_constraints = memb_criticality_constraint_333 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26742,18 +22144,7 @@ asn_TYPE_member_t asn_MBR_M7Configuration_ExtIEs_333[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_336,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_336,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_333
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_336, .general_constraints = memb_extensionValue_constraint_333 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26784,18 +22175,7 @@ asn_TYPE_descriptor_t asn_DEF_M7Configuration_ExtIEs = {
 	asn_DEF_M7Configuration_ExtIEs_tags_333,	/* Same as above */
 	sizeof(asn_DEF_M7Configuration_ExtIEs_tags_333)
 		/sizeof(asn_DEF_M7Configuration_ExtIEs_tags_333[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M7Configuration_ExtIEs_333,
 	3,	/* Elements count */
 	&asn_SPC_M7Configuration_ExtIEs_specs_333	/* Additional specs */
@@ -26845,18 +22225,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_340 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_MDT_Configuration_ExtIEs__extensionValue_340,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_340	/* Additional specs */
@@ -26868,18 +22237,7 @@ asn_TYPE_member_t asn_MBR_MDT_Configuration_ExtIEs_337[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_338,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_337
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_338, .general_constraints = memb_id_constraint_337 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -26888,18 +22246,7 @@ asn_TYPE_member_t asn_MBR_MDT_Configuration_ExtIEs_337[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_MDT_Configuration_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_339,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_337
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_339, .general_constraints = memb_criticality_constraint_337 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -26908,18 +22255,7 @@ asn_TYPE_member_t asn_MBR_MDT_Configuration_ExtIEs_337[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_340,
 		select_MDT_Configuration_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_340,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_337
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_340, .general_constraints = memb_extensionValue_constraint_337 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -26950,18 +22286,7 @@ asn_TYPE_descriptor_t asn_DEF_MDT_Configuration_ExtIEs = {
 	asn_DEF_MDT_Configuration_ExtIEs_tags_337,	/* Same as above */
 	sizeof(asn_DEF_MDT_Configuration_ExtIEs_tags_337)
 		/sizeof(asn_DEF_MDT_Configuration_ExtIEs_tags_337[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_MDT_Configuration_ExtIEs_337,
 	3,	/* Elements count */
 	&asn_SPC_MDT_Configuration_ExtIEs_specs_337	/* Additional specs */
@@ -26986,18 +22311,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_344 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_344	/* Additional specs */
 };
@@ -27008,18 +22322,7 @@ asn_TYPE_member_t asn_MBR_MBSFN_ResultToLogInfo_ExtIEs_341[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_342,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_341
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_342, .general_constraints = memb_id_constraint_341 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27028,18 +22331,7 @@ asn_TYPE_member_t asn_MBR_MBSFN_ResultToLogInfo_ExtIEs_341[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_343,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_341
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_343, .general_constraints = memb_criticality_constraint_341 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27048,18 +22340,7 @@ asn_TYPE_member_t asn_MBR_MBSFN_ResultToLogInfo_ExtIEs_341[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_344,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_344,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_341
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_344, .general_constraints = memb_extensionValue_constraint_341 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27090,18 +22371,7 @@ asn_TYPE_descriptor_t asn_DEF_MBSFN_ResultToLogInfo_ExtIEs = {
 	asn_DEF_MBSFN_ResultToLogInfo_ExtIEs_tags_341,	/* Same as above */
 	sizeof(asn_DEF_MBSFN_ResultToLogInfo_ExtIEs_tags_341)
 		/sizeof(asn_DEF_MBSFN_ResultToLogInfo_ExtIEs_tags_341[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_MBSFN_ResultToLogInfo_ExtIEs_341,
 	3,	/* Elements count */
 	&asn_SPC_MBSFN_ResultToLogInfo_ExtIEs_specs_341	/* Additional specs */
@@ -27126,18 +22396,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_348 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_348	/* Additional specs */
 };
@@ -27148,18 +22407,7 @@ asn_TYPE_member_t asn_MBR_MutingPatternInformation_ExtIEs_345[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_346,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_345
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_346, .general_constraints = memb_id_constraint_345 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27168,18 +22416,7 @@ asn_TYPE_member_t asn_MBR_MutingPatternInformation_ExtIEs_345[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_347,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_345
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_347, .general_constraints = memb_criticality_constraint_345 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27188,18 +22425,7 @@ asn_TYPE_member_t asn_MBR_MutingPatternInformation_ExtIEs_345[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_348,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_348,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_345
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_348, .general_constraints = memb_extensionValue_constraint_345 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27230,18 +22456,7 @@ asn_TYPE_descriptor_t asn_DEF_MutingPatternInformation_ExtIEs = {
 	asn_DEF_MutingPatternInformation_ExtIEs_tags_345,	/* Same as above */
 	sizeof(asn_DEF_MutingPatternInformation_ExtIEs_tags_345)
 		/sizeof(asn_DEF_MutingPatternInformation_ExtIEs_tags_345[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_MutingPatternInformation_ExtIEs_345,
 	3,	/* Elements count */
 	&asn_SPC_MutingPatternInformation_ExtIEs_specs_345	/* Additional specs */
@@ -27266,18 +22481,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_352 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_352	/* Additional specs */
 };
@@ -27288,18 +22492,7 @@ asn_TYPE_member_t asn_MBR_NB_IoT_Paging_eDRXInformation_ExtIEs_349[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_350,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_349
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_350, .general_constraints = memb_id_constraint_349 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27308,18 +22501,7 @@ asn_TYPE_member_t asn_MBR_NB_IoT_Paging_eDRXInformation_ExtIEs_349[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_351,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_349
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_351, .general_constraints = memb_criticality_constraint_349 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27328,18 +22510,7 @@ asn_TYPE_member_t asn_MBR_NB_IoT_Paging_eDRXInformation_ExtIEs_349[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_352,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_352,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_349
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_352, .general_constraints = memb_extensionValue_constraint_349 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27370,18 +22541,7 @@ asn_TYPE_descriptor_t asn_DEF_NB_IoT_Paging_eDRXInformation_ExtIEs = {
 	asn_DEF_NB_IoT_Paging_eDRXInformation_ExtIEs_tags_349,	/* Same as above */
 	sizeof(asn_DEF_NB_IoT_Paging_eDRXInformation_ExtIEs_tags_349)
 		/sizeof(asn_DEF_NB_IoT_Paging_eDRXInformation_ExtIEs_tags_349[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_NB_IoT_Paging_eDRXInformation_ExtIEs_349,
 	3,	/* Elements count */
 	&asn_SPC_NB_IoT_Paging_eDRXInformation_ExtIEs_specs_349	/* Additional specs */
@@ -27406,18 +22566,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_356 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_356	/* Additional specs */
 };
@@ -27428,18 +22577,7 @@ asn_TYPE_member_t asn_MBR_NR_CGI_ExtIEs_353[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_354,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_353
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_354, .general_constraints = memb_id_constraint_353 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27448,18 +22586,7 @@ asn_TYPE_member_t asn_MBR_NR_CGI_ExtIEs_353[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_355,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_353
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_355, .general_constraints = memb_criticality_constraint_353 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27468,18 +22595,7 @@ asn_TYPE_member_t asn_MBR_NR_CGI_ExtIEs_353[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_356,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_356,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_353
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_356, .general_constraints = memb_extensionValue_constraint_353 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27510,18 +22626,7 @@ asn_TYPE_descriptor_t asn_DEF_NR_CGI_ExtIEs = {
 	asn_DEF_NR_CGI_ExtIEs_tags_353,	/* Same as above */
 	sizeof(asn_DEF_NR_CGI_ExtIEs_tags_353)
 		/sizeof(asn_DEF_NR_CGI_ExtIEs_tags_353[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_NR_CGI_ExtIEs_353,
 	3,	/* Elements count */
 	&asn_SPC_NR_CGI_ExtIEs_specs_353	/* Additional specs */
@@ -27546,18 +22651,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_360 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_360	/* Additional specs */
 };
@@ -27568,18 +22662,7 @@ asn_TYPE_member_t asn_MBR_NRUESecurityCapabilities_ExtIEs_357[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_358,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_357
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_358, .general_constraints = memb_id_constraint_357 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27588,18 +22671,7 @@ asn_TYPE_member_t asn_MBR_NRUESecurityCapabilities_ExtIEs_357[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_359,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_357
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_359, .general_constraints = memb_criticality_constraint_357 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27608,18 +22680,7 @@ asn_TYPE_member_t asn_MBR_NRUESecurityCapabilities_ExtIEs_357[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_360,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_360,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_357
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_360, .general_constraints = memb_extensionValue_constraint_357 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27650,18 +22711,7 @@ asn_TYPE_descriptor_t asn_DEF_NRUESecurityCapabilities_ExtIEs = {
 	asn_DEF_NRUESecurityCapabilities_ExtIEs_tags_357,	/* Same as above */
 	sizeof(asn_DEF_NRUESecurityCapabilities_ExtIEs_tags_357)
 		/sizeof(asn_DEF_NRUESecurityCapabilities_ExtIEs_tags_357[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_NRUESecurityCapabilities_ExtIEs_357,
 	3,	/* Elements count */
 	&asn_SPC_NRUESecurityCapabilities_ExtIEs_specs_357	/* Additional specs */
@@ -27686,18 +22736,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_364 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_364	/* Additional specs */
 };
@@ -27708,18 +22747,7 @@ asn_TYPE_member_t asn_MBR_PagingAttemptInformation_ExtIEs_361[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_362,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_361
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_362, .general_constraints = memb_id_constraint_361 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27728,18 +22756,7 @@ asn_TYPE_member_t asn_MBR_PagingAttemptInformation_ExtIEs_361[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_363,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_361
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_363, .general_constraints = memb_criticality_constraint_361 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27748,18 +22765,7 @@ asn_TYPE_member_t asn_MBR_PagingAttemptInformation_ExtIEs_361[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_364,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_364,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_361
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_364, .general_constraints = memb_extensionValue_constraint_361 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27790,18 +22796,7 @@ asn_TYPE_descriptor_t asn_DEF_PagingAttemptInformation_ExtIEs = {
 	asn_DEF_PagingAttemptInformation_ExtIEs_tags_361,	/* Same as above */
 	sizeof(asn_DEF_PagingAttemptInformation_ExtIEs_tags_361)
 		/sizeof(asn_DEF_PagingAttemptInformation_ExtIEs_tags_361[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_PagingAttemptInformation_ExtIEs_361,
 	3,	/* Elements count */
 	&asn_SPC_PagingAttemptInformation_ExtIEs_specs_361	/* Additional specs */
@@ -27826,18 +22821,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_368 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_368	/* Additional specs */
 };
@@ -27848,18 +22832,7 @@ asn_TYPE_member_t asn_MBR_Paging_eDRXInformation_ExtIEs_365[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_366,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_365
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_366, .general_constraints = memb_id_constraint_365 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -27868,18 +22841,7 @@ asn_TYPE_member_t asn_MBR_Paging_eDRXInformation_ExtIEs_365[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_367,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_365
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_367, .general_constraints = memb_criticality_constraint_365 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -27888,18 +22850,7 @@ asn_TYPE_member_t asn_MBR_Paging_eDRXInformation_ExtIEs_365[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_368,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_368,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_365
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_368, .general_constraints = memb_extensionValue_constraint_365 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -27930,18 +22881,7 @@ asn_TYPE_descriptor_t asn_DEF_Paging_eDRXInformation_ExtIEs = {
 	asn_DEF_Paging_eDRXInformation_ExtIEs_tags_365,	/* Same as above */
 	sizeof(asn_DEF_Paging_eDRXInformation_ExtIEs_tags_365)
 		/sizeof(asn_DEF_Paging_eDRXInformation_ExtIEs_tags_365[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Paging_eDRXInformation_ExtIEs_365,
 	3,	/* Elements count */
 	&asn_SPC_Paging_eDRXInformation_ExtIEs_specs_365	/* Additional specs */
@@ -27966,18 +22906,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_372 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_372	/* Additional specs */
 };
@@ -27988,18 +22917,7 @@ asn_TYPE_member_t asn_MBR_M1PeriodicReporting_ExtIEs_369[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_370,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_369
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_370, .general_constraints = memb_id_constraint_369 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28008,18 +22926,7 @@ asn_TYPE_member_t asn_MBR_M1PeriodicReporting_ExtIEs_369[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_371,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_369
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_371, .general_constraints = memb_criticality_constraint_369 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28028,18 +22935,7 @@ asn_TYPE_member_t asn_MBR_M1PeriodicReporting_ExtIEs_369[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_372,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_372,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_369
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_372, .general_constraints = memb_extensionValue_constraint_369 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28070,18 +22966,7 @@ asn_TYPE_descriptor_t asn_DEF_M1PeriodicReporting_ExtIEs = {
 	asn_DEF_M1PeriodicReporting_ExtIEs_tags_369,	/* Same as above */
 	sizeof(asn_DEF_M1PeriodicReporting_ExtIEs_tags_369)
 		/sizeof(asn_DEF_M1PeriodicReporting_ExtIEs_tags_369[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M1PeriodicReporting_ExtIEs_369,
 	3,	/* Elements count */
 	&asn_SPC_M1PeriodicReporting_ExtIEs_specs_369	/* Additional specs */
@@ -28106,18 +22991,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_376 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_376	/* Additional specs */
 };
@@ -28128,18 +23002,7 @@ asn_TYPE_member_t asn_MBR_PLMNAreaBasedQMC_ExtIEs_373[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_374,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_373
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_374, .general_constraints = memb_id_constraint_373 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28148,18 +23011,7 @@ asn_TYPE_member_t asn_MBR_PLMNAreaBasedQMC_ExtIEs_373[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_375,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_373
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_375, .general_constraints = memb_criticality_constraint_373 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28168,18 +23020,7 @@ asn_TYPE_member_t asn_MBR_PLMNAreaBasedQMC_ExtIEs_373[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_376,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_376,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_373
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_376, .general_constraints = memb_extensionValue_constraint_373 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28210,18 +23051,7 @@ asn_TYPE_descriptor_t asn_DEF_PLMNAreaBasedQMC_ExtIEs = {
 	asn_DEF_PLMNAreaBasedQMC_ExtIEs_tags_373,	/* Same as above */
 	sizeof(asn_DEF_PLMNAreaBasedQMC_ExtIEs_tags_373)
 		/sizeof(asn_DEF_PLMNAreaBasedQMC_ExtIEs_tags_373[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_PLMNAreaBasedQMC_ExtIEs_373,
 	3,	/* Elements count */
 	&asn_SPC_PLMNAreaBasedQMC_ExtIEs_specs_373	/* Additional specs */
@@ -28271,18 +23101,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_380 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_ProSeAuthorized_ExtIEs__extensionValue_380,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_380	/* Additional specs */
@@ -28294,18 +23113,7 @@ asn_TYPE_member_t asn_MBR_ProSeAuthorized_ExtIEs_377[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_378,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_377
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_378, .general_constraints = memb_id_constraint_377 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28314,18 +23122,7 @@ asn_TYPE_member_t asn_MBR_ProSeAuthorized_ExtIEs_377[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_ProSeAuthorized_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_379,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_377
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_379, .general_constraints = memb_criticality_constraint_377 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28334,18 +23131,7 @@ asn_TYPE_member_t asn_MBR_ProSeAuthorized_ExtIEs_377[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_380,
 		select_ProSeAuthorized_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_380,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_377
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_380, .general_constraints = memb_extensionValue_constraint_377 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28376,18 +23162,7 @@ asn_TYPE_descriptor_t asn_DEF_ProSeAuthorized_ExtIEs = {
 	asn_DEF_ProSeAuthorized_ExtIEs_tags_377,	/* Same as above */
 	sizeof(asn_DEF_ProSeAuthorized_ExtIEs_tags_377)
 		/sizeof(asn_DEF_ProSeAuthorized_ExtIEs_tags_377[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ProSeAuthorized_ExtIEs_377,
 	3,	/* Elements count */
 	&asn_SPC_ProSeAuthorized_ExtIEs_specs_377	/* Additional specs */
@@ -28412,18 +23187,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_384 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_384	/* Additional specs */
 };
@@ -28434,18 +23198,7 @@ asn_TYPE_member_t asn_MBR_PSCellInformation_ExtIEs_381[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_382,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_381
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_382, .general_constraints = memb_id_constraint_381 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28454,18 +23207,7 @@ asn_TYPE_member_t asn_MBR_PSCellInformation_ExtIEs_381[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_383,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_381
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_383, .general_constraints = memb_criticality_constraint_381 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28474,18 +23216,7 @@ asn_TYPE_member_t asn_MBR_PSCellInformation_ExtIEs_381[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_384,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_384,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_381
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_384, .general_constraints = memb_extensionValue_constraint_381 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28516,18 +23247,7 @@ asn_TYPE_descriptor_t asn_DEF_PSCellInformation_ExtIEs = {
 	asn_DEF_PSCellInformation_ExtIEs_tags_381,	/* Same as above */
 	sizeof(asn_DEF_PSCellInformation_ExtIEs_tags_381)
 		/sizeof(asn_DEF_PSCellInformation_ExtIEs_tags_381[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_PSCellInformation_ExtIEs_381,
 	3,	/* Elements count */
 	&asn_SPC_PSCellInformation_ExtIEs_specs_381	/* Additional specs */
@@ -28552,18 +23272,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_388 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_388	/* Additional specs */
 };
@@ -28574,18 +23283,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPaging_ExtIEs_385[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_386,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_385
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_386, .general_constraints = memb_id_constraint_385 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28594,18 +23292,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPaging_ExtIEs_385[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_387,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_385
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_387, .general_constraints = memb_criticality_constraint_385 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28614,18 +23301,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPaging_ExtIEs_385[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_388,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_388,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_385
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_388, .general_constraints = memb_extensionValue_constraint_385 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28656,18 +23332,7 @@ asn_TYPE_descriptor_t asn_DEF_RecommendedCellsForPaging_ExtIEs = {
 	asn_DEF_RecommendedCellsForPaging_ExtIEs_tags_385,	/* Same as above */
 	sizeof(asn_DEF_RecommendedCellsForPaging_ExtIEs_tags_385)
 		/sizeof(asn_DEF_RecommendedCellsForPaging_ExtIEs_tags_385[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedCellsForPaging_ExtIEs_385,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedCellsForPaging_ExtIEs_specs_385	/* Additional specs */
@@ -28692,18 +23357,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_392 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_392	/* Additional specs */
 };
@@ -28714,18 +23368,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPagingItem_ExtIEs_389[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_390,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_389
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_390, .general_constraints = memb_id_constraint_389 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28734,18 +23377,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPagingItem_ExtIEs_389[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_391,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_389
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_391, .general_constraints = memb_criticality_constraint_389 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28754,18 +23386,7 @@ asn_TYPE_member_t asn_MBR_RecommendedCellsForPagingItem_ExtIEs_389[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_392,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_392,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_389
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_392, .general_constraints = memb_extensionValue_constraint_389 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28796,18 +23417,7 @@ asn_TYPE_descriptor_t asn_DEF_RecommendedCellsForPagingItem_ExtIEs = {
 	asn_DEF_RecommendedCellsForPagingItem_ExtIEs_tags_389,	/* Same as above */
 	sizeof(asn_DEF_RecommendedCellsForPagingItem_ExtIEs_tags_389)
 		/sizeof(asn_DEF_RecommendedCellsForPagingItem_ExtIEs_tags_389[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedCellsForPagingItem_ExtIEs_389,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedCellsForPagingItem_ExtIEs_specs_389	/* Additional specs */
@@ -28832,18 +23442,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_396 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_396	/* Additional specs */
 };
@@ -28854,18 +23453,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBsForPaging_ExtIEs_393[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_394,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_393
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_394, .general_constraints = memb_id_constraint_393 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -28874,18 +23462,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBsForPaging_ExtIEs_393[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_395,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_393
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_395, .general_constraints = memb_criticality_constraint_393 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -28894,18 +23471,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBsForPaging_ExtIEs_393[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_396,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_396,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_393
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_396, .general_constraints = memb_extensionValue_constraint_393 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -28936,18 +23502,7 @@ asn_TYPE_descriptor_t asn_DEF_RecommendedENBsForPaging_ExtIEs = {
 	asn_DEF_RecommendedENBsForPaging_ExtIEs_tags_393,	/* Same as above */
 	sizeof(asn_DEF_RecommendedENBsForPaging_ExtIEs_tags_393)
 		/sizeof(asn_DEF_RecommendedENBsForPaging_ExtIEs_tags_393[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedENBsForPaging_ExtIEs_393,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedENBsForPaging_ExtIEs_specs_393	/* Additional specs */
@@ -28972,18 +23527,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_400 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_400	/* Additional specs */
 };
@@ -28994,18 +23538,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBItem_ExtIEs_397[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_398,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_397
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_398, .general_constraints = memb_id_constraint_397 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29014,18 +23547,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBItem_ExtIEs_397[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_399,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_397
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_399, .general_constraints = memb_criticality_constraint_397 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29034,18 +23556,7 @@ asn_TYPE_member_t asn_MBR_RecommendedENBItem_ExtIEs_397[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_400,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_400,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_397
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_400, .general_constraints = memb_extensionValue_constraint_397 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29076,18 +23587,7 @@ asn_TYPE_descriptor_t asn_DEF_RecommendedENBItem_ExtIEs = {
 	asn_DEF_RecommendedENBItem_ExtIEs_tags_397,	/* Same as above */
 	sizeof(asn_DEF_RecommendedENBItem_ExtIEs_tags_397)
 		/sizeof(asn_DEF_RecommendedENBItem_ExtIEs_tags_397[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedENBItem_ExtIEs_397,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedENBItem_ExtIEs_specs_397	/* Additional specs */
@@ -29137,18 +23637,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_404 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_RequestType_ExtIEs__extensionValue_404,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_404	/* Additional specs */
@@ -29160,18 +23649,7 @@ asn_TYPE_member_t asn_MBR_RequestType_ExtIEs_401[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_402,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_401
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_402, .general_constraints = memb_id_constraint_401 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29180,18 +23658,7 @@ asn_TYPE_member_t asn_MBR_RequestType_ExtIEs_401[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_RequestType_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_403,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_401
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_403, .general_constraints = memb_criticality_constraint_401 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29200,18 +23667,7 @@ asn_TYPE_member_t asn_MBR_RequestType_ExtIEs_401[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_404,
 		select_RequestType_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_404,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_401
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_404, .general_constraints = memb_extensionValue_constraint_401 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29242,18 +23698,7 @@ asn_TYPE_descriptor_t asn_DEF_RequestType_ExtIEs = {
 	asn_DEF_RequestType_ExtIEs_tags_401,	/* Same as above */
 	sizeof(asn_DEF_RequestType_ExtIEs_tags_401)
 		/sizeof(asn_DEF_RequestType_ExtIEs_tags_401[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RequestType_ExtIEs_401,
 	3,	/* Elements count */
 	&asn_SPC_RequestType_ExtIEs_specs_401	/* Additional specs */
@@ -29278,18 +23723,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_408 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_408	/* Additional specs */
 };
@@ -29300,18 +23734,7 @@ asn_TYPE_member_t asn_MBR_RIMTransfer_ExtIEs_405[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_406,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_405
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_406, .general_constraints = memb_id_constraint_405 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29320,18 +23743,7 @@ asn_TYPE_member_t asn_MBR_RIMTransfer_ExtIEs_405[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_407,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_405
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_407, .general_constraints = memb_criticality_constraint_405 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29340,18 +23752,7 @@ asn_TYPE_member_t asn_MBR_RIMTransfer_ExtIEs_405[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_408,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_408,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_405
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_408, .general_constraints = memb_extensionValue_constraint_405 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29382,18 +23783,7 @@ asn_TYPE_descriptor_t asn_DEF_RIMTransfer_ExtIEs = {
 	asn_DEF_RIMTransfer_ExtIEs_tags_405,	/* Same as above */
 	sizeof(asn_DEF_RIMTransfer_ExtIEs_tags_405)
 		/sizeof(asn_DEF_RIMTransfer_ExtIEs_tags_405[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RIMTransfer_ExtIEs_405,
 	3,	/* Elements count */
 	&asn_SPC_RIMTransfer_ExtIEs_specs_405	/* Additional specs */
@@ -29418,18 +23808,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_412 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_412	/* Additional specs */
 };
@@ -29440,18 +23819,7 @@ asn_TYPE_member_t asn_MBR_RLFReportInformation_ExtIEs_409[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_410,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_409
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_410, .general_constraints = memb_id_constraint_409 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29460,18 +23828,7 @@ asn_TYPE_member_t asn_MBR_RLFReportInformation_ExtIEs_409[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_411,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_409
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_411, .general_constraints = memb_criticality_constraint_409 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29480,18 +23837,7 @@ asn_TYPE_member_t asn_MBR_RLFReportInformation_ExtIEs_409[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_412,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_412,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_409
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_412, .general_constraints = memb_extensionValue_constraint_409 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29522,18 +23868,7 @@ asn_TYPE_descriptor_t asn_DEF_RLFReportInformation_ExtIEs = {
 	asn_DEF_RLFReportInformation_ExtIEs_tags_409,	/* Same as above */
 	sizeof(asn_DEF_RLFReportInformation_ExtIEs_tags_409)
 		/sizeof(asn_DEF_RLFReportInformation_ExtIEs_tags_409[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RLFReportInformation_ExtIEs_409,
 	3,	/* Elements count */
 	&asn_SPC_RLFReportInformation_ExtIEs_specs_409	/* Additional specs */
@@ -29558,18 +23893,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_416 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_416	/* Additional specs */
 };
@@ -29580,18 +23904,7 @@ asn_TYPE_member_t asn_MBR_SecurityContext_ExtIEs_413[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_414,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_413
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_414, .general_constraints = memb_id_constraint_413 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29600,18 +23913,7 @@ asn_TYPE_member_t asn_MBR_SecurityContext_ExtIEs_413[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_415,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_413
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_415, .general_constraints = memb_criticality_constraint_413 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29620,18 +23922,7 @@ asn_TYPE_member_t asn_MBR_SecurityContext_ExtIEs_413[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_416,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_416,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_413
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_416, .general_constraints = memb_extensionValue_constraint_413 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29662,18 +23953,7 @@ asn_TYPE_descriptor_t asn_DEF_SecurityContext_ExtIEs = {
 	asn_DEF_SecurityContext_ExtIEs_tags_413,	/* Same as above */
 	sizeof(asn_DEF_SecurityContext_ExtIEs_tags_413)
 		/sizeof(asn_DEF_SecurityContext_ExtIEs_tags_413[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SecurityContext_ExtIEs_413,
 	3,	/* Elements count */
 	&asn_SPC_SecurityContext_ExtIEs_specs_413	/* Additional specs */
@@ -29698,18 +23978,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_420 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_420	/* Additional specs */
 };
@@ -29720,18 +23989,7 @@ asn_TYPE_member_t asn_MBR_SecondaryRATDataUsageReportItem_ExtIEs_417[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_418,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_417
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_418, .general_constraints = memb_id_constraint_417 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29740,18 +23998,7 @@ asn_TYPE_member_t asn_MBR_SecondaryRATDataUsageReportItem_ExtIEs_417[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_419,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_417
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_419, .general_constraints = memb_criticality_constraint_417 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29760,18 +24007,7 @@ asn_TYPE_member_t asn_MBR_SecondaryRATDataUsageReportItem_ExtIEs_417[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_420,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_420,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_417
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_420, .general_constraints = memb_extensionValue_constraint_417 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29802,18 +24038,7 @@ asn_TYPE_descriptor_t asn_DEF_SecondaryRATDataUsageReportItem_ExtIEs = {
 	asn_DEF_SecondaryRATDataUsageReportItem_ExtIEs_tags_417,	/* Same as above */
 	sizeof(asn_DEF_SecondaryRATDataUsageReportItem_ExtIEs_tags_417)
 		/sizeof(asn_DEF_SecondaryRATDataUsageReportItem_ExtIEs_tags_417[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SecondaryRATDataUsageReportItem_ExtIEs_417,
 	3,	/* Elements count */
 	&asn_SPC_SecondaryRATDataUsageReportItem_ExtIEs_specs_417	/* Additional specs */
@@ -29884,18 +24109,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_424 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_SONInformationReply_ExtIEs__extensionValue_424,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_424	/* Additional specs */
@@ -29907,18 +24121,7 @@ asn_TYPE_member_t asn_MBR_SONInformationReply_ExtIEs_421[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_422,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_421
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_422, .general_constraints = memb_id_constraint_421 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -29927,18 +24130,7 @@ asn_TYPE_member_t asn_MBR_SONInformationReply_ExtIEs_421[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_SONInformationReply_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_423,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_421
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_423, .general_constraints = memb_criticality_constraint_421 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -29947,18 +24139,7 @@ asn_TYPE_member_t asn_MBR_SONInformationReply_ExtIEs_421[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_424,
 		select_SONInformationReply_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_424,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_421
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_424, .general_constraints = memb_extensionValue_constraint_421 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -29989,18 +24170,7 @@ asn_TYPE_descriptor_t asn_DEF_SONInformationReply_ExtIEs = {
 	asn_DEF_SONInformationReply_ExtIEs_tags_421,	/* Same as above */
 	sizeof(asn_DEF_SONInformationReply_ExtIEs_tags_421)
 		/sizeof(asn_DEF_SONInformationReply_ExtIEs_tags_421[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SONInformationReply_ExtIEs_421,
 	3,	/* Elements count */
 	&asn_SPC_SONInformationReply_ExtIEs_specs_421	/* Additional specs */
@@ -30071,18 +24241,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_428 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_SONConfigurationTransfer_ExtIEs__extensionValue_428,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_428	/* Additional specs */
@@ -30094,18 +24253,7 @@ asn_TYPE_member_t asn_MBR_SONConfigurationTransfer_ExtIEs_425[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_426,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_425
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_426, .general_constraints = memb_id_constraint_425 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30114,18 +24262,7 @@ asn_TYPE_member_t asn_MBR_SONConfigurationTransfer_ExtIEs_425[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_SONConfigurationTransfer_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_427,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_425
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_427, .general_constraints = memb_criticality_constraint_425 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30134,18 +24271,7 @@ asn_TYPE_member_t asn_MBR_SONConfigurationTransfer_ExtIEs_425[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_428,
 		select_SONConfigurationTransfer_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_428,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_425
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_428, .general_constraints = memb_extensionValue_constraint_425 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30176,18 +24302,7 @@ asn_TYPE_descriptor_t asn_DEF_SONConfigurationTransfer_ExtIEs = {
 	asn_DEF_SONConfigurationTransfer_ExtIEs_tags_425,	/* Same as above */
 	sizeof(asn_DEF_SONConfigurationTransfer_ExtIEs_tags_425)
 		/sizeof(asn_DEF_SONConfigurationTransfer_ExtIEs_tags_425[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SONConfigurationTransfer_ExtIEs_425,
 	3,	/* Elements count */
 	&asn_SPC_SONConfigurationTransfer_ExtIEs_specs_425	/* Additional specs */
@@ -30212,18 +24327,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_432 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_432	/* Additional specs */
 };
@@ -30234,18 +24338,7 @@ asn_TYPE_member_t asn_MBR_SynchronisationInformation_ExtIEs_429[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_430,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_429
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_430, .general_constraints = memb_id_constraint_429 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30254,18 +24347,7 @@ asn_TYPE_member_t asn_MBR_SynchronisationInformation_ExtIEs_429[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_431,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_429
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_431, .general_constraints = memb_criticality_constraint_429 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30274,18 +24356,7 @@ asn_TYPE_member_t asn_MBR_SynchronisationInformation_ExtIEs_429[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_432,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_432,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_429
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_432, .general_constraints = memb_extensionValue_constraint_429 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30316,18 +24387,7 @@ asn_TYPE_descriptor_t asn_DEF_SynchronisationInformation_ExtIEs = {
 	asn_DEF_SynchronisationInformation_ExtIEs_tags_429,	/* Same as above */
 	sizeof(asn_DEF_SynchronisationInformation_ExtIEs_tags_429)
 		/sizeof(asn_DEF_SynchronisationInformation_ExtIEs_tags_429[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SynchronisationInformation_ExtIEs_429,
 	3,	/* Elements count */
 	&asn_SPC_SynchronisationInformation_ExtIEs_specs_429	/* Additional specs */
@@ -30352,18 +24412,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_436 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_436	/* Additional specs */
 };
@@ -30374,18 +24423,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ID_ExtIEs_433[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_434,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_433
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_434, .general_constraints = memb_id_constraint_433 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30394,18 +24432,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ID_ExtIEs_433[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_435,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_433
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_435, .general_constraints = memb_criticality_constraint_433 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30414,18 +24441,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ID_ExtIEs_433[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_436,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_436,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_433
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_436, .general_constraints = memb_extensionValue_constraint_433 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30456,18 +24472,7 @@ asn_TYPE_descriptor_t asn_DEF_SourceeNB_ID_ExtIEs = {
 	asn_DEF_SourceeNB_ID_ExtIEs_tags_433,	/* Same as above */
 	sizeof(asn_DEF_SourceeNB_ID_ExtIEs_tags_433)
 		/sizeof(asn_DEF_SourceeNB_ID_ExtIEs_tags_433[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SourceeNB_ID_ExtIEs_433,
 	3,	/* Elements count */
 	&asn_SPC_SourceeNB_ID_ExtIEs_specs_433	/* Additional specs */
@@ -30559,18 +24564,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_440 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs__extensionValue_440,
 	3,	/* Elements count */
 	&asn_SPC_extensionValue_specs_440	/* Additional specs */
@@ -30582,18 +24576,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_437[
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_438,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_437
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_438, .general_constraints = memb_id_constraint_437 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30602,18 +24585,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_437[
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_439,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_437
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_439, .general_constraints = memb_criticality_constraint_437 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30622,18 +24594,7 @@ asn_TYPE_member_t asn_MBR_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_437[
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_440,
 		select_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_440,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_437
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_440, .general_constraints = memb_extensionValue_constraint_437 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30664,18 +24625,7 @@ asn_TYPE_descriptor_t asn_DEF_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs 
 	asn_DEF_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_tags_437,	/* Same as above */
 	sizeof(asn_DEF_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_tags_437)
 		/sizeof(asn_DEF_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_tags_437[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_437,
 	3,	/* Elements count */
 	&asn_SPC_SourceeNB_ToTargeteNB_TransparentContainer_ExtIEs_specs_437	/* Additional specs */
@@ -30700,18 +24650,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_444 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_444	/* Additional specs */
 };
@@ -30722,18 +24661,7 @@ asn_TYPE_member_t asn_MBR_ServedGUMMEIsItem_ExtIEs_441[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_442,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_441
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_442, .general_constraints = memb_id_constraint_441 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30742,18 +24670,7 @@ asn_TYPE_member_t asn_MBR_ServedGUMMEIsItem_ExtIEs_441[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_443,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_441
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_443, .general_constraints = memb_criticality_constraint_441 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30762,18 +24679,7 @@ asn_TYPE_member_t asn_MBR_ServedGUMMEIsItem_ExtIEs_441[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_444,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_444,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_441
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_444, .general_constraints = memb_extensionValue_constraint_441 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30804,18 +24710,7 @@ asn_TYPE_descriptor_t asn_DEF_ServedGUMMEIsItem_ExtIEs = {
 	asn_DEF_ServedGUMMEIsItem_ExtIEs_tags_441,	/* Same as above */
 	sizeof(asn_DEF_ServedGUMMEIsItem_ExtIEs_tags_441)
 		/sizeof(asn_DEF_ServedGUMMEIsItem_ExtIEs_tags_441[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ServedGUMMEIsItem_ExtIEs_441,
 	3,	/* Elements count */
 	&asn_SPC_ServedGUMMEIsItem_ExtIEs_specs_441	/* Additional specs */
@@ -30840,18 +24735,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_448 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_448	/* Additional specs */
 };
@@ -30862,18 +24746,7 @@ asn_TYPE_member_t asn_MBR_Subscription_Based_UE_DifferentiationInfo_ExtIEs_445[]
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_446,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_445
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_446, .general_constraints = memb_id_constraint_445 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -30882,18 +24755,7 @@ asn_TYPE_member_t asn_MBR_Subscription_Based_UE_DifferentiationInfo_ExtIEs_445[]
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_447,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_445
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_447, .general_constraints = memb_criticality_constraint_445 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -30902,18 +24764,7 @@ asn_TYPE_member_t asn_MBR_Subscription_Based_UE_DifferentiationInfo_ExtIEs_445[]
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_448,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_448,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_445
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_448, .general_constraints = memb_extensionValue_constraint_445 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -30944,18 +24795,7 @@ asn_TYPE_descriptor_t asn_DEF_Subscription_Based_UE_DifferentiationInfo_ExtIEs =
 	asn_DEF_Subscription_Based_UE_DifferentiationInfo_ExtIEs_tags_445,	/* Same as above */
 	sizeof(asn_DEF_Subscription_Based_UE_DifferentiationInfo_ExtIEs_tags_445)
 		/sizeof(asn_DEF_Subscription_Based_UE_DifferentiationInfo_ExtIEs_tags_445[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Subscription_Based_UE_DifferentiationInfo_ExtIEs_445,
 	3,	/* Elements count */
 	&asn_SPC_Subscription_Based_UE_DifferentiationInfo_ExtIEs_specs_445	/* Additional specs */
@@ -30980,18 +24820,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_452 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_452	/* Additional specs */
 };
@@ -31002,18 +24831,7 @@ asn_TYPE_member_t asn_MBR_ScheduledCommunicationTime_ExtIEs_449[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_450,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_449
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_450, .general_constraints = memb_id_constraint_449 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31022,18 +24840,7 @@ asn_TYPE_member_t asn_MBR_ScheduledCommunicationTime_ExtIEs_449[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_451,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_449
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_451, .general_constraints = memb_criticality_constraint_449 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31042,18 +24849,7 @@ asn_TYPE_member_t asn_MBR_ScheduledCommunicationTime_ExtIEs_449[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_452,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_452,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_449
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_452, .general_constraints = memb_extensionValue_constraint_449 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31084,18 +24880,7 @@ asn_TYPE_descriptor_t asn_DEF_ScheduledCommunicationTime_ExtIEs = {
 	asn_DEF_ScheduledCommunicationTime_ExtIEs_tags_449,	/* Same as above */
 	sizeof(asn_DEF_ScheduledCommunicationTime_ExtIEs_tags_449)
 		/sizeof(asn_DEF_ScheduledCommunicationTime_ExtIEs_tags_449[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ScheduledCommunicationTime_ExtIEs_449,
 	3,	/* Elements count */
 	&asn_SPC_ScheduledCommunicationTime_ExtIEs_specs_449	/* Additional specs */
@@ -31145,18 +24930,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_456 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_SupportedTAs_Item_ExtIEs__extensionValue_456,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_456	/* Additional specs */
@@ -31168,18 +24942,7 @@ asn_TYPE_member_t asn_MBR_SupportedTAs_Item_ExtIEs_453[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_454,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_453
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_454, .general_constraints = memb_id_constraint_453 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31188,18 +24951,7 @@ asn_TYPE_member_t asn_MBR_SupportedTAs_Item_ExtIEs_453[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_SupportedTAs_Item_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_455,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_453
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_455, .general_constraints = memb_criticality_constraint_453 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31208,18 +24960,7 @@ asn_TYPE_member_t asn_MBR_SupportedTAs_Item_ExtIEs_453[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_456,
 		select_SupportedTAs_Item_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_456,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_453
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_456, .general_constraints = memb_extensionValue_constraint_453 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31250,18 +24991,7 @@ asn_TYPE_descriptor_t asn_DEF_SupportedTAs_Item_ExtIEs = {
 	asn_DEF_SupportedTAs_Item_ExtIEs_tags_453,	/* Same as above */
 	sizeof(asn_DEF_SupportedTAs_Item_ExtIEs_tags_453)
 		/sizeof(asn_DEF_SupportedTAs_Item_ExtIEs_tags_453[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SupportedTAs_Item_ExtIEs_453,
 	3,	/* Elements count */
 	&asn_SPC_SupportedTAs_Item_ExtIEs_specs_453	/* Additional specs */
@@ -31311,18 +25041,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_460 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_TimeSynchronisationInfo_ExtIEs__extensionValue_460,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_460	/* Additional specs */
@@ -31334,18 +25053,7 @@ asn_TYPE_member_t asn_MBR_TimeSynchronisationInfo_ExtIEs_457[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_458,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_457
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_458, .general_constraints = memb_id_constraint_457 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31354,18 +25062,7 @@ asn_TYPE_member_t asn_MBR_TimeSynchronisationInfo_ExtIEs_457[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_TimeSynchronisationInfo_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_459,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_457
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_459, .general_constraints = memb_criticality_constraint_457 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31374,18 +25071,7 @@ asn_TYPE_member_t asn_MBR_TimeSynchronisationInfo_ExtIEs_457[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_460,
 		select_TimeSynchronisationInfo_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_460,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_457
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_460, .general_constraints = memb_extensionValue_constraint_457 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31416,18 +25102,7 @@ asn_TYPE_descriptor_t asn_DEF_TimeSynchronisationInfo_ExtIEs = {
 	asn_DEF_TimeSynchronisationInfo_ExtIEs_tags_457,	/* Same as above */
 	sizeof(asn_DEF_TimeSynchronisationInfo_ExtIEs_tags_457)
 		/sizeof(asn_DEF_TimeSynchronisationInfo_ExtIEs_tags_457[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TimeSynchronisationInfo_ExtIEs_457,
 	3,	/* Elements count */
 	&asn_SPC_TimeSynchronisationInfo_ExtIEs_specs_457	/* Additional specs */
@@ -31452,18 +25127,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_464 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_464	/* Additional specs */
 };
@@ -31474,18 +25138,7 @@ asn_TYPE_member_t asn_MBR_S_TMSI_ExtIEs_461[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_462,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_461
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_462, .general_constraints = memb_id_constraint_461 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31494,18 +25147,7 @@ asn_TYPE_member_t asn_MBR_S_TMSI_ExtIEs_461[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_463,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_461
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_463, .general_constraints = memb_criticality_constraint_461 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31514,18 +25156,7 @@ asn_TYPE_member_t asn_MBR_S_TMSI_ExtIEs_461[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_464,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_464,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_461
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_464, .general_constraints = memb_extensionValue_constraint_461 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31556,18 +25187,7 @@ asn_TYPE_descriptor_t asn_DEF_S_TMSI_ExtIEs = {
 	asn_DEF_S_TMSI_ExtIEs_tags_461,	/* Same as above */
 	sizeof(asn_DEF_S_TMSI_ExtIEs_tags_461)
 		/sizeof(asn_DEF_S_TMSI_ExtIEs_tags_461[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_S_TMSI_ExtIEs_461,
 	3,	/* Elements count */
 	&asn_SPC_S_TMSI_ExtIEs_specs_461	/* Additional specs */
@@ -31592,18 +25212,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_468 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_468	/* Additional specs */
 };
@@ -31614,18 +25223,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedMDT_ExtIEs_465[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_466,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_465
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_466, .general_constraints = memb_id_constraint_465 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31634,18 +25232,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedMDT_ExtIEs_465[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_467,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_465
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_467, .general_constraints = memb_criticality_constraint_465 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31654,18 +25241,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedMDT_ExtIEs_465[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_468,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_468,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_465
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_468, .general_constraints = memb_extensionValue_constraint_465 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31696,18 +25272,7 @@ asn_TYPE_descriptor_t asn_DEF_TAIBasedMDT_ExtIEs = {
 	asn_DEF_TAIBasedMDT_ExtIEs_tags_465,	/* Same as above */
 	sizeof(asn_DEF_TAIBasedMDT_ExtIEs_tags_465)
 		/sizeof(asn_DEF_TAIBasedMDT_ExtIEs_tags_465[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAIBasedMDT_ExtIEs_465,
 	3,	/* Elements count */
 	&asn_SPC_TAIBasedMDT_ExtIEs_specs_465	/* Additional specs */
@@ -31732,18 +25297,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_472 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_472	/* Additional specs */
 };
@@ -31754,18 +25308,7 @@ asn_TYPE_member_t asn_MBR_TAI_ExtIEs_469[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_470,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_469
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_470, .general_constraints = memb_id_constraint_469 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31774,18 +25317,7 @@ asn_TYPE_member_t asn_MBR_TAI_ExtIEs_469[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_471,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_469
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_471, .general_constraints = memb_criticality_constraint_469 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31794,18 +25326,7 @@ asn_TYPE_member_t asn_MBR_TAI_ExtIEs_469[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_472,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_472,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_469
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_472, .general_constraints = memb_extensionValue_constraint_469 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31836,18 +25357,7 @@ asn_TYPE_descriptor_t asn_DEF_TAI_ExtIEs = {
 	asn_DEF_TAI_ExtIEs_tags_469,	/* Same as above */
 	sizeof(asn_DEF_TAI_ExtIEs_tags_469)
 		/sizeof(asn_DEF_TAI_ExtIEs_tags_469[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAI_ExtIEs_469,
 	3,	/* Elements count */
 	&asn_SPC_TAI_ExtIEs_specs_469	/* Additional specs */
@@ -31872,18 +25382,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_476 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_476	/* Additional specs */
 };
@@ -31894,18 +25393,7 @@ asn_TYPE_member_t asn_MBR_TAI_Broadcast_Item_ExtIEs_473[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_474,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_473
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_474, .general_constraints = memb_id_constraint_473 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -31914,18 +25402,7 @@ asn_TYPE_member_t asn_MBR_TAI_Broadcast_Item_ExtIEs_473[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_475,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_473
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_475, .general_constraints = memb_criticality_constraint_473 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -31934,18 +25411,7 @@ asn_TYPE_member_t asn_MBR_TAI_Broadcast_Item_ExtIEs_473[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_476,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_476,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_473
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_476, .general_constraints = memb_extensionValue_constraint_473 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -31976,18 +25442,7 @@ asn_TYPE_descriptor_t asn_DEF_TAI_Broadcast_Item_ExtIEs = {
 	asn_DEF_TAI_Broadcast_Item_ExtIEs_tags_473,	/* Same as above */
 	sizeof(asn_DEF_TAI_Broadcast_Item_ExtIEs_tags_473)
 		/sizeof(asn_DEF_TAI_Broadcast_Item_ExtIEs_tags_473[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAI_Broadcast_Item_ExtIEs_473,
 	3,	/* Elements count */
 	&asn_SPC_TAI_Broadcast_Item_ExtIEs_specs_473	/* Additional specs */
@@ -32012,18 +25467,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_480 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_480	/* Additional specs */
 };
@@ -32034,18 +25478,7 @@ asn_TYPE_member_t asn_MBR_TAI_Cancelled_Item_ExtIEs_477[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_478,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_477
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_478, .general_constraints = memb_id_constraint_477 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32054,18 +25487,7 @@ asn_TYPE_member_t asn_MBR_TAI_Cancelled_Item_ExtIEs_477[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_479,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_477
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_479, .general_constraints = memb_criticality_constraint_477 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32074,18 +25496,7 @@ asn_TYPE_member_t asn_MBR_TAI_Cancelled_Item_ExtIEs_477[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_480,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_480,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_477
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_480, .general_constraints = memb_extensionValue_constraint_477 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32116,18 +25527,7 @@ asn_TYPE_descriptor_t asn_DEF_TAI_Cancelled_Item_ExtIEs = {
 	asn_DEF_TAI_Cancelled_Item_ExtIEs_tags_477,	/* Same as above */
 	sizeof(asn_DEF_TAI_Cancelled_Item_ExtIEs_tags_477)
 		/sizeof(asn_DEF_TAI_Cancelled_Item_ExtIEs_tags_477[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAI_Cancelled_Item_ExtIEs_477,
 	3,	/* Elements count */
 	&asn_SPC_TAI_Cancelled_Item_ExtIEs_specs_477	/* Additional specs */
@@ -32152,18 +25552,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_484 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_484	/* Additional specs */
 };
@@ -32174,18 +25563,7 @@ asn_TYPE_member_t asn_MBR_TABasedMDT_ExtIEs_481[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_482,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_481
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_482, .general_constraints = memb_id_constraint_481 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32194,18 +25572,7 @@ asn_TYPE_member_t asn_MBR_TABasedMDT_ExtIEs_481[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_483,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_481
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_483, .general_constraints = memb_criticality_constraint_481 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32214,18 +25581,7 @@ asn_TYPE_member_t asn_MBR_TABasedMDT_ExtIEs_481[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_484,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_484,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_481
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_484, .general_constraints = memb_extensionValue_constraint_481 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32256,18 +25612,7 @@ asn_TYPE_descriptor_t asn_DEF_TABasedMDT_ExtIEs = {
 	asn_DEF_TABasedMDT_ExtIEs_tags_481,	/* Same as above */
 	sizeof(asn_DEF_TABasedMDT_ExtIEs_tags_481)
 		/sizeof(asn_DEF_TABasedMDT_ExtIEs_tags_481[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TABasedMDT_ExtIEs_481,
 	3,	/* Elements count */
 	&asn_SPC_TABasedMDT_ExtIEs_specs_481	/* Additional specs */
@@ -32292,18 +25637,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_488 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_488	/* Additional specs */
 };
@@ -32314,18 +25648,7 @@ asn_TYPE_member_t asn_MBR_TABasedQMC_ExtIEs_485[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_486,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_485
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_486, .general_constraints = memb_id_constraint_485 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32334,18 +25657,7 @@ asn_TYPE_member_t asn_MBR_TABasedQMC_ExtIEs_485[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_487,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_485
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_487, .general_constraints = memb_criticality_constraint_485 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32354,18 +25666,7 @@ asn_TYPE_member_t asn_MBR_TABasedQMC_ExtIEs_485[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_488,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_488,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_485
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_488, .general_constraints = memb_extensionValue_constraint_485 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32396,18 +25697,7 @@ asn_TYPE_descriptor_t asn_DEF_TABasedQMC_ExtIEs = {
 	asn_DEF_TABasedQMC_ExtIEs_tags_485,	/* Same as above */
 	sizeof(asn_DEF_TABasedQMC_ExtIEs_tags_485)
 		/sizeof(asn_DEF_TABasedQMC_ExtIEs_tags_485[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TABasedQMC_ExtIEs_485,
 	3,	/* Elements count */
 	&asn_SPC_TABasedQMC_ExtIEs_specs_485	/* Additional specs */
@@ -32432,18 +25722,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_492 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_492	/* Additional specs */
 };
@@ -32454,18 +25733,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedQMC_ExtIEs_489[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_490,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_489
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_490, .general_constraints = memb_id_constraint_489 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32474,18 +25742,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedQMC_ExtIEs_489[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_491,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_489
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_491, .general_constraints = memb_criticality_constraint_489 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32494,18 +25751,7 @@ asn_TYPE_member_t asn_MBR_TAIBasedQMC_ExtIEs_489[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_492,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_492,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_489
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_492, .general_constraints = memb_extensionValue_constraint_489 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32536,18 +25782,7 @@ asn_TYPE_descriptor_t asn_DEF_TAIBasedQMC_ExtIEs = {
 	asn_DEF_TAIBasedQMC_ExtIEs_tags_489,	/* Same as above */
 	sizeof(asn_DEF_TAIBasedQMC_ExtIEs_tags_489)
 		/sizeof(asn_DEF_TAIBasedQMC_ExtIEs_tags_489[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAIBasedQMC_ExtIEs_489,
 	3,	/* Elements count */
 	&asn_SPC_TAIBasedQMC_ExtIEs_specs_489	/* Additional specs */
@@ -32572,18 +25807,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_496 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_496	/* Additional specs */
 };
@@ -32594,18 +25818,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinTAI_Item_ExtIEs_493[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_494,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_493
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_494, .general_constraints = memb_id_constraint_493 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32614,18 +25827,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinTAI_Item_ExtIEs_493[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_495,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_493
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_495, .general_constraints = memb_criticality_constraint_493 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32634,18 +25836,7 @@ asn_TYPE_member_t asn_MBR_CompletedCellinTAI_Item_ExtIEs_493[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_496,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_496,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_493
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_496, .general_constraints = memb_extensionValue_constraint_493 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32676,18 +25867,7 @@ asn_TYPE_descriptor_t asn_DEF_CompletedCellinTAI_Item_ExtIEs = {
 	asn_DEF_CompletedCellinTAI_Item_ExtIEs_tags_493,	/* Same as above */
 	sizeof(asn_DEF_CompletedCellinTAI_Item_ExtIEs_tags_493)
 		/sizeof(asn_DEF_CompletedCellinTAI_Item_ExtIEs_tags_493[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CompletedCellinTAI_Item_ExtIEs_493,
 	3,	/* Elements count */
 	&asn_SPC_CompletedCellinTAI_Item_ExtIEs_specs_493	/* Additional specs */
@@ -32712,18 +25892,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_500 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_500	/* Additional specs */
 };
@@ -32734,18 +25903,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ID_ExtIEs_497[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_498,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_497
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_498, .general_constraints = memb_id_constraint_497 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32754,18 +25912,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ID_ExtIEs_497[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_499,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_497
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_499, .general_constraints = memb_criticality_constraint_497 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32774,18 +25921,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ID_ExtIEs_497[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_500,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_500,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_497
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_500, .general_constraints = memb_extensionValue_constraint_497 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32816,18 +25952,7 @@ asn_TYPE_descriptor_t asn_DEF_TargeteNB_ID_ExtIEs = {
 	asn_DEF_TargeteNB_ID_ExtIEs_tags_497,	/* Same as above */
 	sizeof(asn_DEF_TargeteNB_ID_ExtIEs_tags_497)
 		/sizeof(asn_DEF_TargeteNB_ID_ExtIEs_tags_497[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TargeteNB_ID_ExtIEs_497,
 	3,	/* Elements count */
 	&asn_SPC_TargeteNB_ID_ExtIEs_specs_497	/* Additional specs */
@@ -32852,18 +25977,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_504 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_504	/* Additional specs */
 };
@@ -32874,18 +25988,7 @@ asn_TYPE_member_t asn_MBR_TargetRNC_ID_ExtIEs_501[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_502,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_501
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_502, .general_constraints = memb_id_constraint_501 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -32894,18 +25997,7 @@ asn_TYPE_member_t asn_MBR_TargetRNC_ID_ExtIEs_501[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_503,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_501
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_503, .general_constraints = memb_criticality_constraint_501 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -32914,18 +26006,7 @@ asn_TYPE_member_t asn_MBR_TargetRNC_ID_ExtIEs_501[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_504,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_504,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_501
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_504, .general_constraints = memb_extensionValue_constraint_501 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -32956,18 +26037,7 @@ asn_TYPE_descriptor_t asn_DEF_TargetRNC_ID_ExtIEs = {
 	asn_DEF_TargetRNC_ID_ExtIEs_tags_501,	/* Same as above */
 	sizeof(asn_DEF_TargetRNC_ID_ExtIEs_tags_501)
 		/sizeof(asn_DEF_TargetRNC_ID_ExtIEs_tags_501[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TargetRNC_ID_ExtIEs_501,
 	3,	/* Elements count */
 	&asn_SPC_TargetRNC_ID_ExtIEs_specs_501	/* Additional specs */
@@ -32992,18 +26062,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_508 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_508	/* Additional specs */
 };
@@ -33014,18 +26073,7 @@ asn_TYPE_member_t asn_MBR_TargetNgRanNode_ID_ExtIEs_505[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_506,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_505
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_506, .general_constraints = memb_id_constraint_505 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33034,18 +26082,7 @@ asn_TYPE_member_t asn_MBR_TargetNgRanNode_ID_ExtIEs_505[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_507,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_505
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_507, .general_constraints = memb_criticality_constraint_505 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33054,18 +26091,7 @@ asn_TYPE_member_t asn_MBR_TargetNgRanNode_ID_ExtIEs_505[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_508,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_508,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_505
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_508, .general_constraints = memb_extensionValue_constraint_505 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33096,18 +26122,7 @@ asn_TYPE_descriptor_t asn_DEF_TargetNgRanNode_ID_ExtIEs = {
 	asn_DEF_TargetNgRanNode_ID_ExtIEs_tags_505,	/* Same as above */
 	sizeof(asn_DEF_TargetNgRanNode_ID_ExtIEs_tags_505)
 		/sizeof(asn_DEF_TargetNgRanNode_ID_ExtIEs_tags_505[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TargetNgRanNode_ID_ExtIEs_505,
 	3,	/* Elements count */
 	&asn_SPC_TargetNgRanNode_ID_ExtIEs_specs_505	/* Additional specs */
@@ -33132,18 +26147,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_512 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_512	/* Additional specs */
 };
@@ -33154,18 +26158,7 @@ asn_TYPE_member_t asn_MBR_GNB_ExtIEs_509[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_510,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_509
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_510, .general_constraints = memb_id_constraint_509 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33174,18 +26167,7 @@ asn_TYPE_member_t asn_MBR_GNB_ExtIEs_509[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_511,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_509
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_511, .general_constraints = memb_criticality_constraint_509 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33194,18 +26176,7 @@ asn_TYPE_member_t asn_MBR_GNB_ExtIEs_509[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_512,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_512,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_509
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_512, .general_constraints = memb_extensionValue_constraint_509 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33236,18 +26207,7 @@ asn_TYPE_descriptor_t asn_DEF_GNB_ExtIEs = {
 	asn_DEF_GNB_ExtIEs_tags_509,	/* Same as above */
 	sizeof(asn_DEF_GNB_ExtIEs_tags_509)
 		/sizeof(asn_DEF_GNB_ExtIEs_tags_509[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_GNB_ExtIEs_509,
 	3,	/* Elements count */
 	&asn_SPC_GNB_ExtIEs_specs_509	/* Additional specs */
@@ -33272,18 +26232,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_516 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_516	/* Additional specs */
 };
@@ -33294,18 +26243,7 @@ asn_TYPE_member_t asn_MBR_Global_GNB_ID_ExtIEs_513[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_514,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_513
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_514, .general_constraints = memb_id_constraint_513 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33314,18 +26252,7 @@ asn_TYPE_member_t asn_MBR_Global_GNB_ID_ExtIEs_513[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_515,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_513
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_515, .general_constraints = memb_criticality_constraint_513 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33334,18 +26261,7 @@ asn_TYPE_member_t asn_MBR_Global_GNB_ID_ExtIEs_513[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_516,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_516,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_513
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_516, .general_constraints = memb_extensionValue_constraint_513 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33376,18 +26292,7 @@ asn_TYPE_descriptor_t asn_DEF_Global_GNB_ID_ExtIEs = {
 	asn_DEF_Global_GNB_ID_ExtIEs_tags_513,	/* Same as above */
 	sizeof(asn_DEF_Global_GNB_ID_ExtIEs_tags_513)
 		/sizeof(asn_DEF_Global_GNB_ID_ExtIEs_tags_513[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Global_GNB_ID_ExtIEs_513,
 	3,	/* Elements count */
 	&asn_SPC_Global_GNB_ID_ExtIEs_specs_513	/* Additional specs */
@@ -33412,18 +26317,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_520 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_520	/* Additional specs */
 };
@@ -33434,18 +26328,7 @@ asn_TYPE_member_t asn_MBR_NG_eNB_ExtIEs_517[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_518,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_517
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_518, .general_constraints = memb_id_constraint_517 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33454,18 +26337,7 @@ asn_TYPE_member_t asn_MBR_NG_eNB_ExtIEs_517[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_519,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_517
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_519, .general_constraints = memb_criticality_constraint_517 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33474,18 +26346,7 @@ asn_TYPE_member_t asn_MBR_NG_eNB_ExtIEs_517[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_520,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_520,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_517
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_520, .general_constraints = memb_extensionValue_constraint_517 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33516,18 +26377,7 @@ asn_TYPE_descriptor_t asn_DEF_NG_eNB_ExtIEs = {
 	asn_DEF_NG_eNB_ExtIEs_tags_517,	/* Same as above */
 	sizeof(asn_DEF_NG_eNB_ExtIEs_tags_517)
 		/sizeof(asn_DEF_NG_eNB_ExtIEs_tags_517[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_NG_eNB_ExtIEs_517,
 	3,	/* Elements count */
 	&asn_SPC_NG_eNB_ExtIEs_specs_517	/* Additional specs */
@@ -33552,18 +26402,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_524 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_524	/* Additional specs */
 };
@@ -33574,18 +26413,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_521[
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_522,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_521
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_522, .general_constraints = memb_id_constraint_521 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33594,18 +26422,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_521[
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_523,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_521
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_523, .general_constraints = memb_criticality_constraint_521 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33614,18 +26431,7 @@ asn_TYPE_member_t asn_MBR_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_521[
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_524,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_524,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_521
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_524, .general_constraints = memb_extensionValue_constraint_521 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33656,18 +26462,7 @@ asn_TYPE_descriptor_t asn_DEF_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs 
 	asn_DEF_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_tags_521,	/* Same as above */
 	sizeof(asn_DEF_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_tags_521)
 		/sizeof(asn_DEF_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_tags_521[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_521,
 	3,	/* Elements count */
 	&asn_SPC_TargeteNB_ToSourceeNB_TransparentContainer_ExtIEs_specs_521	/* Additional specs */
@@ -33692,18 +26487,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_528 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_528	/* Additional specs */
 };
@@ -33714,18 +26498,7 @@ asn_TYPE_member_t asn_MBR_M1ThresholdEventA2_ExtIEs_525[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_526,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_525
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_526, .general_constraints = memb_id_constraint_525 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33734,18 +26507,7 @@ asn_TYPE_member_t asn_MBR_M1ThresholdEventA2_ExtIEs_525[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_527,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_525
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_527, .general_constraints = memb_criticality_constraint_525 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33754,18 +26516,7 @@ asn_TYPE_member_t asn_MBR_M1ThresholdEventA2_ExtIEs_525[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_528,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_528,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_525
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_528, .general_constraints = memb_extensionValue_constraint_525 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33796,18 +26547,7 @@ asn_TYPE_descriptor_t asn_DEF_M1ThresholdEventA2_ExtIEs = {
 	asn_DEF_M1ThresholdEventA2_ExtIEs_tags_525,	/* Same as above */
 	sizeof(asn_DEF_M1ThresholdEventA2_ExtIEs_tags_525)
 		/sizeof(asn_DEF_M1ThresholdEventA2_ExtIEs_tags_525[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_M1ThresholdEventA2_ExtIEs_525,
 	3,	/* Elements count */
 	&asn_SPC_M1ThresholdEventA2_ExtIEs_specs_525	/* Additional specs */
@@ -33878,18 +26618,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_532 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_TraceActivation_ExtIEs__extensionValue_532,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_532	/* Additional specs */
@@ -33901,18 +26630,7 @@ asn_TYPE_member_t asn_MBR_TraceActivation_ExtIEs_529[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_530,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_529
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_530, .general_constraints = memb_id_constraint_529 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -33921,18 +26639,7 @@ asn_TYPE_member_t asn_MBR_TraceActivation_ExtIEs_529[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_TraceActivation_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_531,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_529
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_531, .general_constraints = memb_criticality_constraint_529 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -33941,18 +26648,7 @@ asn_TYPE_member_t asn_MBR_TraceActivation_ExtIEs_529[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_532,
 		select_TraceActivation_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_532,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_529
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_532, .general_constraints = memb_extensionValue_constraint_529 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -33983,18 +26679,7 @@ asn_TYPE_descriptor_t asn_DEF_TraceActivation_ExtIEs = {
 	asn_DEF_TraceActivation_ExtIEs_tags_529,	/* Same as above */
 	sizeof(asn_DEF_TraceActivation_ExtIEs_tags_529)
 		/sizeof(asn_DEF_TraceActivation_ExtIEs_tags_529[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TraceActivation_ExtIEs_529,
 	3,	/* Elements count */
 	&asn_SPC_TraceActivation_ExtIEs_specs_529	/* Additional specs */
@@ -34019,18 +26704,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_536 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_536	/* Additional specs */
 };
@@ -34041,18 +26715,7 @@ asn_TYPE_member_t asn_MBR_Tunnel_Information_ExtIEs_533[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_534,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_533
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_534, .general_constraints = memb_id_constraint_533 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34061,18 +26724,7 @@ asn_TYPE_member_t asn_MBR_Tunnel_Information_ExtIEs_533[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_535,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_533
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_535, .general_constraints = memb_criticality_constraint_533 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34081,18 +26733,7 @@ asn_TYPE_member_t asn_MBR_Tunnel_Information_ExtIEs_533[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_536,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_536,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_533
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_536, .general_constraints = memb_extensionValue_constraint_533 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34123,18 +26764,7 @@ asn_TYPE_descriptor_t asn_DEF_Tunnel_Information_ExtIEs = {
 	asn_DEF_Tunnel_Information_ExtIEs_tags_533,	/* Same as above */
 	sizeof(asn_DEF_Tunnel_Information_ExtIEs_tags_533)
 		/sizeof(asn_DEF_Tunnel_Information_ExtIEs_tags_533[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Tunnel_Information_ExtIEs_533,
 	3,	/* Elements count */
 	&asn_SPC_Tunnel_Information_ExtIEs_specs_533	/* Additional specs */
@@ -34205,18 +26835,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_540 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_UEAggregate_MaximumBitrates_ExtIEs__extensionValue_540,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_540	/* Additional specs */
@@ -34228,18 +26847,7 @@ asn_TYPE_member_t asn_MBR_UEAggregate_MaximumBitrates_ExtIEs_537[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_538,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_537
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_538, .general_constraints = memb_id_constraint_537 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34248,18 +26856,7 @@ asn_TYPE_member_t asn_MBR_UEAggregate_MaximumBitrates_ExtIEs_537[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_UEAggregate_MaximumBitrates_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_539,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_537
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_539, .general_constraints = memb_criticality_constraint_537 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34268,18 +26865,7 @@ asn_TYPE_member_t asn_MBR_UEAggregate_MaximumBitrates_ExtIEs_537[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_540,
 		select_UEAggregate_MaximumBitrates_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_540,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_537
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_540, .general_constraints = memb_extensionValue_constraint_537 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34310,18 +26896,7 @@ asn_TYPE_descriptor_t asn_DEF_UEAggregate_MaximumBitrates_ExtIEs = {
 	asn_DEF_UEAggregate_MaximumBitrates_ExtIEs_tags_537,	/* Same as above */
 	sizeof(asn_DEF_UEAggregate_MaximumBitrates_ExtIEs_tags_537)
 		/sizeof(asn_DEF_UEAggregate_MaximumBitrates_ExtIEs_tags_537[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UEAggregate_MaximumBitrates_ExtIEs_537,
 	3,	/* Elements count */
 	&asn_SPC_UEAggregate_MaximumBitrates_ExtIEs_specs_537	/* Additional specs */
@@ -34371,18 +26946,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_544 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_UEAppLayerMeasConfig_ExtIEs__extensionValue_544,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_544	/* Additional specs */
@@ -34394,18 +26958,7 @@ asn_TYPE_member_t asn_MBR_UEAppLayerMeasConfig_ExtIEs_541[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_542,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_541
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_542, .general_constraints = memb_id_constraint_541 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34414,18 +26967,7 @@ asn_TYPE_member_t asn_MBR_UEAppLayerMeasConfig_ExtIEs_541[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_UEAppLayerMeasConfig_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_543,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_541
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_543, .general_constraints = memb_criticality_constraint_541 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34434,18 +26976,7 @@ asn_TYPE_member_t asn_MBR_UEAppLayerMeasConfig_ExtIEs_541[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_544,
 		select_UEAppLayerMeasConfig_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_544,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_541
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_544, .general_constraints = memb_extensionValue_constraint_541 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34476,18 +27007,7 @@ asn_TYPE_descriptor_t asn_DEF_UEAppLayerMeasConfig_ExtIEs = {
 	asn_DEF_UEAppLayerMeasConfig_ExtIEs_tags_541,	/* Same as above */
 	sizeof(asn_DEF_UEAppLayerMeasConfig_ExtIEs_tags_541)
 		/sizeof(asn_DEF_UEAppLayerMeasConfig_ExtIEs_tags_541[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UEAppLayerMeasConfig_ExtIEs_541,
 	3,	/* Elements count */
 	&asn_SPC_UEAppLayerMeasConfig_ExtIEs_specs_541	/* Additional specs */
@@ -34512,18 +27032,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_548 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_548	/* Additional specs */
 };
@@ -34534,18 +27043,7 @@ asn_TYPE_member_t asn_MBR_UE_S1AP_ID_pair_ExtIEs_545[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_546,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_545
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_546, .general_constraints = memb_id_constraint_545 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34554,18 +27052,7 @@ asn_TYPE_member_t asn_MBR_UE_S1AP_ID_pair_ExtIEs_545[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_547,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_545
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_547, .general_constraints = memb_criticality_constraint_545 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34574,18 +27061,7 @@ asn_TYPE_member_t asn_MBR_UE_S1AP_ID_pair_ExtIEs_545[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_548,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_548,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_545
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_548, .general_constraints = memb_extensionValue_constraint_545 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34616,18 +27092,7 @@ asn_TYPE_descriptor_t asn_DEF_UE_S1AP_ID_pair_ExtIEs = {
 	asn_DEF_UE_S1AP_ID_pair_ExtIEs_tags_545,	/* Same as above */
 	sizeof(asn_DEF_UE_S1AP_ID_pair_ExtIEs_tags_545)
 		/sizeof(asn_DEF_UE_S1AP_ID_pair_ExtIEs_tags_545[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UE_S1AP_ID_pair_ExtIEs_545,
 	3,	/* Elements count */
 	&asn_SPC_UE_S1AP_ID_pair_ExtIEs_specs_545	/* Additional specs */
@@ -34652,18 +27117,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_552 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_552	/* Additional specs */
 };
@@ -34674,18 +27128,7 @@ asn_TYPE_member_t asn_MBR_UE_associatedLogicalS1_ConnectionItemExtIEs_549[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_550,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_549
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_550, .general_constraints = memb_id_constraint_549 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34694,18 +27137,7 @@ asn_TYPE_member_t asn_MBR_UE_associatedLogicalS1_ConnectionItemExtIEs_549[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_551,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_549
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_551, .general_constraints = memb_criticality_constraint_549 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34714,18 +27146,7 @@ asn_TYPE_member_t asn_MBR_UE_associatedLogicalS1_ConnectionItemExtIEs_549[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_552,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_552,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_549
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_552, .general_constraints = memb_extensionValue_constraint_549 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34756,18 +27177,7 @@ asn_TYPE_descriptor_t asn_DEF_UE_associatedLogicalS1_ConnectionItemExtIEs = {
 	asn_DEF_UE_associatedLogicalS1_ConnectionItemExtIEs_tags_549,	/* Same as above */
 	sizeof(asn_DEF_UE_associatedLogicalS1_ConnectionItemExtIEs_tags_549)
 		/sizeof(asn_DEF_UE_associatedLogicalS1_ConnectionItemExtIEs_tags_549[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UE_associatedLogicalS1_ConnectionItemExtIEs_549,
 	3,	/* Elements count */
 	&asn_SPC_UE_associatedLogicalS1_ConnectionItemExtIEs_specs_549	/* Additional specs */
@@ -34792,18 +27202,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_556 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_556	/* Additional specs */
 };
@@ -34814,18 +27213,7 @@ asn_TYPE_member_t asn_MBR_UESecurityCapabilities_ExtIEs_553[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_554,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_553
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_554, .general_constraints = memb_id_constraint_553 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34834,18 +27222,7 @@ asn_TYPE_member_t asn_MBR_UESecurityCapabilities_ExtIEs_553[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_555,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_553
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_555, .general_constraints = memb_criticality_constraint_553 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34854,18 +27231,7 @@ asn_TYPE_member_t asn_MBR_UESecurityCapabilities_ExtIEs_553[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_556,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_556,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_553
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_556, .general_constraints = memb_extensionValue_constraint_553 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -34896,18 +27262,7 @@ asn_TYPE_descriptor_t asn_DEF_UESecurityCapabilities_ExtIEs = {
 	asn_DEF_UESecurityCapabilities_ExtIEs_tags_553,	/* Same as above */
 	sizeof(asn_DEF_UESecurityCapabilities_ExtIEs_tags_553)
 		/sizeof(asn_DEF_UESecurityCapabilities_ExtIEs_tags_553[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UESecurityCapabilities_ExtIEs_553,
 	3,	/* Elements count */
 	&asn_SPC_UESecurityCapabilities_ExtIEs_specs_553	/* Additional specs */
@@ -34932,18 +27287,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_560 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_560	/* Additional specs */
 };
@@ -34954,18 +27298,7 @@ asn_TYPE_member_t asn_MBR_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_557[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_558,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_557
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_558, .general_constraints = memb_id_constraint_557 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -34974,18 +27307,7 @@ asn_TYPE_member_t asn_MBR_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_557[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_559,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_557
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_559, .general_constraints = memb_criticality_constraint_557 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -34994,18 +27316,7 @@ asn_TYPE_member_t asn_MBR_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_557[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_560,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_560,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_557
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_560, .general_constraints = memb_extensionValue_constraint_557 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35036,18 +27347,7 @@ asn_TYPE_descriptor_t asn_DEF_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs = {
 	asn_DEF_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_tags_557,	/* Same as above */
 	sizeof(asn_DEF_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_tags_557)
 		/sizeof(asn_DEF_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_tags_557[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_557,
 	3,	/* Elements count */
 	&asn_SPC_UE_Sidelink_Aggregate_MaximumBitrates_ExtIEs_specs_557	/* Additional specs */
@@ -35072,18 +27372,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_564 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_564	/* Additional specs */
 };
@@ -35094,18 +27383,7 @@ asn_TYPE_member_t asn_MBR_UL_CP_SecurityInformation_ExtIEs_561[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_562,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_561
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_562, .general_constraints = memb_id_constraint_561 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35114,18 +27392,7 @@ asn_TYPE_member_t asn_MBR_UL_CP_SecurityInformation_ExtIEs_561[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_563,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_561
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_563, .general_constraints = memb_criticality_constraint_561 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35134,18 +27401,7 @@ asn_TYPE_member_t asn_MBR_UL_CP_SecurityInformation_ExtIEs_561[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_564,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_564,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_561
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_564, .general_constraints = memb_extensionValue_constraint_561 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35176,18 +27432,7 @@ asn_TYPE_descriptor_t asn_DEF_UL_CP_SecurityInformation_ExtIEs = {
 	asn_DEF_UL_CP_SecurityInformation_ExtIEs_tags_561,	/* Same as above */
 	sizeof(asn_DEF_UL_CP_SecurityInformation_ExtIEs_tags_561)
 		/sizeof(asn_DEF_UL_CP_SecurityInformation_ExtIEs_tags_561[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UL_CP_SecurityInformation_ExtIEs_561,
 	3,	/* Elements count */
 	&asn_SPC_UL_CP_SecurityInformation_ExtIEs_specs_561	/* Additional specs */
@@ -35237,18 +27482,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_568 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_UserLocationInformation_ExtIEs__extensionValue_568,
 	1,	/* Elements count */
 	&asn_SPC_extensionValue_specs_568	/* Additional specs */
@@ -35260,18 +27494,7 @@ asn_TYPE_member_t asn_MBR_UserLocationInformation_ExtIEs_565[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_566,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_565
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_566, .general_constraints = memb_id_constraint_565 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35280,18 +27503,7 @@ asn_TYPE_member_t asn_MBR_UserLocationInformation_ExtIEs_565[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_UserLocationInformation_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_567,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_565
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_567, .general_constraints = memb_criticality_constraint_565 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35300,18 +27512,7 @@ asn_TYPE_member_t asn_MBR_UserLocationInformation_ExtIEs_565[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_568,
 		select_UserLocationInformation_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_568,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_565
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_568, .general_constraints = memb_extensionValue_constraint_565 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35342,18 +27543,7 @@ asn_TYPE_descriptor_t asn_DEF_UserLocationInformation_ExtIEs = {
 	asn_DEF_UserLocationInformation_ExtIEs_tags_565,	/* Same as above */
 	sizeof(asn_DEF_UserLocationInformation_ExtIEs_tags_565)
 		/sizeof(asn_DEF_UserLocationInformation_ExtIEs_tags_565[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UserLocationInformation_ExtIEs_565,
 	3,	/* Elements count */
 	&asn_SPC_UserLocationInformation_ExtIEs_specs_565	/* Additional specs */
@@ -35378,18 +27568,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_572 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_572	/* Additional specs */
 };
@@ -35400,18 +27579,7 @@ asn_TYPE_member_t asn_MBR_V2XServicesAuthorized_ExtIEs_569[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_570,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_569
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_570, .general_constraints = memb_id_constraint_569 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35420,18 +27588,7 @@ asn_TYPE_member_t asn_MBR_V2XServicesAuthorized_ExtIEs_569[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_571,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_569
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_571, .general_constraints = memb_criticality_constraint_569 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35440,18 +27597,7 @@ asn_TYPE_member_t asn_MBR_V2XServicesAuthorized_ExtIEs_569[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_572,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_572,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_569
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_572, .general_constraints = memb_extensionValue_constraint_569 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35482,18 +27628,7 @@ asn_TYPE_descriptor_t asn_DEF_V2XServicesAuthorized_ExtIEs = {
 	asn_DEF_V2XServicesAuthorized_ExtIEs_tags_569,	/* Same as above */
 	sizeof(asn_DEF_V2XServicesAuthorized_ExtIEs_tags_569)
 		/sizeof(asn_DEF_V2XServicesAuthorized_ExtIEs_tags_569[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_V2XServicesAuthorized_ExtIEs_569,
 	3,	/* Elements count */
 	&asn_SPC_V2XServicesAuthorized_ExtIEs_specs_569	/* Additional specs */
@@ -35518,18 +27653,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_576 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_576	/* Additional specs */
 };
@@ -35540,18 +27664,7 @@ asn_TYPE_member_t asn_MBR_WLANMeasurementConfiguration_ExtIEs_573[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_574,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_573
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_574, .general_constraints = memb_id_constraint_573 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35560,18 +27673,7 @@ asn_TYPE_member_t asn_MBR_WLANMeasurementConfiguration_ExtIEs_573[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_575,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_573
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_575, .general_constraints = memb_criticality_constraint_573 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35580,18 +27682,7 @@ asn_TYPE_member_t asn_MBR_WLANMeasurementConfiguration_ExtIEs_573[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_576,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_576,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_573
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_576, .general_constraints = memb_extensionValue_constraint_573 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35622,18 +27713,7 @@ asn_TYPE_descriptor_t asn_DEF_WLANMeasurementConfiguration_ExtIEs = {
 	asn_DEF_WLANMeasurementConfiguration_ExtIEs_tags_573,	/* Same as above */
 	sizeof(asn_DEF_WLANMeasurementConfiguration_ExtIEs_tags_573)
 		/sizeof(asn_DEF_WLANMeasurementConfiguration_ExtIEs_tags_573[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_WLANMeasurementConfiguration_ExtIEs_573,
 	3,	/* Elements count */
 	&asn_SPC_WLANMeasurementConfiguration_ExtIEs_specs_573	/* Additional specs */
@@ -35704,18 +27784,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_580 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_X2TNLConfigurationInfo_ExtIEs__extensionValue_580,
 	2,	/* Elements count */
 	&asn_SPC_extensionValue_specs_580	/* Additional specs */
@@ -35727,18 +27796,7 @@ asn_TYPE_member_t asn_MBR_X2TNLConfigurationInfo_ExtIEs_577[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_578,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_577
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_578, .general_constraints = memb_id_constraint_577 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35747,18 +27805,7 @@ asn_TYPE_member_t asn_MBR_X2TNLConfigurationInfo_ExtIEs_577[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_X2TNLConfigurationInfo_ExtIEs_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_579,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_577
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_579, .general_constraints = memb_criticality_constraint_577 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35767,18 +27814,7 @@ asn_TYPE_member_t asn_MBR_X2TNLConfigurationInfo_ExtIEs_577[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_580,
 		select_X2TNLConfigurationInfo_ExtIEs_extensionValue_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_580,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_577
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_580, .general_constraints = memb_extensionValue_constraint_577 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35809,18 +27845,7 @@ asn_TYPE_descriptor_t asn_DEF_X2TNLConfigurationInfo_ExtIEs = {
 	asn_DEF_X2TNLConfigurationInfo_ExtIEs_tags_577,	/* Same as above */
 	sizeof(asn_DEF_X2TNLConfigurationInfo_ExtIEs_tags_577)
 		/sizeof(asn_DEF_X2TNLConfigurationInfo_ExtIEs_tags_577[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_X2TNLConfigurationInfo_ExtIEs_577,
 	3,	/* Elements count */
 	&asn_SPC_X2TNLConfigurationInfo_ExtIEs_specs_577	/* Additional specs */
@@ -35845,18 +27870,7 @@ asn_TYPE_descriptor_t asn_DEF_extensionValue_584 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	0, 0,	/* No members */
 	&asn_SPC_extensionValue_specs_584	/* Additional specs */
 };
@@ -35867,18 +27881,7 @@ asn_TYPE_member_t asn_MBR_ENBX2ExtTLA_ExtIEs_581[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProtocolExtensionID,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_id_constr_582,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_id_constraint_581
-		},
+		{ .per_constraints = &asn_PER_memb_id_constr_582, .general_constraints = memb_id_constraint_581 },
 		0, 0, /* No default value */
 		"id"
 		},
@@ -35887,18 +27890,7 @@ asn_TYPE_member_t asn_MBR_ENBX2ExtTLA_ExtIEs_581[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_583,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_581
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_583, .general_constraints = memb_criticality_constraint_581 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -35907,18 +27899,7 @@ asn_TYPE_member_t asn_MBR_ENBX2ExtTLA_ExtIEs_581[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_extensionValue_584,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_extensionValue_constr_584,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_extensionValue_constraint_581
-		},
+		{ .per_constraints = &asn_PER_memb_extensionValue_constr_584, .general_constraints = memb_extensionValue_constraint_581 },
 		0, 0, /* No default value */
 		"extensionValue"
 		},
@@ -35949,18 +27930,7 @@ asn_TYPE_descriptor_t asn_DEF_ENBX2ExtTLA_ExtIEs = {
 	asn_DEF_ENBX2ExtTLA_ExtIEs_tags_581,	/* Same as above */
 	sizeof(asn_DEF_ENBX2ExtTLA_ExtIEs_tags_581)
 		/sizeof(asn_DEF_ENBX2ExtTLA_ExtIEs_tags_581[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ENBX2ExtTLA_ExtIEs_581,
 	3,	/* Elements count */
 	&asn_SPC_ENBX2ExtTLA_ExtIEs_specs_581	/* Additional specs */

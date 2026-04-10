@@ -77,18 +77,7 @@ asn_TYPE_descriptor_t asn_DEF_cn_type_3 = {
 	asn_DEF_cn_type_tags_3,	/* Same as above */
 	sizeof(asn_DEF_cn_type_tags_3)
 		/sizeof(asn_DEF_cn_type_tags_3[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_cn_type_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_cn_type_3
-	},
+	{ .per_constraints = &asn_PER_type_cn_type_constr_3, .general_constraints = asn_validate_cn_type_3 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_cn_type_specs_3	/* Additional specs */
 };
@@ -183,18 +172,7 @@ asn_TYPE_descriptor_t asn_DEF_CNTypeRestrictionsItem = {
 	asn_DEF_CNTypeRestrictionsItem_tags_1,	/* Same as above */
 	sizeof(asn_DEF_CNTypeRestrictionsItem_tags_1)
 		/sizeof(asn_DEF_CNTypeRestrictionsItem_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_CNTypeRestrictionsItem_1,
 	3,	/* Elements count */
 	&asn_SPC_CNTypeRestrictionsItem_specs_1	/* Additional specs */

@@ -58,18 +58,7 @@ asn_TYPE_descriptor_t asn_DEF_ConcurrentWarningMessageIndicator = {
 	asn_DEF_ConcurrentWarningMessageIndicator_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ConcurrentWarningMessageIndicator_tags_1)
 		/sizeof(asn_DEF_ConcurrentWarningMessageIndicator_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ConcurrentWarningMessageIndicator_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_ConcurrentWarningMessageIndicator_1
-	},
+	{ .per_constraints = &asn_PER_type_ConcurrentWarningMessageIndicator_constr_1, .general_constraints = asn_validate_ConcurrentWarningMessageIndicator_1 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_ConcurrentWarningMessageIndicator_specs_1	/* Additional specs */
 };

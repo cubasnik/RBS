@@ -77,18 +77,7 @@ asn_TYPE_member_t asn_MBR_MobilityParametersModificationRange_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_handoverTriggerChangeLowerLimit_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_handoverTriggerChangeLowerLimit_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_handoverTriggerChangeLowerLimit_constr_2, .general_constraints = memb_handoverTriggerChangeLowerLimit_constraint_1 },
 		0, 0, /* No default value */
 		"handoverTriggerChangeLowerLimit"
 		},
@@ -97,18 +86,7 @@ asn_TYPE_member_t asn_MBR_MobilityParametersModificationRange_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_handoverTriggerChangeUpperLimit_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_handoverTriggerChangeUpperLimit_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_handoverTriggerChangeUpperLimit_constr_3, .general_constraints = memb_handoverTriggerChangeUpperLimit_constraint_1 },
 		0, 0, /* No default value */
 		"handoverTriggerChangeUpperLimit"
 		},
@@ -138,18 +116,7 @@ asn_TYPE_descriptor_t asn_DEF_MobilityParametersModificationRange = {
 	asn_DEF_MobilityParametersModificationRange_tags_1,	/* Same as above */
 	sizeof(asn_DEF_MobilityParametersModificationRange_tags_1)
 		/sizeof(asn_DEF_MobilityParametersModificationRange_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_MobilityParametersModificationRange_1,
 	2,	/* Elements count */
 	&asn_SPC_MobilityParametersModificationRange_specs_1	/* Additional specs */

@@ -182,18 +182,7 @@ asn_TYPE_descriptor_t asn_DEF_numberOfCellSpecificAntennaPorts_4 = {
 	asn_DEF_numberOfCellSpecificAntennaPorts_tags_4,	/* Same as above */
 	sizeof(asn_DEF_numberOfCellSpecificAntennaPorts_tags_4)
 		/sizeof(asn_DEF_numberOfCellSpecificAntennaPorts_tags_4[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_numberOfCellSpecificAntennaPorts_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_numberOfCellSpecificAntennaPorts_4
-	},
+	{ .per_constraints = &asn_PER_type_numberOfCellSpecificAntennaPorts_constr_4, .general_constraints = asn_validate_numberOfCellSpecificAntennaPorts_4 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_numberOfCellSpecificAntennaPorts_specs_4	/* Additional specs */
 };
@@ -204,18 +193,7 @@ asn_TYPE_member_t asn_MBR_RelativeNarrowbandTxPower_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_BIT_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_rNTP_PerPRB_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_rNTP_PerPRB_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_rNTP_PerPRB_constr_2, .general_constraints = memb_rNTP_PerPRB_constraint_1 },
 		0, 0, /* No default value */
 		"rNTP-PerPRB"
 		},
@@ -264,18 +242,7 @@ asn_TYPE_member_t asn_MBR_RelativeNarrowbandTxPower_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_p_B_constr_9,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_p_B_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_p_B_constr_9, .general_constraints = memb_p_B_constraint_1 },
 		0, 0, /* No default value */
 		"p-B"
 		},
@@ -284,18 +251,7 @@ asn_TYPE_member_t asn_MBR_RelativeNarrowbandTxPower_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_pDCCH_InterferenceImpact_constr_10,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_pDCCH_InterferenceImpact_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_pDCCH_InterferenceImpact_constr_10, .general_constraints = memb_pDCCH_InterferenceImpact_constraint_1 },
 		0, 0, /* No default value */
 		"pDCCH-InterferenceImpact"
 		},
@@ -351,18 +307,7 @@ asn_TYPE_descriptor_t asn_DEF_RelativeNarrowbandTxPower = {
 	asn_DEF_RelativeNarrowbandTxPower_tags_1,	/* Same as above */
 	sizeof(asn_DEF_RelativeNarrowbandTxPower_tags_1)
 		/sizeof(asn_DEF_RelativeNarrowbandTxPower_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RelativeNarrowbandTxPower_1,
 	6,	/* Elements count */
 	&asn_SPC_RelativeNarrowbandTxPower_specs_1	/* Additional specs */

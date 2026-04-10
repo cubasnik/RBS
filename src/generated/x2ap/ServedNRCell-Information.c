@@ -91,18 +91,7 @@ asn_TYPE_descriptor_t asn_DEF_nrModeInfo_7 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_nrModeInfo_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_nrModeInfo_constr_7, .general_constraints = CHOICE_constraint },
 	asn_MBR_ServedNRCell_Information__nrModeInfo_7,
 	2,	/* Elements count */
 	&asn_SPC_nrModeInfo_specs_7	/* Additional specs */
@@ -303,18 +292,7 @@ asn_TYPE_descriptor_t asn_DEF_ServedNRCell_Information = {
 	asn_DEF_ServedNRCell_Information_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ServedNRCell_Information_tags_1)
 		/sizeof(asn_DEF_ServedNRCell_Information_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_ServedNRCell_Information_1,
 	8,	/* Elements count */
 	&asn_SPC_ServedNRCell_Information_specs_1	/* Additional specs */

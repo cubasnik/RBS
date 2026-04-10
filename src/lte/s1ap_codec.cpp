@@ -71,6 +71,7 @@
 #include "../../src/generated/s1ap/E-RABSetupItemCtxtSURes.h"
 #include "../../src/generated/s1ap/E-RABToBeSwitchedDLList.h"
 #include "../../src/generated/s1ap/asn_application.h"
+#include "../../src/generated/s1ap/per_encoder.h"
 
 #ifdef _MSC_VER
 #  pragma warning(pop)
@@ -89,23 +90,23 @@ namespace rbs::lte {
 // Internal helpers
 // ═════════════════════════════════════════════════════════════════════════════
 
-/// Encode a fully-built S1AP_PDU_t to APER bytes.
+/// Encode a fully-built S1AP_PDU_t to UPER bytes.
 /// Returns empty ByteBuffer on failure.
 static ByteBuffer encode_pdu(S1AP_PDU_t& pdu)
 {
-    asn_encode_to_new_buffer_result_t res =
-        asn_encode_to_new_buffer(nullptr,
-                                 ATS_UNALIGNED_BASIC_PER,
-                                 &asn_DEF_S1AP_PDU,
-                                 &pdu);
-    if (!res.buffer || res.result.encoded < 0) {
-        RBS_LOG_ERROR("S1AP-CODEC", "APER encode failed (errno={})", errno);
-        free(res.buffer);
+    void* buf = nullptr;
+    ssize_t nbytes = uper_encode_to_new_buffer(&asn_DEF_S1AP_PDU,
+                                               nullptr,
+                                               &pdu,
+                                               &buf);
+    if (nbytes < 0 || !buf) {
+        RBS_LOG_ERROR("S1AP-CODEC", "UPER encode failed");
+        free(buf);
         return {};
     }
-    ByteBuffer out(static_cast<const uint8_t*>(res.buffer),
-                   static_cast<const uint8_t*>(res.buffer) + res.result.encoded);
-    free(res.buffer);
+    ByteBuffer out(static_cast<const uint8_t*>(buf),
+                   static_cast<const uint8_t*>(buf) + static_cast<size_t>(nbytes));
+    free(buf);
     return out;
 }
 
@@ -281,7 +282,7 @@ ByteBuffer s1ap_encode_S1SetupRequest(uint32_t enbId,
     // Free only heap-allocated pointer members; stack allocations auto-clean.
     // In a full implementation we would call ASN_STRUCT_FREE_CONTENTS_ONLY here.
     // For the simulator the process lifetime is bounded, but let's be clean:
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
 
     return out;
 }
@@ -370,7 +371,7 @@ ByteBuffer s1ap_encode_InitialUEMessage(uint32_t enbUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -451,7 +452,7 @@ ByteBuffer s1ap_encode_UplinkNASTransport(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -509,7 +510,7 @@ ByteBuffer s1ap_encode_DownlinkNASTransport(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -576,7 +577,7 @@ ByteBuffer s1ap_encode_InitialContextSetupResponse(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -649,7 +650,7 @@ ByteBuffer s1ap_encode_UEContextReleaseRequest(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -694,7 +695,7 @@ ByteBuffer s1ap_encode_UEContextReleaseComplete(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -778,7 +779,7 @@ ByteBuffer s1ap_encode_ERABSetupResponse(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -842,7 +843,7 @@ ByteBuffer s1ap_encode_ERABReleaseResponse(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -932,7 +933,7 @@ ByteBuffer s1ap_encode_PathSwitchRequest(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -1036,7 +1037,7 @@ ByteBuffer s1ap_encode_HandoverRequired(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 
@@ -1104,7 +1105,7 @@ ByteBuffer s1ap_encode_HandoverNotify(uint32_t mmeUeS1apId,
     }
 
     ByteBuffer out = encode_pdu(pdu);
-    ASN_STRUCT_FREE_CONTENTS_ONLY(asn_DEF_S1AP_PDU, &pdu);
+    // ASN_STRUCT_FREE_CONTENTS_ONLY: omitted — static IE bufs (PLMN/TAC/CellId) are not heap-allocated.
     return out;
 }
 

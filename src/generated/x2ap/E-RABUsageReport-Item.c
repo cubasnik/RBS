@@ -156,18 +156,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReport_Item_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_OCTET_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_startTimeStamp_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_startTimeStamp_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_startTimeStamp_constr_2, .general_constraints = memb_startTimeStamp_constraint_1 },
 		0, 0, /* No default value */
 		"startTimeStamp"
 		},
@@ -176,18 +165,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReport_Item_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_OCTET_STRING,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_endTimeStamp_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_endTimeStamp_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_endTimeStamp_constr_3, .general_constraints = memb_endTimeStamp_constraint_1 },
 		0, 0, /* No default value */
 		"endTimeStamp"
 		},
@@ -196,18 +174,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReport_Item_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_INTEGER,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_usageCountUL_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_usageCountUL_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_usageCountUL_constr_4, .general_constraints = memb_usageCountUL_constraint_1 },
 		0, 0, /* No default value */
 		"usageCountUL"
 		},
@@ -216,18 +183,7 @@ asn_TYPE_member_t asn_MBR_E_RABUsageReport_Item_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_INTEGER,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_usageCountDL_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_usageCountDL_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_usageCountDL_constr_5, .general_constraints = memb_usageCountDL_constraint_1 },
 		0, 0, /* No default value */
 		"usageCountDL"
 		},
@@ -282,18 +238,7 @@ asn_TYPE_descriptor_t asn_DEF_E_RABUsageReport_Item = {
 	asn_DEF_E_RABUsageReport_Item_tags_1,	/* Same as above */
 	sizeof(asn_DEF_E_RABUsageReport_Item_tags_1)
 		/sizeof(asn_DEF_E_RABUsageReport_Item_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABUsageReport_Item_1,
 	5,	/* Elements count */
 	&asn_SPC_E_RABUsageReport_Item_specs_1	/* Additional specs */

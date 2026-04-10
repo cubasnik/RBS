@@ -140,18 +140,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P0 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P0_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P0_tags_1)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P0_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemBearerSUReqIEs_1,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemBearerSUReqIEs_specs_1	/* Additional specs */
@@ -170,18 +159,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P1 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P1_tags_2,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P1_tags_2)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P1_tags_2[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABSetupItemBearerSUResIEs_5,
 	3,	/* Elements count */
 	&asn_SPC_E_RABSetupItemBearerSUResIEs_specs_5	/* Additional specs */
@@ -200,18 +178,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P2 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P2_tags_3,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P2_tags_3)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P2_tags_3[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeModifiedItemBearerModReqIEs_9,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeModifiedItemBearerModReqIEs_specs_9	/* Additional specs */
@@ -230,18 +197,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P3 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P3_tags_4,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P3_tags_4)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P3_tags_4[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABModifyItemBearerModResIEs_13,
 	3,	/* Elements count */
 	&asn_SPC_E_RABModifyItemBearerModResIEs_specs_13	/* Additional specs */
@@ -260,18 +216,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P4 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P4_tags_5,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P4_tags_5)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P4_tags_5[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABReleaseItemBearerRelCompIEs_17,
 	3,	/* Elements count */
 	&asn_SPC_E_RABReleaseItemBearerRelCompIEs_specs_17	/* Additional specs */
@@ -290,18 +235,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P5 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P5_tags_6,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P5_tags_6)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P5_tags_6[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemCtxtSUReqIEs_21,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemCtxtSUReqIEs_specs_21	/* Additional specs */
@@ -320,18 +254,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P6 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P6_tags_7,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P6_tags_7)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P6_tags_7[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABSetupItemCtxtSUResIEs_25,
 	3,	/* Elements count */
 	&asn_SPC_E_RABSetupItemCtxtSUResIEs_specs_25	/* Additional specs */
@@ -350,18 +273,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P7 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P7_tags_8,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P7_tags_8)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P7_tags_8[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_TAIItemIEs_29,
 	3,	/* Elements count */
 	&asn_SPC_TAIItemIEs_specs_29	/* Additional specs */
@@ -380,18 +292,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P8 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P8_tags_9,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P8_tags_9)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P8_tags_9[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UE_associatedLogicalS1_ConnectionItemRes_33,
 	3,	/* Elements count */
 	&asn_SPC_UE_associatedLogicalS1_ConnectionItemRes_specs_33	/* Additional specs */
@@ -410,18 +311,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P9 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P9_tags_10,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P9_tags_10)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P9_tags_10[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_UE_associatedLogicalS1_ConnectionItemResAck_37,
 	3,	/* Elements count */
 	&asn_SPC_UE_associatedLogicalS1_ConnectionItemResAck_specs_37	/* Additional specs */
@@ -440,18 +330,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P10 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P10_tags_11,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P10_tags_11)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P10_tags_11[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABModifyItemBearerModConfIEs_41,
 	3,	/* Elements count */
 	&asn_SPC_E_RABModifyItemBearerModConfIEs_specs_41	/* Additional specs */
@@ -470,18 +349,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P11 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P11_tags_12,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P11_tags_12)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P11_tags_12[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_Bearers_SubjectToStatusTransfer_ItemIEs_45,
 	3,	/* Elements count */
 	&asn_SPC_Bearers_SubjectToStatusTransfer_ItemIEs_specs_45	/* Additional specs */
@@ -500,18 +368,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P12 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P12_tags_13,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P12_tags_13)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P12_tags_13[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABInformationListIEs_49,
 	3,	/* Elements count */
 	&asn_SPC_E_RABInformationListIEs_specs_49	/* Additional specs */
@@ -530,18 +387,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P13 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P13_tags_14,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P13_tags_14)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P13_tags_14[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABItemIEs_53,
 	3,	/* Elements count */
 	&asn_SPC_E_RABItemIEs_specs_53	/* Additional specs */
@@ -560,18 +406,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P14 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P14_tags_15,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P14_tags_15)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P14_tags_15[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABUsageReportItemIEs_57,
 	3,	/* Elements count */
 	&asn_SPC_E_RABUsageReportItemIEs_specs_57	/* Additional specs */
@@ -590,18 +425,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P15 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P15_tags_16,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P15_tags_16)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P15_tags_16[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_MDTMode_ExtensionIE_61,
 	3,	/* Elements count */
 	&asn_SPC_MDTMode_ExtensionIE_specs_61	/* Additional specs */
@@ -620,18 +444,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P16 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P16_tags_17,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P16_tags_17)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P16_tags_17[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedCellItemIEs_65,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedCellItemIEs_specs_65	/* Additional specs */
@@ -650,18 +463,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P17 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P17_tags_18,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P17_tags_18)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P17_tags_18[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_RecommendedENBItemIEs_69,
 	3,	/* Elements count */
 	&asn_SPC_RecommendedENBItemIEs_specs_69	/* Additional specs */
@@ -680,18 +482,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P18 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P18_tags_19,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P18_tags_19)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P18_tags_19[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SecondaryRATDataUsageReportItemIEs_73,
 	3,	/* Elements count */
 	&asn_SPC_SecondaryRATDataUsageReportItemIEs_specs_73	/* Additional specs */
@@ -710,18 +501,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P19 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P19_tags_20,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P19_tags_20)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P19_tags_20[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_SONInformation_ExtensionIE_77,
 	3,	/* Elements count */
 	&asn_SPC_SONInformation_ExtensionIE_specs_77	/* Additional specs */
@@ -740,18 +520,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P20 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P20_tags_21,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P20_tags_21)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P20_tags_21[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABDataForwardingItemIEs_449,
 	3,	/* Elements count */
 	&asn_SPC_E_RABDataForwardingItemIEs_specs_449	/* Additional specs */
@@ -770,18 +539,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P21 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P21_tags_22,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P21_tags_22)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P21_tags_22[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSetupItemHOReqIEs_453,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSetupItemHOReqIEs_specs_453	/* Additional specs */
@@ -800,18 +558,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P22 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P22_tags_23,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P22_tags_23)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P22_tags_23[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABAdmittedItemIEs_457,
 	3,	/* Elements count */
 	&asn_SPC_E_RABAdmittedItemIEs_specs_457	/* Additional specs */
@@ -830,18 +577,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P23 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P23_tags_24,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P23_tags_24)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P23_tags_24[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedtoSetupItemHOReqAckIEs_461,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedtoSetupItemHOReqAckIEs_specs_461	/* Additional specs */
@@ -860,18 +596,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P24 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P24_tags_25,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P24_tags_25)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P24_tags_25[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSwitchedDLItemIEs_465,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSwitchedDLItemIEs_specs_465	/* Additional specs */
@@ -890,18 +615,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P25 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P25_tags_26,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P25_tags_26)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P25_tags_26[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeSwitchedULItemIEs_469,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeSwitchedULItemIEs_specs_469	/* Additional specs */
@@ -920,18 +634,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P26 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P26_tags_27,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P26_tags_27)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P26_tags_27[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABToBeModifiedItemBearerModIndIEs_473,
 	3,	/* Elements count */
 	&asn_SPC_E_RABToBeModifiedItemBearerModIndIEs_specs_473	/* Additional specs */
@@ -950,18 +653,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P27 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P27_tags_28,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P27_tags_28)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P27_tags_28[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABNotToBeModifiedItemBearerModIndIEs_477,
 	3,	/* Elements count */
 	&asn_SPC_E_RABNotToBeModifiedItemBearerModIndIEs_specs_477	/* Additional specs */
@@ -980,18 +672,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P28 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P28_tags_29,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P28_tags_29)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P28_tags_29[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedToResumeItemResumeReqIEs_481,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedToResumeItemResumeReqIEs_specs_481	/* Additional specs */
@@ -1010,18 +691,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_SingleContainer_117P29 = {
 	asn_DEF_ProtocolIE_SingleContainer_117P29_tags_30,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_SingleContainer_117P29_tags_30)
 		/sizeof(asn_DEF_ProtocolIE_SingleContainer_117P29_tags_30[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_E_RABFailedToResumeItemResumeResIEs_485,
 	3,	/* Elements count */
 	&asn_SPC_E_RABFailedToResumeItemResumeResIEs_specs_485	/* Additional specs */

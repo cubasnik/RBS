@@ -769,8 +769,16 @@ INTEGER_encode_uper(const asn_TYPE_descriptor_t *td,
 		/* #11.5.6 -> #11.3 */
 		ASN_DEBUG("Encoding integer %ld (%lu) with range %d bits",
 			value, value - ct->lower_bound, ct->range_bits);
-        if(per_long_range_rebase(value, ct->lower_bound, ct->upper_bound, &v)) {
-            ASN__ENCODE_FAILED;
+        if(specs && specs->field_unsigned) {
+            /* Unsigned integer: use unsigned comparison to handle ULONG_MAX upper bounds */
+            unsigned long uval = (unsigned long)value;
+            if(uval < (unsigned long)ct->lower_bound || uval > (unsigned long)ct->upper_bound)
+                ASN__ENCODE_FAILED;
+            v = uval - (unsigned long)ct->lower_bound;
+        } else {
+            if(per_long_range_rebase(value, ct->lower_bound, ct->upper_bound, &v)) {
+                ASN__ENCODE_FAILED;
+            }
         }
         if(uper_put_constrained_whole_number_u(po, v, ct->range_bits))
             ASN__ENCODE_FAILED;

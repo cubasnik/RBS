@@ -80,18 +80,7 @@ asn_TYPE_descriptor_t asn_DEF_full_list_3 = {
 	asn_DEF_full_list_tags_3,	/* Same as above */
 	sizeof(asn_DEF_full_list_tags_3)
 		/sizeof(asn_DEF_full_list_tags_3[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_full_list_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_full_list_3
-	},
+	{ .per_constraints = &asn_PER_type_full_list_constr_3, .general_constraints = asn_validate_full_list_3 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_full_list_specs_3	/* Additional specs */
 };
@@ -160,18 +149,7 @@ asn_TYPE_descriptor_t asn_DEF_CellAssistanceInformation = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_CellAssistanceInformation_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_CellAssistanceInformation_constr_1, .general_constraints = CHOICE_constraint },
 	asn_MBR_CellAssistanceInformation_1,
 	2,	/* Elements count */
 	&asn_SPC_CellAssistanceInformation_specs_1	/* Additional specs */

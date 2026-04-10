@@ -56,18 +56,7 @@ asn_TYPE_descriptor_t asn_DEF_ENB_UE_S1AP_ID = {
 	asn_DEF_ENB_UE_S1AP_ID_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ENB_UE_S1AP_ID_tags_1)
 		/sizeof(asn_DEF_ENB_UE_S1AP_ID_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ENB_UE_S1AP_ID_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		ENB_UE_S1AP_ID_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ENB_UE_S1AP_ID_constr_1, .general_constraints = ENB_UE_S1AP_ID_constraint },
 	0, 0,	/* No members */
 	0	/* No specifics */
 };

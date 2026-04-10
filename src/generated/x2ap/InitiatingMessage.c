@@ -1643,18 +1643,7 @@ asn_TYPE_descriptor_t asn_DEF_value_4 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		OPEN_TYPE_constraint
-	},
+	{ .general_constraints = OPEN_TYPE_constraint },
 	asn_MBR_InitiatingMessage__value_4,
 	49,	/* Elements count */
 	&asn_SPC_value_specs_4	/* Additional specs */
@@ -1666,18 +1655,7 @@ asn_TYPE_member_t asn_MBR_InitiatingMessage_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_ProcedureCode,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_procedureCode_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_procedureCode_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_procedureCode_constr_2, .general_constraints = memb_procedureCode_constraint_1 },
 		0, 0, /* No default value */
 		"procedureCode"
 		},
@@ -1686,18 +1664,7 @@ asn_TYPE_member_t asn_MBR_InitiatingMessage_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_Criticality,
 		select_InitiatingMessage_criticality_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_criticality_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_criticality_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_criticality_constr_3, .general_constraints = memb_criticality_constraint_1 },
 		0, 0, /* No default value */
 		"criticality"
 		},
@@ -1706,18 +1673,7 @@ asn_TYPE_member_t asn_MBR_InitiatingMessage_1[] = {
 		+1,	/* EXPLICIT tag at current level */
 		&asn_DEF_value_4,
 		select_InitiatingMessage_value_type,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_value_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_value_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_value_constr_4, .general_constraints = memb_value_constraint_1 },
 		0, 0, /* No default value */
 		"value"
 		},
@@ -1748,18 +1704,7 @@ asn_TYPE_descriptor_t asn_DEF_InitiatingMessage = {
 	asn_DEF_InitiatingMessage_tags_1,	/* Same as above */
 	sizeof(asn_DEF_InitiatingMessage_tags_1)
 		/sizeof(asn_DEF_InitiatingMessage_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_InitiatingMessage_1,
 	3,	/* Elements count */
 	&asn_SPC_InitiatingMessage_specs_1	/* Additional specs */

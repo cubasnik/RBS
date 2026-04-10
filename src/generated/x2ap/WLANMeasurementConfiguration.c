@@ -96,18 +96,7 @@ asn_TYPE_descriptor_t asn_DEF_wlan_rssi_4 = {
 	asn_DEF_wlan_rssi_tags_4,	/* Same as above */
 	sizeof(asn_DEF_wlan_rssi_tags_4)
 		/sizeof(asn_DEF_wlan_rssi_tags_4[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_wlan_rssi_constr_4,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_wlan_rssi_4
-	},
+	{ .per_constraints = &asn_PER_type_wlan_rssi_constr_4, .general_constraints = asn_validate_wlan_rssi_4 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_wlan_rssi_specs_4	/* Additional specs */
 };
@@ -156,18 +145,7 @@ asn_TYPE_descriptor_t asn_DEF_wlan_rtt_7 = {
 	asn_DEF_wlan_rtt_tags_7,	/* Same as above */
 	sizeof(asn_DEF_wlan_rtt_tags_7)
 		/sizeof(asn_DEF_wlan_rtt_tags_7[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_wlan_rtt_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		asn_validate_wlan_rtt_7
-	},
+	{ .per_constraints = &asn_PER_type_wlan_rtt_constr_7, .general_constraints = asn_validate_wlan_rtt_7 },
 	0, 0,	/* Defined elsewhere */
 	&asn_SPC_wlan_rtt_specs_7	/* Additional specs */
 };
@@ -304,18 +282,7 @@ asn_TYPE_descriptor_t asn_DEF_WLANMeasurementConfiguration = {
 	asn_DEF_WLANMeasurementConfiguration_tags_1,	/* Same as above */
 	sizeof(asn_DEF_WLANMeasurementConfiguration_tags_1)
 		/sizeof(asn_DEF_WLANMeasurementConfiguration_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_WLANMeasurementConfiguration_1,
 	5,	/* Elements count */
 	&asn_SPC_WLANMeasurementConfiguration_specs_1	/* Additional specs */

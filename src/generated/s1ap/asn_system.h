@@ -60,6 +60,7 @@ typedef	unsigned int	uint32_t;
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <float.h>
+#include <inttypes.h>   /* PRId32, PRIu32, PRIdMAX, PRIuMAX, etc. */
 #include <inttypes.h>	/* PRId32, PRIu32, PRIdMAX, PRIuMAX, etc. */
 #define isnan _isnan
 #define finite _finite

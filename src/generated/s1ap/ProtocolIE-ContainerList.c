@@ -118,18 +118,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P0 = {
 	asn_DEF_ProtocolIE_ContainerList_151P0_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P0_tags_1)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P0_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P0_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P0_constr_1, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P0_1,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P0_specs_1	/* Additional specs */
@@ -175,18 +164,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P1 = {
 	asn_DEF_ProtocolIE_ContainerList_151P1_tags_3,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P1_tags_3)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P1_tags_3[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P1_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P1_constr_3, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P1_3,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P1_specs_3	/* Additional specs */
@@ -232,18 +210,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P2 = {
 	asn_DEF_ProtocolIE_ContainerList_151P2_tags_5,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P2_tags_5)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P2_tags_5[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P2_constr_5,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P2_constr_5, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P2_5,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P2_specs_5	/* Additional specs */
@@ -289,18 +256,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P3 = {
 	asn_DEF_ProtocolIE_ContainerList_151P3_tags_7,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P3_tags_7)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P3_tags_7[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P3_constr_7,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P3_constr_7, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P3_7,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P3_specs_7	/* Additional specs */
@@ -346,18 +302,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P4 = {
 	asn_DEF_ProtocolIE_ContainerList_151P4_tags_9,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P4_tags_9)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P4_tags_9[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P4_constr_9,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P4_constr_9, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P4_9,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P4_specs_9	/* Additional specs */
@@ -403,18 +348,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P5 = {
 	asn_DEF_ProtocolIE_ContainerList_151P5_tags_11,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P5_tags_11)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P5_tags_11[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P5_constr_11,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P5_constr_11, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P5_11,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P5_specs_11	/* Additional specs */
@@ -460,18 +394,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P6 = {
 	asn_DEF_ProtocolIE_ContainerList_151P6_tags_13,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P6_tags_13)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P6_tags_13[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P6_constr_13,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P6_constr_13, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P6_13,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P6_specs_13	/* Additional specs */
@@ -517,18 +440,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P7 = {
 	asn_DEF_ProtocolIE_ContainerList_151P7_tags_15,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P7_tags_15)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P7_tags_15[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P7_constr_15,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P7_constr_15, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P7_15,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P7_specs_15	/* Additional specs */
@@ -574,18 +486,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P8 = {
 	asn_DEF_ProtocolIE_ContainerList_151P8_tags_17,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P8_tags_17)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P8_tags_17[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P8_constr_17,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P8_constr_17, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P8_17,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P8_specs_17	/* Additional specs */
@@ -631,18 +532,7 @@ asn_TYPE_descriptor_t asn_DEF_ProtocolIE_ContainerList_151P9 = {
 	asn_DEF_ProtocolIE_ContainerList_151P9_tags_19,	/* Same as above */
 	sizeof(asn_DEF_ProtocolIE_ContainerList_151P9_tags_19)
 		/sizeof(asn_DEF_ProtocolIE_ContainerList_151P9_tags_19[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ProtocolIE_ContainerList_151P9_constr_19,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ProtocolIE_ContainerList_151P9_constr_19, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ProtocolIE_ContainerList_151P9_19,
 	1,	/* Single element */
 	&asn_SPC_ProtocolIE_ContainerList_151P9_specs_19	/* Additional specs */

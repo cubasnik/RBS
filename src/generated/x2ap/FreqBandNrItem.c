@@ -133,18 +133,7 @@ asn_TYPE_descriptor_t asn_DEF_supportedSULBandList_3 = {
 	asn_DEF_supportedSULBandList_tags_3,	/* Same as above */
 	sizeof(asn_DEF_supportedSULBandList_tags_3)
 		/sizeof(asn_DEF_supportedSULBandList_tags_3[0]), /* 2 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_supportedSULBandList_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_supportedSULBandList_constr_3, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_FreqBandNrItem__supportedSULBandList_3,
 	1,	/* Single element */
 	&asn_SPC_supportedSULBandList_specs_3	/* Additional specs */
@@ -156,18 +145,7 @@ asn_TYPE_member_t asn_MBR_FreqBandNrItem_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_freqBandIndicatorNr_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_freqBandIndicatorNr_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_freqBandIndicatorNr_constr_2, .general_constraints = memb_freqBandIndicatorNr_constraint_1 },
 		0, 0, /* No default value */
 		"freqBandIndicatorNr"
 		},
@@ -176,18 +154,7 @@ asn_TYPE_member_t asn_MBR_FreqBandNrItem_1[] = {
 		0,
 		&asn_DEF_supportedSULBandList_3,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_supportedSULBandList_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_supportedSULBandList_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_supportedSULBandList_constr_3, .general_constraints = memb_supportedSULBandList_constraint_1 },
 		0, 0, /* No default value */
 		"supportedSULBandList"
 		},
@@ -240,18 +207,7 @@ asn_TYPE_descriptor_t asn_DEF_FreqBandNrItem = {
 	asn_DEF_FreqBandNrItem_tags_1,	/* Same as above */
 	sizeof(asn_DEF_FreqBandNrItem_tags_1)
 		/sizeof(asn_DEF_FreqBandNrItem_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_constraint
-	},
+	{ .general_constraints = SEQUENCE_constraint },
 	asn_MBR_FreqBandNrItem_1,
 	3,	/* Elements count */
 	&asn_SPC_FreqBandNrItem_specs_1	/* Additional specs */

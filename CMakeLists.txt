@@ -102,7 +102,14 @@ target_link_libraries(rbs_oms PUBLIC rbs_common)
 file(GLOB S1AP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/s1ap/*.c")
 add_library(rbs_asn1_s1ap STATIC ${S1AP_SOURCES})
 set_target_properties(rbs_asn1_s1ap PROPERTIES C_STANDARD 11)
-target_compile_definitions(rbs_asn1_s1ap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_compile_definitions(rbs_asn1_s1ap PUBLIC
+    ASN_DISABLE_OER_SUPPORT
+    ASN_DISABLE_BER_SUPPORT
+    ASN_DISABLE_XER_SUPPORT
+    ASN_DISABLE_JER_SUPPORT
+    ASN_DISABLE_CBOR_SUPPORT
+    ASN_DISABLE_UPER_SUPPORT
+    ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
 target_include_directories(rbs_asn1_s1ap PUBLIC
     "${CMAKE_SOURCE_DIR}/src/generated/s1ap"
 )
@@ -115,7 +122,14 @@ endif()
 file(GLOB X2AP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/x2ap/*.c")
 add_library(rbs_asn1_x2ap STATIC ${X2AP_SOURCES})
 set_target_properties(rbs_asn1_x2ap PROPERTIES C_STANDARD 11)
-target_compile_definitions(rbs_asn1_x2ap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_compile_definitions(rbs_asn1_x2ap PUBLIC
+    ASN_DISABLE_OER_SUPPORT
+    ASN_DISABLE_BER_SUPPORT
+    ASN_DISABLE_XER_SUPPORT
+    ASN_DISABLE_JER_SUPPORT
+    ASN_DISABLE_CBOR_SUPPORT
+    ASN_DISABLE_UPER_SUPPORT
+    ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
 target_include_directories(rbs_asn1_x2ap PUBLIC
     "${CMAKE_SOURCE_DIR}/src/generated/x2ap"
 )
@@ -128,7 +142,14 @@ endif()
 file(GLOB NBAP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/nbap/*.c")
 add_library(rbs_asn1_nbap STATIC ${NBAP_SOURCES})
 set_target_properties(rbs_asn1_nbap PROPERTIES C_STANDARD 11)
-target_compile_definitions(rbs_asn1_nbap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_compile_definitions(rbs_asn1_nbap PUBLIC
+    ASN_DISABLE_OER_SUPPORT
+    ASN_DISABLE_BER_SUPPORT
+    ASN_DISABLE_XER_SUPPORT
+    ASN_DISABLE_JER_SUPPORT
+    ASN_DISABLE_CBOR_SUPPORT
+    ASN_DISABLE_UPER_SUPPORT
+    ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
 target_include_directories(rbs_asn1_nbap PUBLIC
     "${CMAKE_SOURCE_DIR}/src/generated/nbap"
 )

@@ -84,18 +84,7 @@ asn_TYPE_member_t asn_MBR_WidebandCQICodeword1_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_four_bitCQI_constr_2,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_four_bitCQI_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_four_bitCQI_constr_2, .general_constraints = memb_four_bitCQI_constraint_1 },
 		0, 0, /* No default value */
 		"four-bitCQI"
 		},
@@ -104,18 +93,7 @@ asn_TYPE_member_t asn_MBR_WidebandCQICodeword1_1[] = {
 		-1,	/* IMPLICIT tag at current level */
 		&asn_DEF_NativeInteger,
 		0,
-		{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-			&asn_PER_memb_three_bitSpatialDifferentialCQI_constr_3,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-			0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-			memb_three_bitSpatialDifferentialCQI_constraint_1
-		},
+		{ .per_constraints = &asn_PER_memb_three_bitSpatialDifferentialCQI_constr_3, .general_constraints = memb_three_bitSpatialDifferentialCQI_constraint_1 },
 		0, 0, /* No default value */
 		"three-bitSpatialDifferentialCQI"
 		},
@@ -142,18 +120,7 @@ asn_TYPE_descriptor_t asn_DEF_WidebandCQICodeword1 = {
 	0,	/* No effective tags (count) */
 	0,	/* No tags (pointer) */
 	0,	/* No tags (count) */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_WidebandCQICodeword1_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		CHOICE_constraint
-	},
+	{ .per_constraints = &asn_PER_type_WidebandCQICodeword1_constr_1, .general_constraints = CHOICE_constraint },
 	asn_MBR_WidebandCQICodeword1_1,
 	2,	/* Elements count */
 	&asn_SPC_WidebandCQICodeword1_specs_1	/* Additional specs */

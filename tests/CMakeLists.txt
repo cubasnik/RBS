@@ -23,3 +23,23 @@ add_test(NAME test_lte_mac COMMAND test_lte_mac)
 add_executable(test_pdcp test_pdcp.cpp)
 target_link_libraries(test_pdcp PRIVATE rbs_lte)
 add_test(NAME test_pdcp COMMAND test_pdcp)
+
+# ── test_lte_phy ──────────────────────────────────────────────────
+add_executable(test_lte_phy test_lte_phy.cpp)
+target_link_libraries(test_lte_phy PRIVATE rbs_lte)
+add_test(NAME test_lte_phy COMMAND test_lte_phy)
+
+# ── test_lte_rlc ──────────────────────────────────────────────────
+add_executable(test_lte_rlc test_lte_rlc.cpp)
+target_link_libraries(test_lte_rlc PRIVATE rbs_lte)
+add_test(NAME test_lte_rlc COMMAND test_lte_rlc)
+
+# ── test_umts_mac ─────────────────────────────────────────────────
+add_executable(test_umts_mac test_umts_mac.cpp)
+target_link_libraries(test_umts_mac PRIVATE rbs_umts)
+add_test(NAME test_umts_mac COMMAND test_umts_mac)
+
+# ── test_s1ap_codec ───────────────────────────────────────────────
+add_executable(test_s1ap_codec test_s1ap_codec.cpp)
+target_link_libraries(test_s1ap_codec PRIVATE rbs_lte)
+add_test(NAME test_s1ap_codec COMMAND test_s1ap_codec)

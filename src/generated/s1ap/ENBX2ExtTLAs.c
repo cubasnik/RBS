@@ -54,18 +54,7 @@ asn_TYPE_descriptor_t asn_DEF_ENBX2ExtTLAs = {
 	asn_DEF_ENBX2ExtTLAs_tags_1,	/* Same as above */
 	sizeof(asn_DEF_ENBX2ExtTLAs_tags_1)
 		/sizeof(asn_DEF_ENBX2ExtTLAs_tags_1[0]), /* 1 */
-	{
-#if !defined(ASN_DISABLE_OER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_OER_SUPPORT) */
-#if !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT)
-		&asn_PER_type_ENBX2ExtTLAs_constr_1,
-#endif  /* !defined(ASN_DISABLE_UPER_SUPPORT) || !defined(ASN_DISABLE_APER_SUPPORT) */
-#if !defined(ASN_DISABLE_JER_SUPPORT)
-		0,
-#endif  /* !defined(ASN_DISABLE_JER_SUPPORT) */
-		SEQUENCE_OF_constraint
-	},
+	{ .per_constraints = &asn_PER_type_ENBX2ExtTLAs_constr_1, .general_constraints = SEQUENCE_OF_constraint },
 	asn_MBR_ENBX2ExtTLAs_1,
 	1,	/* Single element */
 	&asn_SPC_ENBX2ExtTLAs_specs_1	/* Additional specs */
