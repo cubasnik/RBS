@@ -10,6 +10,7 @@ UMTSStack::UMTSStack(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig&
 {
     phy_ = std::make_shared<UMTSPhy>(rf_, cfg_);
     mac_ = std::make_shared<UMTSMAC>(phy_, cfg_);
+    rrc_ = std::make_shared<UMTSRrc>();
 }
 
 UMTSStack::~UMTSStack() { stop(); }
@@ -57,12 +58,14 @@ RNTI UMTSStack::admitUE(IMSI imsi, SF sf) {
     RNTI rnti = mac_->assignDCH(sf);
     if (rnti != 0) {
         ueMap_[rnti] = imsi;
+        rrc_->handleConnectionRequest(rnti, imsi);
         RBS_LOG_INFO("UMTSStack", "UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
     return rnti;
 }
 
 void UMTSStack::releaseUE(RNTI rnti) {
+    rrc_->releaseConnection(rnti);
     mac_->releaseDCH(rnti);
     ueMap_.erase(rnti);
     RBS_LOG_INFO("UMTSStack", "UE released RNTI=", rnti);

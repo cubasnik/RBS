@@ -60,6 +60,7 @@ add_library(rbs_umts STATIC
     src/umts/umts_phy.cpp
     src/umts/umts_mac.cpp
     src/umts/umts_stack.cpp
+    src/umts/umts_rrc.cpp
     src/umts/iub_link.cpp
     src/umts/nbap_codec.cpp
 )

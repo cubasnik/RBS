@@ -2,6 +2,7 @@
 #include "../common/types.h"
 #include "umts_phy.h"
 #include "umts_mac.h"
+#include "umts_rrc.h"
 #include "../hal/rf_interface.h"
 #include "iumts_stack.h"
 #include <memory>
@@ -42,6 +43,7 @@ private:
     std::shared_ptr<hal::IRFHardware> rf_;
     std::shared_ptr<UMTSPhy>  phy_;
     std::shared_ptr<UMTSMAC>  mac_;
+    std::shared_ptr<UMTSRrc>  rrc_;
 
     std::atomic<bool>  running_{false};
     std::thread        frameThread_;
