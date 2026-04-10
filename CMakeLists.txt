@@ -50,6 +50,8 @@ add_library(rbs_gsm STATIC
     src/gsm/gsm_mac.cpp
     src/gsm/gsm_stack.cpp
     src/gsm/abis_link.cpp
+    src/gsm/gsm_rr.cpp
+    src/gsm/gsm_rlc.cpp
 )
 target_link_libraries(rbs_gsm PUBLIC rbs_hal)
 
@@ -61,6 +63,7 @@ add_library(rbs_umts STATIC
     src/umts/umts_mac.cpp
     src/umts/umts_stack.cpp
     src/umts/umts_rrc.cpp
+    src/umts/umts_rlc.cpp
     src/umts/iub_link.cpp
     src/umts/nbap_codec.cpp
 )
@@ -80,6 +83,7 @@ add_library(rbs_lte STATIC
     src/lte/x2ap_link.cpp
     src/lte/gtp_u.cpp
     src/lte/lte_rrc.cpp
+    src/lte/lte_rlc.cpp
 )
 target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap)
 
