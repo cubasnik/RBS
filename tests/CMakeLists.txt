@@ -43,3 +43,18 @@ add_test(NAME test_umts_mac COMMAND test_umts_mac)
 add_executable(test_s1ap_codec test_s1ap_codec.cpp)
 target_link_libraries(test_s1ap_codec PRIVATE rbs_lte)
 add_test(NAME test_s1ap_codec COMMAND test_s1ap_codec)
+
+# ── test_x2ap_codec ───────────────────────────────────────────────
+add_executable(test_x2ap_codec test_x2ap_codec.cpp)
+target_link_libraries(test_x2ap_codec PRIVATE rbs_lte)
+add_test(NAME test_x2ap_codec COMMAND test_x2ap_codec)
+
+# ── test_nbap_codec ───────────────────────────────────────────────
+add_executable(test_nbap_codec test_nbap_codec.cpp)
+target_link_libraries(test_nbap_codec PRIVATE rbs_umts)
+add_test(NAME test_nbap_codec COMMAND test_nbap_codec)
+
+# ── test_gtp_u ────────────────────────────────────────────────────
+add_executable(test_gtp_u test_gtp_u.cpp)
+target_link_libraries(test_gtp_u PRIVATE rbs_lte)
+add_test(NAME test_gtp_u COMMAND test_gtp_u)
