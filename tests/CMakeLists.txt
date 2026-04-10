@@ -58,3 +58,23 @@ add_test(NAME test_nbap_codec COMMAND test_nbap_codec)
 add_executable(test_gtp_u test_gtp_u.cpp)
 target_link_libraries(test_gtp_u PRIVATE rbs_lte)
 add_test(NAME test_gtp_u COMMAND test_gtp_u)
+
+# ── test_lte_stack ────────────────────────────────────────────────
+add_executable(test_lte_stack test_lte_stack.cpp)
+target_link_libraries(test_lte_stack PRIVATE rbs_lte)
+add_test(NAME test_lte_stack COMMAND test_lte_stack)
+
+# ── test_gsm_stack ────────────────────────────────────────────────
+add_executable(test_gsm_stack test_gsm_stack.cpp)
+target_link_libraries(test_gsm_stack PRIVATE rbs_gsm)
+add_test(NAME test_gsm_stack COMMAND test_gsm_stack)
+
+# ── test_umts_stack ───────────────────────────────────────────────
+add_executable(test_umts_stack test_umts_stack.cpp)
+target_link_libraries(test_umts_stack PRIVATE rbs_umts)
+add_test(NAME test_umts_stack COMMAND test_umts_stack)
+
+# ── test_oms ──────────────────────────────────────────────────────
+add_executable(test_oms test_oms.cpp)
+target_link_libraries(test_oms PRIVATE rbs_oms)
+add_test(NAME test_oms COMMAND test_oms)
