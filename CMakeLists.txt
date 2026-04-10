@@ -79,6 +79,7 @@ add_library(rbs_lte STATIC
     src/lte/x2ap_codec.cpp
     src/lte/x2ap_link.cpp
     src/lte/gtp_u.cpp
+    src/lte/lte_rrc.cpp
 )
 target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap)
 

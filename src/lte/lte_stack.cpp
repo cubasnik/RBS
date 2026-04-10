@@ -11,6 +11,7 @@ LTEStack::LTEStack(std::shared_ptr<hal::IRFHardware> rf, const LTECellConfig& cf
     phy_  = std::make_shared<LTEPhy>(rf_, cfg_);
     mac_  = std::make_shared<LTEMAC>(phy_, cfg_);
     pdcp_ = std::make_shared<PDCP>();
+    rrc_  = std::make_shared<LTERrc>();
 }
 
 LTEStack::~LTEStack() { stop(); }
@@ -59,6 +60,7 @@ void LTEStack::subframeLoop() {
 RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
     RNTI rnti = nextRnti_++;
     if (!mac_->admitUE(rnti, defaultCQI)) return 0;
+    rrc_->handleConnectionRequest(rnti, imsi);
 
     // Add default DRB (data radio bearer 1)
     PDCPConfig cfg{};
@@ -73,6 +75,7 @@ RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
 }
 
 void LTEStack::releaseUE(RNTI rnti) {
+    rrc_->releaseConnection(rnti);
     pdcp_->removeBearer(rnti, 1);
     mac_->releaseUE(rnti);
     ueMap_.erase(rnti);
