@@ -2,6 +2,8 @@
 #include "../common/types.h"
 #include "gsm_phy.h"
 #include "gsm_mac.h"
+#include "gsm_rr.h"
+#include "gsm_rlc.h"
 #include "../hal/rf_interface.h"
 #include "igsm_stack.h"
 #include <memory>
@@ -41,6 +43,8 @@ private:
     std::shared_ptr<hal::IRFHardware> rf_;
     std::shared_ptr<GSMPhy>  phy_;
     std::shared_ptr<GSMMAC>  mac_;
+    std::shared_ptr<GSMRr>   rr_;
+    std::shared_ptr<GSMRlc>  rlc_;
 
     std::atomic<bool>  running_{false};
     std::thread        clockThread_;

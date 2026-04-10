@@ -11,6 +11,7 @@ UMTSStack::UMTSStack(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig&
     phy_ = std::make_shared<UMTSPhy>(rf_, cfg_);
     mac_ = std::make_shared<UMTSMAC>(phy_, cfg_);
     rrc_ = std::make_shared<UMTSRrc>();
+    rlc_ = std::make_shared<UMTSRlc>();
 }
 
 UMTSStack::~UMTSStack() { stop(); }
@@ -59,6 +60,7 @@ RNTI UMTSStack::admitUE(IMSI imsi, SF sf) {
     if (rnti != 0) {
         ueMap_[rnti] = imsi;
         rrc_->handleConnectionRequest(rnti, imsi);
+        rlc_->addRB(rnti, 3, RLCMode::AM);   // DRB1 (AM mode)
         RBS_LOG_INFO("UMTSStack", "UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
     return rnti;
@@ -66,17 +68,28 @@ RNTI UMTSStack::admitUE(IMSI imsi, SF sf) {
 
 void UMTSStack::releaseUE(RNTI rnti) {
     rrc_->releaseConnection(rnti);
+    rlc_->removeRB(rnti, 3);
     mac_->releaseDCH(rnti);
     ueMap_.erase(rnti);
     RBS_LOG_INFO("UMTSStack", "UE released RNTI=", rnti);
 }
 
 bool UMTSStack::sendData(RNTI rnti, ByteBuffer data) {
+    // SDU → RLC segmentation → MAC
+    rlc_->sendSdu(rnti, 3, data);
+    ByteBuffer rlcPdu;
+    if (rlc_->pollPdu(rnti, 3, rlcPdu))
+        return mac_->enqueueDlData(rnti, std::move(rlcPdu));
     return mac_->enqueueDlData(rnti, std::move(data));
 }
 
 bool UMTSStack::receiveData(RNTI rnti, ByteBuffer& data) {
-    return mac_->dequeueUlData(rnti, data);
+    ByteBuffer rlcPdu;
+    if (!mac_->dequeueUlData(rnti, rlcPdu)) return false;
+    rlc_->deliverPdu(rnti, 3, rlcPdu);
+    if (rlc_->receiveSdu(rnti, 3, data)) return true;
+    data = std::move(rlcPdu);
+    return true;
 }
 
 size_t UMTSStack::connectedUECount() const {

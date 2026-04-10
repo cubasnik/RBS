@@ -4,6 +4,7 @@
 #include "lte_mac.h"
 #include "lte_pdcp.h"
 #include "lte_rrc.h"
+#include "lte_rlc.h"
 #include "../hal/rf_interface.h"
 #include "ilte_stack.h"
 #include <memory>
@@ -47,6 +48,7 @@ private:
     std::shared_ptr<LTEMAC>  mac_;
     std::shared_ptr<PDCP>    pdcp_;
     std::shared_ptr<LTERrc>  rrc_;
+    std::shared_ptr<LTERlc>  rlc_;
 
     std::atomic<bool>  running_{false};
     std::thread        subframeThread_;

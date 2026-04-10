@@ -11,6 +11,8 @@ GSMStack::GSMStack(std::shared_ptr<hal::IRFHardware> rf, const GSMCellConfig& cf
 {
     phy_ = std::make_shared<GSMPhy>(rf_, cfg_);
     mac_ = std::make_shared<GSMMAC>(phy_, cfg_);
+    rr_  = std::make_shared<GSMRr>();
+    rlc_ = std::make_shared<GSMRlc>();
 }
 
 GSMStack::~GSMStack() { stop(); }
@@ -59,6 +61,9 @@ void GSMStack::clockLoop() {
 RNTI GSMStack::admitUE(IMSI imsi) {
     RNTI rnti = mac_->assignChannel(0, GSMChannelType::TCH_F);
     if (rnti != 0) {
+        RNTI rrRnti;
+        rr_->handleChannelRequest(0x50 /*TCH/F cause*/, rrRnti);
+        rlc_->requestLink(rnti, SAPI::RR_MM_CC);
         ueMap_[rnti] = imsi;
         RBS_LOG_INFO("GSMStack", "UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
@@ -66,16 +71,21 @@ RNTI GSMStack::admitUE(IMSI imsi) {
 }
 
 void GSMStack::releaseUE(RNTI rnti) {
+    rr_->releaseChannel(rnti);
+    rlc_->releaseLink(rnti, SAPI::RR_MM_CC);
     mac_->releaseChannel(rnti);
     ueMap_.erase(rnti);
     RBS_LOG_INFO("GSMStack", "UE released RNTI=", rnti);
 }
 
 bool GSMStack::sendData(RNTI rnti, ByteBuffer data) {
+    rlc_->sendSdu(rnti, SAPI::RR_MM_CC, ByteBuffer(data));  // LAPDm I-frame tracking
     return mac_->enqueueDlData(rnti, std::move(data));
 }
 
 bool GSMStack::receiveData(RNTI rnti, ByteBuffer& data) {
+    // Try LAPDm SDU queue first, then raw MAC buffer
+    if (rlc_->receiveSdu(rnti, SAPI::RR_MM_CC, data)) return true;
     return mac_->dequeueUlData(rnti, data);
 }
 

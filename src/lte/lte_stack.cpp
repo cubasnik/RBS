@@ -12,6 +12,7 @@ LTEStack::LTEStack(std::shared_ptr<hal::IRFHardware> rf, const LTECellConfig& cf
     mac_  = std::make_shared<LTEMAC>(phy_, cfg_);
     pdcp_ = std::make_shared<PDCP>();
     rrc_  = std::make_shared<LTERrc>();
+    rlc_  = std::make_shared<LTERlc>();
 }
 
 LTEStack::~LTEStack() { stop(); }
@@ -61,6 +62,9 @@ RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
     RNTI rnti = nextRnti_++;
     if (!mac_->admitUE(rnti, defaultCQI)) return 0;
     rrc_->handleConnectionRequest(rnti, imsi);
+    // SRB1 (AM) + DRB1 (AM) RLC entities
+    rlc_->addRB(rnti, 1, LTERlcMode::AM);
+    rlc_->addRB(rnti, 3, LTERlcMode::AM);
 
     // Add default DRB (data radio bearer 1)
     PDCPConfig cfg{};
@@ -76,6 +80,8 @@ RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
 
 void LTEStack::releaseUE(RNTI rnti) {
     rrc_->releaseConnection(rnti);
+    rlc_->removeRB(rnti, 1);
+    rlc_->removeRB(rnti, 3);
     pdcp_->removeBearer(rnti, 1);
     mac_->releaseUE(rnti);
     ueMap_.erase(rnti);
@@ -84,15 +90,25 @@ void LTEStack::releaseUE(RNTI rnti) {
 
 // ────────────────────────────────────────────────────────────────
 bool LTEStack::sendIPPacket(RNTI rnti, uint16_t bearerId, ByteBuffer ipPacket) {
-    ByteBuffer pdu = pdcp_->processDlPacket(rnti, bearerId, ipPacket);
-    if (pdu.empty()) return false;
-    return mac_->enqueueDlSDU(rnti, std::move(pdu));
+    ByteBuffer pdcpPdu = pdcp_->processDlPacket(rnti, bearerId, ipPacket);
+    if (pdcpPdu.empty()) return false;
+    // PDCP SDU → RLC segmentation → MAC
+    uint8_t rbId = static_cast<uint8_t>(bearerId) + 2;   // DRB1→RB3, DRB2→RB4
+    rlc_->sendSdu(rnti, rbId, pdcpPdu);
+    ByteBuffer rlcPdu;
+    if (!rlc_->pollPdu(rnti, rbId, rlcPdu, 1500)) return false;
+    return mac_->enqueueDlSDU(rnti, std::move(rlcPdu));
 }
 
 bool LTEStack::receiveIPPacket(RNTI rnti, uint16_t bearerId, ByteBuffer& ipPacket) {
-    ByteBuffer pdu;
-    if (!mac_->dequeueUlSDU(rnti, pdu)) return false;
-    ipPacket = pdcp_->processUlPDU(rnti, bearerId, pdu);
+    ByteBuffer rlcPdu;
+    if (!mac_->dequeueUlSDU(rnti, rlcPdu)) return false;
+    // MAC PDU → RLC reassembly → PDCP
+    uint8_t rbId = static_cast<uint8_t>(bearerId) + 2;
+    rlc_->deliverPdu(rnti, rbId, rlcPdu);
+    ByteBuffer pdcpPdu;
+    if (!rlc_->receiveSdu(rnti, rbId, pdcpPdu)) return false;
+    ipPacket = pdcp_->processUlPDU(rnti, bearerId, pdcpPdu);
     return !ipPacket.empty();
 }
 
