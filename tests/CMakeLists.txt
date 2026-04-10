@@ -138,3 +138,8 @@ add_test(NAME test_integration COMMAND test_integration)
 add_executable(test_mobility test_mobility.cpp)
 target_link_libraries(test_mobility PRIVATE rbs_common rbs_oms)
 add_test(NAME test_mobility COMMAND test_mobility)
+
+# ── test_son ──────────────────────────────────────────────────────
+add_executable(test_son test_son.cpp)
+target_link_libraries(test_son PRIVATE rbs_common)
+add_test(NAME test_son COMMAND test_son)
