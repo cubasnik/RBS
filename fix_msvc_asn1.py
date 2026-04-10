@@ -9,6 +9,7 @@ import re
 DIRS = [
     r"src\generated\s1ap",
     r"src\generated\x2ap",
+    r"src\generated\nbap",
 ]
 
 base = os.path.dirname(os.path.abspath(__file__))
@@ -46,6 +47,16 @@ for d in DIRS:
 
         text = EMPTY_UNION.sub(fix_empty_body, text)
         text = EMPTY_STRUCT.sub(fix_empty_body, text)
+
+        # Add <inttypes.h> inside the _WIN32/_MSC_VER block if missing
+        # (standard asn1c v0.9.29 omits it; asn1c-mouse adds it)
+        MSVC_WIN32_BLOCK = '#include <windows.h>\n#include <float.h>\n'
+        INTTYPES_LINE = '#include <inttypes.h>   /* PRId32, PRIu32, PRIdMAX, PRIuMAX, etc. */\n'
+        if fname == 'asn_system.h' and MSVC_WIN32_BLOCK in text and INTTYPES_LINE not in text:
+            text = text.replace(
+                MSVC_WIN32_BLOCK,
+                MSVC_WIN32_BLOCK + INTTYPES_LINE,
+            )
 
         if text != original:
             with open(fpath, 'w', encoding='utf-8') as f:

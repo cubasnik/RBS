@@ -61,8 +61,9 @@ add_library(rbs_umts STATIC
     src/umts/umts_mac.cpp
     src/umts/umts_stack.cpp
     src/umts/iub_link.cpp
+    src/umts/nbap_codec.cpp
 )
-target_link_libraries(rbs_umts PUBLIC rbs_hal)
+target_link_libraries(rbs_umts PUBLIC rbs_hal rbs_asn1_nbap)
 
 # ─────────────────────────────────────────────────────────────────
 # Library: LTE stack
@@ -116,6 +117,19 @@ if(MSVC)
     target_compile_options(rbs_asn1_x2ap PRIVATE /W0 /wd4244 /wd4267 /wd4996 /Ze /std:c11)
 else()
     target_compile_options(rbs_asn1_x2ap PRIVATE -w)
+endif()
+
+file(GLOB NBAP_SOURCES "${CMAKE_SOURCE_DIR}/src/generated/nbap/*.c")
+add_library(rbs_asn1_nbap STATIC ${NBAP_SOURCES})
+set_target_properties(rbs_asn1_nbap PROPERTIES C_STANDARD 11)
+target_compile_definitions(rbs_asn1_nbap PUBLIC ASN_DISABLE_OER_SUPPORT ASN1C_NO_UNSUFFIXED_PDU_ALIAS)
+target_include_directories(rbs_asn1_nbap PUBLIC
+    "${CMAKE_SOURCE_DIR}/src/generated/nbap"
+)
+if(MSVC)
+    target_compile_options(rbs_asn1_nbap PRIVATE /W0 /wd4244 /wd4267 /wd4996 /Ze /std:c11)
+else()
+    target_compile_options(rbs_asn1_nbap PRIVATE -w)
 endif()
 
 # ─────────────────────────────────────────────────────────────────

@@ -1,4 +1,5 @@
 #include "iub_link.h"
+#include "nbap_codec.h"
 
 namespace rbs::umts {
 
@@ -43,13 +44,20 @@ bool IubNbap::sendCellSetup(uint16_t cellId, uint16_t primaryScrCode,
                  "[{}] NBAP CELL SETUP cellId={} PSC={} UarfcnDL={} UarfcnUL={}",
                  nodeBId_, cellId, primaryScrCode, uarfcnDl, uarfcnUl);
 
-    ByteBuffer payload{
-        static_cast<uint8_t>(cellId >> 8), static_cast<uint8_t>(cellId),
-        static_cast<uint8_t>(primaryScrCode >> 8), static_cast<uint8_t>(primaryScrCode),
-        static_cast<uint8_t>(uarfcnDl >> 8), static_cast<uint8_t>(uarfcnDl),
-        static_cast<uint8_t>(uarfcnUl >> 8), static_cast<uint8_t>(uarfcnUl)
-    };
-    NBAPMessage msg{NBAPProcedure::CELL_SETUP, nextTxId(), std::move(payload)};
+    // TS 25.433 §8.3.6 — encode as APER CellSetupRequestFDD
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_CellSetupRequestFDD(
+        cellId,           // localCellId
+        cellId,           // C-ID (same as local cell ID for simulator)
+        1,                // cfgGenId
+        uarfcnUl,
+        uarfcnDl,
+        200,              // maxTxPower = 200 (20 dBm in 0.1dBm units)
+        primaryScrCode,
+        txId
+    );
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP CELL SETUP APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::CELL_SETUP, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
 
@@ -98,12 +106,14 @@ bool IubNbap::radioLinkSetup(RNTI rnti, uint16_t scrCode, SF sf)
     RBS_LOG_INFO("IubNbap", "[{}] NBAP RADIO LINK SETUP rnti={} scrCode={} SF={}",
                  nodeBId_, rnti, scrCode, static_cast<int>(sf));
 
-    ByteBuffer payload{
-        static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti),
-        static_cast<uint8_t>(scrCode >> 8), static_cast<uint8_t>(scrCode),
-        static_cast<uint8_t>(sf)
-    };
-    NBAPMessage msg{NBAPProcedure::RADIO_LINK_SETUP, nextTxId(), std::move(payload)};
+    // TS 25.433 §8.1.1 — encode as APER RadioLinkSetupRequestFDD
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkSetupRequestFDD(
+        static_cast<uint32_t>(rnti), // crncCtxId = RNTI for simulator
+        txId
+    );
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL SETUP APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_SETUP, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
 
@@ -116,8 +126,16 @@ bool IubNbap::radioLinkDeletion(RNTI rnti)
     }
     links_.erase(it);
     RBS_LOG_INFO("IubNbap", "[{}] NBAP RADIO LINK DELETION rnti={}", nodeBId_, rnti);
-    ByteBuffer payload{static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
-    NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, nextTxId(), std::move(payload)};
+
+    // TS 25.433 §8.1.6 — encode as APER RadioLinkDeletionRequest
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkDeletionRequest(
+        static_cast<uint32_t>(rnti), // nodeBCtxId = RNTI for simulator
+        static_cast<uint32_t>(rnti), // crncCtxId  = RNTI for simulator
+        txId
+    );
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL DELETION APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
 
