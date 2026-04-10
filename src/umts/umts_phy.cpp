@@ -73,12 +73,32 @@ bool UMTSPhy::transmit(uint16_t channelCode, SF sf, const ByteBuffer& data) {
     return rf_->transmit(tx);
 }
 
-bool UMTSPhy::receive(uint16_t /*channelCode*/, SF sf, ByteBuffer& data, uint32_t numBits) {
+bool UMTSPhy::receive(uint16_t channelCode, SF sf, ByteBuffer& data, uint32_t numBits) {
     ByteBuffer raw;
     uint32_t numChips = numBits * static_cast<uint32_t>(sf);
     if (!rf_->receive(raw, numChips / 8)) return false;
-    // Simplified: de-scramble and de-spread (placeholder)
-    data = raw;
+    // Descramble (Gold code is self-inverse when aligned to frame start)
+    ByteBuffer descrambled = scramble(raw);
+    // Despread: majority vote per SF chips to recover each bit
+    const uint32_t sfVal = static_cast<uint32_t>(sf);
+    const uint32_t chipsPerByte = sfVal / 8u;
+    data.clear();
+    data.reserve((descrambled.size() * 8u + sfVal - 1u) / sfVal);
+    for (size_t chip = 0; chip + chipsPerByte <= descrambled.size(); chip += chipsPerByte) {
+        // XOR the code pattern (OVSF chip: code repeated mod sfVal)
+        uint32_t ones = 0;
+        for (uint32_t r = 0; r < chipsPerByte; ++r) {
+            uint8_t ovsf = ((channelCode >> (r % 8)) & 1u) ? 0xFF : 0x00;
+            uint8_t deSpread = descrambled[chip + r] ^ ovsf;
+            // Count set bits as "1" votes
+            uint8_t v = deSpread;
+            v = v - ((v >> 1) & 0x55u);
+            v = (v & 0x33u) + ((v >> 2) & 0x33u);
+            ones += (v + (v >> 4)) & 0x0Fu;
+        }
+        // Majority decision: more than half of chips are 1 → bit = 1
+        data.push_back(static_cast<uint8_t>(ones > (chipsPerByte * 4u) ? 0xFF : 0x00));
+    }
     return true;
 }
 
@@ -129,13 +149,34 @@ ByteBuffer UMTSPhy::spread(const ByteBuffer& data, SF sf, uint16_t code) const {
 }
 
 // ────────────────────────────────────────────────────────────────
-// Gold-code scrambling (placeholder – real impl uses 25.213 §4.3.2)
+// Gold-code scrambling — TS 25.213 §4.3.1
+// Long downlink scrambling sequences are defined by the polynomials:
+//   x-sequence: x^25 + x^3 + 1       (feedback: bit0 XOR bit3)
+//   y-sequence: x^25 + x^3 + x^2 + x + 1  (feedback: bit0 XOR bit1 XOR bit2 XOR bit3)
+// Gold code c(n) = x(n) XOR y(n)
+// Initial state: x[24]=1, x[0..23]=0; y[k]=(PSC>>k)&1 for k=0..23, y[24]=1
 // ────────────────────────────────────────────────────────────────
 ByteBuffer UMTSPhy::scramble(const ByteBuffer& chips) const {
+    uint32_t rx = 1u << 24u;   // x[24]=1, x[0..23]=0
+    uint32_t ry = cfg_.primaryScrCode & 0x1FFFFFFu;
+    ry |= (1u << 24u);         // y[24]=1 (prevents all-zeros state)
+    if ((ry & 0x1FFFFFFu) == 0) ry = 1u << 24u;
+
     ByteBuffer out = chips;
-    uint32_t sc = cfg_.primaryScrCode;
     for (size_t i = 0; i < out.size(); ++i) {
-        out[i] ^= static_cast<uint8_t>((sc * (i + 1) * 0x9E3779B9u) >> 24);
+        uint8_t scByte = 0;
+        for (int b = 7; b >= 0; --b) {
+            // Gold chip = x[0] XOR y[0]
+            const uint8_t chip = ((rx ^ ry) & 1u) ? 1u : 0u;
+            scByte |= static_cast<uint8_t>(chip << b);
+            // Advance x: feedback = x[0] XOR x[3]
+            const uint8_t fbx = static_cast<uint8_t>((rx ^ (rx >> 3u)) & 1u);
+            rx = ((rx >> 1u) | (static_cast<uint32_t>(fbx) << 24u));
+            // Advance y: feedback = y[0] XOR y[1] XOR y[2] XOR y[3]
+            const uint8_t fby = static_cast<uint8_t>((ry ^ (ry >> 1u) ^ (ry >> 2u) ^ (ry >> 3u)) & 1u);
+            ry = ((ry >> 1u) | (static_cast<uint32_t>(fby) << 24u));
+        }
+        out[i] ^= scByte;
     }
     return out;
 }

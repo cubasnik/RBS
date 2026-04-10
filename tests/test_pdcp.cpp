@@ -39,6 +39,51 @@ int main() {
     // Second removal must fail
     assert(!pdcp.removeBearer(rnti, 1));
 
+    // ── AES-128-CTR known-answer test (FIPS 197 / TS 33.401 §6.4.4) ──────────
+    // Key = 16×0x00, count = 0 → CTR block = 16×0x00
+    // AES_128(0x00...00, 0x00...00) = 66 e9 4b d4 ef 8a 2c 3b 88 4c fa 59 ca 34 2b 2e
+    // CT of 16 zero bytes = AES keystream XOR 0x00...00 = keystream itself
+    {
+        rbs::lte::PDCP pdcp2;
+        rbs::lte::PDCPConfig acfg{};
+        acfg.bearerId  = 1;
+        acfg.cipherAlg = rbs::lte::PDCPCipherAlg::AES;
+        std::memset(acfg.cipherKey, 0x00, 16);  // all-zero key
+        const rbs::RNTI ar = 10;
+        assert(pdcp2.addBearer(ar, acfg));
+
+        // Encrypt 16 zero bytes (txSN=0 → count=0)
+        rbs::ByteBuffer zeros(16, 0x00);
+        rbs::ByteBuffer encPdu = pdcp2.processDlPacket(ar, 1, zeros);
+        // Strip 2-byte PDCP header to get ciphertext
+        assert(encPdu.size() == 18);
+        const uint8_t* ct = encPdu.data() + 2;
+
+        // Expected first 16 bytes of AES-128-CTR keystream (NIST all-zeros vector)
+        static const uint8_t kExpected[16] = {
+            0x66,0xe9,0x4b,0xd4,0xef,0x8a,0x2c,0x3b,
+            0x88,0x4c,0xfa,0x59,0xca,0x34,0x2b,0x2e
+        };
+        assert(std::memcmp(ct, kExpected, 16) == 0);
+    }
+
+    // ── AES-128-CTR round-trip test ───────────────────────────────────────────
+    {
+        rbs::lte::PDCP pdcp3;
+        rbs::lte::PDCPConfig acfg{};
+        acfg.bearerId  = 1;
+        acfg.cipherAlg = rbs::lte::PDCPCipherAlg::AES;
+        // Non-trivial key: 0x00,0x01,...,0x0f
+        for (int i = 0; i < 16; ++i) acfg.cipherKey[i] = static_cast<uint8_t>(i);
+        const rbs::RNTI br = 20;
+        assert(pdcp3.addBearer(br, acfg));
+
+        rbs::ByteBuffer plain(64, 0xBE);
+        rbs::ByteBuffer enc = pdcp3.processDlPacket(br, 1, plain);
+        rbs::ByteBuffer dec = pdcp3.processUlPDU(br, 1, enc);
+        assert(dec == plain);
+    }
+
     std::puts("test_pdcp PASSED");
     return 0;
 }

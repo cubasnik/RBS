@@ -89,7 +89,11 @@ private:
     std::queue<S1APMessage> rxQueue_;
     mutable std::mutex      rxMtx_;
 
+    net::UdpSocket socket_;
+    bool           socketReady_ = false;
+
     uint32_t allocateMmeId(RNTI rnti);
+    void     onRxPacket(const net::UdpPacket& pkt);
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

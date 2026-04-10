@@ -72,6 +72,11 @@ private:
 
     std::queue<X2APMessage> rxQueue_;
     mutable std::mutex      rxMtx_;
+
+    net::UdpSocket socket_;
+    bool           socketReady_ = false;
+
+    void onRxPacket(const net::UdpPacket& pkt);
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

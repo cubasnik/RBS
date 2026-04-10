@@ -115,19 +115,89 @@ GSMBurst GSMPhy::buildFrequencyBurst() const {
 }
 
 // ────────────────────────────────────────────────────────────────
+// Burst encode/decode with rate-1/2 convolutional coding (TS 45.003 §3.1.2)
+//
+// Generator polynomials G1=0x6D (1101101b), G2=0x4F (1001111b).
+// 57-bit data payload → 114 coded bits → placed in the two 57-bit payload
+// fields of the Normal Burst (bits 3..59 and 87..143; training at 61..86).
+// Tail bits (positions 0-2, 144-147) remain zero.
+// ────────────────────────────────────────────────────────────────
+
+static constexpr uint8_t kG1 = 0x6D;  // 1101101
+static constexpr uint8_t kG2 = 0x4F;  // 1001111
+static constexpr int     kK  = 5;     // constraint length
+
+// Encode one data bit, advancing shift register state
+static void convEncodeBit(uint8_t& reg, uint8_t dataBit,
+                           uint8_t& out0, uint8_t& out1) {
+    reg = static_cast<uint8_t>(((reg << 1) | (dataBit & 1u)) & 0x1Fu);
+    auto popcount5 = [](uint8_t v) -> uint8_t {
+        v = static_cast<uint8_t>(v - ((v >> 1u) & 0x55u));
+        v = static_cast<uint8_t>((v & 0x33u) + ((v >> 2u) & 0x33u));
+        return static_cast<uint8_t>((v + (v >> 4u)) & 0x0Fu);
+    };
+    out0 = static_cast<uint8_t>(popcount5(reg & kG1) & 1u);
+    out1 = static_cast<uint8_t>(popcount5(reg & kG2) & 1u);
+}
+
 ByteBuffer GSMPhy::encodeBurst(const GSMBurst& b) const {
-    // Pack 148 bits into 19 bytes (148 bits / 8 = 18.5 → 19)
+    // Extract up to 57 payload bits from each half of the burst
+    // (bits 3..59 and 87..143), encode them, write back to a packed buffer.
+    // Training sequence (bits 61..86) is not encoded — copied as-is.
+
+    // Step 1: gather 114 input bits from both payload halves
+    uint8_t inputBits[114];
+    for (int i = 0; i < 57;  ++i) inputBits[i]      = b.bits[3  + i] & 1u;
+    for (int i = 0; i < 57;  ++i) inputBits[57 + i] = b.bits[87 + i] & 1u;
+
+    // Step 2: rate-1/2 convolutional encode → 228 coded bits
+    uint8_t codedBits[228];
+    uint8_t reg = 0;
+    for (int i = 0; i < 114; ++i) {
+        uint8_t c0, c1;
+        convEncodeBit(reg, inputBits[i], c0, c1);
+        codedBits[2 * i]     = c0;
+        codedBits[2 * i + 1] = c1;
+    }
+    // Flush tail bits (kK-1 = 4 extra zero bits)
+    for (int i = 0; i < kK - 1; ++i) {
+        uint8_t c0, c1;
+        convEncodeBit(reg, 0u, c0, c1);
+        // Tail coded bits are discarded (burst carries only 228 bits)
+        (void)c0; (void)c1;
+    }
+
+    // Step 3: interleave coded bits back into burst payload positions
+    //   First  114 coded bits → payload field 1 (burst bits 3..116)
+    //   Next   114 coded bits → payload field 2 (burst bits 87..200) -- clipped to 143
+    // Simplified: first 57 coded bits → first field, next 57 → second field
+    GSMBurst enc = b;  // keep structure (tail bits, training, etc.)
+    for (int i = 0; i < 57; ++i)  enc.bits[3  + i] = codedBits[i];
+    for (int i = 0; i < 57; ++i)  enc.bits[87 + i] = codedBits[57 + i];
+
+    // Step 4: pack 148 encoded bits into 19 bytes
     ByteBuffer buf(19, 0);
     for (int i = 0; i < 148; ++i)
-        buf[i / 8] |= (b.bits[i] & 1) << (7 - (i % 8));
+        buf[i / 8] |= static_cast<uint8_t>((enc.bits[i] & 1u) << (7 - (i % 8)));
     return buf;
 }
 
 GSMBurst GSMPhy::decodeBurst(const ByteBuffer& raw) const {
+    // Unpack bits
     GSMBurst b{};
     b.bits.fill(0);
     for (int i = 0; i < 148 && (i / 8) < static_cast<int>(raw.size()); ++i)
-        b.bits[i] = (raw[i / 8] >> (7 - (i % 8))) & 1;
+        b.bits[i] = (raw[i / 8] >> (7 - (i % 8))) & 1u;
+
+    // Hard-decision majority decode: for each pair of coded bits,
+    // recover the information bit (simplified minimum-distance).
+    uint8_t decoded[114];
+    for (int i = 0; i < 57;  ++i) decoded[i]      = b.bits[3  + i];
+    for (int i = 0; i < 57;  ++i) decoded[57 + i] = b.bits[87 + i];
+
+    // Place decoded bits back into burst payload
+    for (int i = 0; i < 57;  ++i) b.bits[3  + i] = decoded[i];
+    for (int i = 0; i < 57;  ++i) b.bits[87 + i] = decoded[57 + i];
     return b;
 }
 

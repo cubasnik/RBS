@@ -9,6 +9,7 @@ namespace rbs::lte {
 
 S1APLink::S1APLink(const std::string& enbId)
     : enbId_(enbId)
+    , socket_("S1AP-" + enbId)
 {}
 
 uint32_t S1APLink::allocateMmeId(RNTI rnti)
@@ -28,14 +29,28 @@ bool S1APLink::connect(const std::string& mmeAddr, uint16_t port)
     }
     mmeAddr_   = mmeAddr;
     mmePort_   = port;
+
+    if (!socketReady_) {
+        net::UdpSocket::wsaInit();
+        if (!socket_.bind(0)) {
+            RBS_LOG_ERROR("S1AP", "[{}] connect: UDP bind failed", enbId_);
+            return false;
+        }
+        socket_.startReceive([this](const net::UdpPacket& pkt) { onRxPacket(pkt); });
+        socketReady_ = true;
+    }
+
     connected_ = true;
-    RBS_LOG_INFO("S1AP", "[{}] S1AP-соединение с MME {}:{} установлено", enbId_, mmeAddr, port);
+    RBS_LOG_INFO("S1AP", "[{}] S1AP-соединение с MME {}:{} установлено (UDP port {})",
+                 enbId_, mmeAddr, port, socket_.localPort());
     return true;
 }
 
 void S1APLink::disconnect()
 {
     if (!connected_) return;
+    socket_.close();
+    socketReady_ = false;
     connected_ = false;
     ueS1apIds_.clear();
     RBS_LOG_INFO("S1AP", "[{}] S1AP-соединение закрыто", enbId_);
@@ -221,10 +236,33 @@ bool S1APLink::handoverNotify(uint32_t mmeUeS1apId, RNTI rnti)
 
 bool S1APLink::sendS1APMsg(const S1APMessage& msg)
 {
-    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} mmeId=0x{:X} enbId=0x{:X}",
-                  enbId_, static_cast<uint8_t>(msg.procedure),
-                  msg.mmeUeS1apId, msg.enbUeS1apId);
-    return true;  // симуляция
+    if (!connected_ || !socketReady_) return false;
+
+    // Frame: [proc:1][mmeUeS1apId:4][enbUeS1apId:4][payloadLen:4][payload...]
+    const auto& pl = msg.payload;
+    const uint32_t plLen = static_cast<uint32_t>(pl.size());
+    ByteBuffer frame;
+    frame.reserve(13 + plLen);
+    frame.push_back(static_cast<uint8_t>(msg.procedure));
+    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >> 24));
+    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >> 16));
+    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >>  8));
+    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId));
+    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >> 24));
+    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >> 16));
+    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >>  8));
+    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId));
+    frame.push_back(static_cast<uint8_t>(plLen >> 24));
+    frame.push_back(static_cast<uint8_t>(plLen >> 16));
+    frame.push_back(static_cast<uint8_t>(plLen >>  8));
+    frame.push_back(static_cast<uint8_t>(plLen));
+    frame.insert(frame.end(), pl.begin(), pl.end());
+
+    bool ok = socket_.send(mmeAddr_, mmePort_, frame);
+    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} len={} {}",
+                  enbId_, static_cast<uint8_t>(msg.procedure), plLen,
+                  ok ? "OK" : "FAIL");
+    return ok;
 }
 
 bool S1APLink::recvS1APMsg(S1APMessage& msg)
@@ -236,6 +274,32 @@ bool S1APLink::recvS1APMsg(S1APMessage& msg)
     RBS_LOG_DEBUG("S1AP", "[{}] S1AP ← MME  proc=0x{:02X}",
                   enbId_, static_cast<uint8_t>(msg.procedure));
     return true;
+}
+
+void S1APLink::onRxPacket(const net::UdpPacket& pkt)
+{
+    // Minimum frame: 13 header bytes
+    if (pkt.data.size() < 13) return;
+    const auto& d = pkt.data;
+    const auto  proc   = static_cast<S1APProcedure>(d[0]);
+    const uint32_t mmeId  = (static_cast<uint32_t>(d[1]) << 24)
+                           | (static_cast<uint32_t>(d[2]) << 16)
+                           | (static_cast<uint32_t>(d[3]) <<  8)
+                           |  static_cast<uint32_t>(d[4]);
+    const uint32_t enbId  = (static_cast<uint32_t>(d[5]) << 24)
+                           | (static_cast<uint32_t>(d[6]) << 16)
+                           | (static_cast<uint32_t>(d[7]) <<  8)
+                           |  static_cast<uint32_t>(d[8]);
+    const uint32_t plLen  = (static_cast<uint32_t>(d[9]) << 24)
+                           | (static_cast<uint32_t>(d[10]) << 16)
+                           | (static_cast<uint32_t>(d[11]) <<  8)
+                           |  static_cast<uint32_t>(d[12]);
+    if (plLen > pkt.data.size() - 13) return;  // bounds guard
+    ByteBuffer payload(d.begin() + 13, d.begin() + 13 + plLen);
+    RBS_LOG_DEBUG("S1AP", "[{}] S1AP ← MME  proc=0x{:02X} mmeId=0x{:X} len={}",
+                  enbId_, static_cast<uint8_t>(proc), mmeId, plLen);
+    std::lock_guard<std::mutex> lk(rxMtx_);
+    rxQueue_.push({proc, mmeId, enbId, std::move(payload)});
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -138,7 +138,7 @@ void LTEMAC::runDlScheduler() {
 // UL grant scheduler
 // ────────────────────────────────────────────────────────────────
 void LTEMAC::runUlScheduler() {
-    uint8_t totalRBs = phy_->numResourceBlocks();
+    const uint8_t totalRBs = phy_->numResourceBlocks();
     LTESubframe sf;
     sf.sfn           = sfn_;
     sf.subframeIndex = sfIdx_;
@@ -155,19 +155,38 @@ void LTEMAC::runUlScheduler() {
         ctx.srPending = false;
         ctx.bsr       = 0;
     }
-    // UL grants are sent in DL control; actual UL data arrives 4 ms later
-    (void)sf;
-}
 
-// ────────────────────────────────────────────────────────────────
-void LTEMAC::onRxSubframe(const LTESubframe& sf) {
-    // Process received UL data into per-UE queues
+    if (sf.ulGrants.empty()) return;
+
+    // Transmit DCI0 (UL grants) in PDCCH to UEs (TS 36.321 §5.4.1)
+    phy_->transmitSubframe(sf);
+
+    // Simulate immediate PUSCH reception: generate a Transport Block per
+    // granted UE sized per TS 36.213 Table 7.1.7.2.1-1 (1 PRB, given MCS).
+    // In a real eNB this would arrive 4 ms later after decoding the PUSCH.
+    static const uint32_t kTbsTable[29] = {
+         16, 24, 32, 40, 56, 72, 88,104,120,136,
+        144,176,208,224,256,280,328,336,376,392,
+        424,456,488,520,552,584,616,712,744
+    };
     for (const auto& rb : sf.ulGrants) {
         auto it = ueContexts_.find(rb.rnti);
         if (it == ueContexts_.end()) continue;
-        ByteBuffer dummy(100, 0xAB);   // placeholder for decoded data
-        it->second.ulQueue.push(std::move(dummy));
+        const uint32_t tbBytes = (rb.mcs < 29) ? kTbsTable[rb.mcs] : 744u;
+        ByteBuffer ulData(tbBytes, 0);
+        for (size_t i = 0; i < ulData.size(); ++i)
+            ulData[i] = static_cast<uint8_t>((it->first ^ (i & 0xFF)) & 0xFF);
+        it->second.ulQueue.push(std::move(ulData));
+        RBS_LOG_DEBUG("LTEMAC", "UL grant RNTI=", rb.rnti,
+                      " MCS=", static_cast<int>(rb.mcs),
+                      " TB=", tbBytes, " bytes");
     }
+}
+
+// ────────────────────────────────────────────────────────────────
+void LTEMAC::onRxSubframe(const LTESubframe& /*sf*/) {
+    // UL Transport Blocks are injected by runUlScheduler() to simulate
+    // the PUSCH path without DSP. A real eNB would decode PUSCH here.
 }
 
 // ────────────────────────────────────────────────────────────────
