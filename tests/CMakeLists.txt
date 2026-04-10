@@ -128,3 +128,13 @@ add_test(NAME test_abis_link COMMAND test_abis_link)
 add_executable(test_iub_link test_iub_link.cpp)
 target_link_libraries(test_iub_link PRIVATE rbs_umts)
 add_test(NAME test_iub_link COMMAND test_iub_link)
+
+# ── test_integration ──────────────────────────────────────────────
+add_executable(test_integration test_integration.cpp)
+target_link_libraries(test_integration PRIVATE rbs_lte rbs_umts rbs_gsm rbs_oms)
+add_test(NAME test_integration COMMAND test_integration)
+
+# ── test_mobility ─────────────────────────────────────────────────
+add_executable(test_mobility test_mobility.cpp)
+target_link_libraries(test_mobility PRIVATE rbs_common rbs_oms)
+add_test(NAME test_mobility COMMAND test_mobility)

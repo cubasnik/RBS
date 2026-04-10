@@ -27,6 +27,7 @@ endif()
 add_library(rbs_common STATIC
     src/common/config.cpp
     src/common/udp_socket.cpp
+    src/common/mobility_manager.cpp
 )
 target_include_directories(rbs_common PUBLIC src)
 # Winsock2 требуется для UdpSocket на Windows
