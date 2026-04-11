@@ -251,6 +251,7 @@ size_t LTEStack::connectedUECount() const {
 bool LTEStack::setupERAB(RNTI rnti, uint8_t erabId, const GTPUTunnel& sgw) {
     bool ok = s1u_->createTunnel(rnti, erabId, sgw);
     if (ok) {
+        activeERABs_.emplace(rnti, erabId);
         auto& oms = rbs::oms::OMS::instance();
         const double setups = oms.getCounter("lte.erab.setups") + 1.0;
         const double drops  = oms.getCounter("lte.erab.drops");
@@ -264,6 +265,8 @@ bool LTEStack::setupERAB(RNTI rnti, uint8_t erabId, const GTPUTunnel& sgw) {
 }
 
 bool LTEStack::teardownERAB(RNTI rnti, uint8_t erabId) {
+    if (!activeERABs_.count({rnti, erabId})) return true;  // no tunnel — nothing to do
+    activeERABs_.erase({rnti, erabId});
     return s1u_->deleteTunnel(rnti, erabId);
 }
 

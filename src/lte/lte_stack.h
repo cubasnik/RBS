@@ -11,6 +11,7 @@
 #include "ilte_stack.h"
 #include <memory>
 #include <unordered_map>
+#include <set>
 #include <thread>
 #include <atomic>
 
@@ -64,6 +65,7 @@ private:
     std::thread        subframeThread_;
     RNTI nextRnti_ = 1;
     std::unordered_map<RNTI, IMSI> ueMap_;
+    std::set<std::pair<RNTI, uint8_t>> activeERABs_;  ///< (rnti, erabId) tuples with live GTP-U tunnels
 
     static uint32_t packPlmnHex(uint16_t mcc, uint16_t mnc);
     void subframeLoop();
