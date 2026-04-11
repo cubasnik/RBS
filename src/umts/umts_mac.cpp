@@ -104,6 +104,7 @@ bool UMTSMAC::dequeueUlData(RNTI rnti, ByteBuffer& data) {
 
 // ────────────────────────────────────────────────────────────────
 void UMTSMAC::onRxFrame(const UMTSFrame& frame) {
+    (void)frame;
     // Demultiplex received data to all active UL channels (simplified)
     for (auto& [rnti, ctx] : channels_) {
         if (!ctx.active) continue;

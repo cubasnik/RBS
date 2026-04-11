@@ -24,7 +24,7 @@ int main() {
     assert(oml.sendOmlMsg(OMLMsgType::OPSTART, omsg));
 
     // recvOmlMsg: должны получить ACK
-    OMLMsgType rxType{};
+    [[maybe_unused]] OMLMsgType rxType{};
     AbisMessage rxMsg{};
     assert(oml.recvOmlMsg(rxType, rxMsg));
     assert(rxType == OMLMsgType::OPSTART_ACK);

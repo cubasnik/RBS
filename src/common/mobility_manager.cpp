@@ -142,7 +142,7 @@ bool MobilityManager::triggerCSFB(IMSI imsi, uint16_t gsmArfcn, CellId gsmCellId
         RBS_LOG_INFO("Mobility",
                 "CSFB complete IMSI=", imsi,
                 " LTE RNTI=", lteRnti,
-                " \u2192 GSM RNTI=", gsmRnti,
+                " -> GSM RNTI=", gsmRnti,
                 " ARFCN=", gsmArfcn,
                 " (total CSFB=", csfbCount_, ")");
     }

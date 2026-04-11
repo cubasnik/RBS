@@ -102,7 +102,7 @@ static AperBuf encInteger(uint64_t val, uint64_t lb, uint64_t ub) {
 
 /// Encode a semi-constrained INTEGER (≥ lb, no upper bound) as unconstrained.
 /// For simplicity treat as unconstrained.
-static AperBuf encIntegerUnconstrained(int64_t val) {
+[[maybe_unused]] static AperBuf encIntegerUnconstrained(int64_t val) {
     // Encode minimum number of bytes (2's complement), then length-determinant.
     AperBuf b;
     // Find minimum bytes needed
@@ -164,27 +164,20 @@ static void appendOpenType(AperBuf& dst, const AperBuf& value) {
 // ────────────────────── NBAP type encoders ────────────────────────────────────
 
 // Criticality: ENUMERATED { reject(0), ignore(1), notify(2) } — no ext marker
-static AperBuf encCriticality(int c) { return encEnum(c, 3); }
+[[maybe_unused]] static AperBuf encCriticality(int c) { return encEnum(c, 3); }
 
 // MessageDiscriminator: ENUMERATED { common(0), dedicated(1) } — no ext marker
-static AperBuf encMsgDisc(int d) { return encEnum(d, 2); }
+[[maybe_unused]] static AperBuf encMsgDisc(int d) { return encEnum(d, 2); }
 
 // ProcedureCode: INTEGER (0..255) → 8 bits
-static AperBuf encProcedureCode(uint8_t code) {
+[[maybe_unused]] static AperBuf encProcedureCode(uint8_t code) {
     return encInteger(code, 0, 255);
 }
 
 // ProcedureID: SEQUENCE { procedureCode INTEGER(0..255), ddMode ENUM{tdd(0),fdd(1),common(2),...} }
 // ddMode has extension marker (3 root values).
-static AperBuf encProcedureID(uint8_t code, int ddMode) {
+[[maybe_unused]] static AperBuf encProcedureID(uint8_t code, int ddMode) {
     AperBuf b;
-    AperBuf pc = encProcedureCode(code);
-    AperBuf dm = encEnumExtensible(ddMode, 3);
-    // Write all bits sequentially
-    for (uint8_t byte_ : pc.buf) {
-        // pc is 8 bits exactly
-    }
-    // Use direct bit writes instead of merging:
     b.writeBits(code, 8);                    // procedureCode INTEGER(0..255) = 8 bits
     b.writeBits(0, 1);                       // ddMode extension bit = 0
     // 3 root values → ⌈log2(3)⌉ = 2 bits
@@ -195,7 +188,7 @@ static AperBuf encProcedureID(uint8_t code, int ddMode) {
 // TransactionID: CHOICE { shortTransActionId INTEGER(0..127), longTransActionId INTEGER(0..32767) }
 // No extension marker on CHOICE. 2 alternatives → 1 bit selector.
 // We always use shortTransActionId.
-static AperBuf encTransactionID(uint8_t txId) {
+[[maybe_unused]] static AperBuf encTransactionID(uint8_t txId) {
     AperBuf b;
     b.writeBits(0, 1);           // CHOICE index 0 = shortTransActionId
     b.writeBits(txId & 0x7F, 7); // INTEGER(0..127) = 7 bits
@@ -203,7 +196,7 @@ static AperBuf encTransactionID(uint8_t txId) {
 }
 
 // ProtocolIE-ID: INTEGER (0..65535) — constrained 16 bits
-static AperBuf encProtocolIEID(uint16_t id) {
+[[maybe_unused]] static AperBuf encProtocolIEID(uint16_t id) {
     return encInteger(id, 0, 65535);
 }
 

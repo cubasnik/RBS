@@ -83,6 +83,7 @@ bool S1APLink::s1Setup(uint32_t enbId, const std::string& enbName,
 
 bool S1APLink::initialUEMessage(RNTI rnti, IMSI imsi, const ByteBuffer& nasPdu)
 {
+    (void)imsi;
     if (!connected_) {
         RBS_LOG_ERROR("S1AP", "[{}] initialUEMessage: нет соединения с MME", enbId_);
         return false;

@@ -20,15 +20,15 @@ int main() {
     // Verify header bytes per spec
     assert(frame[0] == GTPU_FLAGS_MINIMAL);   // 0x30
     assert(frame[1] == GTPU_MSG_TPDU);        // 0xFF
-    uint16_t declLen = static_cast<uint16_t>((frame[2] << 8) | frame[3]);
+    [[maybe_unused]] uint16_t declLen = static_cast<uint16_t>((frame[2] << 8) | frame[3]);
     assert(declLen == static_cast<uint16_t>(payload1.size()));
-    uint32_t teidFromFrame = (static_cast<uint32_t>(frame[4]) << 24)
+    [[maybe_unused]] uint32_t teidFromFrame = (static_cast<uint32_t>(frame[4]) << 24)
                            | (static_cast<uint32_t>(frame[5]) << 16)
                            | (static_cast<uint32_t>(frame[6]) << 8)
                            |  static_cast<uint32_t>(frame[7]);
     assert(teidFromFrame == teid1);
 
-    uint32_t        decTeid{};
+    [[maybe_unused]] uint32_t        decTeid{};
     rbs::ByteBuffer decPayload;
     assert(gtpuDecode(frame, decTeid, decPayload));
     assert(decTeid == teid1);
@@ -38,7 +38,7 @@ int main() {
     rbs::ByteBuffer emptyPayload;
     rbs::ByteBuffer emptyFrame = gtpuEncode(0xFFFFFFFFu, emptyPayload);
     assert(emptyFrame.size() == GTPU_HEADER_SIZE);
-    uint32_t        decTeid2{};
+    [[maybe_unused]] uint32_t        decTeid2{};
     rbs::ByteBuffer decPayload2;
     assert(gtpuDecode(emptyFrame, decTeid2, decPayload2));
     assert(decTeid2 == 0xFFFFFFFFu);
@@ -48,14 +48,14 @@ int main() {
     rbs::ByteBuffer largePl(1500, 0xAB);
     rbs::ByteBuffer largeFrame = gtpuEncode(1u, largePl);
     assert(largeFrame.size() == GTPU_HEADER_SIZE + 1500);
-    uint32_t        decTeid3{};
+    [[maybe_unused]] uint32_t        decTeid3{};
     rbs::ByteBuffer decPayload3;
     assert(gtpuDecode(largeFrame, decTeid3, decPayload3));
     assert(decPayload3 == largePl);
 
     // ── Reject: too short ─────────────────────────────────────────────────────
     rbs::ByteBuffer shortBuf(4, 0x00);
-    uint32_t dummyTeid{};
+    [[maybe_unused]] uint32_t dummyTeid{};
     rbs::ByteBuffer dummyPl;
     assert(!gtpuDecode(shortBuf, dummyTeid, dummyPl));
 

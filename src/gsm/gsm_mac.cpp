@@ -12,8 +12,8 @@ bool GSMMAC::start() {
     if (running_) return true;
     phy_->setRxCallback([this](const GSMBurst& b) { onRxBurst(b); });
     // Pre-queue SI messages
-    siQueue_.push({1, buildSIType1()});
-    siQueue_.push({3, buildSIType3()});
+    siQueue_.push({uint8_t{1}, buildSIType1()});
+    siQueue_.push({uint8_t{3}, buildSIType3()});
     running_ = true;
     RBS_LOG_INFO("GSMMAC", "Started – CellId=", cfg_.cellId,
                  " LAC=", cfg_.lac, " BSIC=", static_cast<int>(cfg_.bsic));

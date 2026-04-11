@@ -883,6 +883,7 @@ ByteBuffer s1ap_encode_PathSwitchRequest(uint32_t mmeUeS1apId,
                                          uint32_t cellId,
                                          uint16_t tac)
 {
+    (void)targetEnbId;
     S1AP_PDU_t pdu{};
     pdu.present = S1AP_PDU_PR_initiatingMessage;
     pdu.choice.initiatingMessage = static_cast<InitiatingMessage_t*>(

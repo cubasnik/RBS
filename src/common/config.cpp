@@ -33,7 +33,8 @@ bool Config::loadFile(const std::string& path) {
             currentSection = line.substr(1, line.size() - 2);
             // Normalise to lower-case
             std::transform(currentSection.begin(), currentSection.end(),
-                           currentSection.begin(), ::tolower);
+                           currentSection.begin(),
+                           [](unsigned char c) { return static_cast<char>(::tolower(c)); });
         } else {
             auto eqPos = line.find('=');
             if (eqPos == std::string::npos) continue;

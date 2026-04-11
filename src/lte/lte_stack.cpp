@@ -146,12 +146,11 @@ RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
     ueMap_[rnti] = imsi;
 
     {
-        auto& oms = rbs::oms::OMS::instance();
-        const double suc      = oms.getCounter("lte.rrc.successes") + 1.0;
-        const double attempts = oms.getCounter("lte.rrc.attempts");
+        const double suc         = oms.getCounter("lte.rrc.successes") + 1.0;
+        const double attemptsNow = oms.getCounter("lte.rrc.attempts");
         oms.updateCounter("lte.rrc.successes", suc);
         oms.updateCounter("lte.rrc.successRate.pct",
-                          attempts > 0 ? suc / attempts * 100.0 : 100.0, "%");
+                          attemptsNow > 0 ? suc / attemptsNow * 100.0 : 100.0, "%");
     }
 
     RBS_LOG_INFO("LTEStack", "UE admitted IMSI=", imsi, " RNTI=", rnti,
