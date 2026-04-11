@@ -1221,6 +1221,18 @@ nr->releaseUE(nrCrnti);
 
 REST-сервер запускается автоматически на порту **8080** (локальный биндинг `127.0.0.1`):
 
+> **Windows:** `curl` из PowerShell/cmd — это псевдоним `Invoke-WebRequest`, который не совместим с ключами `-X`, `-H`, `-d`.
+> Для работы с REST API используйте **WSL** (Windows Subsystem for Linux):
+> ```powershell
+> # Активировать среду WSL и перейти в неё:
+> wsl
+> ```
+> Все примеры ниже выполняются **внутри WSL-сессии** (bash/zsh).
+> Альтернативно — установить `curl.exe` отдельно или использовать Postman / [Invoke-RestMethod](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/invoke-restmethod) в PowerShell:
+> ```powershell
+> Invoke-RestMethod http://127.0.0.1:8080/api/v1/status
+> ```
+
 ```bash
 # Статус узла:
 curl http://127.0.0.1:8080/api/v1/status
