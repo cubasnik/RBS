@@ -139,6 +139,14 @@ namespace detail {
 // Stream val to oss applying optional format spec (e.g. "X", "02X", "x").
 template<typename T>
 void applySpec(std::ostringstream& oss, std::string_view spec, T&& val) {
+    // Promote char-sized integer types so they print as numbers, not characters.
+    using U = std::decay_t<T>;
+    if constexpr (std::is_same_v<U, char> ||
+                  std::is_same_v<U, signed char> ||
+                  std::is_same_v<U, unsigned char>) {
+        applySpec(oss, spec, static_cast<int>(val));
+        return;
+    }
     if (spec.empty()) { oss << val; return; }
     // Parse: optional '0' fill, optional width digits, then type char.
     char fill  = ' ';
