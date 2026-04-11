@@ -65,8 +65,7 @@ static void test_option3a_sgnb_addition_request() {
     assert(x2.connect(1, "127.0.0.1", 36422));
 
     std::vector<DCBearerConfig> bearers = {makeScgBearer()};
-    bool ok = x2.sgNBAdditionRequest(0x0001, ENDCOption::OPTION_3A, bearers);
-    assert(ok);
+    assert(x2.sgNBAdditionRequest(0x0001, ENDCOption::OPTION_3A, bearers));
 
     // Verify message is in tx queue (sendX2APMsg succeeds)
     printf("  test_option3a_sgnb_addition_request: PASS\n");
@@ -81,8 +80,7 @@ static void test_option3a_sgnb_addition_ack() {
     x2.sgNBAdditionRequest(0x0002, ENDCOption::OPTION_3A, bearers);
 
     // Ack: should assign snCrnti to each bearer
-    bool ok = x2.sgNBAdditionRequestAck(0x0002, bearers);
-    assert(ok);
+    assert(x2.sgNBAdditionRequestAck(0x0002, bearers));
     assert(bearers[0].snCrnti != 0);
 
     printf("  test_option3a_sgnb_addition_ack: PASS (snCrnti=0x%04X)\n",
@@ -96,8 +94,7 @@ static void test_sgnb_ack_unknown_rnti_fails() {
 
     std::vector<DCBearerConfig> bearers = {makeScgBearer()};
     // Ack for rnti 0x0099 without prior Request
-    bool ok = x2.sgNBAdditionRequestAck(0x0099, bearers);
-    assert(!ok);
+    assert(!x2.sgNBAdditionRequestAck(0x0099, bearers));
 
     printf("  test_sgnb_ack_unknown_rnti_fails: PASS\n");
 }
@@ -110,12 +107,10 @@ static void test_sgnb_rejection() {
     std::vector<DCBearerConfig> bearers = {makeScgBearer()};
     x2.sgNBAdditionRequest(0x0003, ENDCOption::OPTION_3A, bearers);
 
-    bool ok = x2.sgNBAdditionRequestReject(0x0003, "capacity-overload");
-    assert(ok);
+    assert(x2.sgNBAdditionRequestReject(0x0003, "capacity-overload"));
 
     // After reject, Ack for same rnti must fail
-    bool ackOk = x2.sgNBAdditionRequestAck(0x0003, bearers);
-    assert(!ackOk);
+    assert(!x2.sgNBAdditionRequestAck(0x0003, bearers));
 
     printf("  test_sgnb_rejection: PASS\n");
 }
@@ -230,7 +225,7 @@ static void test_nr_option3_split_mn() {
     nr.start();
 
     DCBearerConfig bearer = makeSplitMNBearer();
-    uint16_t nrCrnti = nr.acceptSCGBearer(0x0040, bearer);
+    [[maybe_unused]] uint16_t nrCrnti = nr.acceptSCGBearer(0x0040, bearer);
     assert(nrCrnti != 0);
     assert(nr.endcOption(0x0040).value() == ENDCOption::OPTION_3);
 
@@ -245,7 +240,7 @@ static void test_nr_option3x_split_sn() {
     nr.start();
 
     DCBearerConfig bearer = makeSplitSNBearer();
-    uint16_t nrCrnti = nr.acceptSCGBearer(0x0050, bearer);
+    [[maybe_unused]] uint16_t nrCrnti = nr.acceptSCGBearer(0x0050, bearer);
     assert(nrCrnti != 0);
     assert(nr.endcOption(0x0050).value() == ENDCOption::OPTION_3X);
 
@@ -282,7 +277,7 @@ static void test_nr_scg_on_stopped_stack() {
     NRStack nr(rf, makeNRCfg());
     // do NOT call nr.start()
 
-    uint16_t c = nr.acceptSCGBearer(0x0070, makeScgBearer());
+    [[maybe_unused]] uint16_t c = nr.acceptSCGBearer(0x0070, makeScgBearer());
     assert(c == 0);
 
     printf("  test_nr_scg_on_stopped_stack: PASS\n");

@@ -63,19 +63,17 @@ static void testCSFBBasic() {
     assert(mm.csfbCount()    == 0);
     assert(mm.handoverCount() == 0);
 
-    constexpr uint16_t GSM_ARFCN = 37;
+    [[maybe_unused]] constexpr uint16_t GSM_ARFCN = 37;
 
-    bool cbCalled = false;
-    bool ok = mm.triggerCSFB(UE1, GSM_ARFCN, 50,
-        [&](IMSI imsi, RNTI lteRnti, uint16_t arfcn) -> RNTI {
+    [[maybe_unused]] bool cbCalled = false;
+    assert(mm.triggerCSFB(UE1, GSM_ARFCN, 50,
+        [&]([[maybe_unused]] IMSI imsi, [[maybe_unused]] RNTI lteRnti, [[maybe_unused]] uint16_t arfcn) -> RNTI {
             cbCalled = true;
             assert(imsi    == UE1);
             assert(lteRnti == 0x0001);
             assert(arfcn   == GSM_ARFCN);
             return 0x00A1;   // new GSM RNTI
-        });
-
-    assert(ok);
+        }));
     assert(cbCalled);
     assert(mm.csfbCount()    == 1);
     assert(mm.handoverCount() == 0);   // CSFB is separate from PS HO count
@@ -116,17 +114,15 @@ static void testCSFBNotOnLTE() {
 
     // UE on GSM — should be rejected
     mm.registerUE(UE1, RAT::GSM, 0x0001, 50);
-    bool ok = mm.triggerCSFB(UE1, 37, 50,
-        [](IMSI, RNTI, uint16_t) -> RNTI { return 0x00A1; });
-    assert(!ok);
+    assert(!mm.triggerCSFB(UE1, 37, 50,
+        [](IMSI, RNTI, uint16_t) -> RNTI { return 0x00A1; }));
     assert(mm.csfbCount() == 0);
     assert(mm.getUELocation(UE1)->rat == RAT::GSM);  // unchanged
 
     // UE on UMTS — should also be rejected
     mm.registerUE(UE2, RAT::UMTS, 0x0002, 102);
-    ok = mm.triggerCSFB(UE2, 37, 50,
-        [](IMSI, RNTI, uint16_t) -> RNTI { return 0x00A2; });
-    assert(!ok);
+    assert(!mm.triggerCSFB(UE2, 37, 50,
+        [](IMSI, RNTI, uint16_t) -> RNTI { return 0x00A2; }));
     assert(mm.csfbCount() == 0);
     assert(mm.getUELocation(UE2)->rat == RAT::UMTS);  // unchanged
 
@@ -136,10 +132,9 @@ static void testCSFBNotOnLTE() {
 // ── Test 4: CSFB rejected when UE is not registered ──────────────────────────
 static void testCSFBUnknownUE() {
     MobilityManager mm;
-    bool cbCalled = false;
-    bool ok = mm.triggerCSFB(UE1, 37, 50,
-        [&](IMSI, RNTI, uint16_t) -> RNTI { cbCalled = true; return 0x00A1; });
-    assert(!ok);
+    [[maybe_unused]] bool cbCalled = false;
+    assert(!mm.triggerCSFB(UE1, 37, 50,
+        [&](IMSI, RNTI, uint16_t) -> RNTI { cbCalled = true; return 0x00A1; }));
     assert(!cbCalled);      // callback must not be invoked
     assert(mm.csfbCount() == 0);
 
@@ -151,9 +146,8 @@ static void testCSFBCallbackFailure() {
     MobilityManager mm;
     mm.registerUE(UE1, RAT::LTE, 0x0001, 99);
 
-    bool ok = mm.triggerCSFB(UE1, 37, 50,
-        [](IMSI, RNTI, uint16_t) -> RNTI { return 0; });  // admission failure
-    assert(!ok);
+    assert(!mm.triggerCSFB(UE1, 37, 50,
+        [](IMSI, RNTI, uint16_t) -> RNTI { return 0; }));  // admission failure
     assert(mm.csfbCount() == 0);
     // UE record should be unchanged (still on LTE)
     assert(mm.getUELocation(UE1)->rat == RAT::LTE);
@@ -172,8 +166,7 @@ static void testCSFBRrcRelease() {
     assert(rrc.rrcState(rnti) == LTERrcState::RRC_CONNECTED);
 
     // Release with redirect
-    bool ok = rrc.releaseWithRedirect(rnti, 37 /*GSM ARFCN*/);
-    assert(ok);
+    assert(rrc.releaseWithRedirect(rnti, 37 /*GSM ARFCN*/));
     // Context must be gone: rrcState returns IDLE for unknown RNTI
     assert(rrc.rrcState(rnti) == LTERrcState::RRC_IDLE);
 
@@ -189,7 +182,7 @@ static void testCSFBOmsCounter() {
     auto& oms = OMS::instance();
 
     // Record baseline (other tests may have run)
-    const double baseline = oms.getCounter("lte.csfb.count");
+    [[maybe_unused]] const double baseline = oms.getCounter("lte.csfb.count");
 
     auto rf = std::make_shared<hal::RFHardware>(2, 4);
     assert(rf->initialise());
@@ -242,13 +235,11 @@ static void testCSFBEndToEnd() {
     mm.registerUE(UE1, RAT::LTE, lteRnti, 99);
 
     // Execute CSFB via callback
-    bool ok = mm.triggerCSFB(UE1, 37, 50,
+    assert(mm.triggerCSFB(UE1, 37, 50,
         [&](IMSI imsi, RNTI rnti, uint16_t arfcn) -> RNTI {
             lteStack.triggerCSFB(rnti, arfcn);        // release LTE, send redirect
             return gsmStack.admitUE(imsi);             // admit in GSM
-        });
-
-    assert(ok);
+        }));
     assert(mm.csfbCount() == 1);
     assert(lteStack.connectedUECount() == 0);
     assert(gsmStack.connectedUECount() == 1);

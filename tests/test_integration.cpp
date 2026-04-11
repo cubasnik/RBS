@@ -165,8 +165,8 @@ int main() {
 
     // ── OMS alarm lifecycle ────────────────────────────────────────────────────
     uint32_t a1 = oms.raiseAlarm("GSM-Cell-101",  "VSWR high",        oms::AlarmSeverity::MAJOR);
-    uint32_t a2 = oms.raiseAlarm("UMTS-Cell-102", "Clock unlock",     oms::AlarmSeverity::CRITICAL);
-    uint32_t a3 = oms.raiseAlarm("LTE-Cell-103",  "TX power reduced", oms::AlarmSeverity::WARNING);
+    [[maybe_unused]] uint32_t a2 = oms.raiseAlarm("UMTS-Cell-102", "Clock unlock",     oms::AlarmSeverity::CRITICAL);
+    [[maybe_unused]] uint32_t a3 = oms.raiseAlarm("LTE-Cell-103",  "TX power reduced", oms::AlarmSeverity::WARNING);
     assert(a1 != 0 && a2 != 0 && a3 != 0);
     assert(oms.getActiveAlarms().size() == 3);
 

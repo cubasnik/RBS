@@ -44,7 +44,7 @@ static void test_pucch_format1_sr() {
     assert(sr1[3] == 1);
 
     // CRC byte = XOR of first 4 bytes
-    uint8_t crc = sr1[0] ^ sr1[1] ^ sr1[2] ^ sr1[3];
+    [[maybe_unused]] uint8_t crc = sr1[0] ^ sr1[1] ^ sr1[2] ^ sr1[3];
     assert(sr1[4] == crc);
 
     // Different RNTIs produce different outputs
@@ -252,8 +252,7 @@ static void test_ul_data_path() {
 
     // dequeueUlSDU should return the simulated Transport Block
     ByteBuffer ulData;
-    bool got = mac.dequeueUlSDU(rnti, ulData);
-    assert(got);
+    assert(mac.dequeueUlSDU(rnti, ulData));
     assert(!ulData.empty());
 
     mac.stop();

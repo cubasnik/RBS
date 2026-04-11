@@ -28,6 +28,7 @@ static void check_initiating(const ByteBuffer& pdu, const char* name) {
     assert(!pdu.empty() && "PDU must be non-empty");
     // APER outer CHOICE index 0 (initiatingMessage): first byte bit7 = 0
     assert((pdu[0] & 0x80) == 0);
+    (void)pdu;
     (void)name;
 }
 
