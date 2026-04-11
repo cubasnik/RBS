@@ -138,6 +138,44 @@ LTECellConfig Config::buildLTEConfig() const {
     c.mcc         = static_cast<uint16_t>(getInt   ("lte", "mcc",       250));
     c.mnc         = static_cast<uint16_t>(getInt   ("lte", "mnc",         1));
     c.numAntennas = static_cast<uint8_t> (getInt   ("lte", "num_antennas", 2));
+    c.mmeAddr     = getString("lte", "mme_addr", "127.0.0.1");
+    c.mmePort     = static_cast<uint16_t>(getInt("lte", "mme_port", 36412));
+    return c;
+}
+
+NRCellConfig Config::buildNRConfig() const {
+    NRCellConfig c{};
+    c.cellId          = static_cast<CellId>  (getInt   ("nr", "cell_id",       4));
+    c.nrArfcn         = static_cast<uint32_t>(getInt   ("nr", "nr_arfcn",  428000)); // n1 FDD DL 2140 MHz
+    c.scs             = NRScs::SCS15;
+    c.band            = static_cast<uint8_t> (getInt   ("nr", "band",            1));
+    c.gnbDuId         = static_cast<uint64_t>(getInt   ("nr", "gnb_du_id",       1));
+    c.gnbCuId         = static_cast<uint64_t>(getInt   ("nr", "gnb_cu_id",       1));
+    c.nrCellIdentity  = static_cast<uint64_t>(getInt   ("nr", "nr_cell_id",      1));
+    c.nrPci           = static_cast<uint16_t>(getInt   ("nr", "pci",           400));
+    c.ssbPeriodMs     = static_cast<uint8_t> (getInt   ("nr", "ssb_period_ms",  20));
+    c.tac             = static_cast<uint16_t>(getInt   ("nr", "tac",             1));
+    c.mcc             = static_cast<uint16_t>(getInt   ("nr", "mcc",           250));
+    c.mnc             = static_cast<uint16_t>(getInt   ("nr", "mnc",             1));
+    c.cuAddr          = getString("nr", "cu_addr", "127.0.0.1");
+    c.cuPort          = static_cast<uint16_t>(getInt   ("nr", "cu_port",      38472));
+    c.numTxRx         = static_cast<uint8_t> (getInt   ("nr", "num_antennas",    4));
+    return c;
+}
+
+ENDCConfig Config::buildENDCConfig() const {
+    ENDCConfig c{};
+    c.enabled     = getBool  ("endc", "enabled",       false);
+    c.x2Addr      = getString("endc", "x2_addr",       "127.0.0.1");
+    c.x2Port      = static_cast<uint16_t>(getInt("endc", "x2_port",    36422));
+    c.enbBearerId = static_cast<uint8_t> (getInt("endc", "enb_bearer_id", 5));
+    c.scgDrbId    = static_cast<uint8_t> (getInt("endc", "scg_drb_id",    1));
+
+    const std::string opt = getString("endc", "option", "3a");
+    if      (opt == "3")  c.option = ENDCOption::OPTION_3;
+    else if (opt == "3x") c.option = ENDCOption::OPTION_3X;
+    else                  c.option = ENDCOption::OPTION_3A;  // default
+
     return c;
 }
 

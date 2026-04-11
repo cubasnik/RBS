@@ -38,6 +38,8 @@ public:
     GSMCellConfig  buildGSMConfig()  const;
     UMTSCellConfig buildUMTSConfig() const;
     LTECellConfig  buildLTEConfig()  const;
+    NRCellConfig   buildNRConfig()   const;
+    ENDCConfig     buildENDCConfig() const;
 
 private:
     Config() = default;

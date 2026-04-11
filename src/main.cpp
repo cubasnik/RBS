@@ -5,6 +5,8 @@
 #include "gsm/gsm_stack.h"
 #include "umts/umts_stack.h"
 #include "lte/lte_stack.h"
+#include "lte/x2ap_link.h"
+#include "nr/nr_stack.h"
 #include "oms/oms.h"
 
 #include <iostream>
@@ -44,7 +46,7 @@ static const char* lteBwMHz(rbs::LTEBandwidth bw) {
 // ────────────────────────────────────────────────────────────────
 // RAT selection
 // ────────────────────────────────────────────────────────────────
-enum class SelectedRAT { GSM, UMTS, LTE, ALL };
+enum class SelectedRAT { GSM, UMTS, LTE, NR, ALL };
 
 static SelectedRAT parseRAT(const std::string& arg) {
     std::string s = arg;
@@ -52,6 +54,7 @@ static SelectedRAT parseRAT(const std::string& arg) {
     if (s == "gsm")  return SelectedRAT::GSM;
     if (s == "umts") return SelectedRAT::UMTS;
     if (s == "lte")  return SelectedRAT::LTE;
+    if (s == "nr")   return SelectedRAT::NR;
     return SelectedRAT::ALL;
 }
 
@@ -60,7 +63,8 @@ static const char* ratName(SelectedRAT r) {
         case SelectedRAT::GSM:  return "GSM (2G)";
         case SelectedRAT::UMTS: return "UMTS (3G)";
         case SelectedRAT::LTE:  return "LTE (4G)";
-        case SelectedRAT::ALL:  return "GSM + UMTS + LTE";
+        case SelectedRAT::NR:   return "NR (5G)";
+        case SelectedRAT::ALL:  return "GSM + UMTS + LTE + NR";
     }
     return "";
 }
@@ -98,6 +102,11 @@ public:
             lteRF_->setAlarmCallback(alarmCb);
             lteStack_ = std::make_unique<rbs::lte::LTEStack>(lteRF_, cfg.buildLTEConfig());
         }
+        if (rat_ == SelectedRAT::NR || rat_ == SelectedRAT::ALL) {
+            nrRF_ = std::make_shared<rbs::hal::RFHardware>(4, 4);
+            nrRF_->setAlarmCallback(alarmCb);
+            nrStack_ = std::make_unique<rbs::nr::NRStack>(nrRF_, cfg.buildNRConfig());
+        }
     }
 
     // ── Lifecycle ─────────────────────────────────────────────────
@@ -111,10 +120,12 @@ public:
         if (gsmRF_  && !initRF(gsmRF_))  { RBS_LOG_CRITICAL("RBS", "GSM RF init failed");  return false; }
         if (umtsRF_ && !initRF(umtsRF_)) { RBS_LOG_CRITICAL("RBS", "UMTS RF init failed"); return false; }
         if (lteRF_  && !initRF(lteRF_))  { RBS_LOG_CRITICAL("RBS", "LTE RF init failed");  return false; }
+        if (nrRF_   && !initRF(nrRF_))   { RBS_LOG_CRITICAL("RBS", "NR RF init failed");   return false; }
 
         if (gsmStack_  && !gsmStack_->start())  { RBS_LOG_CRITICAL("RBS", "GSM stack start failed");  return false; }
         if (umtsStack_ && !umtsStack_->start()) { RBS_LOG_CRITICAL("RBS", "UMTS stack start failed"); return false; }
         if (lteStack_  && !lteStack_->start())  { RBS_LOG_CRITICAL("RBS", "LTE stack start failed");  return false; }
+        if (nrStack_   && !nrStack_->start())   { RBS_LOG_CRITICAL("RBS", "NR stack start failed");   return false; }
 
         RBS_LOG_INFO("RBS", "====================================================");
         RBS_LOG_INFO("RBS", "  Radio Base Station ONLINE  [", ratName(rat_), "]");
@@ -131,13 +142,42 @@ public:
                          "  EARFCN=", lteStack_->config().earfcn,
                          "  PCI=",    lteStack_->config().pci,
                          "  BW=",     lteBwMHz(lteStack_->config().bandwidth), " MHz");
+        if (nrStack_)
+            RBS_LOG_INFO("RBS", "  NR   cell ", nrStack_->config().cellId,
+                         "  NR-ARFCN=", nrStack_->config().nrArfcn,
+                         "  PCI=",      nrStack_->config().nrPci,
+                         "  SCS=",      rbs::nrScsKhz(nrStack_->config().scs), " kHz");
         RBS_LOG_INFO("RBS", "====================================================");
+
+        // ── EN-DC wiring: connect LTE(MN) ↔ NR(SN) when both stacks are active ──
+        if (lteStack_ && nrStack_) {
+            const rbs::ENDCConfig endc = rbs::Config::instance().buildENDCConfig();
+            if (endc.enabled) {
+                x2endc_ = std::make_unique<rbs::lte::X2APLink>("MN-eNB");
+                x2endc_->connect(1, endc.x2Addr, endc.x2Port);
+                rbs::DCBearerConfig bearer{};
+                bearer.enbBearerId = endc.enbBearerId;
+                bearer.type        = (endc.option == rbs::ENDCOption::OPTION_3A)
+                                     ? rbs::DCBearerType::SCG
+                                     : (endc.option == rbs::ENDCOption::OPTION_3X
+                                        ? rbs::DCBearerType::SPLIT_SN
+                                        : rbs::DCBearerType::SPLIT_MN);
+                bearer.scgLegDrbId = endc.scgDrbId;
+                bearer.nrCellId    = nrStack_->config().nrCellIdentity;
+                x2endc_->sgNBAdditionRequest(0xFFFF, endc.option, {bearer});
+                RBS_LOG_INFO("RBS", "EN-DC Option ", static_cast<int>(endc.option),
+                             " active: LTE(MN) + NR(SN) X2=", endc.x2Addr, ":", endc.x2Port);
+            }
+        }
+
         return true;
     }
 
     void stop() {
         RBS_LOG_INFO("RBS", "Stopping cell(s)...");
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::SHUTTING_DOWN);
+        if (x2endc_)    { x2endc_->disconnect(1); }
+        if (nrStack_)   { nrStack_->stop();   nrRF_->shutdown(); }
         if (lteStack_)  { lteStack_->stop();  lteRF_->shutdown(); }
         if (umtsStack_) { umtsStack_->stop(); umtsRF_->shutdown(); }
         if (gsmStack_)  { gsmStack_->stop();  gsmRF_->shutdown(); }
@@ -196,6 +236,32 @@ public:
             lteStack_->releaseUE(rnti);
         }
 
+        if (nrStack_) {
+            rbs::RNTI rnti = nrStack_->admitUE(400000000000004ULL);
+            RBS_LOG_INFO("RBS", "[NR  ] UE RNTI=", rnti,
+                         " admitted on NR-ARFCN=", nrStack_->config().nrArfcn,
+                         " PCI=", nrStack_->config().nrPci,
+                         " SCS=", rbs::nrScsKhz(nrStack_->config().scs), " kHz");
+            // EN-DC Option 3a: wire SCG bearer if LTE is also running
+            if (lteStack_) {
+                rbs::DCBearerConfig bearer{};
+                bearer.enbBearerId = 5;
+                bearer.type        = rbs::DCBearerType::SCG;
+                bearer.scgLegDrbId = 1;
+                bearer.nrCellId    = nrStack_->config().nrCellIdentity;
+                uint16_t nrCrnti = nrStack_->acceptSCGBearer(rnti, bearer);
+                RBS_LOG_INFO("RBS", "[EN-DC 3a] lteCrnti=", rnti,
+                             " nrCrnti=", nrCrnti,
+                             " SCG bearer id=", bearer.enbBearerId);
+            }
+            std::this_thread::sleep_for(std::chrono::seconds(2));
+            nrStack_->printStats();
+            oms.updateCounter("nr.connectedUEs",
+                              static_cast<double>(nrStack_->connectedUECount()));
+            if (lteStack_) nrStack_->releaseSCGBearer(rnti);
+            nrStack_->releaseUE(rnti);
+        }
+
         oms.printPerformanceReport();
     }
 
@@ -215,6 +281,9 @@ public:
             if (lteStack_)
                 oms.updateCounter("lte.connectedUEs",
                                   static_cast<double>(lteStack_->connectedUECount()));
+            if (nrStack_)
+                oms.updateCounter("nr.connectedUEs",
+                                  static_cast<double>(nrStack_->connectedUECount()));
             if (tick % 3 == 0) oms.printPerformanceReport();
         }
     }
@@ -224,21 +293,26 @@ private:
     std::shared_ptr<rbs::hal::RFHardware>   gsmRF_;
     std::shared_ptr<rbs::hal::RFHardware>   umtsRF_;
     std::shared_ptr<rbs::hal::RFHardware>   lteRF_;
-    std::unique_ptr<rbs::gsm::GSMStack>     gsmStack_;
-    std::unique_ptr<rbs::umts::UMTSStack>   umtsStack_;
-    std::unique_ptr<rbs::lte::LTEStack>     lteStack_;
+    std::unique_ptr<rbs::gsm::GSMStack>      gsmStack_;
+    std::unique_ptr<rbs::umts::UMTSStack>    umtsStack_;
+    std::unique_ptr<rbs::lte::LTEStack>      lteStack_;
+    std::shared_ptr<rbs::hal::RFHardware>    nrRF_;
+    std::unique_ptr<rbs::nr::NRStack>        nrStack_;
+    // EN-DC X2AP link between LTE(MN) and NR(SN)
+    std::unique_ptr<rbs::lte::X2APLink>      x2endc_;
 };
 
 // ────────────────────────────────────────────────────────────────
 // Entry point
 // ────────────────────────────────────────────────────────────────
 static void printUsage(const char* exe) {
-    std::cerr << "Usage: " << exe << " [config] [gsm|umts|lte]\n"
+    std::cerr << "Usage: " << exe << " [config] [gsm|umts|lte|nr]\n"
               << "  config  path to rbs.conf  (default: rbs.conf)\n"
               << "  gsm     start GSM  (2G) cell only\n"
               << "  umts    start UMTS (3G) cell only\n"
               << "  lte     start LTE  (4G) cell only\n"
-              << "  <none>  start all three RATs\n";
+              << "  nr      start NR   (5G) cell only\n"
+              << "  <none>  start all four RATs (EN-DC active when LTE+NR)\n";
 }
 
 int main(int argc, char* argv[]) {
@@ -255,7 +329,7 @@ int main(int argc, char* argv[]) {
         std::string a = argv[i];
         std::string al = a;
         std::transform(al.begin(), al.end(), al.begin(), ::tolower);
-        if (al == "gsm" || al == "umts" || al == "lte") {
+        if (al == "gsm" || al == "umts" || al == "lte" || al == "nr") {
             rat = parseRAT(al);
         } else if (al == "--help" || al == "-h") {
             printUsage(argv[0]);
