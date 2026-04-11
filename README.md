@@ -23,11 +23,12 @@
 6. [Сборка](#сборка)
 7. [Запуск](#запуск)
 8. [Тесты](#тесты)
-9. [Разработка с GitHub Copilot](#разработка-с-github-copilot)
-10. [Логирование](#логирование)
-11. [Стандарты и спецификации](#стандарты-и-спецификации)
-12. [История разработки](#история-разработки)
-13. [Дорожная карта](#дорожная-карта-план-следующих-итераций)
+9. [Руководство по использованию](#руководство-по-использованию)
+10. [Разработка с GitHub Copilot](#разработка-с-github-copilot)
+11. [Логирование](#логирование)
+12. [Стандарты и спецификации](#стандарты-и-спецификации)
+13. [История разработки](#история-разработки)
+14. [Дорожная карта](#дорожная-карта-план-следующих-итераций)
 
 ---
 
@@ -949,6 +950,291 @@ cmake --build build -j$(nproc)
 6. Дополнительно проверьте в логах Open5GS успешную обработку S1 Setup.
 
 Примечание: на Windows без нативного SCTP возможен fallback-транспорт, но для реального interop с Open5GS нужен нативный SCTP (рекомендуется запуск RBS на Linux).
+
+---
+
+## Руководство по использованию
+
+### Содержание
+
+- [GSM (2G)](#gsm-2g-использование)
+- [UMTS (3G)](#umts-3g-использование)
+- [LTE (4G)](#lte-4g-использование)
+- [NR NSA (5G EN-DC)](#nr-nsa-5g-en-dc-использование)
+- [REST API](#rest-api-использование)
+
+---
+
+### GSM (2G) использование
+
+**Конфигурация `[gsm]` в rbs.conf:**
+```ini
+[gsm]
+cell_id      = 1
+arfcn        = 60        ; P-GSM 900, DL 935–960 МГц (ARFCN 1–124)
+tx_power_dbm = 43.0
+bsic         = 10        ; 0–63, Base Station Identity Code
+lac          = 1000
+mcc          = 250
+mnc          = 1
+```
+
+**Программный API (`GSMStack`):**
+```cpp
+#include "gsm/gsm_stack.h"
+
+gsm->start();
+
+// Подключить UE (IMSI → RNTI):
+RNTI rnti = gsm->admitUE(100000000000001ULL);
+
+// Отправить/принять данные (TCH-фрейм, 13 байт GSM Voice):
+ByteBuffer voice(13, 0xAA);
+gsm->sendData(rnti, voice);
+
+ByteBuffer rxBuf;
+gsm->receiveData(rnti, rxBuf);
+
+// Статистика → LOG_INFO:
+gsm->printStats();
+
+// Отключить:
+gsm->releaseUE(rnti);
+```
+
+**OMS счётчик:** `gsm.connectedUEs`
+
+---
+
+### UMTS (3G) использование
+
+**Конфигурация `[umts]` в rbs.conf:**
+```ini
+[umts]
+cell_id      = 2
+uarfcn       = 10700     ; Band I DL → 2110–2170 МГц
+tx_power_dbm = 43.0
+psc          = 64        ; Primary Scrambling Code, 0–511
+lac          = 1000
+rac          = 1
+```
+
+**Программный API (`UMTSStack`):**
+```cpp
+#include "umts/umts_stack.h"
+
+// Обычный DCH bearer (по умолчанию SF=16 = ~384 кбит/с):
+RNTI rnti = umts->admitUE(200000000000002ULL);
+
+// С явным Spreading Factor (SF4=макс.скорость … SF256=макс.покрытие):
+RNTI rnti = umts->admitUE(imsi, SF::SF32);
+
+// HSDPA bearer (HS-DSCH, до 14.4 Мбит/с, TS 25.308):
+RNTI rnti = umts->admitUEHSDPA(imsi);
+
+// E-DCH bearer (Enhanced UL, HSUPA):
+RNTI rnti = umts->admitUEEDCH(imsi);
+
+// Переконфигурировать Spreading Factor:
+umts->reconfigureDCH(rnti, SF::SF8);
+
+// Soft Handover — обновление Active Set:
+MeasurementReport report;
+umts->softHandoverUpdate(report);
+const auto& activeSet = umts->activeSet(rnti);
+
+umts->sendData(rnti, data);
+umts->releaseUE(rnti);
+```
+
+**Доступные Spreading Factor:** `SF4, SF8, SF16, SF32, SF64, SF128, SF256`
+
+**OMS счётчик:** `umts.connectedUEs`
+
+---
+
+### LTE (4G) использование
+
+**Конфигурация `[lte]` в rbs.conf:**
+```ini
+[lte]
+cell_id      = 3
+earfcn       = 1800      ; Band 3 DL ~1865 МГц
+tx_power_dbm = 43.0
+pci          = 300       ; Physical Cell Identity, 0–503
+tac          = 1
+num_antennas = 2         ; Tx-порты: 1, 2 или 4
+mme_addr     = 127.0.0.1 ; адрес MME (Open5GS)
+mme_port     = 36412
+```
+
+**Базовый сценарий:**
+```cpp
+#include "lte/lte_stack.h"
+
+// Admit UE (IMSI, CQI=12 → MCS=17, ~20 МГц eMBB):
+RNTI rnti = lte->admitUE(300000000000003ULL, /*CQI=*/12);
+
+// Обновить CQI динамически:
+lte->updateCQI(rnti, 9);
+
+// Отправить IP-пакет (DL):
+ByteBuffer ipPkt(100, 0x42);
+lte->sendIPPacket(rnti, /*bearerId=*/1, ipPkt);
+
+// Принять IP-пакет (UL):
+ByteBuffer rxPkt;
+lte->receiveIPPacket(rnti, 1, rxPkt);
+
+lte->printStats();
+lte->releaseUE(rnti);
+```
+
+**Carrier Aggregation (LTE-A, до 5 CC × 20 МГц = 100 МГц):**
+```cpp
+RNTI rnti = lte->admitUECA(imsi, /*ccCount=*/2, /*CQI=*/12);
+```
+
+**GTP-U bearer к SGW (S1-U интерфейс):**
+```cpp
+GTPUTunnel sgw;
+sgw.teid       = 0xABCD1234;
+sgw.remoteIPv4 = 0x7F000001;  // 127.0.0.1
+sgw.udpPort    = 2152;
+
+lte->setupERAB(rnti, /*erabId=*/1, sgw);
+// ...
+lte->teardownERAB(rnti, 1);
+```
+
+**CSFB — голос через LTE (LTE → GSM/UMTS, TS 23.272):**
+```cpp
+lte->triggerCSFB(rnti, /*gsmArfcn=*/60);
+// → RRC Connection Release + перенаправление на ARFCN 60
+```
+
+**KPI пороги (автоматические аварии OMS):**
+```cpp
+auto& oms = OMS::instance();
+oms.setKpiThreshold("lte.rrc.successRate.pct",
+    {80.0, /*belowIsAlarm=*/true, AlarmSeverity::MAJOR, "RRC success rate below 80%"});
+oms.setKpiThreshold("lte.ho.successRate.pct",
+    {90.0, true, AlarmSeverity::MAJOR, "HO success rate below 90%"});
+oms.setKpiThreshold("lte.erab.dropRate.pct",
+    {5.0, false, AlarmSeverity::MINOR, "E-RAB drop rate above 5%"});
+```
+
+**OMS счётчики:** `lte.connectedUEs`, `lte.rrc.successRate.pct`, `lte.ho.successRate.pct`, `lte.erab.dropRate.pct`
+
+---
+
+### NR NSA (5G EN-DC) использование
+
+**Конфигурация `[nr]` в rbs.conf:**
+```ini
+[nr]
+cell_id       = 4
+nr_arfcn      = 627264   ; n78 TDD FR1, ~3.5 ГГц
+band          = 78
+pci           = 400      ; NR PCI, 0–1007
+ssb_period_ms = 20
+cu_addr       = 127.0.0.1
+cu_port       = 38472
+```
+
+**Чистый NR — F1AP (gNB-DU → gNB-CU):**
+```cpp
+#include "nr/nr_stack.h"
+
+nr->start();  // запускает NRPhy: SSB (PSS/SSS/PBCH) каждые 20 мс
+
+// F1 Setup Request — подключение к gNB-CU (TS 38.473 §8.7.1):
+ByteBuffer req = nr->buildF1SetupRequest();
+// ... отправить по SCTP на cu_addr:cu_port ...
+// При получении ответа:
+bool ok = nr->handleF1SetupResponse(responsePdu);
+
+// Текущий SFN (0–1023, цикл 10.24 с):
+uint32_t sfn = nr->currentSFN();
+
+nr->printStats();
+```
+
+**EN-DC NSA — Option 3a (SCG bearer, основной вариант):**
+
+UE одновременно подключено к LTE (Master Node) и NR (Secondary Node):
+
+```cpp
+// 1. LTE UE уже подключён:
+RNTI lteCrnti = lte->admitUE(300000000000003ULL, 12);
+
+// 2. Конфигурация SCG bearer:
+rbs::DCBearerConfig bearer;
+bearer.enbBearerId = 5;                          // E-RAB на LTE (MN)
+bearer.type        = rbs::DCBearerType::SCG;     // NR-only leg
+bearer.scgLegDrbId = 1;                          // DRB1 на NR
+bearer.nrCellId    = nr->config().nrCellIdentity;
+
+// 3. NR сторона принимает SCG bearer → возвращает NR C-RNTI:
+uint16_t nrCrnti = nr->acceptSCGBearer(lteCrnti, bearer);
+
+// 4. MN (LTE) инициирует X2 SgNB Addition Request:
+x2endc->sgNBAdditionRequest(lteCrnti, rbs::ENDCOption::OPTION_3A, {bearer});
+
+// 5. Проверить статус:
+auto opt = nr->endcOption(lteCrnti);  // → ENDCOption::OPTION_3A
+size_t endcUEs = nr->endcUECount();
+
+// 6. Освобождение:
+nr->releaseSCGBearer(lteCrnti);
+nr->releaseUE(nrCrnti);
+```
+
+**Варианты EN-DC:**
+
+| Option | `ENDCOption` | Описание |
+|--------|-------------|----------|
+| Option 3 | `OPTION_3` | Split-bearer: PDCP на MN (LTE) |
+| Option 3a | `OPTION_3A` | SCG bearer: весь трафик через NR |
+| Option 3x | `OPTION_3X` | Split-bearer: PDCP на SN (NR) |
+
+**OMS счётчик:** `nr.connectedUEs`
+
+---
+
+### REST API использование
+
+REST-сервер запускается автоматически на порту **8080** (локальный биндинг `127.0.0.1`):
+
+```bash
+# Статус узла:
+curl http://127.0.0.1:8080/api/v1/status
+# → {"version":"1.0.0","nodeState":"UNLOCKED","rats":["GSM","UMTS","LTE","NR"]}
+
+# PM счётчики (все OMS):
+curl http://127.0.0.1:8080/api/v1/pm
+# → {"counters":[{"name":"lte.connectedUEs","value":3},{"name":"lte.rrc.successRate.pct","value":100},...]}
+
+# Активные аварии:
+curl http://127.0.0.1:8080/api/v1/alarms
+# → {"alarms":[{"id":1,"source":"RFHardware","description":"PA overheat","severity":"MAJOR"}]}
+
+# Подключить UE (rat: GSM | UMTS | LTE | NR):
+curl -X POST http://127.0.0.1:8080/api/v1/admit \
+     -H "Content-Type: application/json" \
+     -d '{"imsi": 300000000000003, "rat": "LTE"}'
+# → {"status":"ok","crnti":101}
+```
+
+**PM Export:**
+```cpp
+// Сохранить снимок счётчиков в CSV:
+OMS::instance().exportCsv("pm_snapshot.csv");
+// Формат: timestamp,name,value,unit
+
+// Отправить в InfluxDB (UDP Line Protocol):
+OMS::instance().pushInflux("127.0.0.1:8086", "rbs_pm");
+```
 
 ---
 
