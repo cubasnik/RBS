@@ -10,7 +10,16 @@
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_rrc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_rlc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\iub_link.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\nbap_codec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

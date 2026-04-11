@@ -84,6 +84,51 @@ int main() {
         assert(dec == plain);
     }
 
+    // ── SNOW 3G (EEA1) round-trip test — TS 33.401 §6.4.3 ─────────────────────
+    {
+        rbs::lte::PDCP pdcp4;
+        rbs::lte::PDCPConfig scfg{};
+        scfg.bearerId  = 1;
+        scfg.cipherAlg = rbs::lte::PDCPCipherAlg::SNOW3G;
+        for (int i = 0; i < 16; ++i) scfg.cipherKey[i] = static_cast<uint8_t>(i);
+        const rbs::RNTI sr = 30;
+        assert(pdcp4.addBearer(sr, scfg));
+
+        rbs::ByteBuffer plain(32, 0xAB);
+        rbs::ByteBuffer enc = pdcp4.processDlPacket(sr, 1, plain);
+        // Ciphertext must differ from plaintext (stream cipher applied)
+        assert(enc.size() == plain.size() + 2);
+        bool differs = false;
+        for (size_t i = 0; i < plain.size(); ++i)
+            if (enc[i + 2] != plain[i]) { differs = true; break; }
+        assert(differs);
+
+        rbs::ByteBuffer dec = pdcp4.processUlPDU(sr, 1, enc);
+        assert(dec == plain);
+    }
+
+    // ── ZUC (EEA3) round-trip test — TS 33.401 §6.4.6 ─────────────────────────
+    {
+        rbs::lte::PDCP pdcp5;
+        rbs::lte::PDCPConfig zcfg{};
+        zcfg.bearerId  = 1;
+        zcfg.cipherAlg = rbs::lte::PDCPCipherAlg::ZUC;
+        for (int i = 0; i < 16; ++i) zcfg.cipherKey[i] = static_cast<uint8_t>(i ^ 0xFF);
+        const rbs::RNTI zr = 40;
+        assert(pdcp5.addBearer(zr, zcfg));
+
+        rbs::ByteBuffer plain(32, 0xCD);
+        rbs::ByteBuffer enc = pdcp5.processDlPacket(zr, 1, plain);
+        assert(enc.size() == plain.size() + 2);
+        bool differs = false;
+        for (size_t i = 0; i < plain.size(); ++i)
+            if (enc[i + 2] != plain[i]) { differs = true; break; }
+        assert(differs);
+
+        rbs::ByteBuffer dec = pdcp5.processUlPDU(zr, 1, enc);
+        assert(dec == plain);
+    }
+
     std::puts("test_pdcp PASSED");
     return 0;
 }

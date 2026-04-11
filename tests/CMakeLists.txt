@@ -114,6 +114,11 @@ add_executable(test_s1ap_link test_s1ap_link.cpp)
 target_link_libraries(test_s1ap_link PRIVATE rbs_lte)
 add_test(NAME test_s1ap_link COMMAND test_s1ap_link)
 
+# ── test_pcap_writer ──────────────────────────────────────────────
+add_executable(test_pcap_writer test_pcap_writer.cpp)
+target_link_libraries(test_pcap_writer PRIVATE rbs_common)
+add_test(NAME test_pcap_writer COMMAND test_pcap_writer)
+
 # ── test_x2ap_link ────────────────────────────────────────────────
 add_executable(test_x2ap_link test_x2ap_link.cpp)
 target_link_libraries(test_x2ap_link PRIVATE rbs_lte)
@@ -139,7 +144,77 @@ add_executable(test_mobility test_mobility.cpp)
 target_link_libraries(test_mobility PRIVATE rbs_common rbs_oms)
 add_test(NAME test_mobility COMMAND test_mobility)
 
+# ── test_csfb ─────────────────────────────────────────────────────
+add_executable(test_csfb test_csfb.cpp)
+target_link_libraries(test_csfb PRIVATE rbs_lte rbs_gsm rbs_oms)
+add_test(NAME test_csfb COMMAND test_csfb)
+
 # ── test_son ──────────────────────────────────────────────────────
 add_executable(test_son test_son.cpp)
 target_link_libraries(test_son PRIVATE rbs_common)
 add_test(NAME test_son COMMAND test_son)
+
+# ── test_nbap_dch ─────────────────────────────────────────────────
+add_executable(test_nbap_dch test_nbap_dch.cpp)
+target_link_libraries(test_nbap_dch PRIVATE rbs_umts)
+add_test(NAME test_nbap_dch COMMAND test_nbap_dch)
+
+# ── test_lte_ul_phy ───────────────────────────────────────────────
+add_executable(test_lte_ul_phy test_lte_ul_phy.cpp)
+target_link_libraries(test_lte_ul_phy PRIVATE rbs_lte)
+add_test(NAME test_lte_ul_phy COMMAND test_lte_ul_phy)
+
+# ── test_lte_measurement ──────────────────────────────────────────
+add_executable(test_lte_measurement test_lte_measurement.cpp)
+target_link_libraries(test_lte_measurement PRIVATE rbs_lte)
+add_test(NAME test_lte_measurement COMMAND test_lte_measurement)
+
+# ── test_nbap_edch ────────────────────────────────────────────────
+add_executable(test_nbap_edch test_nbap_edch.cpp)
+target_link_libraries(test_nbap_edch PRIVATE rbs_umts)
+add_test(NAME test_nbap_edch COMMAND test_nbap_edch)
+
+# ── test_umts_soft_ho ─────────────────────────────────────────────
+add_executable(test_umts_soft_ho test_umts_soft_ho.cpp)
+target_link_libraries(test_umts_soft_ho PRIVATE rbs_umts)
+add_test(NAME test_umts_soft_ho COMMAND test_umts_soft_ho)
+
+# ── test_lte_ca ───────────────────────────────────────────────────
+add_executable(test_lte_ca test_lte_ca.cpp)
+target_link_libraries(test_lte_ca PRIVATE rbs_lte)
+add_test(NAME test_lte_ca COMMAND test_lte_ca)
+
+# ── test_rohc ─────────────────────────────────────────────────────
+add_executable(test_rohc test_rohc.cpp)
+target_link_libraries(test_rohc PRIVATE rbs_lte)
+add_test(NAME test_rohc COMMAND test_rohc)
+
+# ── test_nr_phy ───────────────────────────────────────────────────
+add_executable(test_nr_phy test_nr_phy.cpp)
+target_link_libraries(test_nr_phy PRIVATE rbs_nr)
+add_test(NAME test_nr_phy COMMAND test_nr_phy)
+
+# ── test_f1ap_codec ───────────────────────────────────────────────
+add_executable(test_f1ap_codec test_f1ap_codec.cpp)
+target_link_libraries(test_f1ap_codec PRIVATE rbs_nr)
+add_test(NAME test_f1ap_codec COMMAND test_f1ap_codec)
+
+# ── test_rest_api ─────────────────────────────────────────────────
+add_executable(test_rest_api test_rest_api.cpp)
+target_link_libraries(test_rest_api PRIVATE rbs_api)
+add_test(NAME test_rest_api COMMAND test_rest_api)
+
+# ── test_endc ─────────────────────────────────────────────────────
+add_executable(test_endc test_endc.cpp)
+target_link_libraries(test_endc PRIVATE rbs_lte rbs_nr)
+add_test(NAME test_endc COMMAND test_endc)
+
+# ── test_pdcp_security ────────────────────────────────────────────
+add_executable(test_pdcp_security test_pdcp_security.cpp)
+target_link_libraries(test_pdcp_security PRIVATE rbs_lte)
+add_test(NAME test_pdcp_security COMMAND test_pdcp_security)
+
+# ── test_pm_export ────────────────────────────────────────────────
+add_executable(test_pm_export test_pm_export.cpp)
+target_link_libraries(test_pm_export PRIVATE rbs_oms rbs_common)
+add_test(NAME test_pm_export COMMAND test_pm_export)

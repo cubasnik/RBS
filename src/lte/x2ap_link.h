@@ -3,6 +3,7 @@
 #include "gtp_u.h"
 #include "../common/udp_socket.h"
 #include "../common/logger.h"
+#include "../common/pcap_writer.h"
 #include <queue>
 #include <mutex>
 #include <string>
@@ -57,6 +58,23 @@ public:
     bool sendX2APMsg(const X2APMessage& msg)                     override;
     bool recvX2APMsg(X2APMessage& msg)                           override;
 
+    // ── EN-DC SgNB procedures (TS 37.340 / TS 36.423 §8.x) ───────────────────
+    bool sgNBAdditionRequest(RNTI rnti, rbs::ENDCOption option,
+                             const std::vector<rbs::DCBearerConfig>& bearers) override;
+    bool sgNBAdditionRequestAck(RNTI rnti,
+                                std::vector<rbs::DCBearerConfig>& bearers)    override;
+    bool sgNBAdditionRequestReject(RNTI rnti, const std::string& cause)       override;
+    bool sgNBModificationRequest(RNTI rnti,
+                                 const rbs::DCBearerConfig& bearer)           override;
+    bool sgNBModificationRequestAck(RNTI rnti,
+                                    const rbs::DCBearerConfig& bearer)        override;
+    bool sgNBReleaseRequest(RNTI rnti)                                        override;
+    bool sgNBReleaseRequestAck(RNTI rnti)                                     override;
+
+    // ── PCAP трассировка ──────────────────────────────────────────────────────
+    /// Открыть/перезаписать .pcap файл для записи X2AP трафика.
+    void enablePcap(const std::string& path);
+
 private:
     std::string enbId_;
 
@@ -70,11 +88,19 @@ private:
     // RNTI → sourceEnbUeX2apId
     std::unordered_map<RNTI, uint32_t> hoIds_;
 
+    // EN-DC state: RNTI → {option, bearers}
+    struct ENDCState {
+        rbs::ENDCOption              option;
+        std::vector<rbs::DCBearerConfig> bearers;
+    };
+    std::unordered_map<RNTI, ENDCState> endcMap_;
+
     std::queue<X2APMessage> rxQueue_;
     mutable std::mutex      rxMtx_;
 
-    net::UdpSocket socket_;
-    bool           socketReady_ = false;
+    net::UdpSocket  socket_;
+    bool            socketReady_ = false;
+    rbs::PcapWriter pcap_;
 
     void onRxPacket(const net::UdpPacket& pkt);
 };

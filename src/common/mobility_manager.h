@@ -33,6 +33,11 @@ struct UELocation {
 // Must return the RNTI assigned in the target RAT (0 on failure).
 using HandoverCallback = std::function<RNTI(IMSI, RAT targetRat)>;
 
+// CSFB completion callback.  Called with (imsi, lteRnti, gsmArfcn).
+// Must: call lteStack.triggerCSFB(lteRnti, gsmArfcn) and gsmStack.admitUE(imsi).
+// Returns the new GSM RNTI (0 on failure).
+using CSFBCallback = std::function<RNTI(IMSI, RNTI lteRnti, uint16_t gsmArfcn)>;
+
 // ── MobilityManager ──────────────────────────────────────────────────────────
 
 class MobilityManager {
@@ -75,6 +80,23 @@ public:
                          const HandoverCallback& cb);
 
     // ---------------------------------------------------------------------------
+    // Trigger Circuit Switched Fallback (LTE → GSM).
+    //
+    // Validates that the UE is currently on LTE.  The callback must:
+    //   1. Call lteStack.triggerCSFB(lteRnti, gsmArfcn)  — releases LTE + redirects
+    //   2. Call gsmStack.admitUE(imsi)                   — admits UE in GSM
+    //   3. Return the new GSM RNTI (0 on failure)
+    //
+    // On success the UE record is updated to RAT::GSM and csfbCount is incremented.
+    // TS 36.300 §22.3.2
+    // ---------------------------------------------------------------------------
+    bool triggerCSFB(IMSI imsi, uint16_t gsmArfcn, CellId gsmCellId,
+                     const CSFBCallback& cb);
+
+    // Return total number of successful CSFB procedures since creation.
+    uint64_t csfbCount() const;
+
+    // ---------------------------------------------------------------------------
     // Return the total number of successful inter-RAT handovers since creation.
     // ---------------------------------------------------------------------------
     uint64_t handoverCount() const;
@@ -88,6 +110,7 @@ private:
     mutable std::mutex                     mutex_;
     std::unordered_map<IMSI, UELocation>   ues_;
     uint64_t                               hoCount_{0};
+    uint64_t                               csfbCount_{0};
 };
 
 } // namespace rbs

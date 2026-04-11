@@ -109,12 +109,12 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -167,14 +167,14 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -227,14 +227,14 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
@@ -288,12 +288,12 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>

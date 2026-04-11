@@ -7,6 +7,12 @@
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\udp_socket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\mobility_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\son.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\CMakeLists.txt" />

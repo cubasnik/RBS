@@ -77,6 +77,22 @@ ByteBuffer LTERrc::buildConnectionRelease(uint8_t cause) const
     return ByteBuffer{ 0x48, 0x00, cause };
 }
 
+// TS 36.331 §6.2.2 / §5.3.8.3 — RRC Connection Release with redirectedCarrierInfo (GERAN)
+ByteBuffer LTERrc::buildConnectionReleaseWithRedirect(uint16_t gsmArfcn) const
+{
+    // messageType[1] | txId[1] | cause[1] | redirectType[1] | arfcn_hi[1] | arfcn_lo[1]
+    // cause 0x03 = cs-fallback-triggered
+    // redirectType 0x01 = geran-ARFCN
+    return ByteBuffer{
+        0x48,                                              // DL-DCCH: rrcConnectionRelease
+        0x00,                                              // transaction ID
+        0x03,                                              // cause: cs-fallback-triggered
+        0x01,                                              // redirectedCarrierInfo: geran
+        static_cast<uint8_t>(gsmArfcn >> 8),
+        static_cast<uint8_t>(gsmArfcn & 0xFF),
+    };
+}
+
 // RRC Connection Reconfiguration  (TS 36.331 §6.2.2, DL-DCCH)
 // Used both for DRB setup and MeasConfig delivery
 ByteBuffer LTERrc::buildRrcReconfiguration(RNTI rnti,
@@ -167,7 +183,12 @@ bool LTERrc::handleConnectionRequest(RNTI rnti, IMSI imsi)
 
     // Queue default intra-frequency MeasConfig (A3 event)
     MeasObject obj0{ 1, 0 /*earfcn filled later by caller*/, LTEBand::B1 };
-    ReportConfig rep0{ 1, RrcTriggerQty::RSRP, 3, 160 };
+    ReportConfig rep0{};
+    rep0.reportConfigId = 1;
+    rep0.eventType      = MeasEventType::A3;
+    rep0.triggerQty     = RrcTriggerQty::RSRP;
+    rep0.a3Offset_dB    = 3;
+    rep0.timeToTrigger_ms = 160;
     ByteBuffer mc = buildMeasurementConfig(obj0, rep0);
     RBS_LOG_DEBUG("LteRRC",
         "MeasConfig (A3, RSRP) → UE rnti={} PDU len={}", rnti, mc.size());
@@ -188,6 +209,26 @@ bool LTERrc::releaseConnection(RNTI rnti)
     RBS_LOG_INFO("LteRRC",
         "RRC Connection Release → UE rnti={} PDU len={}", rnti, pdu.size());
 
+    it->second.state     = LTERrcState::RRC_IDLE;
+    it->second.drbs.clear();
+    it->second.srbMask   = 0;
+    it->second.secActive = false;
+    contexts_.erase(it);
+    return true;
+}
+
+// ── releaseWithRedirect (CSFB) ──────────────────────────────────────────────
+bool LTERrc::releaseWithRedirect(RNTI rnti, uint16_t gsmArfcn)
+{
+    auto it = contexts_.find(rnti);
+    if (it == contexts_.end()) {
+        RBS_LOG_WARNING("LteRRC", "releaseWithRedirect: rnti={} not found", rnti);
+        return false;
+    }
+    ByteBuffer pdu = buildConnectionReleaseWithRedirect(gsmArfcn);
+    RBS_LOG_INFO("LteRRC",
+        "RRC Connection Release (CSFB) → UE rnti={} GSM-ARFCN={} PDU len={}",
+        rnti, gsmArfcn, pdu.size());
     it->second.state     = LTERrcState::RRC_IDLE;
     it->second.drbs.clear();
     it->second.srbMask   = 0;
@@ -282,34 +323,112 @@ void LTERrc::sendMeasurementConfig(RNTI rnti,
                                     const MeasObject& obj,
                                     const ReportConfig& rep)
 {
+    // Store or update the measurement config in the UE context (TS 36.331 §5.5.2)
+    auto it = contexts_.find(rnti);
+    if (it != contexts_.end()) {
+        auto& cfgs = it->second.measConfigs;
+        auto cit = std::find_if(cfgs.begin(), cfgs.end(),
+            [&rep](const LTEMeasConfig& mc){ return mc.rep.reportConfigId == rep.reportConfigId; });
+        if (cit != cfgs.end())
+            *cit = LTEMeasConfig{obj, rep};
+        else
+            cfgs.push_back(LTEMeasConfig{obj, rep});
+    }
     ByteBuffer pdu = buildMeasurementConfig(obj, rep);
+    const char* evStr = []( MeasEventType e ) -> const char* {
+        switch (e) {
+            case MeasEventType::A1: return "A1"; case MeasEventType::A2: return "A2";
+            case MeasEventType::A3: return "A3"; case MeasEventType::A5: return "A5";
+        } return "?";
+    }(rep.eventType);
     RBS_LOG_INFO("LteRRC",
-        "MeasConfig → UE rnti={} measObjId={} EARFCN={} repCfgId={} "
-        "triggerQty={} A3offset={}dB ttt={}ms PDU len={}",
-        rnti, obj.measObjectId, obj.earfcn, rep.reportConfigId,
-        (rep.triggerQty == RrcTriggerQty::RSRP ? "RSRP" : "RSRQ"),
-        rep.a3Offset_dB, rep.timeToTrigger_ms,
-        pdu.size());
+        "MeasConfig ", evStr, " → UE rnti=", rnti,
+        " measObjId=", static_cast<int>(obj.measObjectId),
+        " EARFCN=", obj.earfcn,
+        " repCfgId=", static_cast<int>(rep.reportConfigId),
+        " ttt=", rep.timeToTrigger_ms, "ms PDU len=", pdu.size());
 }
 
 // ── processMeasurementReport ──────────────────────────────────────────────────
+// TS 36.331 §5.5.5 — evaluate event conditions and trigger HO if needed
 void LTERrc::processMeasurementReport(const LTERrcMeasResult& mr)
 {
     RBS_LOG_INFO("LteRRC",
-        "MeasReport rnti={} measId={} servRSRP={} servRSRQ={} neighbours={}",
-        mr.rnti, mr.measId, mr.rsrp_q, mr.rsrq_q,
-        mr.neighbours.size());
+        "MeasReport rnti=", mr.rnti,
+        " measId=", static_cast<int>(mr.measId),
+        " servRSRP=", mr.rsrp_q,
+        " servRSRQ=", mr.rsrq_q,
+        " neighbours=", mr.neighbours.size());
 
-    // A3: if any neighbour's RSRP > serving + margin → trigger HO preparation
-    for (const auto& n : mr.neighbours) {
-        // RSRP quantised: margin of 6 units corresponds to ~6 dB
-        if (n.rsrp_q > mr.rsrp_q + 6) {
-            RBS_LOG_INFO("LteRRC",
-                "A3 event rnti={}: neighbour PCI={} EARFCN={} RSRP={} > serving RSRP={} → HO candidate",
-                mr.rnti, n.pci, n.earfcn, n.rsrp_q, mr.rsrp_q);
-            prepareHandover(mr.rnti, n.pci, n.earfcn);
-            break;   // one HO at a time
-        }
+    auto it = contexts_.find(mr.rnti);
+    if (it == contexts_.end()) return;  // unknown UE — ignore
+
+    for (const auto& mc : it->second.measConfigs) {
+        if (mc.rep.reportConfigId != mr.measId) continue;
+        evaluateMeasEvent(mr, mc.rep);
+        break;
+    }
+}
+
+// ── evaluateMeasEvent ─────────────────────────────────────────────────────
+void LTERrc::evaluateMeasEvent(const LTERrcMeasResult& mr, const ReportConfig& rep)
+{
+    switch (rep.eventType) {
+        case MeasEventType::A1:
+            // A1: serving RSRP exceeds threshold1 — coverage OK (TS 36.331 §5.5.4.2)
+            if (mr.rsrp_q > rep.threshold1_q) {
+                RBS_LOG_INFO("LteRRC",
+                    "A1 event rnti=", mr.rnti,
+                    " servRSRP=", mr.rsrp_q, " > thr1=", rep.threshold1_q,
+                    " — coverage OK");
+            }
+            break;
+
+        case MeasEventType::A2:
+            // A2: serving RSRP falls below threshold1 — poor coverage (TS 36.331 §5.5.4.3)
+            if (mr.rsrp_q < rep.threshold1_q && !mr.neighbours.empty()) {
+                auto best = std::max_element(mr.neighbours.begin(), mr.neighbours.end(),
+                    [](const auto& a, const auto& b){ return a.rsrp_q < b.rsrp_q; });
+                RBS_LOG_INFO("LteRRC",
+                    "A2 event rnti=", mr.rnti,
+                    " servRSRP=", mr.rsrp_q, " < thr1=", rep.threshold1_q,
+                    " → HO to PCI=", best->pci);
+                prepareHandover(mr.rnti, best->pci, best->earfcn);
+            }
+            break;
+
+        case MeasEventType::A3:
+            // A3: neighbour offset better than serving (TS 36.331 §5.5.4.4)
+            for (const auto& n : mr.neighbours) {
+                if (n.rsrp_q >= mr.rsrp_q + rep.a3Offset_dB) {
+                    RBS_LOG_INFO("LteRRC",
+                        "A3 event rnti=", mr.rnti,
+                        " neighRSRP=", n.rsrp_q,
+                        " ≥ servRSRP=", mr.rsrp_q,
+                        " + offset=", static_cast<int>(rep.a3Offset_dB),
+                        " → HO to PCI=", n.pci);
+                    prepareHandover(mr.rnti, n.pci, n.earfcn);
+                    break;
+                }
+            }
+            break;
+
+        case MeasEventType::A5:
+            // A5: serving < thr1 AND neighbour > thr2 (TS 36.331 §5.5.4.6)
+            if (mr.rsrp_q < rep.threshold1_q) {
+                for (const auto& n : mr.neighbours) {
+                    if (n.rsrp_q > rep.threshold2_q) {
+                        RBS_LOG_INFO("LteRRC",
+                            "A5 event rnti=", mr.rnti,
+                            " servRSRP=", mr.rsrp_q, " < thr1=", rep.threshold1_q,
+                            " neighRSRP=", n.rsrp_q, " > thr2=", rep.threshold2_q,
+                            " → HO to PCI=", n.pci);
+                        prepareHandover(mr.rnti, n.pci, n.earfcn);
+                        break;
+                    }
+                }
+            }
+            break;
     }
 }
 
@@ -318,17 +437,28 @@ bool LTERrc::prepareHandover(RNTI rnti, uint16_t targetPci, EARFCN targetEarfcn)
 {
     auto it = contexts_.find(rnti);
     if (it == contexts_.end()) {
-        RBS_LOG_WARNING("LteRRC", "prepareHandover: rnti={} not found", rnti);
+        RBS_LOG_WARNING("LteRRC", "prepareHandover: rnti=", rnti, " not found");
         return false;
     }
 
     ByteBuffer pdu = buildHandoverCommand(targetPci, targetEarfcn);
-    // In a real eNB: forward HO Request to target via X2AP (TS 36.423 §8.3.1)
-    // or via MME/S1AP (TS 36.413 §8.4.1) for inter-X2 scenarios.
     RBS_LOG_INFO("LteRRC",
-        "Handover Command → UE rnti={} targetPCI={} targetEARFCN={} PDU len={}",
-        rnti, targetPci, targetEarfcn, pdu.size());
+        "Handover Command → UE rnti=", rnti,
+        " targetPCI=", targetPci,
+        " targetEARFCN=", targetEarfcn,
+        " PDU len=", pdu.size());
+
+    // Invoke registered handover callback (X2AP or S1AP path)
+    if (hoCallback_)
+        hoCallback_(rnti, targetPci, targetEarfcn);
+
     return true;
+}
+
+// ── setHandoverCallback ─────────────────────────────────────────────────────────
+void LTERrc::setHandoverCallback(HandoverCb cb)
+{
+    hoCallback_ = std::move(cb);
 }
 
 // ── scheduleSIB ───────────────────────────────────────────────────────────────

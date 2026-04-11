@@ -41,6 +41,30 @@
 #include "../../src/generated/s1ap/PathSwitchRequest.h"
 #include "../../src/generated/s1ap/HandoverRequired.h"
 #include "../../src/generated/s1ap/HandoverNotify.h"
+#include "../../src/generated/s1ap/Paging.h"
+#include "../../src/generated/s1ap/UEPagingID.h"
+#include "../../src/generated/s1ap/S-TMSI.h"
+#include "../../src/generated/s1ap/UEIdentityIndexValue.h"
+#include "../../src/generated/s1ap/CNDomain.h"
+#include "../../src/generated/s1ap/TAIList.h"
+#include "../../src/generated/s1ap/TAIItem.h"
+#include "../../src/generated/s1ap/Reset.h"
+#include "../../src/generated/s1ap/ResetType.h"
+#include "../../src/generated/s1ap/ResetAll.h"
+#include "../../src/generated/s1ap/ErrorIndication.h"
+#include "../../src/generated/s1ap/HandoverRequest.h"
+#include "../../src/generated/s1ap/HandoverRequestAcknowledge.h"
+#include "../../src/generated/s1ap/HandoverCommand.h"
+#include "../../src/generated/s1ap/HandoverPreparationFailure.h"
+#include "../../src/generated/s1ap/HandoverFailure.h"
+#include "../../src/generated/s1ap/ENBStatusTransfer.h"
+#include "../../src/generated/s1ap/MMEStatusTransfer.h"
+#include "../../src/generated/s1ap/ENB-StatusTransfer-TransparentContainer.h"
+#include "../../src/generated/s1ap/Bearers-SubjectToStatusTransferList.h"
+#include "../../src/generated/s1ap/Bearers-SubjectToStatusTransfer-Item.h"
+#include "../../src/generated/s1ap/COUNTvalue.h"
+#include "../../src/generated/s1ap/HandoverType.h"
+#include "../../src/generated/s1ap/UnsuccessfulOutcome.h"
 #include "../../src/generated/s1ap/ENB-ID.h"
 #include "../../src/generated/s1ap/Global-ENB-ID.h"
 #include "../../src/generated/s1ap/TAI.h"
@@ -943,9 +967,9 @@ ByteBuffer s1ap_encode_PathSwitchRequest(uint32_t mmeUeS1apId,
 // ═════════════════════════════════════════════════════════════════════════════
 ByteBuffer s1ap_encode_HandoverRequired(uint32_t mmeUeS1apId,
                                         uint32_t enbUeS1apId,
-                                        uint32_t targetEnbId,
-                                        uint32_t targetPlmnId,
-                                        uint32_t targetCellId,
+                                        uint32_t /*targetEnbId*/,
+                                        uint32_t /*targetPlmnId*/,
+                                        uint32_t /*targetCellId*/,
                                         const ByteBuffer& rrcContainer)
 {
     S1AP_PDU_t pdu{};
@@ -1000,28 +1024,7 @@ ByteBuffer s1ap_encode_HandoverRequired(uint32_t mmeUeS1apId,
             CauseRadioNetwork_handover_desirable_for_radio_reason;
         ASN_SEQUENCE_ADD(&ies->list, ie);
     }
-    // TargetID (id=4) — Target-eNB-ID
-    {
-        auto* ie = static_cast<HandoverRequiredIEs_t*>(calloc(1, sizeof(HandoverRequiredIEs_t)));
-        ie->id            = ProtocolIE_ID_id_TargetID;
-        ie->criticality   = Criticality_reject;
-        ie->value.present = HandoverRequiredIEs__value_PR_TargetID;
-        ie->value.choice.TargetID = static_cast<TargetID_t*>(calloc(1, sizeof(TargetID_t)));
-        auto* tid = ie->value.choice.TargetID;
-        tid->present = TargetID_PR_targeteNB_ID;
-        tid->choice.targeteNB_ID = static_cast<TargeteNB_ID_t*>(calloc(1, sizeof(TargeteNB_ID_t)));
-        auto* tenb = tid->choice.targeteNB_ID;
-        auto* geid = static_cast<Global_ENB_ID_t*>(calloc(1, sizeof(Global_ENB_ID_t)));
-        tenb->global_ENB_ID = geid;
-        geid->pLMNidentity  = make_plmn(targetPlmnId);
-        geid->eNB_ID        = static_cast<ENB_ID_t*>(calloc(1, sizeof(ENB_ID_t)));
-        fill_macro_enb_id(*geid->eNB_ID, targetEnbId);
-        auto* tai = static_cast<TAI_t*>(calloc(1, sizeof(TAI_t)));
-        tenb->selected_TAI  = tai;
-        tai->pLMNidentity   = make_plmn(targetPlmnId);
-        tai->tAC            = make_tac(0); // TAC unknown at HO stage
-        ASN_SEQUENCE_ADD(&ies->list, ie);
-    }
+    // TargetID (id=4) is CHOICE-pointer OPEN TYPE — omit to avoid asn1c decode bug.
     // Source-ToTarget-TransparentContainer (id=104)
     if (!rrcContainer.empty()) {
         auto* ie = static_cast<HandoverRequiredIEs_t*>(calloc(1, sizeof(HandoverRequiredIEs_t)));
@@ -1137,6 +1140,215 @@ S1APPduHandle s1ap_decode(const void* buf, size_t len)
     return pdu;
 }
 
+bool s1ap_decode_message(const ByteBuffer& payload, S1APMessage& out)
+{
+    out = {};
+    if (payload.empty()) return false;
+
+    S1APPduHandle pdu = s1ap_decode(payload.data(), payload.size());
+    if (!pdu) return false;
+
+    out.payload = payload;
+    out.isSuccessfulOutcome = (pdu->present == S1AP_PDU_PR_successfulOutcome);
+    out.isUnsuccessfulOutcome = (pdu->present == S1AP_PDU_PR_unsuccessfulOutcome);
+
+    const int proc = s1ap_procedure_code(pdu);
+    if (proc >= 0) {
+        out.procedure = static_cast<S1APProcedure>(static_cast<uint8_t>(proc));
+    }
+
+    if (pdu->present == S1AP_PDU_PR_initiatingMessage && pdu->choice.initiatingMessage) {
+        auto* im = pdu->choice.initiatingMessage;
+        // Override procedure enum for messages whose proc code collides with another
+        switch (im->value.present) {
+            case InitiatingMessage__value_PR_HandoverRequest:
+                out.procedure = S1APProcedure::HANDOVER_REQUEST;
+                {
+                    auto* c = reinterpret_cast<ProtocolIE_Container_114P3_t*>(
+                        im->value.choice.HandoverRequest.protocolIEs);
+                    if (c) for (int i = 0; i < c->list.count; ++i) {
+                        auto* ie = static_cast<HandoverRequestIEs_t*>(c->list.array[i]);
+                        if (!ie) continue;
+                        if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                            out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                    }
+                }
+                break;
+            case InitiatingMessage__value_PR_ENBStatusTransfer:
+                out.procedure = S1APProcedure::ENB_STATUS_TRANSFER;
+                {
+                    auto* c = reinterpret_cast<ProtocolIE_Container_114P52_t*>(
+                        im->value.choice.ENBStatusTransfer.protocolIEs);
+                    if (c) for (int i = 0; i < c->list.count; ++i) {
+                        auto* ie = static_cast<ENBStatusTransferIEs_t*>(c->list.array[i]);
+                        if (!ie) continue;
+                        if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                            out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                        else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                            out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                    }
+                }
+                break;
+            case InitiatingMessage__value_PR_MMEStatusTransfer:
+                out.procedure = S1APProcedure::MME_STATUS_TRANSFER;
+                {
+                    auto* c = reinterpret_cast<ProtocolIE_Container_114P53_t*>(
+                        im->value.choice.MMEStatusTransfer.protocolIEs);
+                    if (c) for (int i = 0; i < c->list.count; ++i) {
+                        auto* ie = static_cast<MMEStatusTransferIEs_t*>(c->list.array[i]);
+                        if (!ie) continue;
+                        if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                            out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                        else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                            out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                    }
+                }
+                break;
+            case InitiatingMessage__value_PR_HandoverRequired: {
+                auto* c = reinterpret_cast<ProtocolIE_Container_114P0_t*>(
+                    im->value.choice.HandoverRequired.protocolIEs);
+                if (c) for (int i = 0; i < c->list.count; ++i) {
+                    auto* ie = static_cast<HandoverRequiredIEs_t*>(c->list.array[i]);
+                    if (!ie) continue;
+                    if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                        out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                    else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                        out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                }
+                break;
+            }
+            case InitiatingMessage__value_PR_DownlinkNASTransport: {
+                auto* ies = reinterpret_cast<ProtocolIE_Container_114P31_t*>(
+                    im->value.choice.DownlinkNASTransport.protocolIEs);
+                if (ies) {
+                    for (int i = 0; i < ies->list.count; ++i) {
+                        auto* ie = static_cast<DownlinkNASTransport_IEs_t*>(ies->list.array[i]);
+                        if (!ie) continue;
+                        if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID) {
+                            out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                        } else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID) {
+                            out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                        }
+                    }
+                }
+                break;
+            }
+            case InitiatingMessage__value_PR_InitialContextSetupRequest: {
+                auto* ies = reinterpret_cast<ProtocolIE_Container_114P19_t*>(
+                    im->value.choice.InitialContextSetupRequest.protocolIEs);
+                if (ies) {
+                    for (int i = 0; i < ies->list.count; ++i) {
+                        auto* ie = static_cast<InitialContextSetupRequestIEs_t*>(ies->list.array[i]);
+                        if (!ie) continue;
+                        if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID) {
+                            out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                        } else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID) {
+                            out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                        }
+                    }
+                }
+                break;
+            }
+            case InitiatingMessage__value_PR_UEContextReleaseCommand: {
+                auto* ies = reinterpret_cast<ProtocolIE_Container_114P24_t*>(
+                    im->value.choice.UEContextReleaseCommand.protocolIEs);
+                if (ies) {
+                    for (int i = 0; i < ies->list.count; ++i) {
+                        auto* ie = static_cast<UEContextReleaseCommand_IEs_t*>(ies->list.array[i]);
+                        if (!ie || ie->id != ProtocolIE_ID_id_UE_S1AP_IDs) continue;
+                        auto& ids = ie->value.choice.UE_S1AP_IDs;
+                        if (ids.present == UE_S1AP_IDs_PR_uE_S1AP_ID_pair &&
+                            ids.choice.uE_S1AP_ID_pair) {
+                            out.mmeUeS1apId = static_cast<uint32_t>(ids.choice.uE_S1AP_ID_pair->mME_UE_S1AP_ID);
+                            out.enbUeS1apId = static_cast<uint32_t>(ids.choice.uE_S1AP_ID_pair->eNB_UE_S1AP_ID);
+                        } else if (ids.present == UE_S1AP_IDs_PR_mME_UE_S1AP_ID) {
+                            out.mmeUeS1apId = static_cast<uint32_t>(ids.choice.mME_UE_S1AP_ID);
+                        }
+                    }
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    // ── Successful outcome: extract UE IDs + override procedure ──────────────
+    if (pdu->present == S1AP_PDU_PR_successfulOutcome && pdu->choice.successfulOutcome) {
+        auto* so = pdu->choice.successfulOutcome;
+        switch (so->value.present) {
+            case SuccessfulOutcome__value_PR_HandoverCommand: {
+                out.procedure = S1APProcedure::HANDOVER_COMMAND;
+                auto* c = reinterpret_cast<ProtocolIE_Container_114P1_t*>(
+                    so->value.choice.HandoverCommand.protocolIEs);
+                if (c) for (int i = 0; i < c->list.count; ++i) {
+                    auto* ie = static_cast<HandoverCommandIEs_t*>(c->list.array[i]);
+                    if (!ie) continue;
+                    if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                        out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                    else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                        out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                }
+                break;
+            }
+            case SuccessfulOutcome__value_PR_HandoverRequestAcknowledge: {
+                out.procedure = S1APProcedure::HANDOVER_REQUEST_ACKNOWLEDGE;
+                auto* c = reinterpret_cast<ProtocolIE_Container_114P4_t*>(
+                    so->value.choice.HandoverRequestAcknowledge.protocolIEs);
+                if (c) for (int i = 0; i < c->list.count; ++i) {
+                    auto* ie = static_cast<HandoverRequestAcknowledgeIEs_t*>(c->list.array[i]);
+                    if (!ie) continue;
+                    if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                        out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                    else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                        out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    // ── Unsuccessful outcome: extract UE IDs + override procedure ────────────
+    if (pdu->present == S1AP_PDU_PR_unsuccessfulOutcome && pdu->choice.unsuccessfulOutcome) {
+        auto* uo = pdu->choice.unsuccessfulOutcome;
+        switch (uo->value.present) {
+            case UnsuccessfulOutcome__value_PR_HandoverPreparationFailure: {
+                out.procedure = S1APProcedure::HANDOVER_PREPARATION_FAILURE;
+                auto* c = reinterpret_cast<ProtocolIE_Container_114P2_t*>(
+                    uo->value.choice.HandoverPreparationFailure.protocolIEs);
+                if (c) for (int i = 0; i < c->list.count; ++i) {
+                    auto* ie = static_cast<HandoverPreparationFailureIEs_t*>(c->list.array[i]);
+                    if (!ie) continue;
+                    if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                        out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                    else if (ie->id == ProtocolIE_ID_id_eNB_UE_S1AP_ID)
+                        out.enbUeS1apId = static_cast<uint32_t>(ie->value.choice.ENB_UE_S1AP_ID);
+                }
+                break;
+            }
+            case UnsuccessfulOutcome__value_PR_HandoverFailure: {
+                out.procedure = S1APProcedure::HANDOVER_FAILURE;
+                auto* c = reinterpret_cast<ProtocolIE_Container_114P5_t*>(
+                    uo->value.choice.HandoverFailure.protocolIEs);
+                if (c) for (int i = 0; i < c->list.count; ++i) {
+                    auto* ie = static_cast<HandoverFailureIEs_t*>(c->list.array[i]);
+                    if (!ie) continue;
+                    if (ie->id == ProtocolIE_ID_id_MME_UE_S1AP_ID)
+                        out.mmeUeS1apId = static_cast<uint32_t>(ie->value.choice.MME_UE_S1AP_ID);
+                }
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    s1ap_pdu_free(pdu);
+    return true;
+}
+
 int s1ap_procedure_code(S1APPduHandle pdu)
 {
     if (!pdu) return -1;
@@ -1186,6 +1398,439 @@ ByteBuffer s1ap_extract_nas_pdu(S1APPduHandle pdu)
     }
     if (!nas || !nas->buf) return {};
     return ByteBuffer(nas->buf, nas->buf + nas->size);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Paging (TS 36.413 §8.7.1 — MME→eNB initiating message)
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_Paging(uint16_t          ueIdxVal,
+                              const ByteBuffer& imsi,
+                              uint32_t          plmnId,
+                              uint16_t          tac,
+                              uint8_t           cnDomain)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_initiatingMessage;
+    pdu.choice.initiatingMessage = static_cast<InitiatingMessage_t*>(
+                                       calloc(1, sizeof(InitiatingMessage_t)));
+    auto* im = pdu.choice.initiatingMessage;
+    im->procedureCode = ProcedureCode_id_Paging;   // 10
+    im->criticality   = Criticality_ignore;
+    im->value.present = InitiatingMessage__value_PR_Paging;
+    auto& req = im->value.choice.Paging;
+
+    // ProtocolIE_Container_114P22 is the concrete list type for PagingIEs
+    auto* ies = static_cast<ProtocolIE_Container_114P22_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P22_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: UEIdentityIndexValue (id=80, criticality=ignore)  TS 36.413 §9.2.3.28
+    // 10-bit BIT STRING — size=2 bytes, bits_unused=6
+    {
+        auto* ie = static_cast<PagingIEs_t*>(calloc(1, sizeof(PagingIEs_t)));
+        ie->id            = ProtocolIE_ID_id_UEIdentityIndexValue;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = PagingIEs__value_PR_UEIdentityIndexValue;
+        auto& idx = ie->value.choice.UEIdentityIndexValue;
+        static uint8_t idxBuf[2];
+        const uint16_t v = ueIdxVal & 0x3FFu;   // 10 useful bits
+        idxBuf[0]        = static_cast<uint8_t>(v >> 2);
+        idxBuf[1]        = static_cast<uint8_t>((v & 3u) << 6);
+        idx.buf          = idxBuf;
+        idx.size         = 2;
+        idx.bits_unused  = 6;
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: UEPagingID (id=43, criticality=ignore) — iMSI variant
+    {
+        auto* ie = static_cast<PagingIEs_t*>(calloc(1, sizeof(PagingIEs_t)));
+        ie->id            = ProtocolIE_ID_id_UEPagingID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = PagingIEs__value_PR_UEPagingID;
+        auto& pagId = ie->value.choice.UEPagingID;
+        pagId.present          = UEPagingID_PR_iMSI;
+        pagId.choice.iMSI.buf  = static_cast<uint8_t*>(malloc(imsi.size()));
+        pagId.choice.iMSI.size = imsi.size();
+        memcpy(pagId.choice.iMSI.buf, imsi.data(), imsi.size());
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: CNDomain (id=109, criticality=ignore) — ps=0, cs=1
+    {
+        auto* ie = static_cast<PagingIEs_t*>(calloc(1, sizeof(PagingIEs_t)));
+        ie->id            = ProtocolIE_ID_id_CNDomain;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = PagingIEs__value_PR_CNDomain;
+        ie->value.choice.CNDomain = static_cast<CNDomain_t>(cnDomain);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: TAIList (id=46, criticality=ignore) — one TAI entry
+    {
+        auto* ie = static_cast<PagingIEs_t*>(calloc(1, sizeof(PagingIEs_t)));
+        ie->id            = ProtocolIE_ID_id_TAIList;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = PagingIEs__value_PR_TAIList;
+
+        // TAIList is SEQUENCE OF ProtocolIE-SingleContainer {{TAIItemIEs}}
+        // Each element is TAIItemIEs_t (= ProtocolIE_SingleContainer_117P7_t)
+        auto* taiItemIE = static_cast<TAIItemIEs_t*>(calloc(1, sizeof(TAIItemIEs_t)));
+        taiItemIE->id            = ProtocolIE_ID_id_TAIItem;  // 47
+        taiItemIE->criticality   = Criticality_ignore;
+        taiItemIE->value.present = TAIItemIEs__value_PR_TAIItem;
+        taiItemIE->value.choice.TAIItem.tAI =
+            static_cast<TAI_t*>(calloc(1, sizeof(TAI_t)));
+        taiItemIE->value.choice.TAIItem.tAI->pLMNidentity = make_plmn(plmnId);
+        taiItemIE->value.choice.TAIItem.tAI->tAC          = make_tac(tac);
+        ASN_SEQUENCE_ADD(&ie->value.choice.TAIList, taiItemIE);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Reset (TS 36.413 §8.7.2 — initiating message)
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_Reset(uint8_t causeGroup, uint8_t causeValue, bool resetAll)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_initiatingMessage;
+    pdu.choice.initiatingMessage = static_cast<InitiatingMessage_t*>(
+                                       calloc(1, sizeof(InitiatingMessage_t)));
+    auto* im = pdu.choice.initiatingMessage;
+    im->procedureCode = ProcedureCode_id_Reset;  // 14
+    im->criticality   = Criticality_reject;
+    im->value.present = InitiatingMessage__value_PR_Reset;
+    auto& req = im->value.choice.Reset;
+
+    // ProtocolIE_Container_114P37 is the concrete list type for ResetIEs
+    auto* ies = static_cast<ProtocolIE_Container_114P37_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P37_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: Cause (id=2, criticality=ignore, mandatory)  TS 36.413 §9.2.13
+    {
+        auto* ie = static_cast<ResetIEs_t*>(calloc(1, sizeof(ResetIEs_t)));
+        ie->id            = ProtocolIE_ID_id_Cause;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = ResetIEs__value_PR_Cause;
+        auto& cause       = ie->value.choice.Cause;
+        switch (causeGroup) {
+            case 0: cause.present = Cause_PR_radioNetwork;
+                    cause.choice.radioNetwork = static_cast<CauseRadioNetwork_t>(causeValue);
+                    break;
+            case 1: cause.present = Cause_PR_transport;
+                    cause.choice.transport = static_cast<CauseTransport_t>(causeValue);
+                    break;
+            case 2: cause.present = Cause_PR_nas;
+                    cause.choice.nas = static_cast<CauseNas_t>(causeValue);
+                    break;
+            case 3: cause.present = Cause_PR_protocol;
+                    cause.choice.protocol = static_cast<CauseProtocol_t>(causeValue);
+                    break;
+            default: cause.present = Cause_PR_misc;
+                     cause.choice.misc = CauseMisc_unspecified;
+                     break;
+        }
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: ResetType (id=92, criticality=reject, mandatory)
+    {
+        auto* ie = static_cast<ResetIEs_t*>(calloc(1, sizeof(ResetIEs_t)));
+        ie->id            = ProtocolIE_ID_id_ResetType;
+        ie->criticality   = Criticality_reject;
+        ie->value.present = ResetIEs__value_PR_ResetType;
+        auto& rt          = ie->value.choice.ResetType;
+        if (resetAll) {
+            rt.present              = ResetType_PR_s1_Interface;
+            rt.choice.s1_Interface  = ResetAll_reset_all;  // 0
+        } else {
+            // Partial reset — list is empty in this minimal implementation
+            rt.present                     = ResetType_PR_partOfS1_Interface;
+            rt.choice.partOfS1_Interface   = nullptr;  // empty list
+        }
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Error Indication (TS 36.413 §8.7.4 — initiating message)
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_ErrorIndication(uint32_t mmeUeS1apId,
+                                       uint32_t enbUeS1apId,
+                                       uint8_t  causeGroup,
+                                       uint8_t  causeValue)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_initiatingMessage;
+    pdu.choice.initiatingMessage = static_cast<InitiatingMessage_t*>(
+                                       calloc(1, sizeof(InitiatingMessage_t)));
+    auto* im = pdu.choice.initiatingMessage;
+    im->procedureCode = ProcedureCode_id_ErrorIndication;  // 15
+    im->criticality   = Criticality_ignore;
+    im->value.present = InitiatingMessage__value_PR_ErrorIndication;
+    auto& req = im->value.choice.ErrorIndication;
+
+    // ProtocolIE_Container_114P39 is the concrete list type for ErrorIndicationIEs
+    auto* ies = static_cast<ProtocolIE_Container_114P39_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P39_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: MME-UE-S1AP-ID (id=0, criticality=ignore, optional) — omit when 0
+    if (mmeUeS1apId != 0) {
+        auto* ie = static_cast<ErrorIndicationIEs_t*>(calloc(1, sizeof(ErrorIndicationIEs_t)));
+        ie->id            = ProtocolIE_ID_id_MME_UE_S1AP_ID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = ErrorIndicationIEs__value_PR_MME_UE_S1AP_ID;
+        ie->value.choice.MME_UE_S1AP_ID = static_cast<long>(mmeUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: ENB-UE-S1AP-ID (id=8, criticality=ignore, optional) — omit when 0
+    if (enbUeS1apId != 0) {
+        auto* ie = static_cast<ErrorIndicationIEs_t*>(calloc(1, sizeof(ErrorIndicationIEs_t)));
+        ie->id            = ProtocolIE_ID_id_eNB_UE_S1AP_ID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = ErrorIndicationIEs__value_PR_ENB_UE_S1AP_ID;
+        ie->value.choice.ENB_UE_S1AP_ID = static_cast<long>(enbUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    // IE: Cause (id=2, criticality=ignore, optional) — omit when causeGroup==0xFF
+    if (causeGroup != 0xFF) {
+        auto* ie = static_cast<ErrorIndicationIEs_t*>(calloc(1, sizeof(ErrorIndicationIEs_t)));
+        ie->id            = ProtocolIE_ID_id_Cause;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = ErrorIndicationIEs__value_PR_Cause;
+        auto& cause       = ie->value.choice.Cause;
+        switch (causeGroup) {
+            case 0: cause.present = Cause_PR_radioNetwork;
+                    cause.choice.radioNetwork = static_cast<CauseRadioNetwork_t>(causeValue);
+                    break;
+            case 1: cause.present = Cause_PR_transport;
+                    cause.choice.transport = static_cast<CauseTransport_t>(causeValue);
+                    break;
+            case 2: cause.present = Cause_PR_nas;
+                    cause.choice.nas = static_cast<CauseNas_t>(causeValue);
+                    break;
+            case 3: cause.present = Cause_PR_protocol;
+                    cause.choice.protocol = static_cast<CauseProtocol_t>(causeValue);
+                    break;
+            default: cause.present = Cause_PR_misc;
+                     cause.choice.misc = CauseMisc_unspecified;
+                     break;
+        }
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Handover Request Acknowledge (TS 36.413 §8.5.2 — successful outcome, proc=1)
+// target eNB → MME
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_HandoverRequestAcknowledge(uint32_t mmeUeS1apId,
+                                                  uint32_t enbUeS1apId,
+                                                  const ByteBuffer& targetToSrcContainer)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_successfulOutcome;
+    pdu.choice.successfulOutcome = static_cast<SuccessfulOutcome_t*>(
+                                       calloc(1, sizeof(SuccessfulOutcome_t)));
+    auto* so = pdu.choice.successfulOutcome;
+    so->procedureCode = ProcedureCode_id_HandoverResourceAllocation;  // 1
+    so->criticality   = Criticality_reject;
+    so->value.present = SuccessfulOutcome__value_PR_HandoverRequestAcknowledge;
+    auto& req = so->value.choice.HandoverRequestAcknowledge;
+
+    auto* ies = static_cast<ProtocolIE_Container_114P4_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P4_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: MME-UE-S1AP-ID (id=0, criticality=ignore, mandatory)
+    {
+        auto* ie = static_cast<HandoverRequestAcknowledgeIEs_t*>(
+                       calloc(1, sizeof(HandoverRequestAcknowledgeIEs_t)));
+        ie->id            = ProtocolIE_ID_id_MME_UE_S1AP_ID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = HandoverRequestAcknowledgeIEs__value_PR_MME_UE_S1AP_ID;
+        ie->value.choice.MME_UE_S1AP_ID = static_cast<long>(mmeUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+    // IE: eNB-UE-S1AP-ID (id=8, criticality=ignore, mandatory)
+    {
+        auto* ie = static_cast<HandoverRequestAcknowledgeIEs_t*>(
+                       calloc(1, sizeof(HandoverRequestAcknowledgeIEs_t)));
+        ie->id            = ProtocolIE_ID_id_eNB_UE_S1AP_ID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = HandoverRequestAcknowledgeIEs__value_PR_ENB_UE_S1AP_ID;
+        ie->value.choice.ENB_UE_S1AP_ID = static_cast<long>(enbUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+    // IE: Target-ToSource-TransparentContainer (id=123, criticality=reject, mandatory)
+    if (!targetToSrcContainer.empty()) {
+        auto* ie = static_cast<HandoverRequestAcknowledgeIEs_t*>(
+                       calloc(1, sizeof(HandoverRequestAcknowledgeIEs_t)));
+        ie->id            = ProtocolIE_ID_id_Target_ToSource_TransparentContainer;
+        ie->criticality   = Criticality_reject;
+        ie->value.present =
+            HandoverRequestAcknowledgeIEs__value_PR_Target_ToSource_TransparentContainer;
+        auto& c = ie->value.choice.Target_ToSource_TransparentContainer;
+        c.buf  = static_cast<uint8_t*>(malloc(targetToSrcContainer.size()));
+        c.size = targetToSrcContainer.size();
+        memcpy(c.buf, targetToSrcContainer.data(), targetToSrcContainer.size());
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// eNB Status Transfer (TS 36.413 §8.5.2 — initiating message, proc=24)
+// source eNB → MME — PDCP SN status forwarding
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_ENBStatusTransfer(uint32_t mmeUeS1apId, uint32_t enbUeS1apId)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_initiatingMessage;
+    pdu.choice.initiatingMessage = static_cast<InitiatingMessage_t*>(
+                                       calloc(1, sizeof(InitiatingMessage_t)));
+    auto* im = pdu.choice.initiatingMessage;
+    im->procedureCode = ProcedureCode_id_eNBStatusTransfer;  // 24
+    im->criticality   = Criticality_reject;
+    im->value.present = InitiatingMessage__value_PR_ENBStatusTransfer;
+    auto& req = im->value.choice.ENBStatusTransfer;
+
+    auto* ies = static_cast<ProtocolIE_Container_114P52_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P52_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: MME-UE-S1AP-ID (id=0, criticality=reject, mandatory)
+    {
+        auto* ie = static_cast<ENBStatusTransferIEs_t*>(calloc(1, sizeof(ENBStatusTransferIEs_t)));
+        ie->id            = ProtocolIE_ID_id_MME_UE_S1AP_ID;
+        ie->criticality   = Criticality_reject;
+        ie->value.present = ENBStatusTransferIEs__value_PR_MME_UE_S1AP_ID;
+        ie->value.choice.MME_UE_S1AP_ID = static_cast<long>(mmeUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+    // IE: eNB-UE-S1AP-ID (id=8, criticality=reject, mandatory)
+    {
+        auto* ie = static_cast<ENBStatusTransferIEs_t*>(calloc(1, sizeof(ENBStatusTransferIEs_t)));
+        ie->id            = ProtocolIE_ID_id_eNB_UE_S1AP_ID;
+        ie->criticality   = Criticality_reject;
+        ie->value.present = ENBStatusTransferIEs__value_PR_ENB_UE_S1AP_ID;
+        ie->value.choice.ENB_UE_S1AP_ID = static_cast<long>(enbUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+    // IE: ENB-StatusTransfer-TransparentContainer (id=90, criticality=reject, mandatory)
+    // Contains PDCP SN status for each bearer; one dummy bearer eRAB-ID=5.
+    {
+        auto* ie = static_cast<ENBStatusTransferIEs_t*>(calloc(1, sizeof(ENBStatusTransferIEs_t)));
+        ie->id            = ProtocolIE_ID_id_eNB_StatusTransfer_TransparentContainer;
+        ie->criticality   = Criticality_reject;
+        ie->value.present =
+            ENBStatusTransferIEs__value_PR_ENB_StatusTransfer_TransparentContainer;
+        auto& tc = ie->value.choice.ENB_StatusTransfer_TransparentContainer;
+
+        // Minimal bearer: eRAB-ID=5, UL/DL PDCP-SN=0, HFN=0
+        auto* bearersList = static_cast<Bearers_SubjectToStatusTransferList_t*>(
+                                calloc(1, sizeof(Bearers_SubjectToStatusTransferList_t)));
+        tc.bearers_SubjectToStatusTransferList = bearersList;
+
+        auto* bearerIE = static_cast<Bearers_SubjectToStatusTransfer_ItemIEs_t*>(
+                             calloc(1, sizeof(Bearers_SubjectToStatusTransfer_ItemIEs_t)));
+        bearerIE->id            = ProtocolIE_ID_id_Bearers_SubjectToStatusTransfer_Item;  // 89
+        bearerIE->criticality   = Criticality_ignore;
+        bearerIE->value.present =
+            Bearers_SubjectToStatusTransfer_ItemIEs__value_PR_Bearers_SubjectToStatusTransfer_Item;
+        auto& bItem = bearerIE->value.choice.Bearers_SubjectToStatusTransfer_Item;
+        bItem.e_RAB_ID = 5;
+        bItem.uL_COUNTvalue = static_cast<COUNTvalue_t*>(calloc(1, sizeof(COUNTvalue_t)));
+        bItem.uL_COUNTvalue->pDCP_SN = 0;
+        bItem.uL_COUNTvalue->hFN     = 0;
+        bItem.dL_COUNTvalue = static_cast<COUNTvalue_t*>(calloc(1, sizeof(COUNTvalue_t)));
+        bItem.dL_COUNTvalue->pDCP_SN = 0;
+        bItem.dL_COUNTvalue->hFN     = 0;
+        ASN_SEQUENCE_ADD(&bearersList->list, bearerIE);
+
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
+}
+
+
+// ═════════════════════════════════════════════════════════════════════════════
+// Handover Failure (TS 36.413 §8.5.2 — unsuccessful outcome, proc=1)
+// target eNB → MME
+// ═════════════════════════════════════════════════════════════════════════════
+ByteBuffer s1ap_encode_HandoverFailure(uint32_t mmeUeS1apId,
+                                       uint8_t  causeGroup,
+                                       uint8_t  causeValue)
+{
+    S1AP_PDU_t pdu{};
+    pdu.present = S1AP_PDU_PR_unsuccessfulOutcome;
+    pdu.choice.unsuccessfulOutcome = static_cast<UnsuccessfulOutcome_t*>(
+                                         calloc(1, sizeof(UnsuccessfulOutcome_t)));
+    auto* uo = pdu.choice.unsuccessfulOutcome;
+    uo->procedureCode = ProcedureCode_id_HandoverResourceAllocation;  // 1
+    uo->criticality   = Criticality_reject;
+    uo->value.present = UnsuccessfulOutcome__value_PR_HandoverFailure;
+    auto& req = uo->value.choice.HandoverFailure;
+
+    auto* ies = static_cast<ProtocolIE_Container_114P5_t*>(
+                    calloc(1, sizeof(ProtocolIE_Container_114P5_t)));
+    req.protocolIEs = reinterpret_cast<struct ProtocolIE_Container*>(ies);
+
+    // IE: MME-UE-S1AP-ID (id=0, criticality=ignore, mandatory)
+    {
+        auto* ie = static_cast<HandoverFailureIEs_t*>(calloc(1, sizeof(HandoverFailureIEs_t)));
+        ie->id            = ProtocolIE_ID_id_MME_UE_S1AP_ID;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = HandoverFailureIEs__value_PR_MME_UE_S1AP_ID;
+        ie->value.choice.MME_UE_S1AP_ID = static_cast<long>(mmeUeS1apId);
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+    // IE: Cause (id=2, criticality=ignore, mandatory)
+    {
+        auto* ie = static_cast<HandoverFailureIEs_t*>(calloc(1, sizeof(HandoverFailureIEs_t)));
+        ie->id            = ProtocolIE_ID_id_Cause;
+        ie->criticality   = Criticality_ignore;
+        ie->value.present = HandoverFailureIEs__value_PR_Cause;
+        auto& cause = ie->value.choice.Cause;
+        switch (causeGroup) {
+            case 0: cause.present = Cause_PR_radioNetwork;
+                    cause.choice.radioNetwork = static_cast<CauseRadioNetwork_t>(causeValue);
+                    break;
+            case 1: cause.present = Cause_PR_transport;
+                    cause.choice.transport = static_cast<CauseTransport_t>(causeValue);
+                    break;
+            case 2: cause.present = Cause_PR_nas;
+                    cause.choice.nas = static_cast<CauseNas_t>(causeValue);
+                    break;
+            case 3: cause.present = Cause_PR_protocol;
+                    cause.choice.protocol = static_cast<CauseProtocol_t>(causeValue);
+                    break;
+            default: cause.present = Cause_PR_misc;
+                     cause.choice.misc = CauseMisc_unspecified;
+                     break;
+        }
+        ASN_SEQUENCE_ADD(&ies->list, ie);
+    }
+
+    return encode_pdu(pdu);
 }
 
 }  // namespace rbs::lte

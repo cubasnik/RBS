@@ -1,4 +1,7 @@
 C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_phy.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\umts_phy.obj
 C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_mac.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\umts_mac.obj
 C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_stack.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\umts_stack.obj
+C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_rrc.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\umts_rrc.obj
+C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\umts_rlc.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\umts_rlc.obj
 C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\iub_link.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\iub_link.obj
+C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\umts\nbap_codec.cpp;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_umts.dir\Debug\nbap_codec.obj

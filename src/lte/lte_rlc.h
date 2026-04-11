@@ -63,9 +63,19 @@ struct LTERlcEntity {
     bool        sn10Bit = false;
 
     std::queue<ByteBuffer>  txSduQueue;      ///< Input SDUs to segment
-    std::queue<ByteBuffer>  retxQueue;       ///< AM: pending retransmit PDUs
-    std::queue<ByteBuffer>  rxReassembly;    ///< UL: segments being reassembled
+    std::queue<ByteBuffer>  retxQueue;       ///< AM: pending retransmit PDUs (data + STATUS)
     std::queue<ByteBuffer>  rxSduQueue;      ///< UL: delivered SDUs for upper layer
+
+    // AM TX window: SN → encoded PDU, kept until ACK'd (for NACK retransmit)
+    std::unordered_map<uint16_t, ByteBuffer> txWindow;
+
+    // AM segmentation state: true when the front of txSduQueue is a remainder
+    // from a partially segmented SDU (FI[1] must be set)
+    bool txMidSdu = false;
+
+    // AM reassembly state
+    bool       rxMidSdu     = false;  ///< true while accumulating a multi-segment SDU
+    ByteBuffer rxPartialSdu;          ///< accumulator until FI=10 (last segment)
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -130,8 +140,11 @@ private:
     ByteBuffer segmentAM      (LTERlcEntity& e, uint16_t maxBytes);
     ByteBuffer buildStatusPDU (const LTERlcEntity& e) const;
     ByteBuffer addUMHeader    (const ByteBuffer& payload, uint16_t sn) const;
+    // fi: Framing Info per TS 36.322 §6.2.3.3
+    //   00 = complete SDU   01 = first segment
+    //   10 = last segment   11 = middle segment
     ByteBuffer addAMHeader    (const ByteBuffer& payload, uint16_t sn,
-                               bool poll, LTEAMPduType type) const;
+                               bool poll, LTEAMPduType type, uint8_t fi = 0) const;
     bool       parseStatusPDU (const ByteBuffer& pdu, LTEStatusPDU& status) const;
 };
 

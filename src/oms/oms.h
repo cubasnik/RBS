@@ -46,6 +46,11 @@ public:
     double getCounter(const std::string& name) const                override;
     void  printPerformanceReport() const                            override;
 
+    // ── KPI threshold monitoring ──────────────────────────────────
+    void setKpiThreshold   (const std::string& counterName,
+                            const KpiThreshold& thr)                override;
+    void removeKpiThreshold(const std::string& counterName)         override;
+
     // ── Notification callback ─────────────────────────────────────
     void setAlarmCallback(AlarmNotifyCb cb) override { notifyCb_ = std::move(cb); }
 
@@ -53,13 +58,34 @@ public:
     void      setNodeState(NodeState s)                             override;
     NodeState getNodeState() const                                  override { return nodeState_; }
 
+    // ── Counter enumeration (for REST API / export) ───────────────
+    std::vector<std::pair<std::string, double>> getAllCounters() const;
+
+    // ── PM Export ──────────────────────────────────────────────
+    /// Write all PM counters to a CSV file.
+    /// Format: timestamp,name,value,unit
+    /// Returns true on success.
+    bool exportCsv(const std::string& filename) const;
+
+    /// Emit all PM counters as InfluxDB Line Protocol to a UDP endpoint.
+    /// endpoint format: "host:port"  (e.g. "127.0.0.1:8089")
+    /// Returns the number of metrics sent, or -1 on error.
+    int  pushInflux(const std::string& endpoint,
+                    const std::string& measurement = "rbs_pm") const;
+
 private:
     OMS() = default;
     uint32_t nextAlarmId_ = 1;
-    std::unordered_map<uint32_t, Alarm> alarms_;
+    std::unordered_map<uint32_t, Alarm>       alarms_;
     std::unordered_map<std::string, PerfCounter> counters_;
     AlarmNotifyCb notifyCb_;
     NodeState nodeState_ = NodeState::UNLOCKED;
+
+    // Threshold entries: KpiThreshold + the ID of any currently active alarm
+    struct ThresholdEntry : KpiThreshold {
+        uint32_t activeAlarmId = 0;  ///< 0 = no alarm raised yet
+    };
+    std::unordered_map<std::string, ThresholdEntry> thresholds_;
 };
 
 }  // namespace rbs::oms

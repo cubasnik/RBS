@@ -29,6 +29,12 @@ public:
     /// Allocate a DCH for a UE.  Returns the assigned RNTI.
     virtual RNTI assignDCH (SF sf = SF::SF16) = 0;
 
+    /// Allocate an HS-DSCH bearer for an HSDPA UE.  Returns the assigned RNTI.
+    virtual RNTI assignHSDSCH() = 0;
+
+    /// Allocate an E-DCH bearer for an HSUPA UE.  Returns the assigned RNTI.
+    virtual RNTI assignEDCH() = 0;
+
     /// Release the DCH associated with an RNTI.
     virtual bool releaseDCH(RNTI rnti) = 0;
 
@@ -38,6 +44,7 @@ public:
 
     // ── Statistics ────────────────────────────────────────────────────────────
     virtual size_t activeChannelCount() const = 0;
-};
+    virtual size_t hsdschUECount()      const = 0;
+    virtual size_t edchUECount()        const = 0;};
 
 }  // namespace rbs::umts

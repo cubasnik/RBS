@@ -1,7 +1,10 @@
 #include "../src/lte/gtp_u.h"
+#include "../src/lte/s1ap_link.h"
 #include <cassert>
 #include <cstdio>
 #include <cstdint>
+#include <thread>
+#include <chrono>
 
 int main() {
     using namespace rbs::lte;
@@ -65,6 +68,66 @@ int main() {
     rbs::ByteBuffer badMsg = gtpuEncode(1u, {0x01});
     badMsg[1] = 0x01;   // Echo Request, not T-PDU
     assert(!gtpuDecode(badMsg, dummyTeid, dummyPl));
+
+    // ── S1ULink loopback: eNB ↔ simulated SGW over UDP on 127.0.0.1 ──────────
+    // Tests full UDP forwarding: sendGtpuPdu → UDP → onRxPacket → recvGtpuPdu
+    // Uses high ephemeral ports to avoid conflicts. TS 29.060 §4.
+    {
+        rbs::net::UdpSocket::wsaInit();
+
+        constexpr uint16_t portEnb = 43500;
+        constexpr uint16_t portSgw = 43501;
+        constexpr uint32_t teid    = 0xABCD1234u;
+
+        rbs::lte::S1ULink enb("test-enb", portEnb);
+        rbs::lte::S1ULink sgw("test-sgw", portSgw);
+
+        // 127.0.0.1 in network byte order (big-endian uint32)
+        uint32_t loopback;
+        ::inet_pton(AF_INET, "127.0.0.1", &loopback);
+
+        // Both sides share the same TEID (simulation simplification):
+        // eNB sends UL with teid in header → SGW routes by teid to rnti=1,erabId=1.
+        // SGW sends DL with teid in header → eNB routes by teid to rnti=1,erabId=1.
+        rbs::lte::GTPUTunnel enbTunnel{teid, loopback, portSgw};
+        rbs::lte::GTPUTunnel sgwTunnel{teid, loopback, portEnb};
+
+        assert(enb.createTunnel(1, 1, enbTunnel));
+        assert(sgw.createTunnel(1, 1, sgwTunnel));
+
+        // UL: eNB → SGW
+        const rbs::ByteBuffer ulPkt = {0x45, 0x00, 0x00, 0x14, 0x00, 0x01,
+                                       0x40, 0x00, 0x40, 0x11, 0x00, 0x00};
+        assert(enb.sendGtpuPdu(1, 1, ulPkt));
+
+        rbs::ByteBuffer rcvUl;
+        bool gotUl = false;
+        for (int i = 0; i < 50 && !gotUl; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            gotUl = sgw.recvGtpuPdu(1, 1, rcvUl);
+        }
+        assert(gotUl);
+        assert(rcvUl == ulPkt);
+
+        // DL: SGW → eNB
+        const rbs::ByteBuffer dlPkt = {0x60, 0x00, 0x00, 0x00, 0x00, 0x08,
+                                       0x11, 0x40, 0x00, 0x00, 0x00, 0x00};
+        assert(sgw.sendGtpuPdu(1, 1, dlPkt));
+
+        rbs::ByteBuffer rcvDl;
+        bool gotDl = false;
+        for (int i = 0; i < 50 && !gotDl; ++i) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+            gotDl = enb.recvGtpuPdu(1, 1, rcvDl);
+        }
+        assert(gotDl);
+        assert(rcvDl == dlPkt);
+
+        enb.deleteTunnel(1, 1);
+        sgw.deleteTunnel(1, 1);
+
+        rbs::net::UdpSocket::wsaCleanup();
+    }
 
     std::puts("test_gtp_u PASSED");
     return 0;

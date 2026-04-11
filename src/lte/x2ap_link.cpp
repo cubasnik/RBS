@@ -1,5 +1,6 @@
 #include "x2ap_link.h"
 #include "x2ap_codec.h"
+#include "../oms/oms.h"
 
 namespace rbs::lte {
 
@@ -108,6 +109,16 @@ bool X2APLink::handoverRequest(const X2HORequest& req)
     }
     X2APMessage msg{X2APProcedure::HANDOVER_REQUEST, srcId, 0, std::move(payload)};
     bool ok = sendX2APMsg(msg);
+
+    if (ok) {
+        // Track HO attempt for KPI aggregation
+        auto& oms = rbs::oms::OMS::instance();
+        const double att = oms.getCounter("lte.ho.attempts") + 1.0;
+        const double suc = oms.getCounter("lte.ho.successes");
+        oms.updateCounter("lte.ho.attempts", att);
+        oms.updateCounter("lte.ho.successRate.pct",
+                          att > 0 ? suc / att * 100.0 : 100.0, "%");
+    }
 
     // Симуляция: target eNB немедленно принимает все E-RABs
     if (ok) {
@@ -250,8 +261,9 @@ bool X2APLink::sendX2APMsg(const X2APMessage& msg)
     frame.push_back(static_cast<uint8_t>(plLen));
     frame.insert(frame.end(), pl.begin(), pl.end());
 
-    bool ok = socket_.send(targetAddr, targetPort, frame);
-    RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} len={} {}",
+    bool ok = socket_.send(targetAddr, targetPort, frame);    if (ok && pcap_.isOpen())
+        pcap_.writeUdp("127.0.0.1", socket_.localPort(),
+                       targetAddr, targetPort, frame);    RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} len={} {}",
                   enbId_, static_cast<uint8_t>(msg.procedure), plLen,
                   ok ? "OK" : "FAIL");
     return ok;
@@ -267,7 +279,10 @@ bool X2APLink::recvX2APMsg(X2APMessage& msg)
                   enbId_, static_cast<uint8_t>(msg.procedure));
     return true;
 }
-
+void X2APLink::enablePcap(const std::string& path)
+{
+    pcap_.open(path);
+}
 void X2APLink::onRxPacket(const net::UdpPacket& pkt)
 {
     if (pkt.data.size() < 13) return;
@@ -289,7 +304,18 @@ void X2APLink::onRxPacket(const net::UdpPacket& pkt)
     ByteBuffer payload(d.begin() + 13, d.begin() + 13 + plLen);
     RBS_LOG_DEBUG("X2AP", "[{}] X2AP ← eNB  proc=0x{:02X} srcId=0x{:X} len={}",
                   enbId_, static_cast<uint8_t>(proc), srcId, plLen);
-    std::lock_guard<std::mutex> lk(rxMtx_);
+    // Track HO success for KPI aggregation
+    if (proc == X2APProcedure::HANDOVER_REQUEST_ACK) {
+        auto& oms = rbs::oms::OMS::instance();
+        const double suc      = oms.getCounter("lte.ho.successes") + 1.0;
+        const double attempts = oms.getCounter("lte.ho.attempts");
+        oms.updateCounter("lte.ho.successes", suc);
+        oms.updateCounter("lte.ho.successRate.pct",
+                          attempts > 0 ? suc / attempts * 100.0 : 100.0, "%");
+    }
+    if (pcap_.isOpen())
+        pcap_.writeUdp(pkt.srcIp, pkt.srcPort,
+                       "127.0.0.1", socket_.localPort(), pkt.data);    std::lock_guard<std::mutex> lk(rxMtx_);
     rxQueue_.push({proc, srcId, tgtId, std::move(payload)});
 }
 
@@ -354,6 +380,129 @@ void X2ULink::closeForwardingTunnel(RNTI rnti)
         socketReady_ = false;
     }
     RBS_LOG_INFO("X2U", "[{}] GTP-U forwarding tunnel закрыт rnti={}", enbId_, rnti);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EN-DC SgNB procedures (TS 37.340 / TS 36.423 §8.x)
+// All methods operate in-memory (simulation); real deployments would encode
+// ASN.1 APER payloads and send over SCTP.
+// ─────────────────────────────────────────────────────────────────────────────
+
+static const char* endcOptionStr(rbs::ENDCOption opt) {
+    switch (opt) {
+        case rbs::ENDCOption::OPTION_3:  return "3 (split-MN)";
+        case rbs::ENDCOption::OPTION_3A: return "3a (SCG)";
+        case rbs::ENDCOption::OPTION_3X: return "3x (split-SN)";
+    }
+    return "?";
+}
+
+bool X2APLink::sgNBAdditionRequest(RNTI rnti, rbs::ENDCOption option,
+                                   const std::vector<rbs::DCBearerConfig>& bearers)
+{
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Addition Request  rnti=", rnti,
+                 " option=", endcOptionStr(option), "  bearers=", bearers.size());
+
+    endcMap_[rnti] = {option, bearers};
+
+    X2APMessage msg{X2APProcedure::SGNB_ADDITION_REQUEST,
+                    nextSrcX2Id_++, 0, {}};
+    msg.payload = {
+        static_cast<uint8_t>(rnti >> 8),
+        static_cast<uint8_t>(rnti),
+        static_cast<uint8_t>(option),
+        static_cast<uint8_t>(bearers.size())
+    };
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBAdditionRequestAck(RNTI rnti,
+                                       std::vector<rbs::DCBearerConfig>& bearers)
+{
+    auto it = endcMap_.find(rnti);
+    if (it == endcMap_.end()) {
+        RBS_LOG_ERROR("X2AP", "[", enbId_, "] SgNB Addition Ack: unknown rnti=", rnti);
+        return false;
+    }
+
+    // Simulate SN assigning NR C-RNTIs: first assigned ID = 0x0101 + index
+    uint16_t snCrntiBase = 0x0101;
+    for (size_t i = 0; i < bearers.size(); ++i) {
+        bearers[i].snCrnti = static_cast<uint16_t>(snCrntiBase + i);
+    }
+    it->second.bearers = bearers;
+
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Addition Ack  rnti=", rnti,
+                 " bearers=", bearers.size(),
+                 " snCrnti=0x", std::hex,
+                 (bearers.empty() ? 0u : static_cast<unsigned>(bearers.front().snCrnti)),
+                 std::dec);
+
+    X2APMessage msg{X2APProcedure::SGNB_ADDITION_REQUEST_ACK,
+                    nextSrcX2Id_++, 0, {}};
+    msg.payload = {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBAdditionRequestReject(RNTI rnti, const std::string& cause)
+{
+    RBS_LOG_WARNING("X2AP", "[", enbId_, "] SgNB Addition Reject  rnti=", rnti,
+                    "  cause=", cause);
+    endcMap_.erase(rnti);
+
+    X2APMessage msg{X2APProcedure::SGNB_ADDITION_REQUEST_REJECT,
+                    nextSrcX2Id_++, 0, {}};
+    msg.payload = {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBModificationRequest(RNTI rnti, const rbs::DCBearerConfig& bearer)
+{
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Modification Request  rnti=", rnti,
+                 " bearerId=", bearer.enbBearerId);
+
+    auto it = endcMap_.find(rnti);
+    if (it != endcMap_.end()) {
+        for (auto& b : it->second.bearers) {
+            if (b.enbBearerId == bearer.enbBearerId) { b = bearer; break; }
+        }
+    }
+
+    X2APMessage msg{X2APProcedure::SGNB_MODIFICATION_REQUEST,
+                    nextSrcX2Id_++, 0, {}};
+    msg.payload = {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti),
+                   bearer.enbBearerId};
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBModificationRequestAck(RNTI rnti, const rbs::DCBearerConfig& bearer)
+{
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Modification Ack  rnti=", rnti,
+                 " bearerId=", bearer.enbBearerId);
+    X2APMessage msg{X2APProcedure::SGNB_MODIFICATION_REQUEST_ACK,
+                    nextSrcX2Id_++, 0, {}};
+    msg.payload = {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti),
+                   bearer.enbBearerId};
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBReleaseRequest(RNTI rnti)
+{
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Release Request  rnti=", rnti);
+    endcMap_.erase(rnti);
+    X2APMessage msg{X2APProcedure::SGNB_RELEASE_REQUEST,
+                    nextSrcX2Id_++, 0,
+                    {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)}};
+    return sendX2APMsg(msg);
+}
+
+bool X2APLink::sgNBReleaseRequestAck(RNTI rnti)
+{
+    RBS_LOG_INFO("X2AP", "[", enbId_, "] SgNB Release Ack  rnti=", rnti);
+    X2APMessage msg{X2APProcedure::SGNB_RELEASE_REQUEST_ACK,
+                    nextSrcX2Id_++, 0,
+                    {static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)}};
+    return sendX2APMsg(msg);
 }
 
 } // namespace rbs::lte

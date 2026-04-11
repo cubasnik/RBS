@@ -133,11 +133,72 @@ ByteBuffer s1ap_encode_HandoverNotify(
     uint32_t cellId
 );
 
+/// Handover Request Acknowledge  (TS 36.413 §8.5.2 — target eNB→MME)
+/// Successful outcome of HandoverResourceAllocation (proc=1).
+/// targetToSrcContainer: Target-to-Source transparent container bytes.
+ByteBuffer s1ap_encode_HandoverRequestAcknowledge(
+    uint32_t          mmeUeS1apId,
+    uint32_t          enbUeS1apId,
+    const ByteBuffer& targetToSrcContainer
+);
+
+/// eNB Status Transfer  (TS 36.413 §8.5.2 — source eNB→MME)
+/// Initiating message, proc=24.  Carries PDCP SN status across;
+/// minimal implementation encodes one dummy bearer (eRAB-ID=5).
+ByteBuffer s1ap_encode_ENBStatusTransfer(
+    uint32_t mmeUeS1apId,
+    uint32_t enbUeS1apId
+);
+
+/// Handover Failure  (TS 36.413 §8.5.2 — target eNB→MME)
+/// Unsuccessful outcome of HandoverResourceAllocation (proc=1).
+ByteBuffer s1ap_encode_HandoverFailure(
+    uint32_t mmeUeS1apId,
+    uint8_t  causeGroup,
+    uint8_t  causeValue
+);
+
+/// Paging  (TS 36.413 §8.7.1 — MME→eNB initiating message)
+/// ueIdxVal: 10-bit UE identity index (IMSI mod 1024)
+/// imsi:     raw IMSI bytes (iMSI variant of UEPagingID)
+/// cnDomain: 0 = PS, 1 = CS
+ByteBuffer s1ap_encode_Paging(
+    uint16_t          ueIdxVal,
+    const ByteBuffer& imsi,
+    uint32_t          plmnId,
+    uint16_t          tac,
+    uint8_t           cnDomain
+);
+
+/// Reset  (TS 36.413 §8.7.2 — initiating message, eNB→MME or MME→eNB)
+/// resetAll = true  → S1-interface level reset (whole S1)
+/// resetAll = false → partial reset (not encoded here; use resetAll only for now)
+/// causeGroup: 0=radioNetwork 1=transport 2=nas 3=protocol 4=misc
+ByteBuffer s1ap_encode_Reset(
+    uint8_t causeGroup,
+    uint8_t causeValue,
+    bool    resetAll = true
+);
+
+/// Error Indication  (TS 36.413 §8.7.4 — initiating message, eNB↔MME)
+/// mmeUeS1apId / enbUeS1apId: 0 means absent
+/// causeGroup / causeValue: 0xFF means absent (no Cause IE)
+ByteBuffer s1ap_encode_ErrorIndication(
+    uint32_t mmeUeS1apId,
+    uint32_t enbUeS1apId,
+    uint8_t  causeGroup,
+    uint8_t  causeValue
+);
+
 // ── Decode ────────────────────────────────────────────────────────────────────
 
 /// APER-decode bytes into an S1AP-PDU.
 /// Returns nullptr on failure. The caller MUST call s1ap_pdu_free().
 S1APPduHandle s1ap_decode(const void* buf, size_t len);
+
+/// Decode APER bytes into a generic S1APMessage.
+/// Fills procedure and best-effort UE IDs extracted from common IEs.
+bool s1ap_decode_message(const ByteBuffer& payload, S1APMessage& out);
 
 /// Extract procedure code from a decoded PDU (returns -1 on error).
 int  s1ap_procedure_code(S1APPduHandle pdu);

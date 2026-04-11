@@ -41,6 +41,15 @@ enum class X2APProcedure : uint8_t {
     RESOURCE_STATUS_REQUEST       = 0x0F,
     RESOURCE_STATUS_RESPONSE      = 0x10,
     RESOURCE_STATUS_REPORT        = 0x11,
+    // EN-DC procedures (TS 36.423 §8.x, as extended by TS 37.340)
+    SGNB_ADDITION_REQUEST         = 0x20,
+    SGNB_ADDITION_REQUEST_ACK     = 0x21,
+    SGNB_ADDITION_REQUEST_REJECT  = 0x22,
+    SGNB_MODIFICATION_REQUEST     = 0x23,
+    SGNB_MODIFICATION_REQUEST_ACK = 0x24,
+    SGNB_RELEASE_REQUEST          = 0x25,
+    SGNB_RELEASE_REQUEST_ACK      = 0x26,
+    SGNB_COUNT_REPORT             = 0x27,
 };
 
 // ── PDCP SN status per DRB (for lossless in-order delivery at target) ────────
@@ -122,6 +131,37 @@ public:
     // ── Raw message pump ──────────────────────────────────────────────────────
     virtual bool sendX2APMsg(const X2APMessage& msg) = 0;
     virtual bool recvX2APMsg(X2APMessage& msg) = 0;
+
+    // ── EN-DC Secondary gNB (SgNB) management — TS 37.340 / TS 36.423 §8.x ──
+
+    /// MN→SN: request SN to add UE as secondary node (Options 3, 3a, 3x).
+    /// \param rnti      UE RNTI at MN (eNB)
+    /// \param option    EN-DC deployment option
+    /// \param bearers   Bearer split configuration proposed by MN
+    virtual bool sgNBAdditionRequest(RNTI rnti, rbs::ENDCOption option,
+                                     const std::vector<rbs::DCBearerConfig>& bearers) = 0;
+
+    /// SN→MN: positive acknowledgement; snAssignedCrnti filled for SCG-leg.
+    virtual bool sgNBAdditionRequestAck(RNTI rnti,
+                                        std::vector<rbs::DCBearerConfig>& bearers) = 0;
+
+    /// SN→MN: SN rejects the addition (resource shortage, etc.)
+    virtual bool sgNBAdditionRequestReject(RNTI rnti,
+                                           const std::string& cause) = 0;
+
+    /// MN→SN: request bearer reconfiguration (e.g. change split threshold).
+    virtual bool sgNBModificationRequest(RNTI rnti,
+                                         const rbs::DCBearerConfig& bearer) = 0;
+
+    /// SN→MN: confirm modification.
+    virtual bool sgNBModificationRequestAck(RNTI rnti,
+                                            const rbs::DCBearerConfig& bearer) = 0;
+
+    /// MN→SN: release UE from the secondary node.
+    virtual bool sgNBReleaseRequest(RNTI rnti) = 0;
+
+    /// SN→MN: confirm release.
+    virtual bool sgNBReleaseRequestAck(RNTI rnti) = 0;
 };
 
 // ── IX2U — X2-U GTP-U data forwarding (during handover execution) ────────────

@@ -55,15 +55,15 @@ ByteBuffer LTERlc::addUMHeader(const ByteBuffer& payload, uint16_t sn) const
 }
 
 ByteBuffer LTERlc::addAMHeader(const ByteBuffer& payload, uint16_t sn,
-                                bool poll, LTEAMPduType type) const
+                                bool poll, LTEAMPduType type, uint8_t fi) const
 {
     ByteBuffer out;
     out.reserve(2 + payload.size());
     uint8_t dc  = (type == LTEAMPduType::DATA) ? 0x80 : 0x00;
     uint8_t p   = poll ? 0x20 : 0x00;
-    uint8_t fi  = 0x00;   // complete SDU in this PDU
+    uint8_t fiB = static_cast<uint8_t>((fi & 0x03) << 3);  // FI → bits [4:3]
     uint8_t snh = static_cast<uint8_t>((sn >> 8) & 0x03);
-    out.push_back(dc | p | fi | snh);
+    out.push_back(dc | p | fiB | snh);
     out.push_back(static_cast<uint8_t>(sn & 0xFF));
     out.insert(out.end(), payload.begin(), payload.end());
     return out;
@@ -109,7 +109,7 @@ bool LTERlc::parseStatusPDU(const ByteBuffer& pdu, LTEStatusPDU& status) const
 
 ByteBuffer LTERlc::segmentAM(LTERlcEntity& e, uint16_t maxBytes)
 {
-    // Prefer retransmissions first
+    // Prefer retransmissions / pending STATUS PDUs first
     if (!e.retxQueue.empty()) {
         ByteBuffer pdu = std::move(e.retxQueue.front());
         e.retxQueue.pop();
@@ -117,37 +117,39 @@ ByteBuffer LTERlc::segmentAM(LTERlcEntity& e, uint16_t maxBytes)
     }
     if (e.txSduQueue.empty()) return {};
 
-    const uint16_t headerSz = 2;
-    const uint16_t payloadMaxBytes = (maxBytes > headerSz) ? maxBytes - headerSz : 0;
-    if (payloadMaxBytes == 0) return {};
+    const uint16_t headerSz    = 2;
+    const uint16_t payloadMax  = (maxBytes > headerSz) ? maxBytes - headerSz : 0;
+    if (payloadMax == 0) return {};
 
-    ByteBuffer sdu = std::move(e.txSduQueue.front());
-    e.txSduQueue.pop();
+    ByteBuffer& front = e.txSduQueue.front();  // modify in-place, no pop yet
 
-    // If SDU fits in one PDU
-    if (sdu.size() <= payloadMaxBytes) {
+    if (front.size() <= payloadMax) {
+        // Entire front item fits → complete or last segment
+        ByteBuffer sdu = std::move(front);
+        e.txSduQueue.pop();
+        // FI: 10 = last segment (txMidSdu was true), 00 = complete SDU
+        uint8_t fi = e.txMidSdu ? 0x02 : 0x00;
+        e.txMidSdu = false;
+        bool poll = e.txSduQueue.empty() && e.retxQueue.empty();
         uint16_t sn = e.txSN;
         e.txSN = (e.txSN + 1) & AM_SN_MASK;
-        bool poll = e.txSduQueue.empty();   // set poll on last PDU
-        return addAMHeader(sdu, sn, poll, LTEAMPduType::DATA);
+        ByteBuffer pdu = addAMHeader(sdu, sn, poll, LTEAMPduType::DATA, fi);
+        e.txWindow[sn] = pdu;  // store for potential NACK retransmit
+        return pdu;
     }
 
-    // Segment: first payloadMaxBytes bytes become this PDU, rest back in queue
-    ByteBuffer firstSeg(sdu.begin(), sdu.begin() + payloadMaxBytes);
-    ByteBuffer remainder(sdu.begin() + payloadMaxBytes, sdu.end());
+    // Need to split: take first payloadMax bytes, leave remainder in queue
+    ByteBuffer seg(front.begin(), front.begin() + payloadMax);
+    front.erase(front.begin(), front.begin() + payloadMax);  // remainder stays at front
 
-    // Put remainder back at front — use a fresh queue
-    std::queue<ByteBuffer> newQ;
-    newQ.push(std::move(remainder));
-    while (!e.txSduQueue.empty()) {
-        newQ.push(std::move(e.txSduQueue.front()));
-        e.txSduQueue.pop();
-    }
-    e.txSduQueue = std::move(newQ);
-
+    // FI: 01 = first segment, 11 = middle segment
+    uint8_t fi = e.txMidSdu ? 0x03 : 0x01;
+    e.txMidSdu = true;
     uint16_t sn = e.txSN;
     e.txSN = (e.txSN + 1) & AM_SN_MASK;
-    return addAMHeader(firstSeg, sn, false, LTEAMPduType::DATA);
+    ByteBuffer pdu = addAMHeader(seg, sn, false, LTEAMPduType::DATA, fi);
+    e.txWindow[sn] = pdu;
+    return pdu;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -185,14 +187,26 @@ void LTERlc::processAM(LTERlcEntity& e, const ByteBuffer& pdu)
         // STATUS PDU
         LTEStatusPDU status;
         if (!parseStatusPDU(pdu, status)) return;
-        // Advance VT(A) to ACK_SN
-        e.vtA = status.ack_sn & AM_SN_MASK;
-        // For each NACK, push copy of original PDU into retxQueue
-        // (simplified: we don't keep TX window, so just log)
+        uint16_t ack = status.ack_sn & AM_SN_MASK;
+
+        // Re-enqueue NACKed PDUs BEFORE pruning the TX window
         for (const auto& nack : status.nacks) {
-            RBS_LOG_WARNING("LteRLC",
-                "AM NACK rnti={} rbId={} nack_sn={}",
-                e.rnti, e.rbId, nack.nack_sn);
+            uint16_t nsn = nack.nack_sn & AM_SN_MASK;
+            auto txIt = e.txWindow.find(nsn);
+            if (txIt != e.txWindow.end()) {
+                e.retxQueue.push(txIt->second);  // copy PDU into retx queue
+                RBS_LOG_WARNING("LteRLC",
+                    "AM NACK rnti={} rbId={} nack_sn={} → retx queued",
+                    e.rnti, e.rbId, nsn);
+            }
+        }
+        // Advance VT(A) and prune ACK'd PDUs from TX window
+        e.vtA = ack;
+        for (auto it = e.txWindow.begin(); it != e.txWindow.end(); ) {
+            if (snLt(it->first, ack))
+                it = e.txWindow.erase(it);
+            else
+                ++it;
         }
         RBS_LOG_DEBUG("LteRLC",
             "STATUS PDU rnti={} rbId={} ack_sn={} nacks={}",
@@ -206,22 +220,47 @@ void LTERlc::processAM(LTERlcEntity& e, const ByteBuffer& pdu)
                 |  static_cast<uint16_t>(pdu[1]);
     sn &= AM_SN_MASK;
 
-    // Accept in-order SNs (simplified: no full reorder window)
+    // FI bits [4:3] of byte 0 (TS 36.322 §6.2.3.3)
+    uint8_t fi = (pdu[0] >> 3) & 0x03;
+
+    // Accept in-order SNs; out-of-order dropped (no reorder window in sim)
     if (sn == e.rxExpSN) {
-        ByteBuffer sdu(pdu.begin() + 2, pdu.end());
-        e.rxSduQueue.push(std::move(sdu));
         e.rxExpSN = (e.rxExpSN + 1) & AM_SN_MASK;
+        ByteBuffer payload(pdu.begin() + 2, pdu.end());
+
+        if (fi == 0x00) {
+            // Complete SDU — deliver directly
+            if (e.rxMidSdu) { e.rxPartialSdu.clear(); e.rxMidSdu = false; }
+            e.rxSduQueue.push(std::move(payload));
+        } else if (fi == 0x01) {
+            // First segment — start accumulator
+            e.rxPartialSdu = std::move(payload);
+            e.rxMidSdu     = true;
+        } else if (fi == 0x03) {
+            // Middle segment — append
+            if (e.rxMidSdu)
+                e.rxPartialSdu.insert(e.rxPartialSdu.end(),
+                                      payload.begin(), payload.end());
+        } else {  // fi == 0x02
+            // Last segment — append and deliver complete SDU
+            if (e.rxMidSdu) {
+                e.rxPartialSdu.insert(e.rxPartialSdu.end(),
+                                      payload.begin(), payload.end());
+                e.rxSduQueue.push(std::move(e.rxPartialSdu));
+                e.rxPartialSdu.clear();
+                e.rxMidSdu = false;
+            }
+        }
     }
 
-    // Poll bit set → send STATUS PDU immediately
+    // Poll bit set → enqueue STATUS PDU for the peer
     bool pollSet = (pdu[0] & 0x20) != 0;
     if (pollSet) {
-        ByteBuffer status = buildStatusPDU(e);
-        // In the real stack this goes to MAC scheduler; log it here
+        ByteBuffer statusPdu = buildStatusPDU(e);
         RBS_LOG_DEBUG("LteRLC",
-            "AM poll received rnti={} rbId={} sn={} → STATUS len={}",
-            e.rnti, e.rbId, sn, status.size());
-        e.retxQueue.push(std::move(status));  // enqueue STATUS for DL path
+            "AM poll rnti={} rbId={} sn={} → STATUS len={}",
+            e.rnti, e.rbId, sn, statusPdu.size());
+        e.retxQueue.push(std::move(statusPdu));
     }
 }
 

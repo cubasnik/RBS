@@ -88,6 +88,15 @@ bool LTEPhy::transmitSubframe(const LTESubframe& sf) {
 }
 
 bool LTEPhy::receiveSubframe(LTESubframe& sf) {
+    // Drain MAC-injected UL subframes first (simulation loopback)
+    {
+        std::lock_guard<std::mutex> lk(ulMtx_);
+        if (!ulInjectQueue_.empty()) {
+            sf = std::move(ulInjectQueue_.front());
+            ulInjectQueue_.pop();
+            return true;
+        }
+    }
     ByteBuffer raw;
     uint32_t samplesPerSF = 30720u;  // 30.72 MHz sampling rate * 1 ms
     if (!rf_->receive(raw, samplesPerSF)) return false;
@@ -168,6 +177,85 @@ ByteBuffer LTEPhy::ofdmModulate(const ByteBuffer& freqDomain) const {
         iq.push_back(0);    // Q (real-valued symbol in simplified model)
     }
     return iq;
+}
+
+// ────────────────────────────────────────────────────────────────
+// UL Channel Builders
+// ────────────────────────────────────────────────────────────────
+
+// TS 36.211 §5.4 — PUCCH: [format, rnti_hi, rnti_lo, value, crc_xor] = 5 bytes
+ByteBuffer LTEPhy::buildPUCCH(PUCCHFormat fmt, RNTI rnti, uint8_t value) const {
+    ByteBuffer pucch;
+    pucch.push_back(static_cast<uint8_t>(fmt));
+    pucch.push_back(static_cast<uint8_t>(rnti >> 8));
+    pucch.push_back(static_cast<uint8_t>(rnti & 0xFF));
+    pucch.push_back(value);
+    uint8_t crc = 0;
+    for (uint8_t b : pucch) crc ^= b;
+    pucch.push_back(crc);
+    return pucch;  // 5 bytes
+}
+
+// TS 36.211 §5.5.2 — DMRS: ZC root u=(rnti%30)+1, N=12 complex samples = 24 bytes
+ByteBuffer LTEPhy::buildDMRS(RNTI rnti, uint8_t slotIdx) const {
+    const int N = 12;
+    int u = (rnti % 30) + 1;
+    double phase_offset = slotIdx * M_PI / 6.0;
+    ByteBuffer dmrs;
+    dmrs.reserve(N * 2);
+    for (int k = 0; k < N; ++k) {
+        double angle = -M_PI * static_cast<double>(u) * k * (k + 1)
+                       / static_cast<double>(N) + phase_offset;
+        dmrs.push_back(static_cast<uint8_t>(
+            128 + static_cast<int>(127.0 * std::cos(angle))));
+        dmrs.push_back(static_cast<uint8_t>(
+            128 + static_cast<int>(127.0 * std::sin(angle))));
+    }
+    return dmrs;  // 24 bytes
+}
+
+// TS 36.211 §5.3 — PUSCH: header(4) + DMRS_slot0(24) + data(tbBytes/2)
+//                        + DMRS_slot1(24) + data(tbBytes-tbBytes/2)
+ByteBuffer LTEPhy::buildPUSCH(const ResourceBlock& rb, uint32_t tbBytes) const {
+    ByteBuffer pusch;
+    pusch.push_back(0xD0);  // PUSCH type marker
+    pusch.push_back(rb.rbIndex);
+    pusch.push_back(static_cast<uint8_t>(rb.rnti >> 8));
+    pusch.push_back(static_cast<uint8_t>(rb.rnti & 0xFF));
+    ByteBuffer dmrs0 = buildDMRS(rb.rnti, 0);
+    pusch.insert(pusch.end(), dmrs0.begin(), dmrs0.end());  // slot-0 DMRS
+    uint32_t halfTb = tbBytes / 2;
+    for (uint32_t i = 0; i < halfTb; ++i)
+        pusch.push_back(static_cast<uint8_t>((rb.rnti + i) & 0xFF));
+    ByteBuffer dmrs1 = buildDMRS(rb.rnti, 1);
+    pusch.insert(pusch.end(), dmrs1.begin(), dmrs1.end());  // slot-1 DMRS
+    for (uint32_t i = halfTb; i < tbBytes; ++i)
+        pusch.push_back(static_cast<uint8_t>((rb.rnti + i) & 0xFF));
+    return pusch;
+}
+
+// TS 36.211 §5.5.3 — SRS: CAZAC comb-2, only I-samples
+// bwConfig 0→8RBs(48B), 1→16RBs(96B), 2→32RBs(192B), 3→64RBs(384B)
+ByteBuffer LTEPhy::buildSRS(RNTI rnti, uint8_t bwConfig) const {
+    static const uint8_t srsRBTable[4] = {8, 16, 32, 64};
+    uint8_t srsRBs = (bwConfig < 4) ? srsRBTable[bwConfig] : srsRBTable[0];
+    int N = srsRBs * 12 / 2;  // comb-2: every other subcarrier
+    int u = (rnti % 30) + 1;
+    ByteBuffer srs;
+    srs.reserve(static_cast<size_t>(N));
+    for (int k = 0; k < N; ++k) {
+        double angle = -M_PI * static_cast<double>(u) * k * (k + 1)
+                       / static_cast<double>(N);
+        srs.push_back(static_cast<uint8_t>(
+            128 + static_cast<int>(127.0 * std::cos(angle))));
+    }
+    return srs;
+}
+
+// Inject pre-built UL subframe into receive queue (MAC simulation loopback)
+void LTEPhy::injectUlSignal(LTESubframe sf) {
+    std::lock_guard<std::mutex> lk(ulMtx_);
+    ulInjectQueue_.push(std::move(sf));
 }
 
 }  // namespace rbs::lte

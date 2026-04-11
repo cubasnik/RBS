@@ -57,7 +57,11 @@ int main() {
 
     // ── sendMeasurementConfig не крашится ─────────────────────────────────────
     MeasObject mo{1, 3000, LTEBand::B3};
-    ReportConfig rc{1, RrcTriggerQty::RSRP, 3, 160};
+    ReportConfig rc{};
+    rc.reportConfigId = 1;
+    rc.triggerQty     = RrcTriggerQty::RSRP;
+    rc.a3Offset_dB    = 3;
+    rc.timeToTrigger_ms = 160;
     rrc.sendMeasurementConfig(r1, mo, rc);
     rrc.sendMeasurementConfig(r2, mo, rc);
 

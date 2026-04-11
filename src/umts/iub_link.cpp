@@ -125,6 +125,7 @@ bool IubNbap::radioLinkDeletion(RNTI rnti)
         return false;
     }
     links_.erase(it);
+    shoLegs_.erase(rnti);  // also clean up any SHO legs
     RBS_LOG_INFO("IubNbap", "[{}] NBAP RADIO LINK DELETION rnti={}", nodeBId_, rnti);
 
     // TS 25.433 §8.1.6 — encode as APER RadioLinkDeletionRequest
@@ -135,6 +136,59 @@ bool IubNbap::radioLinkDeletion(RNTI rnti)
         txId
     );
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL DELETION APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf)
+{
+    if (!connected_) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioLinkAddition: not connected", nodeBId_);
+        return false;
+    }
+    // Primary link must already exist
+    if (links_.find(rnti) == links_.end()) {
+        RBS_LOG_WARNING("IubNbap",
+            "[{}] radioLinkAddition: primary link not found for rnti={}", nodeBId_, rnti);
+        return false;
+    }
+    // Store as a secondary SHO leg
+    shoLegs_[rnti][scrCode] = {scrCode, sf, true};
+    RBS_LOG_INFO("IubNbap",
+        "[{}] NBAP RL ADDITION (SHO) rnti={} newScrCode={} SF={}",
+        nodeBId_, rnti, scrCode, static_cast<int>(sf));
+
+    // TS 25.433 §8.1.4 — RadioLinkAdditionRequestFDD
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    // nodeBCtxId encodes rnti; scrCode encoded via upper 16 bits for uniqueness
+    uint32_t ctxId = (static_cast<uint32_t>(rnti) << 9) | (scrCode & 0x1FF);
+    ByteBuffer payload = nbap_encode_RadioLinkAdditionRequestFDD(ctxId, txId);
+    RBS_LOG_DEBUG("IubNbap",
+        "[{}] NBAP RL ADDITION APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_ADDITION, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioLinkDeletionSHO(RNTI rnti, uint16_t scrCode)
+{
+    auto ueit = shoLegs_.find(rnti);
+    if (ueit == shoLegs_.end() || ueit->second.find(scrCode) == ueit->second.end()) {
+        RBS_LOG_WARNING("IubNbap",
+            "[{}] radioLinkDeletionSHO: leg rnti={} scrCode={} not found",
+            nodeBId_, rnti, scrCode);
+        return false;
+    }
+    ueit->second.erase(scrCode);
+    if (ueit->second.empty()) shoLegs_.erase(ueit);
+    RBS_LOG_INFO("IubNbap",
+        "[{}] NBAP RL DELETION (SHO leg) rnti={} scrCode={}", nodeBId_, rnti, scrCode);
+
+    // TS 25.433 §8.1.6 — reuse RadioLinkDeletionRequest for the leg
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    uint32_t ctxId = (static_cast<uint32_t>(rnti) << 9) | (scrCode & 0x1FF);
+    ByteBuffer payload = nbap_encode_RadioLinkDeletionRequest(ctxId, ctxId, txId);
+    RBS_LOG_DEBUG("IubNbap",
+        "[{}] NBAP RL DELETION (SHO) APER len={}", nodeBId_, payload.size());
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
@@ -151,11 +205,115 @@ bool IubNbap::dedicatedMeasurementInitiation(RNTI rnti, uint16_t measId)
     return sendNbapMsg(msg);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DCH / HSDPA extended procedures
+// ─────────────────────────────────────────────────────────────────────────────
+
+bool IubNbap::commonTransportChannelSetup(uint16_t cellId,
+                                           NBAPCommonChannel channelType)
+{
+    if (!connected_) {
+        RBS_LOG_WARNING("IubNbap", "[{}] commonTransportChannelSetup: not connected", nodeBId_);
+        return false;
+    }
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP COMMON TRANSPORT CH SETUP cellId={} type={}",
+                 nodeBId_, cellId, static_cast<int>(channelType));
+    // TS 25.433 §8.3.2
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_CommonTransportChannelSetupRequest(
+        cellId, channelType, txId);
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP COMMON TRANS CH SETUP APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::COMMON_TRANSPORT_CHANNEL_SETUP, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioLinkReconfigurePrepare(RNTI rnti, SF newSf)
+{
+    auto it = links_.find(rnti);
+    if (it == links_.end()) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioLinkReconfigurePrepare: rnti={} not found",
+                        nodeBId_, rnti);
+        return false;
+    }
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP RL RECONFIG PREPARE rnti={} newSF={}",
+                 nodeBId_, rnti, static_cast<int>(newSf));
+    // TS 25.433 §8.1.5 — encode request
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkReconfigurePrepare(
+        static_cast<uint32_t>(rnti), newSf, txId);
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL RECONFIG PREPARE APER len={}", nodeBId_, payload.size());
+    // Simulate RNC ACK: queue a COMMIT response so caller can retrieve it
+    {
+        std::lock_guard<std::mutex> lk(rxMtx_);
+        ByteBuffer ack{static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
+        rxQueue_.push({NBAPProcedure::RADIO_LINK_RECONFIGURE_COMMIT,
+                       static_cast<uint16_t>(nextTxId()), std::move(ack)});
+    }
+    // Update SF in the link record
+    it->second.sf = newSf;
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_RECONFIGURE_PREP, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioLinkReconfigureCommit(RNTI rnti)
+{
+    if (links_.find(rnti) == links_.end()) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioLinkReconfigureCommit: rnti={} not found",
+                        nodeBId_, rnti);
+        return false;
+    }
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP RL RECONFIG COMMIT rnti={}", nodeBId_, rnti);
+    // TS 25.433 §8.1.6 — encode commit handshake
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkReconfigureCommit(
+        static_cast<uint32_t>(rnti), txId);
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL RECONFIG COMMIT APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_RECONFIGURE_COMMIT, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioLinkSetupHSDPA(RNTI rnti, uint16_t scrCode, uint8_t hsDschCodes)
+{
+    if (!connected_) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioLinkSetupHSDPA: not connected", nodeBId_);
+        return false;
+    }
+    links_[rnti] = {scrCode, SF::SF16};  // HS-DSCH uses fixed SF16
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP RL SETUP HSDPA rnti={} scrCode={} codes={}",
+                 nodeBId_, rnti, scrCode, hsDschCodes);
+    // TS 25.433 §8.3.15 — RL setup with HS-DSCH MAC-d flow info
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkSetupRequestFDD_HSDPA(
+        static_cast<uint32_t>(rnti), hsDschCodes, 300u, txId);
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL SETUP HSDPA APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::HS_DSCH_MACD_FLOW_SETUP, txId, std::move(payload)};
+    return sendNbapMsg(msg);
+}
+
 bool IubNbap::sendNbapMsg(const NBAPMessage& msg)
 {
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP → RNC  proc=0x{:02X} txId={}",
                   nodeBId_, static_cast<uint8_t>(msg.procedure), msg.transactionId);
     return true;  // в симуляции транспорт не нужен
+}
+
+bool IubNbap::radioLinkSetupEDCH(RNTI rnti, uint16_t scrCode, EDCHTTI tti)
+{
+    if (!connected_) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioLinkSetupEDCH: not connected", nodeBId_);
+        return false;
+    }
+    links_[rnti] = {scrCode, SF::SF4};  // E-DPDCH uses SF4 for max UL throughput
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP RL SETUP E-DCH rnti={} scrCode={} tti={}ms",
+                 nodeBId_, rnti, scrCode,
+                 tti == EDCHTTI::TTI_2MS ? 2 : 10);
+    // TS 25.433 §8.1.1.3 — RL setup with E-DCH MAC-d flow info
+    uint8_t txId = static_cast<uint8_t>(nextTxId());
+    ByteBuffer payload = nbap_encode_RadioLinkSetupRequestFDD_EDCH(
+        static_cast<uint32_t>(rnti), tti, 4u /*maxBitrateIdx→~2Mbps*/, txId);
+    RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL SETUP E-DCH APER len={}", nodeBId_, payload.size());
+    NBAPMessage msg{NBAPProcedure::E_DCH_MACD_FLOW_SETUP, txId, std::move(payload)};
+    return sendNbapMsg(msg);
 }
 
 bool IubNbap::recvNbapMsg(NBAPMessage& msg)

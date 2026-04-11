@@ -532,6 +532,18 @@ static constexpr uint16_t IE_NodeB_CtxID              = 143;
 static constexpr uint16_t IE_ResetIndicator           = 416;
 static constexpr uint16_t IE_StartOfAudit             = 114;
 
+// New IE IDs for DCH / HSDPA (from NBAP-Constants.asn)
+static constexpr uint16_t IE_CommonTransChType        =  40;  // id-CommonTransportChannelSetupRequestItem
+static constexpr uint16_t IE_DCH_SF                   =  57;  // id-SF  (SpreaderFactor IE)
+static constexpr uint16_t IE_ReconfigGenID            =  42;  // id-ReconfigurationGenerationID
+static constexpr uint16_t IE_HsDschMaxCodes           = 100;  // id-HS-DSCH-CC-Setups (simplified)
+static constexpr uint16_t IE_HsDschPower              = 101;  // id-MaxPowerHS-DSCH-Power
+
+// New IE IDs for E-DCH / HSUPA (TS 25.433 §8.1.1.3)
+static constexpr uint16_t IE_EDchSetupInd             = 102;  // id-E-DCH-SetupIndicator
+static constexpr uint16_t IE_EDchTTI                  = 103;  // id-E-DCH-TTI
+static constexpr uint16_t IE_EDchMaxBitrate           = 104;  // id-E-DCH-MaxBitrateIndex
+
 // DL-TPC-Pattern01Count: INTEGER(0..511,...) extensible
 static AperBuf encDLTPCPattern01Count() {
     AperBuf b;
@@ -675,6 +687,155 @@ ByteBuffer nbap_encode_AuditRequest(bool startOfAuditSeq, uint8_t txId)
 
     // procedure id=0 (audit), ddMode=common(2), msgDisc=common(0)
     return buildInitiatingMessage(0, 2, CRIT_REJECT, 0 /*common*/, txId, body);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DCH / HSDPA encoder implementations
+// ─────────────────────────────────────────────────────────────────────────────
+
+// CommonTransportChannelSetupRequest ─────────────────────────────────────────
+// TransportChannelType-CommonTransChSetupItem:
+//   ENUMERATED { fach(0), pch(1), rach(2) }  3 root values, no ext → 2 bits
+static AperBuf encCommonChType(NBAPCommonChannel ch) {
+    return encEnum(static_cast<int>(ch), 3);
+}
+
+ByteBuffer nbap_encode_CommonTransportChannelSetupRequest(
+    uint32_t localCellId, NBAPCommonChannel channelType, uint8_t txId)
+{
+    // Value SEQUENCE: ext=0, protocolExtensions absent (1 opt bit=0)
+    AperBuf body;
+    body.writeBits(0, 1);  // SEQUENCE ext
+    body.writeBits(0, 1);  // protocolExtensions not present
+
+    appendSeqOfCount(body, 2);  // two IEs: localCellId + channelType
+    appendIEField(body, IE_Local_Cell_ID,   CRIT_REJECT, encLocalCellID(localCellId));
+    appendIEField(body, IE_CommonTransChType, CRIT_REJECT, encCommonChType(channelType));
+
+    // TS 25.433 §8.3.2 — proc id=4 (commonTransportChannelSetup), ddMode=fdd(1), common(0)
+    return buildInitiatingMessage(4, 1, CRIT_REJECT, 0 /*common*/, txId, body);
+}
+
+// RadioLinkReconfigurePrepare ─────────────────────────────────────────────────
+// SF integer value encoder: SF4→0, SF8→1, SF16→2, ... (7 values → 3 bits)
+static AperBuf encSFIndex(SF sf) {
+    int idx = 0;
+    switch (sf) {
+        case SF::SF4:   idx = 0; break;
+        case SF::SF8:   idx = 1; break;
+        case SF::SF16:  idx = 2; break;
+        case SF::SF32:  idx = 3; break;
+        case SF::SF64:  idx = 4; break;
+        case SF::SF128: idx = 5; break;
+        case SF::SF256: idx = 6; break;
+        default:        idx = 2; break;  // default SF16
+    }
+    // SpreadingFactor: ENUMERATED { sf4(0)..sf256(6) } 7 root values → 3 bits
+    return encEnum(idx, 7);
+}
+
+ByteBuffer nbap_encode_RadioLinkReconfigurePrepare(
+    uint32_t crncCtxId, SF newSf, uint8_t txId)
+{
+    AperBuf body;
+    body.writeBits(0, 1);  // SEQUENCE ext
+    body.writeBits(0, 1);  // protocolExtensions not present
+
+    appendSeqOfCount(body, 2);  // crncCtxId + new SF
+    appendIEField(body, IE_CRNC_CtxID, CRIT_REJECT, encCRNCCtxID(crncCtxId));
+    appendIEField(body, IE_DCH_SF,     CRIT_REJECT, encSFIndex(newSf));
+
+    // TS 25.433 §8.1.5 — proc id=26 (radioLinkReconfigurePrepare), ddMode=fdd(1), dedicated(1)
+    return buildInitiatingMessage(26, 1, CRIT_REJECT, 1 /*dedicated*/, txId, body);
+}
+
+// RadioLinkReconfigureCommit ──────────────────────────────────────────────────
+ByteBuffer nbap_encode_RadioLinkReconfigureCommit(uint32_t crncCtxId, uint8_t txId)
+{
+    AperBuf body;
+    body.writeBits(0, 1);  // SEQUENCE ext
+    body.writeBits(0, 1);  // protocolExtensions not present
+
+    appendSeqOfCount(body, 1);  // crncCtxId only (minimal)
+    appendIEField(body, IE_CRNC_CtxID, CRIT_REJECT, encCRNCCtxID(crncCtxId));
+
+    // TS 25.433 §8.1.6 — proc id=25 (radioLinkReconfigureCommit), ddMode=fdd(1), dedicated(1)
+    return buildInitiatingMessage(25, 1, CRIT_REJECT, 1 /*dedicated*/, txId, body);
+}
+
+// RadioLinkSetupRequestFDD_HSDPA ──────────────────────────────────────────────
+// Extends RadioLinkSetupRequestFDD with HS-DSCH MAC-d flow information.
+// Additional IEs carry HSDPA channel code count and max power.
+//
+// HS-DSCH channelisation codes INTEGER(1..15): 4 bits
+static AperBuf encHsDschCodes(uint8_t n) {
+    return encInteger(n, 1, 15);
+}
+
+// HS-DSCH power INTEGER(0..500): 9 bits
+static AperBuf encHsDschPower(uint16_t p) {
+    return encInteger(p, 0, 500);
+}
+
+ByteBuffer nbap_encode_RadioLinkSetupRequestFDD_HSDPA(
+    uint32_t crncCtxId, uint8_t hsDschCodes, uint16_t hsDschPower, uint8_t txId)
+{
+    AperBuf body;
+    body.writeBits(0, 1);  // SEQUENCE ext
+    body.writeBits(0, 1);  // protocolExtensions not present
+
+    // 3 IEs: crncCtxId + HS-DSCH code count + HS-DSCH max power
+    appendSeqOfCount(body, 3);
+    appendIEField(body, IE_CRNC_CtxID,    CRIT_REJECT, encCRNCCtxID(crncCtxId));
+    appendIEField(body, IE_HsDschMaxCodes, CRIT_REJECT, encHsDschCodes(hsDschCodes));
+    appendIEField(body, IE_HsDschPower,    CRIT_REJECT, encHsDschPower(hsDschPower));
+
+    // TS 25.433 §8.3.15 — proc id=27 extended (radioLinkSetup), ddMode=fdd(1), common(0)
+    // Using proc id=27 as base (same as RadioLinkSetupRequestFDD, but with HSDPA payload)
+    return buildInitiatingMessage(27, 1, CRIT_REJECT, 0 /*common*/, txId, body);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// E-DCH / HSUPA encoder  (TS 25.433 §8.1.1.3, TS 25.309)
+// ─────────────────────────────────────────────────────────────────────────────
+
+// E-DCH-SetupIndicator: ENUMERATED { e-dch-setup } — single value
+// Encoded as constrainedWholeNumber with 1 root (no ext): 0 bits for value,
+// but we still prefix the APER length-determinant open wrapper.
+// Simplification: encode same way as a 1-bit enum marker.
+static AperBuf encEDchSetupInd() {
+    AperBuf b;
+    b.writeBits(0, 1);  // ext=0
+    b.writeBits(0, 1);  // enumIndex=0 (e-dch-setup is the only value)
+    return b;
+}
+
+// E-DCH-TTI: ENUMERATED { tti2ms(0), tti10ms(1) } — 2 root values → 1 bit
+static AperBuf encEDchTTI(EDCHTTI tti) {
+    return encEnum(static_cast<int>(tti), 2);
+}
+
+// E-DCH max bitrate index: INTEGER(0..7) → 3 bits
+static AperBuf encEDchMaxBitrateIdx(uint8_t idx) {
+    return encInteger(idx, 0, 7);
+}
+
+ByteBuffer nbap_encode_RadioLinkSetupRequestFDD_EDCH(
+    uint32_t crncCtxId, EDCHTTI tti, uint8_t maxBitrateIdx, uint8_t txId)
+{
+    AperBuf body;
+    body.writeBits(0, 1);  // SEQUENCE ext
+    body.writeBits(0, 1);  // protocolExtensions not present
+
+    // 4 IEs: crncCtxId + E-DCH setup indicator + TTI + max bitrate index
+    appendSeqOfCount(body, 4);
+    appendIEField(body, IE_CRNC_CtxID,      CRIT_REJECT, encCRNCCtxID(crncCtxId));
+    appendIEField(body, IE_EDchSetupInd,    CRIT_REJECT, encEDchSetupInd());
+    appendIEField(body, IE_EDchTTI,         CRIT_REJECT, encEDchTTI(tti));
+    appendIEField(body, IE_EDchMaxBitrate,  CRIT_REJECT, encEDchMaxBitrateIdx(maxBitrateIdx));
+
+    // TS 25.433 §8.1.1.3 — E-DCH extension of RadioLinkSetup, proc id=27, ddMode=fdd(1)
+    return buildInitiatingMessage(27, 1, CRIT_REJECT, 0 /*common*/, txId, body);
 }
 
 } // namespace rbs::umts

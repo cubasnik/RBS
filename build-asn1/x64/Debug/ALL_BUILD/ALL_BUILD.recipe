@@ -8,16 +8,79 @@
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\Debug\rbs_node.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_abis_link.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_config.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gsm_phy.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gsm_rlc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gsm_rr.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gsm_stack.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_gtp_u.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_iub_link.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_mac.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_phy.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_rlc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_rrc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_lte_stack.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_nbap_codec.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_oms.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_pdcp.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_s1ap_codec.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_s1ap_link.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_umts_mac.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_umts_phy.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_umts_rlc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_umts_rrc.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_umts_stack.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_x2ap_codec.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\Debug\test_x2ap_link.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\x64\Debug\ALL_BUILD</FullPath>

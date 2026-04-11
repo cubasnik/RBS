@@ -320,6 +320,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\gsm\gsm_mac.cpp" />
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\gsm\gsm_stack.cpp" />
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\gsm\abis_link.cpp" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\gsm\gsm_rr.cpp" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\gsm\gsm_rlc.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

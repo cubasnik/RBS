@@ -78,6 +78,56 @@ int main() {
     // printPerformanceReport не крашится
     oms.printPerformanceReport();
 
+    // ── KPI threshold: low-value alarm (RRC success rate) ────────────────────
+    oms.setKpiThreshold("lte.rrc.successRate.pct", {
+        80.0, true, AlarmSeverity::MAJOR, "RRC setup success rate below 80%"
+    });
+    // Rate = 100% (above threshold) → no alarm
+    oms.updateCounter("lte.rrc.successRate.pct", 100.0, "%");
+    assert(oms.getActiveAlarms().empty());
+
+    // Rate drops to 70% → alarm auto-raised
+    oms.updateCounter("lte.rrc.successRate.pct", 70.0, "%");
+    {
+        auto thrAlarms = oms.getActiveAlarms();
+        assert(thrAlarms.size() == 1);
+        assert(thrAlarms[0].source   == "KPI:lte.rrc.successRate.pct");
+        assert(thrAlarms[0].severity == AlarmSeverity::MAJOR);
+    }
+
+    // Rate recovers to 85% → alarm auto-cleared
+    oms.updateCounter("lte.rrc.successRate.pct", 85.0, "%");
+    assert(oms.getActiveAlarms().empty());
+
+    // ── KPI threshold: high-value alarm (E-RAB drop rate) ────────────────────
+    oms.setKpiThreshold("lte.erab.dropRate.pct", {
+        5.0, false, AlarmSeverity::MINOR, "E-RAB drop rate exceeded 5%"
+    });
+    oms.updateCounter("lte.erab.dropRate.pct", 3.0, "%");  // below → no alarm
+    assert(oms.getActiveAlarms().empty());
+    oms.updateCounter("lte.erab.dropRate.pct", 8.0, "%");  // above → alarm
+    assert(oms.getActiveAlarms().size() == 1);
+    oms.updateCounter("lte.erab.dropRate.pct", 4.0, "%");  // drops back → cleared
+    assert(oms.getActiveAlarms().empty());
+
+    // ── removeKpiThreshold clears active alarm ────────────────────────────────
+    oms.setKpiThreshold("lte.ho.successRate.pct", {
+        90.0, true, AlarmSeverity::WARNING, "HO success rate below 90%"
+    });
+    oms.updateCounter("lte.ho.successRate.pct", 50.0, "%");  // triggers
+    assert(oms.getActiveAlarms().size() == 1);
+    oms.removeKpiThreshold("lte.ho.successRate.pct");
+    assert(oms.getActiveAlarms().empty());  // alarm cleared on remove
+
+    // ── setKpiThreshold immediately evaluates current value ───────────────────
+    oms.updateCounter("lte.rrc.successRate.pct", 60.0, "%");  // already stored
+    oms.setKpiThreshold("lte.rrc.successRate.pct", {
+        80.0, true, AlarmSeverity::MAJOR, "RRC below 80%"
+    });  // should immediately raise alarm on stored value 60 < 80
+    assert(oms.getActiveAlarms().size() == 1);
+    oms.removeKpiThreshold("lte.rrc.successRate.pct");
+    assert(oms.getActiveAlarms().empty());
+
     std::puts("test_oms PASSED");
     return 0;
 }

@@ -20,7 +20,7 @@ namespace rbs::lte {
 enum class S1APProcedure : uint8_t {
     S1_SETUP                     = 0x11,
     RESET                        = 0x0E,
-    PAGING                       = 0x18,
+    PAGING                       = 0x0A,  // ProcedureCode_id_Paging = 10
     INITIAL_UE_MESSAGE           = 0x0C,
     DOWNLINK_NAS_TRANSPORT       = 0x0B,
     UPLINK_NAS_TRANSPORT         = 0x0D,
@@ -32,10 +32,17 @@ enum class S1APProcedure : uint8_t {
     E_RAB_MODIFY                 = 0x06,
     E_RAB_RELEASE                = 0x07,
     HANDOVER_REQUIRED            = 0x00,
-    HANDOVER_COMMAND             = 0x01,
+    HANDOVER_COMMAND             = 0x01,  ///< HandoverResourceAllocation proc (target side) or HO accepted
     HANDOVER_NOTIFY              = 0x02,
     PATH_SWITCH_REQUEST          = 0x03,
     ERROR_INDICATION             = 0x0F,
+    // ── Extended S1 Handover procedures ─────────────────────────────────────
+    HANDOVER_REQUEST             = 0x1B,  ///< HandoverResourceAllocation initiating (MME→target eNB)
+    HANDOVER_REQUEST_ACKNOWLEDGE = 0x1C,  ///< HandoverResourceAllocation successful (target eNB→MME)
+    HANDOVER_PREPARATION_FAILURE = 0x1D,  ///< HandoverPreparation unsuccessful (MME→source eNB)
+    HANDOVER_FAILURE             = 0x1E,  ///< HandoverResourceAllocation unsuccessful (target eNB→MME)
+    ENB_STATUS_TRANSFER          = 0x18,  ///< eNBStatusTransfer proc=24 (source eNB→MME)
+    MME_STATUS_TRANSFER          = 0x1F,  ///< MMEStatusTransfer proc=25 (MME→target eNB)
 };
 
 // ── GTP-U tunnel endpoint ─────────────────────────────────────────────────────
@@ -58,6 +65,8 @@ struct S1APMessage {
     uint32_t      mmeUeS1apId;
     uint32_t      enbUeS1apId;
     ByteBuffer    payload;
+    bool          isSuccessfulOutcome = false;
+    bool          isUnsuccessfulOutcome = false;
 };
 
 // ── IS1AP — S1 Application Protocol (eNB ↔ MME) ─────────────────────────────
@@ -126,6 +135,41 @@ public:
 
     /// Handover Notify — confirm UE arrived at target cell (TS 36.413 §8.5.2).
     virtual bool handoverNotify(uint32_t mmeUeS1apId, RNTI rnti) = 0;
+
+    /// Handover Request Acknowledge (TS 36.413 §8.5.2 — target eNB→MME).
+    /// Sent after successfully allocating resources for the handed-over UE.
+    /// targetToSrcContainer: Target-to-Source transparent container (RRC reconf).
+    virtual bool handoverRequestAcknowledge(uint32_t mmeUeS1apId, RNTI rnti,
+                                            const ByteBuffer& targetToSrcContainer) = 0;
+
+    /// eNB Status Transfer (TS 36.413 §8.5.2 — source eNB→MME).
+    /// Forwards PDCP SN status (one dummy bearer at eRAB-ID=5 for simulation).
+    virtual bool enbStatusTransfer(uint32_t mmeUeS1apId, RNTI rnti) = 0;
+
+    /// Handover Failure (TS 36.413 §8.5.2 — target eNB→MME).
+    /// Sent when the target eNB cannot allocate resources for the UE.
+    virtual bool handoverFailure(uint32_t mmeUeS1apId,
+                                 uint8_t causeGroup, uint8_t causeValue) = 0;
+
+    // ── Paging (MME→eNB, TS 36.413 §8.7.1) ──────────────────────────────────
+    /// Encode and send a Paging message (initiatingMessage direction).
+    /// ueIdxVal: 10-bit UE identity index (IMSI mod 1024).
+    /// imsi: raw IMSI bytes used as UEPagingID iMSI.
+    /// cnDomain: 0=PS, 1=CS.
+    virtual bool paging(uint16_t ueIdxVal, const ByteBuffer& imsi,
+                        uint32_t plmnId, uint16_t tac,
+                        uint8_t cnDomain) = 0;
+
+    /// Send Reset (TS 36.413 §8.7.2).  causeGroup: 0=radioNetwork 1=transport
+    ///   2=nas 3=protocol 4+=misc.  resetAll=true → whole S1-interface reset.
+    virtual bool reset(uint8_t causeGroup, uint8_t causeValue,
+                       bool resetAll = true) = 0;
+
+    /// Send Error Indication (TS 36.413 §8.7.4).
+    /// Pass mmeUeS1apId/enbUeS1apId = 0 to omit those IEs.
+    /// Pass causeGroup = 0xFF to omit the Cause IE.
+    virtual bool errorIndication(uint32_t mmeUeS1apId, uint32_t enbUeS1apId,
+                                 uint8_t causeGroup, uint8_t causeValue) = 0;
 
     // ── Raw message pump ──────────────────────────────────────────────────────
     virtual bool sendS1APMsg(const S1APMessage& msg) = 0;

@@ -547,7 +547,7 @@ oms.setKpiThreshold("lte.rrc.successRate.pct", {
 | `cellId` | `CellId` | Внутренний ID ячейки |
 | `nrArfcn` | `uint32_t` | NR-ARFCN несущей DL (TS 38.101-1 §5.4.2) |
 | `scs` | `NRScs` | Межносубнесущее расстояние |
-| `band` | `uint8_t` | Операционный диапазон NR (74 = n74, 78 = n78 TDD FR1) |
+| `band` | `uint8_t` | Операционный диапазон NR (1 = n1 FDD FR1 2100 МГц, 78 = n78 TDD FR1 3.5 ГГц) |
 | `gnbDuId` | `uint64_t` | 36-бит gNB-DU ID (TS 38.473 §9.3.1.9) |
 | `nrCellIdentity` | `uint64_t` | 36-бит NCI = gNB-ID \|\| Cell-ID |
 | `nrPci` | `uint16_t` | Physical Cell Identity 0–1007 |
@@ -640,7 +640,7 @@ NRStack(rf, NRCellConfig)
 F1SetupRequest req;
 req.gnbDuId = 0x123456789ULL;
 req.gnbDuName = "RBS-gNB-DU-4";
-req.servedCells.push_back({0xABCDE01, 627264, NRScs::SCS30, 500, 1});
+req.servedCells.push_back({0xABCDE01, 428000, NRScs::SCS15, 500, 1}); // n1 FDD DL 2140 МГц
 ByteBuffer pdu = encodeF1SetupRequest(req);
 
 F1SetupResponse rsp;
@@ -1133,14 +1133,29 @@ oms.setKpiThreshold("lte.erab.dropRate.pct",
 **Конфигурация `[nr]` в rbs.conf:**
 ```ini
 [nr]
-cell_id       = 4
-nr_arfcn      = 627264   ; n78 TDD FR1, ~3.5 ГГц
-band          = 78
-pci           = 400      ; NR PCI, 0–1007
-ssb_period_ms = 20
-cu_addr       = 127.0.0.1
-cu_port       = 38472
+cell_id        = 4
+nr_arfcn       = 428000      # n1 FDD DL, центр 2140 МГц (TS 38.101-1 §5.4.2.1)
+band           = 1           # n1 FDD FR1: DL 2110–2170 МГц / UL 1920–1980 МГц
+pci            = 400         # NR PCI, 0–1007
+ssb_period_ms  = 20
+cu_addr        = 127.0.0.1
+cu_port        = 38472
 ```
+
+> **Примечание:** С переходом на n1 FDD используется SCS 15 кГц (µ=0, `NRScs::SCS15`) вместо SCS 30 кГц. Параметр `scs` задаётся автоматически через `Config::buildNRConfig()` на основе диапазона.
+
+**Конфигурация `[endc]` в rbs.conf (EN-DC, TS 37.340):**
+```ini
+[endc]
+enabled        = true        # активировать EN-DC при запуске в режиме all
+option         = 3a          # 3 | 3a | 3x (см. таблицу вариантов ниже)
+x2_addr        = 127.0.0.1   # X2 адрес Secondary Node (NR gNB)
+x2_port        = 36422       # X2AP порт (TS 36.422)
+enb_bearer_id  = 5           # E-RAB ID на Master Node (LTE), 1–15
+scg_drb_id     = 1           # DRB ID на Secondary Node (NR), 1–11
+```
+
+> Все EN-DC параметры читаются через `Config::buildENDCConfig()`. При `enabled = false` X2-соединение не устанавливается даже при одновременном запуске LTE+NR.
 
 **Чистый NR — F1AP (gNB-DU → gNB-CU):**
 ```cpp

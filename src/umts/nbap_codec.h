@@ -82,4 +82,78 @@ ByteBuffer nbap_encode_ResetRequest(uint8_t txId = 0);
 /// startOfAuditSeq = 0 → start-of-audit-sequence; anything else → not-start
 ByteBuffer nbap_encode_AuditRequest(bool startOfAuditSeq = true, uint8_t txId = 0);
 
+// ─────────────────────────────────────────────────────────────────────────────
+// DCH / HSDPA extensions  (TS 25.433 §8.3.2, §8.1.5, §8.1.6, §8.3.15)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Channel types for CommonTransportChannelSetup
+enum class NBAPCommonChannel : uint8_t {
+    FACH = 0,   ///< Forward Access Channel
+    PCH  = 1,   ///< Paging Channel
+    RACH = 2,   ///< Random Access Channel
+};
+
+/// NBAP Common Transport Channel Setup Request FDD  (TS 25.433 §8.3.2, proc id=4)
+/// Sets up a common transport channel (FACH / PCH / RACH) in the cell.
+/// localCellId : Local-Cell-ID
+/// channelType : FACH | PCH | RACH
+ByteBuffer nbap_encode_CommonTransportChannelSetupRequest(
+    uint32_t          localCellId,
+    NBAPCommonChannel channelType,
+    uint8_t           txId = 0
+);
+
+/// NBAP Radio Link Reconfiguration Prepare  (TS 25.433 §8.1.5, proc id=26, ddMode=fdd)
+/// Prepared DCH reconfiguration for a UE (change spreading factor / bitrate).
+/// crncCtxId : CRNC-CommunicationContextID
+/// newSf     : New spreading factor (encoded as UE capability index 0–6 for SF4..256)
+ByteBuffer nbap_encode_RadioLinkReconfigurePrepare(
+    uint32_t crncCtxId,
+    SF       newSf,
+    uint8_t  txId = 0
+);
+
+/// NBAP Radio Link Reconfiguration Commit  (TS 25.433 §8.1.6, proc id=25, ddMode=fdd)
+/// Commits a previously prepared DCH reconfiguration.
+/// crncCtxId : CRNC-CommunicationContextID
+ByteBuffer nbap_encode_RadioLinkReconfigureCommit(
+    uint32_t crncCtxId,
+    uint8_t  txId = 0
+);
+
+/// NBAP Radio Link Setup Request FDD with HS-DSCH info  (TS 25.433 §8.3.15)
+/// Sets up a radio link and attaches an HS-DSCH MAC-d flow (HSDPA bearer).
+/// crncCtxId   : CRNC-CommunicationContextID
+/// hsDschCodes : Number of HS-DSCH channelisation codes (1..15)
+/// hsDschPower : HS-DSCH maximum power (0.1 dBm units, 0..500)
+ByteBuffer nbap_encode_RadioLinkSetupRequestFDD_HSDPA(
+    uint32_t crncCtxId,
+    uint8_t  hsDschCodes = 5,
+    uint16_t hsDschPower = 300,
+    uint8_t  txId = 0
+);
+
+
+// ─────────────────────────────────────────────────────────────────────────────
+// E-DCH (HSUPA) extensions  (TS 25.433 §8.1.1.3, TS 25.309)
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// E-DCH Transmission Time Interval
+enum class EDCHTTI : uint8_t {
+    TTI_2MS  = 0,   ///< 2 ms TTI (sub-frame granularity)
+    TTI_10MS = 1,   ///< 10 ms TTI (one radio frame)
+};
+
+/// NBAP Radio Link Setup Request FDD with E-DCH info  (TS 25.433 §8.1.1.3)
+/// Sets up a radio link and attaches an E-DCH MAC-d flow (HSUPA bearer).
+/// crncCtxId    : CRNC-CommunicationContextID
+/// tti          : E-DCH TTI (2 ms or 10 ms)
+/// maxBitrateIdx: E-DCH max bitrate index (0..7 → 64 kbps..5.76 Mbps)
+ByteBuffer nbap_encode_RadioLinkSetupRequestFDD_EDCH(
+    uint32_t crncCtxId,
+    EDCHTTI  tti           = EDCHTTI::TTI_10MS,
+    uint8_t  maxBitrateIdx = 4,   // index 4 → ~2 Mbps peak UL
+    uint8_t  txId          = 0
+);
+
 } // namespace rbs::umts

@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\BIT_STRING.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\Criticality.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\INTEGER.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\MessageDiscriminator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\NativeEnumerated.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\NativeInteger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\OBJECT_IDENTIFIER.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\OCTET_STRING.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\OPEN_TYPE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\Presence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\PrivateIE-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\PrivateIE-Field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\PrivateIE-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProcedureCode.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProcedureID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolExtensionContainer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolExtensionField.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-ContainerList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-ContainerPair.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-ContainerPairList.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-Field.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-FieldPair.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-ID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ProtocolIE-Single-Container.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\TransactionID.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\TriggeringMessage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\asn_application.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\asn_bit_data.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\asn_codecs_prim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\asn_internal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\asn_random_fill.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ber_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ber_tlv_length.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\ber_tlv_tag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\constr_CHOICE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\constr_SEQUENCE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\constr_TYPE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\constraints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\der_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\per_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\per_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\per_opentype.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\per_support.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\xer_decoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\xer_encoder.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap\xer_support.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4C9D107F-6793-3196-AB84-A5C0AD017206}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

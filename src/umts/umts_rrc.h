@@ -118,7 +118,8 @@ public:
 
     // ── State queries ─────────────────────────────────────────────────────────
     virtual UMTSRrcState rrcState(RNTI rnti) const = 0;
-    virtual const std::vector<RadioBearer>& bearers(RNTI rnti) const = 0;
+    virtual const std::vector<RadioBearer>&    bearers  (RNTI rnti) const = 0;
+    virtual const std::vector<ActiveSetEntry>& activeSet(RNTI rnti) const = 0;
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -139,7 +140,8 @@ public:
                                   const uint8_t ik[16])              override;
     void scheduleSIB             (uint8_t sibType)                   override;
     UMTSRrcState rrcState        (RNTI rnti) const                   override;
-    const std::vector<RadioBearer>& bearers(RNTI rnti) const        override;
+    const std::vector<RadioBearer>&    bearers  (RNTI rnti) const   override;
+    const std::vector<ActiveSetEntry>& activeSet(RNTI rnti) const   override;
 
 private:
     std::unordered_map<RNTI, UMTSRrcContext> contexts_;

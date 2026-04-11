@@ -318,6 +318,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\config.cpp" />
     <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\udp_socket.cpp" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\mobility_manager.cpp" />
+    <ClCompile Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\common\son.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

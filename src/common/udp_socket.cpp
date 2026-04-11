@@ -4,6 +4,10 @@
 
 #ifdef _WIN32
 #  pragma comment(lib, "Ws2_32.lib")
+#  include <mstcpip.h>
+#  ifndef SIO_UDP_CONNRESET
+#    define SIO_UDP_CONNRESET _WSAIOW(IOC_VENDOR, 12)
+#  endif
 #endif
 
 namespace rbs::net {
@@ -76,6 +80,16 @@ bool UdpSocket::bind(uint16_t localPort)
         sock_ = SOCK_INVALID;
         return false;
     }
+
+#ifdef _WIN32
+    // On Windows, disable UDP connection reset notifications (WSAECONNRESET on recvfrom).
+    DWORD bytesReturned = 0;
+    BOOL newBehavior = FALSE;
+    ::WSAIoctl(sock_, SIO_UDP_CONNRESET,
+               &newBehavior, sizeof(newBehavior),
+               nullptr, 0, &bytesReturned,
+               nullptr, nullptr);
+#endif
 
     // Считать реальный порт (актуально при localPort==0)
     sockaddr_in bound{};

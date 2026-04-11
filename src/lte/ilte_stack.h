@@ -1,5 +1,6 @@
 #pragma once
 #include "../common/types.h"
+#include "s1ap_interface.h"
 
 namespace rbs::lte {
 
@@ -25,6 +26,23 @@ public:
     /// Admit a UE.  Allocates RNTI, default CQI, creates PDCP bearer 1.
     virtual RNTI admitUE  (IMSI imsi, uint8_t defaultCQI = 9) = 0;
     virtual void releaseUE(RNTI rnti) = 0;
+
+    /// Admit a UE with Carrier Aggregation: configures ccCount CCs (2-5).
+    /// Returns RNTI on success, 0 on failure. TS 36.321 §5.14
+    virtual RNTI admitUECA(IMSI imsi, uint8_t ccCount, uint8_t defaultCQI = 9) = 0;
+
+    /// CSFB: send RRC Connection Release with GSM redirect, then tear down all
+    /// LTE bearers.  UE reselects to the given GSM ARFCN.  RNTI is invalid
+    /// after this call.  TS 36.300 §22.3.2 / TS 36.331 §5.3.8.3
+    virtual void triggerCSFB(RNTI rnti, uint16_t gsmArfcn) = 0;
+
+    // ── S1-U bearer management (GTP-U tunnels) — TS 29.060 / TS 36.413 §8.4 ──
+    /// Create or update the GTP-U tunnel for an E-RAB after Initial Context Setup.
+    /// @param erabId  E-RAB identifier (matches ERAB::erabId from S1AP)
+    /// @param sgw     SGW-side GTP-U endpoint (TEID, IP, UDP port)
+    virtual bool setupERAB  (RNTI rnti, uint8_t erabId, const GTPUTunnel& sgw) = 0;
+    /// Release the GTP-U tunnel (called on E-RAB release or UE context release).
+    virtual bool teardownERAB(RNTI rnti, uint8_t erabId) = 0;
 
     // ── Feedback ──────────────────────────────────────────────────────────────
     virtual void updateCQI(RNTI rnti, uint8_t cqi) = 0;

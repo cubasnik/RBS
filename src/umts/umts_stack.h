@@ -4,6 +4,7 @@
 #include "umts_mac.h"
 #include "umts_rrc.h"
 #include "umts_rlc.h"
+#include "iub_link.h"
 #include "../hal/rf_interface.h"
 #include "iumts_stack.h"
 #include <memory>
@@ -31,8 +32,13 @@ public:
     bool  sendData(RNTI rnti, ByteBuffer data)                 override;
     bool  receiveData(RNTI rnti, ByteBuffer& data)             override;
 
-    RNTI  admitUE(IMSI imsi, SF sf = SF::SF16)                 override;
-    void  releaseUE(RNTI rnti)                                 override;
+    RNTI  admitUE     (IMSI imsi, SF sf = SF::SF16)           override;
+    void  releaseUE   (RNTI rnti)                              override;
+    RNTI  admitUEHSDPA(IMSI imsi)                              override;
+    RNTI  admitUEEDCH (IMSI imsi)                              override;
+    bool  reconfigureDCH(RNTI rnti, SF newSf)                  override;
+    void  softHandoverUpdate(const MeasurementReport& report)  override;
+    const std::vector<ActiveSetEntry>& activeSet(RNTI rnti) const override;
 
     size_t connectedUECount() const                            override;
     void   printStats() const                                  override;
@@ -46,6 +52,7 @@ private:
     std::shared_ptr<UMTSMAC>  mac_;
     std::shared_ptr<UMTSRrc>  rrc_;
     std::shared_ptr<UMTSRlc>  rlc_;
+    std::unique_ptr<IubNbap>  iub_;
 
     std::atomic<bool>  running_{false};
     std::thread        frameThread_;

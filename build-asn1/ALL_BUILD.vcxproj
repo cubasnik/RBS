@@ -174,6 +174,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_asn1_nbap.vcxproj">
+      <Project>{795904F7-C296-329F-B7A7-BF1DE34B2B44}</Project>
+      <Name>rbs_asn1_nbap</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_asn1_s1ap.vcxproj">
       <Project>{A6FB7807-FD42-3BBC-A533-35C7E72156E6}</Project>
       <Name>rbs_asn1_s1ap</Name>
@@ -210,6 +214,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{03362AEA-688C-3843-AD8C-CA740C4735C9}</Project>
       <Name>rbs_umts</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_abis_link.vcxproj">
+      <Project>{B690B49D-971B-3904-A789-9F9BC03A2415}</Project>
+      <Name>test_abis_link</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_config.vcxproj">
       <Project>{301E1B98-7240-3613-9A47-06AB761668F8}</Project>
       <Name>test_config</Name>
@@ -218,13 +226,105 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{CE6F843E-CC5E-3DA7-8B51-7EB417D59523}</Project>
       <Name>test_gsm_phy</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_gsm_rlc.vcxproj">
+      <Project>{37207F1A-5A8E-305A-87D2-F0119E3B84FB}</Project>
+      <Name>test_gsm_rlc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_gsm_rr.vcxproj">
+      <Project>{EC925ACB-0691-3A09-A26E-80830F03B966}</Project>
+      <Name>test_gsm_rr</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_gsm_stack.vcxproj">
+      <Project>{77738726-24D4-3986-872D-44A515B8E4E0}</Project>
+      <Name>test_gsm_stack</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_gtp_u.vcxproj">
+      <Project>{FC6501D1-BA0A-38C3-9CAD-CB01818F04B9}</Project>
+      <Name>test_gtp_u</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_integration.vcxproj">
+      <Project>{BF764532-62FC-3535-BE64-9F53507003F8}</Project>
+      <Name>test_integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_iub_link.vcxproj">
+      <Project>{96F59172-4198-3119-8399-2FDB63910F61}</Project>
+      <Name>test_iub_link</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_lte_mac.vcxproj">
       <Project>{F679F0F1-EF3A-322B-B611-104A5118D3F2}</Project>
       <Name>test_lte_mac</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_lte_phy.vcxproj">
+      <Project>{7DFA058D-1661-36B4-B57D-531D6088E496}</Project>
+      <Name>test_lte_phy</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_lte_rlc.vcxproj">
+      <Project>{4D623DED-A39E-3DD9-B2A3-D029BA5473DD}</Project>
+      <Name>test_lte_rlc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_lte_rrc.vcxproj">
+      <Project>{A43DE9BC-C3B4-3553-B775-33D305CCC7E2}</Project>
+      <Name>test_lte_rrc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_lte_stack.vcxproj">
+      <Project>{55AC624C-FA2D-3AE9-A9EF-0748FBCD1BDA}</Project>
+      <Name>test_lte_stack</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_mobility.vcxproj">
+      <Project>{E1F955F7-EF8F-396F-A304-62C443796E59}</Project>
+      <Name>test_mobility</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_nbap_codec.vcxproj">
+      <Project>{E330E8CA-0324-3BFC-A64C-7D6919236762}</Project>
+      <Name>test_nbap_codec</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_oms.vcxproj">
+      <Project>{BEAFB984-BFA7-387C-BA22-71AAE680FD7C}</Project>
+      <Name>test_oms</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_pdcp.vcxproj">
       <Project>{5659E6CF-5D30-3212-B546-B1AB7356E398}</Project>
       <Name>test_pdcp</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_s1ap_codec.vcxproj">
+      <Project>{3558F055-FA07-354A-922D-004DA2FDBE40}</Project>
+      <Name>test_s1ap_codec</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_s1ap_link.vcxproj">
+      <Project>{E1945B38-BFA5-358C-90C4-6995BDA9D08F}</Project>
+      <Name>test_s1ap_link</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_son.vcxproj">
+      <Project>{CAE3D780-EEEB-3951-85FB-4CE2474F926D}</Project>
+      <Name>test_son</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_umts_mac.vcxproj">
+      <Project>{54FE6899-FAD4-38A1-952C-E7E0F431A308}</Project>
+      <Name>test_umts_mac</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_umts_phy.vcxproj">
+      <Project>{EE968D01-86EA-3772-BF70-406C6A48388C}</Project>
+      <Name>test_umts_phy</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_umts_rlc.vcxproj">
+      <Project>{01109E53-A258-33DB-ACF8-2D06D1DC1037}</Project>
+      <Name>test_umts_rlc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_umts_rrc.vcxproj">
+      <Project>{30F603B6-B9E6-3DA7-9984-D28ECDA657DD}</Project>
+      <Name>test_umts_rrc</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_umts_stack.vcxproj">
+      <Project>{95AF7703-2648-3E5A-A7B9-C39E0666E4ED}</Project>
+      <Name>test_umts_stack</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_x2ap_codec.vcxproj">
+      <Project>{4D17C8D8-C6D8-3458-A1A1-7E724A8D71B0}</Project>
+      <Name>test_x2ap_codec</Name>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\tests\test_x2ap_link.vcxproj">
+      <Project>{9DEB6C49-97E4-387E-946D-B2AF9B28C165}</Project>
+      <Name>test_x2ap_link</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

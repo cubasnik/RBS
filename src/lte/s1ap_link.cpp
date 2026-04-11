@@ -31,17 +31,22 @@ bool S1APLink::connect(const std::string& mmeAddr, uint16_t port)
     mmePort_   = port;
 
     if (!socketReady_) {
-        net::UdpSocket::wsaInit();
+        net::SctpSocket::wsaInit();
         if (!socket_.bind(0)) {
-            RBS_LOG_ERROR("S1AP", "[{}] connect: UDP bind failed", enbId_);
+            RBS_LOG_ERROR("S1AP", "[{}] connect: SCTP bind failed", enbId_);
             return false;
         }
-        socket_.startReceive([this](const net::UdpPacket& pkt) { onRxPacket(pkt); });
+        if (!socket_.connect(mmeAddr_, mmePort_)) {
+            RBS_LOG_ERROR("S1AP", "[{}] connect: SCTP connect failed {}:{}", enbId_, mmeAddr_, mmePort_);
+            socket_.close();
+            return false;
+        }
+        socket_.startReceive([this](const net::SctpPacket& pkt) { onRxPacket(pkt); });
         socketReady_ = true;
     }
 
     connected_ = true;
-    RBS_LOG_INFO("S1AP", "[{}] S1AP-соединение с MME {}:{} установлено (UDP port {})",
+    RBS_LOG_INFO("S1AP", "[{}] S1AP-соединение с MME {}:{} установлено (local port {})",
                  enbId_, mmeAddr, port, socket_.localPort());
     return true;
 }
@@ -73,15 +78,7 @@ bool S1APLink::s1Setup(uint32_t enbId, const std::string& enbName,
 
     ByteBuffer payload = s1ap_encode_S1SetupRequest(enbId, enbName, plmnId, tac_);
     S1APMessage msg{S1APProcedure::S1_SETUP, 0, 0, std::move(payload)};
-    bool ok = sendS1APMsg(msg);
-
-    // Симуляция: MME сразу отвечает успехом
-    if (ok) {
-        std::lock_guard<std::mutex> lk(rxMtx_);
-        ByteBuffer resp{'S','1','_','O','K'};
-        rxQueue_.push({S1APProcedure::S1_SETUP, 0, 0, std::move(resp)});
-    }
-    return ok;
+    return sendS1APMsg(msg);
 }
 
 bool S1APLink::initialUEMessage(RNTI rnti, IMSI imsi, const ByteBuffer& nasPdu)
@@ -148,15 +145,7 @@ bool S1APLink::ueContextReleaseRequest(uint32_t mmeUeS1apId, RNTI rnti,
         mmeUeS1apId, static_cast<uint32_t>(rnti), 0 /*radioNetwork*/, 0 /*unspecified*/);
     S1APMessage msg{S1APProcedure::UE_CONTEXT_RELEASE_REQUEST,
                     mmeUeS1apId, static_cast<uint32_t>(rnti), std::move(payload)};
-    bool ok = sendS1APMsg(msg);
-
-    // Симуляция: MME немедленно шлёт RELEASE COMMAND
-    if (ok) {
-        std::lock_guard<std::mutex> lk(rxMtx_);
-        rxQueue_.push({S1APProcedure::UE_CONTEXT_RELEASE_COMMAND,
-                       mmeUeS1apId, static_cast<uint32_t>(rnti), {}});
-    }
-    return ok;
+    return sendS1APMsg(msg);
 }
 
 bool S1APLink::ueContextReleaseComplete(uint32_t mmeUeS1apId, RNTI rnti)
@@ -234,32 +223,105 @@ bool S1APLink::handoverNotify(uint32_t mmeUeS1apId, RNTI rnti)
     return sendS1APMsg(msg);
 }
 
+bool S1APLink::handoverRequestAcknowledge(uint32_t mmeUeS1apId, RNTI rnti,
+                                          const ByteBuffer& targetToSrcContainer)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] handoverRequestAcknowledge: нет соединения с MME", enbId_);
+        return false;
+    }
+    const uint32_t enbUeId = static_cast<uint32_t>(rnti);
+    RBS_LOG_INFO("S1AP", "[{}] S1AP HANDOVER REQUEST ACK mme={} enb={}",
+                 enbId_, mmeUeS1apId, enbUeId);
+    ByteBuffer payload = s1ap_encode_HandoverRequestAcknowledge(
+        mmeUeS1apId, enbUeId, targetToSrcContainer);
+    S1APMessage msg{S1APProcedure::HANDOVER_REQUEST_ACKNOWLEDGE,
+                    mmeUeS1apId, enbUeId, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::enbStatusTransfer(uint32_t mmeUeS1apId, RNTI rnti)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] enbStatusTransfer: нет соединения с MME", enbId_);
+        return false;
+    }
+    const uint32_t enbUeId = static_cast<uint32_t>(rnti);
+    RBS_LOG_INFO("S1AP", "[{}] S1AP ENB STATUS TRANSFER mme={} enb={}",
+                 enbId_, mmeUeS1apId, enbUeId);
+    ByteBuffer payload = s1ap_encode_ENBStatusTransfer(mmeUeS1apId, enbUeId);
+    S1APMessage msg{S1APProcedure::ENB_STATUS_TRANSFER,
+                    mmeUeS1apId, enbUeId, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::handoverFailure(uint32_t mmeUeS1apId,
+                               uint8_t causeGroup, uint8_t causeValue)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] handoverFailure: нет соединения с MME", enbId_);
+        return false;
+    }
+    RBS_LOG_INFO("S1AP", "[{}] S1AP HANDOVER FAILURE mme={} causeGroup={} causeValue={}",
+                 enbId_, mmeUeS1apId, causeGroup, causeValue);
+    ByteBuffer payload = s1ap_encode_HandoverFailure(mmeUeS1apId, causeGroup, causeValue);
+    S1APMessage msg{S1APProcedure::HANDOVER_FAILURE,
+                    mmeUeS1apId, 0, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::paging(uint16_t ueIdxVal, const ByteBuffer& imsi,
+                      uint32_t plmnId, uint16_t tac, uint8_t cnDomain)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] paging: нет соединения с MME", enbId_);
+        return false;
+    }
+    RBS_LOG_INFO("S1AP", "[{}] S1AP PAGING ueIdxVal={} imsiLen={} cnDomain={}",
+                 enbId_, ueIdxVal, imsi.size(), cnDomain);
+    ByteBuffer payload = s1ap_encode_Paging(ueIdxVal, imsi, plmnId, tac, cnDomain);
+    S1APMessage msg{S1APProcedure::PAGING, 0, 0, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::reset(uint8_t causeGroup, uint8_t causeValue, bool resetAll)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] reset: нет соединения с MME", enbId_);
+        return false;
+    }
+    RBS_LOG_INFO("S1AP", "[{}] S1AP RESET causeGroup={} causeValue={} all={}",
+                 enbId_, causeGroup, causeValue, resetAll);
+    ByteBuffer payload = s1ap_encode_Reset(causeGroup, causeValue, resetAll);
+    S1APMessage msg{S1APProcedure::RESET, 0, 0, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
+bool S1APLink::errorIndication(uint32_t mmeUeS1apId, uint32_t enbUeS1apId,
+                               uint8_t causeGroup, uint8_t causeValue)
+{
+    if (!connected_) {
+        RBS_LOG_ERROR("S1AP", "[{}] errorIndication: нет соединения с MME", enbId_);
+        return false;
+    }
+    RBS_LOG_INFO("S1AP", "[{}] S1AP ERROR_INDICATION mme={} enb={} causeGroup={} causeValue={}",
+                 enbId_, mmeUeS1apId, enbUeS1apId, causeGroup, causeValue);
+    ByteBuffer payload = s1ap_encode_ErrorIndication(mmeUeS1apId, enbUeS1apId,
+                                                     causeGroup, causeValue);
+    S1APMessage msg{S1APProcedure::ERROR_INDICATION, 0, 0, std::move(payload)};
+    return sendS1APMsg(msg);
+}
+
 bool S1APLink::sendS1APMsg(const S1APMessage& msg)
 {
     if (!connected_ || !socketReady_) return false;
 
-    // Frame: [proc:1][mmeUeS1apId:4][enbUeS1apId:4][payloadLen:4][payload...]
-    const auto& pl = msg.payload;
-    const uint32_t plLen = static_cast<uint32_t>(pl.size());
-    ByteBuffer frame;
-    frame.reserve(13 + plLen);
-    frame.push_back(static_cast<uint8_t>(msg.procedure));
-    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >> 24));
-    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >> 16));
-    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId >>  8));
-    frame.push_back(static_cast<uint8_t>(msg.mmeUeS1apId));
-    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >> 24));
-    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >> 16));
-    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId >>  8));
-    frame.push_back(static_cast<uint8_t>(msg.enbUeS1apId));
-    frame.push_back(static_cast<uint8_t>(plLen >> 24));
-    frame.push_back(static_cast<uint8_t>(plLen >> 16));
-    frame.push_back(static_cast<uint8_t>(plLen >>  8));
-    frame.push_back(static_cast<uint8_t>(plLen));
-    frame.insert(frame.end(), pl.begin(), pl.end());
-
-    bool ok = socket_.send(mmeAddr_, mmePort_, frame);
-    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} len={} {}",
+    const auto& payload = msg.payload;
+    const uint32_t plLen = static_cast<uint32_t>(payload.size());
+    bool ok = socket_.send(payload);    if (ok && pcap_.isOpen())
+        pcap_.writeSctp("127.0.0.1", socket_.localPort(),
+                        mmeAddr_, mmePort_,
+                        rbs::PcapWriter::PPID_S1AP, payload);    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} len={} {}",
                   enbId_, static_cast<uint8_t>(msg.procedure), plLen,
                   ok ? "OK" : "FAIL");
     return ok;
@@ -276,30 +338,80 @@ bool S1APLink::recvS1APMsg(S1APMessage& msg)
     return true;
 }
 
-void S1APLink::onRxPacket(const net::UdpPacket& pkt)
+void S1APLink::enablePcap(const std::string& path)
 {
-    // Minimum frame: 13 header bytes
-    if (pkt.data.size() < 13) return;
-    const auto& d = pkt.data;
-    const auto  proc   = static_cast<S1APProcedure>(d[0]);
-    const uint32_t mmeId  = (static_cast<uint32_t>(d[1]) << 24)
-                           | (static_cast<uint32_t>(d[2]) << 16)
-                           | (static_cast<uint32_t>(d[3]) <<  8)
-                           |  static_cast<uint32_t>(d[4]);
-    const uint32_t enbId  = (static_cast<uint32_t>(d[5]) << 24)
-                           | (static_cast<uint32_t>(d[6]) << 16)
-                           | (static_cast<uint32_t>(d[7]) <<  8)
-                           |  static_cast<uint32_t>(d[8]);
-    const uint32_t plLen  = (static_cast<uint32_t>(d[9]) << 24)
-                           | (static_cast<uint32_t>(d[10]) << 16)
-                           | (static_cast<uint32_t>(d[11]) <<  8)
-                           |  static_cast<uint32_t>(d[12]);
-    if (plLen > pkt.data.size() - 13) return;  // bounds guard
-    ByteBuffer payload(d.begin() + 13, d.begin() + 13 + plLen);
+    pcap_.open(path);
+}
+
+void S1APLink::onRxPacket(const net::SctpPacket& pkt)
+{
+    S1APMessage msg{};
+    if (!s1ap_decode_message(pkt.data, msg)) {
+        RBS_LOG_WARNING("S1AP", "[{}] RX decode failed from {}:{} len={}",
+                        enbId_, pkt.srcIp, pkt.srcPort, pkt.data.size());
+        return;
+    }
+
     RBS_LOG_DEBUG("S1AP", "[{}] S1AP ← MME  proc=0x{:02X} mmeId=0x{:X} len={}",
-                  enbId_, static_cast<uint8_t>(proc), mmeId, plLen);
+                  enbId_, static_cast<uint8_t>(msg.procedure),
+                  msg.mmeUeS1apId, msg.payload.size());
+    if (msg.procedure == S1APProcedure::S1_SETUP && msg.isSuccessfulOutcome) {
+        RBS_LOG_INFO("S1AP", "[{}] RX S1SetupResponse decoded from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::S1_SETUP && msg.isUnsuccessfulOutcome) {
+        RBS_LOG_INFO("S1AP", "[{}] RX S1SetupFailure decoded from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::PAGING) {
+        // TS 36.413 §8.7.1 — Paging is non-acknowledged; log and forward to RX queue.
+        RBS_LOG_INFO("S1AP", "[{}] RX Paging from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::RESET) {
+        // TS 36.413 §8.7.2 — Reset; log and forward to RX queue.
+        RBS_LOG_INFO("S1AP", "[{}] RX Reset from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::ERROR_INDICATION) {
+        // TS 36.413 §8.7.4 — Error Indication; log and forward to RX queue.
+        RBS_LOG_INFO("S1AP", "[{}] RX ErrorIndication from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_REQUIRED) {
+        // TS 36.413 §8.5.2 — Handover Required (source side, initiating).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverRequired from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_COMMAND) {
+        // TS 36.413 §8.5.2 — HandoverCommand (successful outcome, source receives).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverCommand from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_PREPARATION_FAILURE) {
+        // TS 36.413 §8.5.2 — HandoverPreparationFailure (unsuccessful, source receives).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverPreparationFailure from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_REQUEST) {
+        // TS 36.413 §8.5.2 — HandoverRequest (target receives from MME).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverRequest from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_REQUEST_ACKNOWLEDGE) {
+        // TS 36.413 §8.5.2 — HandoverRequestAcknowledge (target sent, MME receives).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverRequestAcknowledge from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::ENB_STATUS_TRANSFER) {
+        // TS 36.413 §8.5.2 — eNBStatusTransfer (source eNB → MME).
+        RBS_LOG_INFO("S1AP", "[{}] RX ENBStatusTransfer from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::MME_STATUS_TRANSFER) {
+        // TS 36.413 §8.5.2 — MMEStatusTransfer (MME → target eNB).
+        RBS_LOG_INFO("S1AP", "[{}] RX MMEStatusTransfer from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    } else if (msg.procedure == S1APProcedure::HANDOVER_FAILURE) {
+        // TS 36.413 §8.5.2 — HandoverFailure (target eNB → MME, unsuccessful).
+        RBS_LOG_INFO("S1AP", "[{}] RX HandoverFailure from {}:{} (len={})",
+                     enbId_, pkt.srcIp, pkt.srcPort, msg.payload.size());
+    }
     std::lock_guard<std::mutex> lk(rxMtx_);
-    rxQueue_.push({proc, mmeId, enbId, std::move(payload)});
+    if (pcap_.isOpen())
+        pcap_.writeSctp(pkt.srcIp, pkt.srcPort,
+                        "127.0.0.1", socket_.localPort(),
+                        rbs::PcapWriter::PPID_S1AP, pkt.data);
+    rxQueue_.push(std::move(msg));
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -334,7 +446,8 @@ bool S1ULink::createTunnel(RNTI rnti, uint8_t erabId, const GTPUTunnel& sgwEndpo
 
     // Конвертируем uint32_t (network byte order) → строку для лога
     char ipStr[INET_ADDRSTRLEN] = {};
-    struct in_addr addr{ sgwEndpoint.remoteIPv4 };
+    struct in_addr addr{};
+    ::memcpy(&addr, &sgwEndpoint.remoteIPv4, 4);
     ::inet_ntop(AF_INET, &addr, ipStr, sizeof(ipStr));
 
     RBS_LOG_INFO("S1U", "[{}] GTP-U туннель создан rnti=", rnti, " erabId=", erabId,
@@ -376,13 +489,16 @@ bool S1ULink::sendGtpuPdu(RNTI rnti, uint8_t erabId, const ByteBuffer& ipPacket)
 
     // Конвертируем uint32_t (network byte order) → строку
     char ipStr[INET_ADDRSTRLEN] = {};
-    struct in_addr addr{ t.remoteIPv4 };
+    struct in_addr addr{};
+    ::memcpy(&addr, &t.remoteIPv4, 4);
     ::inet_ntop(AF_INET, &addr, ipStr, sizeof(ipStr));
 
     ByteBuffer frame = gtpuEncode(t.teid, ipPacket);
-    bool ok = socket_.send(std::string(ipStr), GTPU_PORT, frame);
-    RBS_LOG_DEBUG("S1U", "[", enbId_, "] GTP-U UL teid=0x", t.teid, " → ", ipStr,
-                  " len=", ipPacket.size(), ok ? " OK" : " FAIL");
+    uint16_t destPort = t.udpPort ? t.udpPort : GTPU_PORT;
+    bool ok = socket_.send(std::string(ipStr), destPort, frame);    if (ok && pcap_.isOpen())
+        pcap_.writeUdp("127.0.0.1", localPort_,
+                       std::string(ipStr), destPort, frame);    RBS_LOG_DEBUG("S1U", "[", enbId_, "] GTP-U UL teid=0x", t.teid, " → ", ipStr,
+                  ":", destPort, " len=", ipPacket.size(), ok ? " OK" : " FAIL");
     return ok;
 }
 
@@ -400,7 +516,9 @@ bool S1ULink::recvGtpuPdu(RNTI rnti, uint8_t erabId, ByteBuffer& ipPacket)
 }
 
 void S1ULink::onRxPacket(const net::UdpPacket& pkt)
-{
+{    if (pcap_.isOpen())
+        pcap_.writeUdp(pkt.srcIp, pkt.srcPort,
+                       "127.0.0.1", localPort_, pkt.data);
     uint32_t teid;
     ByteBuffer payload;
     if (!gtpuDecode(pkt.data, teid, payload)) return;
@@ -412,6 +530,11 @@ void S1ULink::onRxPacket(const net::UdpPacket& pkt)
         return;
     }
     dlQueues_[it->second].push(std::move(payload));
+}
+
+void S1ULink::enablePcap(const std::string& path)
+{
+    pcap_.open(path);
 }
 
 } // namespace rbs::lte

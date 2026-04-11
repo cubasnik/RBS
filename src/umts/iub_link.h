@@ -36,9 +36,21 @@ public:
 
     // ── Dedicated NBAP ────────────────────────────────────────────────────────
     bool radioLinkSetup  (RNTI rnti, uint16_t scrCode, SF sf)  override;
+    bool radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf)  override;
     bool radioLinkDeletion(RNTI rnti)                          override;
+    bool radioLinkDeletionSHO(RNTI rnti, uint16_t scrCode)     override;
     bool dedicatedMeasurementInitiation(RNTI rnti,
                                         uint16_t measId)       override;
+
+    // ── DCH / HSDPA extensions ────────────────────────────────────────────────
+    bool commonTransportChannelSetup(uint16_t cellId,
+                                      NBAPCommonChannel channelType) override;
+    bool radioLinkReconfigurePrepare(RNTI rnti, SF newSf)            override;
+    bool radioLinkReconfigureCommit (RNTI rnti)                      override;
+    bool radioLinkSetupHSDPA        (RNTI rnti, uint16_t scrCode,
+                                      uint8_t hsDschCodes = 5)       override;
+    bool radioLinkSetupEDCH         (RNTI rnti, uint16_t scrCode,
+                                      EDCHTTI tti = EDCHTTI::TTI_10MS) override;
 
     // ── Сырой обмен сообщениями ───────────────────────────────────────────────
     bool sendNbapMsg(const NBAPMessage& msg)                    override;
@@ -52,8 +64,15 @@ private:
     uint16_t    nextTxId_  = 1;
 
     // Описание радиолинка
-    struct RadioLink { uint16_t scrCode; SF sf; };
+    // Описание радиолинка
+    struct RadioLink {
+        uint16_t scrCode;
+        SF       sf;
+        bool     softHoLeg = false;  ///< true = secondary active-set leg
+    };
     std::unordered_map<RNTI, RadioLink> links_;
+    /// Per-UE map of secondary legs keyed by scrambling code
+    std::unordered_map<RNTI, std::unordered_map<uint16_t, RadioLink>> shoLegs_;
 
     // Активные измерения
     std::unordered_map<uint16_t /*measId*/, std::string> commonMeas_;

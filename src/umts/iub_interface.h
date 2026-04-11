@@ -1,5 +1,6 @@
 #pragma once
 #include "../common/types.h"
+#include "nbap_codec.h"
 #include <string>
 #include <cstdint>
 
@@ -24,6 +25,7 @@ enum class NBAPProcedure : uint8_t {
     COMMON_MEASUREMENT_INITIATE   = 0x10,
     COMMON_MEASUREMENT_REPORT     = 0x11,
     COMMON_MEASUREMENT_TERMINATE  = 0x12,
+    COMMON_TRANSPORT_CHANNEL_SETUP = 0x04,
     BLOCK                         = 0x20,
     UNBLOCK                       = 0x21,
     RESET                         = 0x30,
@@ -34,6 +36,9 @@ enum class NBAPProcedure : uint8_t {
     RADIO_LINK_RECONFIGURE_PREP   = 0x52,
     RADIO_LINK_RECONFIGURE_COMMIT = 0x53,
     RADIO_LINK_DELETION           = 0x54,
+    HS_DSCH_MACD_FLOW_SETUP       = 0x55,
+    HS_DSCH_MACD_FLOW_DELETION    = 0x56,
+    E_DCH_MACD_FLOW_SETUP         = 0x57,  ///< E-DCH MAC-d flow setup (HSUPA)
     DEDICATED_MEAS_INITIATE       = 0x60,
     DEDICATED_MEAS_REPORT         = 0x61,
     DEDICATED_MEAS_TERMINATE      = 0x62,
@@ -73,12 +78,38 @@ public:
     /// Radio Link Setup for a newly admitted UE.
     virtual bool radioLinkSetup  (RNTI rnti, uint16_t scrCode, SF sf) = 0;
 
+    /// Radio Link Addition — add a new leg to the active set (soft HO TS 25.433 §8.1.4)
+    virtual bool radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf) = 0;
+
     /// Radio Link Deletion when a UE is released.
     virtual bool radioLinkDeletion(RNTI rnti) = 0;
+
+    /// Radio Link Deletion of a specific active-set leg (soft HO tear-down).
+    /// Does NOT delete the primary link — use radioLinkDeletion() for full release.
+    virtual bool radioLinkDeletionSHO(RNTI rnti, uint16_t scrCode) = 0;
 
     /// Initiate dedicated UE measurements (CQI, Ec/No, path loss).
     virtual bool dedicatedMeasurementInitiation(RNTI rnti,
                                                 uint16_t measId) = 0;
+
+    // ── DCH / HSDPA extensions ────────────────────────────────────────────────
+    /// Common Transport Channel Setup (FACH/PCH/RACH) — TS 25.433 §8.3.2
+    virtual bool commonTransportChannelSetup(uint16_t cellId,
+                                              NBAPCommonChannel channelType) = 0;
+
+    /// Radio Link Reconfiguration Prepare — DCH SF change (TS 25.433 §8.1.5)
+    virtual bool radioLinkReconfigurePrepare(RNTI rnti, SF newSf) = 0;
+
+    /// Radio Link Reconfiguration Commit — apply prepared reconfig (TS 25.433 §8.1.6)
+    virtual bool radioLinkReconfigureCommit(RNTI rnti) = 0;
+
+    /// Radio Link Setup with HSDPA (HS-DSCH MAC-d flow) — TS 25.433 §8.3.15
+    virtual bool radioLinkSetupHSDPA(RNTI rnti, uint16_t scrCode,
+                                      uint8_t hsDschCodes = 5) = 0;
+
+    /// Radio Link Setup with E-DCH (Enhanced Uplink MAC-d flow) — TS 25.433 §8.1.1.3
+    virtual bool radioLinkSetupEDCH(RNTI rnti, uint16_t scrCode,
+                                     EDCHTTI tti = EDCHTTI::TTI_10MS) = 0;
 
     // ── Raw message pump ──────────────────────────────────────────────────────
     virtual bool sendNbapMsg(const NBAPMessage& msg) = 0;

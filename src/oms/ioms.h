@@ -65,6 +65,24 @@ public:
     /// Print a human-readable performance report to the log.
     virtual void   printPerformanceReport() const = 0;
 
+    // ── KPI threshold monitoring (TS 32.111) ──────────────────────────────────
+    /// Defines an automatic alarm trigger for a named counter.
+    ///
+    /// When @counterName is updated via updateCounter():
+    ///   • if belowIsAlarm=true  and new value < threshold → raiseAlarm()
+    ///   • if belowIsAlarm=false and new value > threshold → raiseAlarm()
+    /// Alarm auto-clears when the condition is no longer met.
+    struct KpiThreshold {
+        double        threshold;     ///< Alarm trigger value
+        bool          belowIsAlarm;  ///< true = low-value alarm (e.g. success rate)
+        AlarmSeverity severity;
+        std::string   description;   ///< Alarm description text
+    };
+
+    virtual void setKpiThreshold   (const std::string& counterName,
+                                     const KpiThreshold& thr) = 0;
+    virtual void removeKpiThreshold(const std::string& counterName) = 0;
+
     // ── Node state management (TS 32.600) ──────────────────────────────────────
     enum class NodeState : uint8_t { UNLOCKED, LOCKED, SHUTTING_DOWN };
     virtual void      setNodeState(NodeState s) = 0;

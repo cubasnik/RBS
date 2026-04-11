@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -109,16 +109,16 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -126,7 +126,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>Debug\rbs_gsm.lib;Debug\rbs_umts.lib;Debug\rbs_lte.lib;Debug\rbs_oms.lib;Debug\rbs_hal.lib;Debug\rbs_asn1_s1ap.lib;Debug\rbs_asn1_x2ap.lib;Debug\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Debug\rbs_gsm.lib;Debug\rbs_umts.lib;Debug\rbs_lte.lib;Debug\rbs_oms.lib;Debug\rbs_asn1_nbap.lib;Debug\rbs_hal.lib;Debug\rbs_asn1_s1ap.lib;Debug\rbs_asn1_x2ap.lib;Debug\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -145,7 +145,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -167,18 +167,18 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -186,7 +186,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>Release\rbs_gsm.lib;Release\rbs_umts.lib;Release\rbs_lte.lib;Release\rbs_oms.lib;Release\rbs_hal.lib;Release\rbs_asn1_s1ap.lib;Release\rbs_asn1_x2ap.lib;Release\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>Release\rbs_gsm.lib;Release\rbs_umts.lib;Release\rbs_lte.lib;Release\rbs_oms.lib;Release\rbs_asn1_nbap.lib;Release\rbs_hal.lib;Release\rbs_asn1_s1ap.lib;Release\rbs_asn1_x2ap.lib;Release\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -205,7 +205,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -227,18 +227,18 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -246,7 +246,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>MinSizeRel\rbs_gsm.lib;MinSizeRel\rbs_umts.lib;MinSizeRel\rbs_lte.lib;MinSizeRel\rbs_oms.lib;MinSizeRel\rbs_hal.lib;MinSizeRel\rbs_asn1_s1ap.lib;MinSizeRel\rbs_asn1_x2ap.lib;MinSizeRel\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>MinSizeRel\rbs_gsm.lib;MinSizeRel\rbs_umts.lib;MinSizeRel\rbs_lte.lib;MinSizeRel\rbs_oms.lib;MinSizeRel\rbs_asn1_nbap.lib;MinSizeRel\rbs_hal.lib;MinSizeRel\rbs_asn1_s1ap.lib;MinSizeRel\rbs_asn1_x2ap.lib;MinSizeRel\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -265,7 +265,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <BufferSecurityCheck></BufferSecurityCheck>
@@ -288,16 +288,16 @@
       <TreatWarningAsError>false</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_CRT_SECURE_NO_WARNINGS;ASN_DISABLE_OER_SUPPORT;ASN_DISABLE_BER_SUPPORT;ASN_DISABLE_XER_SUPPORT;ASN_DISABLE_JER_SUPPORT;ASN_DISABLE_CBOR_SUPPORT;ASN_DISABLE_UPER_SUPPORT;ASN1C_NO_UNSUFFIXED_PDU_ALIAS;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\nbap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\s1ap;C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\src\generated\x2ap;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -305,7 +305,7 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>RelWithDebInfo\rbs_gsm.lib;RelWithDebInfo\rbs_umts.lib;RelWithDebInfo\rbs_lte.lib;RelWithDebInfo\rbs_oms.lib;RelWithDebInfo\rbs_hal.lib;RelWithDebInfo\rbs_asn1_s1ap.lib;RelWithDebInfo\rbs_asn1_x2ap.lib;RelWithDebInfo\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalDependencies>RelWithDebInfo\rbs_gsm.lib;RelWithDebInfo\rbs_umts.lib;RelWithDebInfo\rbs_lte.lib;RelWithDebInfo\rbs_oms.lib;RelWithDebInfo\rbs_asn1_nbap.lib;RelWithDebInfo\rbs_hal.lib;RelWithDebInfo\rbs_asn1_s1ap.lib;RelWithDebInfo\rbs_asn1_x2ap.lib;RelWithDebInfo\rbs_common.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <DataExecutionPrevention></DataExecutionPrevention>
@@ -389,6 +389,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_asn1_nbap.vcxproj">
+      <Project>{795904F7-C296-329F-B7A7-BF1DE34B2B44}</Project>
+      <Name>rbs_asn1_nbap</Name>
     </ProjectReference>
     <ProjectReference Include="C:\Users\Alexey\Desktop\min\vNE\RBS\RBS\build-asn1\rbs_asn1_s1ap.vcxproj">
       <Project>{A6FB7807-FD42-3BBC-A533-35C7E72156E6}</Project>

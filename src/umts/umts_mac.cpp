@@ -44,9 +44,43 @@ RNTI UMTSMAC::assignDCH(SF sf) {
     return rnti;
 }
 
+RNTI UMTSMAC::assignHSDSCH() {
+    RNTI rnti = nextRnti_++;
+    UMTSUEContext ctx{};
+    ctx.rnti            = rnti;
+    ctx.channelType     = UMTSChannelType::HS_DSCH;
+    ctx.channelCode     = nextCode_++;
+    ctx.spreadingFactor = SF::SF16;   // HS-DSCH uses fixed SF16
+    ctx.active          = true;
+    channels_[rnti]     = std::move(ctx);
+    ++hsdschCount_;
+    RBS_LOG_INFO("UMTSMAC", "HS-DSCH assigned RNTI=", rnti,
+                 " code=", channels_[rnti].channelCode);
+    return rnti;
+}
+
+RNTI UMTSMAC::assignEDCH() {
+    RNTI rnti = nextRnti_++;
+    UMTSUEContext ctx{};
+    ctx.rnti            = rnti;
+    ctx.channelType     = UMTSChannelType::E_DCH;
+    ctx.channelCode     = nextCode_++;
+    ctx.spreadingFactor = SF::SF4;   // E-DPDCH uses SF4 for maximum UL rate (TS 25.309)
+    ctx.active          = true;
+    channels_[rnti]     = std::move(ctx);
+    ++edchCount_;
+    RBS_LOG_INFO("UMTSMAC", "E-DCH assigned RNTI=", rnti,
+                 " code=", channels_[rnti].channelCode);
+    return rnti;
+}
+
 bool UMTSMAC::releaseDCH(RNTI rnti) {
     auto it = channels_.find(rnti);
     if (it == channels_.end()) return false;
+    if (it->second.channelType == UMTSChannelType::HS_DSCH && hsdschCount_ > 0)
+        --hsdschCount_;
+    if (it->second.channelType == UMTSChannelType::E_DCH && edchCount_ > 0)
+        --edchCount_;
     channels_.erase(it);
     RBS_LOG_INFO("UMTSMAC", "DCH released RNTI=", rnti);
     return true;

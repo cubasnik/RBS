@@ -35,12 +35,16 @@ public:
     void tick()                                        override;
 
     RNTI  assignDCH(SF sf = SF::SF16)                  override;
+    RNTI  assignHSDSCH()                               override;
+    RNTI  assignEDCH()                                 override;
     bool  releaseDCH(RNTI rnti)                        override;
 
     bool  enqueueDlData(RNTI rnti, ByteBuffer data)    override;
     bool  dequeueUlData(RNTI rnti, ByteBuffer& data)   override;
 
     size_t activeChannelCount() const override { return channels_.size(); }
+    size_t hsdschUECount()      const override { return hsdschCount_; }
+    size_t edchUECount()        const override { return edchCount_; }
 
 private:
     std::shared_ptr<UMTSPhy> phy_;
@@ -50,6 +54,8 @@ private:
     uint16_t nextCode_ = 4;  // Channel codes 0-3 reserved for common channels
 
     std::unordered_map<RNTI, UMTSUEContext> channels_;
+    size_t   hsdschCount_ = 0;
+    size_t   edchCount_   = 0;
 
     void onRxFrame(const UMTSFrame& frame);
     void scheduleDlTransmissions();

@@ -28,8 +28,14 @@ void LTEMAC::stop() {
 // ────────────────────────────────────────────────────────────────
 void LTEMAC::tick() {
     if (!running_) return;
-    runDlScheduler();
+    // CA: if any UE has >1 CC, run CA scheduler; otherwise use single-CC scheduler
+    bool hasCA = false;
+    for (const auto& [rnti, ctx] : ueContexts_)
+        if (ctx.activeCCCount > 1) { hasCA = true; break; }
+    if (hasCA) runDlSchedulerCA();
+    else        runDlScheduler();
     runUlScheduler();
+    generateUlFeedback();
     ++sfIdx_;
     if (sfIdx_ >= LTE_SUBFRAMES_PER_FRAME) {
         sfIdx_ = 0;
@@ -48,6 +54,9 @@ bool LTEMAC::admitUE(RNTI rnti, uint8_t initialCQI) {
     ctx.harqProcessId  = 0;
     ctx.harqRetx       = 0;
     ctx.srPending      = false;
+    ctx.cqiSubframeOffset = static_cast<uint32_t>(rnti) % LTE_PUCCH_CQI_PERIOD_SF;
+    ctx.srsSubframeOffset = static_cast<uint32_t>(rnti) % LTE_SRS_PERIOD_SF;
+    ctx.harqNackBitmap    = 0;
     ueContexts_[rnti]  = std::move(ctx);
     RBS_LOG_INFO("LTEMAC", "UE admitted RNTI=", rnti, " CQI=", static_cast<int>(initialCQI));
     return true;
@@ -97,6 +106,24 @@ void LTEMAC::handleSchedulingRequest(RNTI rnti) {
 }
 
 // ────────────────────────────────────────────────────────────────
+// Carrier Aggregation UE configuration (TS 36.321 §5.14)
+// ────────────────────────────────────────────────────────────────
+bool LTEMAC::configureCA(RNTI rnti, uint8_t ccCount) {
+    auto it = ueContexts_.find(rnti);
+    if (it == ueContexts_.end()) return false;
+    const uint8_t clamped = (ccCount < 1) ? 1 : (ccCount > CA_MAX_CC ? CA_MAX_CC : ccCount);
+    it->second.activeCCCount = clamped;
+    it->second.caRbOffset    = 0;
+    RBS_LOG_INFO("LTEMAC", "CA configured RNTI=", rnti, " CCs=", static_cast<int>(clamped));
+    return true;
+}
+
+uint8_t LTEMAC::activeCCCount(RNTI rnti) const {
+    auto it = ueContexts_.find(rnti);
+    return (it != ueContexts_.end()) ? it->second.activeCCCount : 0;
+}
+
+// ────────────────────────────────────────────────────────────────
 // DL proportional-fair scheduler
 // ────────────────────────────────────────────────────────────────
 void LTEMAC::runDlScheduler() {
@@ -132,6 +159,71 @@ void LTEMAC::runDlScheduler() {
 
     if (!sf.dlGrants.empty())
         phy_->transmitSubframe(sf);
+}
+
+// ────────────────────────────────────────────────────────────────
+// CA DL scheduler: round-robin across active component carriers
+// (TS 36.321 §5.14.1.1).  Each CC is modelled as an independent
+// LTESubframe with a distinct rbIndex block sized per CC bandwidth.
+// UEs with only 1 CC fall through to the PCC block (rbIdx 0..nRB-1).
+// UEs with >1 CC get additional RBs in contiguous CC-sized blocks.
+// ────────────────────────────────────────────────────────────────
+void LTEMAC::runDlSchedulerCA() {
+    if (ueContexts_.empty()) return;
+
+    const uint8_t pccRBs = phy_->numResourceBlocks();
+
+    // Build PF-sorted list of UEs with DL data
+    std::vector<RNTI> sorted;
+    sorted.reserve(ueContexts_.size());
+    for (auto& [rnti, ctx] : ueContexts_)
+        if (!ctx.dlQueue.empty()) sorted.push_back(rnti);
+    std::sort(sorted.begin(), sorted.end(), [this](RNTI a, RNTI b) {
+        return pfMetric(ueContexts_.at(a)) > pfMetric(ueContexts_.at(b));
+    });
+
+    // For each active CC, produce one subframe with grants
+    // CC 0 = PCC; CC 1..n-1 = SCCs (same bandwidth for simplicity)
+    // We track how many total grants were issued for logging.
+    uint32_t totalGrants = 0;
+
+    // Determine max CCs in use
+    uint8_t maxCCs = 1;
+    for (auto& [rnti, ctx] : ueContexts_)
+        maxCCs = std::max(maxCCs, ctx.activeCCCount);
+
+    for (uint8_t cc = 0; cc < maxCCs; ++cc) {
+        LTESubframe sf;
+        sf.sfn           = sfn_;
+        sf.subframeIndex = sfIdx_;
+
+        uint8_t rbIdx = static_cast<uint8_t>(cc * pccRBs);  // CC-offset in logical RB space
+        uint8_t rbEnd  = rbIdx + pccRBs;
+
+        for (RNTI rnti : sorted) {
+            if (rbIdx >= rbEnd) break;
+            auto& ctx = ueContexts_.at(rnti);
+            if (cc >= ctx.activeCCCount) continue;  // UE not configured on this CC
+            ResourceBlock rb;
+            rb.rnti    = rnti;
+            rb.rbIndex = rbIdx++;
+            rb.mcs     = cqiToMcs(ctx.cqi);
+            sf.dlGrants.push_back(rb);
+            ++totalGrants;
+            // Advance caRbOffset round-robin
+            ctx.caRbOffset = static_cast<uint8_t>((ctx.caRbOffset + 1) % ctx.activeCCCount);
+        }
+
+        if (!sf.dlGrants.empty())
+            phy_->transmitSubframe(sf);
+    }
+
+    // Consume one SDU per UE that got at least one grant
+    for (RNTI rnti : sorted) {
+        auto& ctx = ueContexts_.at(rnti);
+        if (!ctx.dlQueue.empty()) ctx.dlQueue.pop();
+    }
+    (void)totalGrants;
 }
 
 // ────────────────────────────────────────────────────────────────
@@ -184,9 +276,75 @@ void LTEMAC::runUlScheduler() {
 }
 
 // ────────────────────────────────────────────────────────────────
-void LTEMAC::onRxSubframe(const LTESubframe& /*sf*/) {
-    // UL Transport Blocks are injected by runUlScheduler() to simulate
-    // the PUSCH path without DSP. A real eNB would decode PUSCH here.
+void LTEMAC::onRxSubframe(const LTESubframe& sf) {
+    processUlFeedback(sf);
+}
+
+// ────────────────────────────────────────────────────────────────
+void LTEMAC::generateUlFeedback() {
+    if (ueContexts_.empty()) return;
+    LTESubframe ulSF;
+    ulSF.sfn           = sfn_;
+    ulSF.subframeIndex = sfIdx_;
+    uint32_t absSF = static_cast<uint32_t>(sfn_) * LTE_SUBFRAMES_PER_FRAME + sfIdx_;
+
+    for (auto& [rnti, ctx] : ueContexts_) {
+        // PUCCH Format 2: periodic CQI report (TS 36.213 §7.2.2)
+        if ((absSF % LTE_PUCCH_CQI_PERIOD_SF) == ctx.cqiSubframeOffset) {
+            PUCCHReport rpt{};
+            rpt.rnti = rnti;  rpt.format = PUCCHFormat::FORMAT_2;
+            rpt.cqiValue = ctx.cqi;  rpt.ackNack = 0;  rpt.srPresent = false;
+            ulSF.pucchReports.push_back(rpt);
+        }
+        // PUCCH Format 1a: HARQ NACK if any process awaiting retransmission
+        if (ctx.harqRetx > 0) {
+            PUCCHReport rpt{};
+            rpt.rnti = rnti;  rpt.format = PUCCHFormat::FORMAT_1A;  rpt.ackNack = 1;
+            ulSF.pucchReports.push_back(rpt);
+        }
+        // PUCCH Format 1: Scheduling Request
+        if (ctx.srPending) {
+            PUCCHReport rpt{};
+            rpt.rnti = rnti;  rpt.format = PUCCHFormat::FORMAT_1;  rpt.srPresent = true;
+            ulSF.pucchReports.push_back(rpt);
+        }
+        // SRS: transmit in subframe LTE_SRS_SUBFRAME_IDX every SRS period
+        if (sfIdx_ == LTE_SRS_SUBFRAME_IDX &&
+            (absSF % LTE_SRS_PERIOD_SF) == ctx.srsSubframeOffset) {
+            SRSReport srs{};
+            srs.rnti = rnti;  srs.bwConfig = 0;
+            srs.sequence = phy_->buildSRS(rnti, 0);
+            ulSF.srsReports.push_back(srs);
+        }
+    }
+    if (!ulSF.pucchReports.empty() || !ulSF.srsReports.empty())
+        phy_->injectUlSignal(std::move(ulSF));
+}
+
+void LTEMAC::processUlFeedback(const LTESubframe& sf) {
+    for (const auto& rpt : sf.pucchReports) {
+        auto it = ueContexts_.find(rpt.rnti);
+        if (it == ueContexts_.end()) continue;
+        auto& ctx = it->second;
+        switch (rpt.format) {
+            case PUCCHFormat::FORMAT_2:
+                ctx.cqi = std::min(rpt.cqiValue, static_cast<uint8_t>(15));
+                RBS_LOG_DEBUG("LTEMAC", "PUCCH CQI RNTI=", rpt.rnti,
+                              " CQI=", static_cast<int>(rpt.cqiValue));
+                break;
+            case PUCCHFormat::FORMAT_1A:
+                if (rpt.ackNack == 0 && ctx.harqRetx > 0)
+                    --ctx.harqRetx;   // ACK: clear HARQ retx
+                break;
+            case PUCCHFormat::FORMAT_1:
+            default: break;
+        }
+    }
+    for (const auto& srs : sf.srsReports) {
+        RBS_LOG_DEBUG("LTEMAC", "SRS RNTI=", srs.rnti,
+                      " bwCfg=", static_cast<int>(srs.bwConfig),
+                      " len=", srs.sequence.size());
+    }
 }
 
 // ────────────────────────────────────────────────────────────────

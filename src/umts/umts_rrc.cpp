@@ -371,4 +371,11 @@ const std::vector<RadioBearer>& UMTSRrc::bearers(RNTI rnti) const
     return (it != contexts_.end()) ? it->second.bearers : empty;
 }
 
+const std::vector<ActiveSetEntry>& UMTSRrc::activeSet(RNTI rnti) const
+{
+    static const std::vector<ActiveSetEntry> empty;
+    auto it = contexts_.find(rnti);
+    return (it != contexts_.end()) ? it->second.activeSet : empty;
+}
+
 } // namespace rbs::umts

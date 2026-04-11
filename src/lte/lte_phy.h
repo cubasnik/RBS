@@ -5,6 +5,8 @@
 #include <memory>
 #include <functional>
 #include <vector>
+#include <queue>
+#include <mutex>
 
 namespace rbs::lte {
 
@@ -36,6 +38,22 @@ public:
 
     double measuredRSRP() const                                    override { return rsrp_dBm_; }
 
+    // ── UL channel builders (public for testability) ─────────────────────
+    /// PUCCH encoder: fmt=FORMAT_1(SR)/FORMAT_1A(ACK-NACK)/FORMAT_2(CQI). TS 36.211 §5.4
+    ByteBuffer buildPUCCH(PUCCHFormat fmt, RNTI rnti, uint8_t value) const;
+
+    /// PUSCH SC-FDMA TB with embedded DMRS. TS 36.211 §5.3
+    ByteBuffer buildPUSCH(const ResourceBlock& rb, uint32_t tbBytes) const;
+
+    /// SRS CAZAC sequence. TS 36.211 §5.5.3  (bwConfig 0-3 → 8/16/32/64 RBs)
+    ByteBuffer buildSRS(RNTI rnti, uint8_t bwConfig = 0) const;
+
+    /// DMRS for one slot of PUSCH. TS 36.211 §5.5.2  (slotIdx = 0 or 1)
+    ByteBuffer buildDMRS(RNTI rnti, uint8_t slotIdx) const;
+
+    /// Inject pre-built UL subframe into receive queue (used by MAC for simulation)
+    void injectUlSignal(LTESubframe sf);
+
 private:
     std::shared_ptr<hal::IRFHardware> rf_;
     LTECellConfig cfg_;
@@ -56,6 +74,9 @@ private:
     ByteBuffer ofdmModulate(const ByteBuffer& freqDomain) const;
 
     bool isSyncSubframe() const;  // subframe 0 contains PSS/SSS/PBCH
+
+    std::queue<LTESubframe> ulInjectQueue_;  ///< MAC-injected UL subframes for loopback
+    mutable std::mutex      ulMtx_;
 };
 
 }  // namespace rbs::lte

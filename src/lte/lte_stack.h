@@ -5,6 +5,8 @@
 #include "lte_pdcp.h"
 #include "lte_rrc.h"
 #include "lte_rlc.h"
+#include "s1ap_link.h"
+#include "x2ap_link.h"
 #include "../hal/rf_interface.h"
 #include "ilte_stack.h"
 #include <memory>
@@ -33,8 +35,13 @@ public:
     bool  receiveIPPacket(RNTI rnti, uint16_t bearerId, ByteBuffer& ipPacket)  override;
 
     RNTI  admitUE(IMSI imsi, uint8_t defaultCQI = 9)                           override;
+    RNTI  admitUECA(IMSI imsi, uint8_t ccCount, uint8_t defaultCQI = 9)        override;
     void  releaseUE(RNTI rnti)                                                 override;
+    void  triggerCSFB(RNTI rnti, uint16_t gsmArfcn)                           override;
     void  updateCQI(RNTI rnti, uint8_t cqi)                                   override;
+
+    bool  setupERAB  (RNTI rnti, uint8_t erabId, const GTPUTunnel& sgw)        override;
+    bool  teardownERAB(RNTI rnti, uint8_t erabId)                              override;
 
     size_t connectedUECount() const                                            override;
     void   printStats() const                                                  override;
@@ -49,13 +56,18 @@ private:
     std::shared_ptr<PDCP>    pdcp_;
     std::shared_ptr<LTERrc>  rrc_;
     std::shared_ptr<LTERlc>  rlc_;
+    std::unique_ptr<S1APLink> s1ap_;
+    std::unique_ptr<S1ULink>  s1u_;   // S1-U GTP-U forwarding (TS 29.060)
+    std::unique_ptr<X2APLink> x2ap_;  // X2AP inter-eNB handover (TS 36.423)
 
     std::atomic<bool>  running_{false};
     std::thread        subframeThread_;
     RNTI nextRnti_ = 1;
     std::unordered_map<RNTI, IMSI> ueMap_;
 
+    static uint32_t packPlmnHex(uint16_t mcc, uint16_t mnc);
     void subframeLoop();
+    void forwardDlPackets();    ///< Poll S1-U DL GTP-U and inject into air interface
 };
 
 }  // namespace rbs::lte

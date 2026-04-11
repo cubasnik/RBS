@@ -7,6 +7,7 @@
 #include <iomanip>
 #include <iostream>
 #include <cctype>
+#include <filesystem>
 
 // ── Windows headers (must come before enum definitions) ──────────────────────
 #ifdef _WIN32
@@ -143,6 +144,12 @@ public:
 
     void enableFile(const std::string& path) {
         std::lock_guard<std::mutex> lock(mutex_);
+        if (fileStream_.is_open()) fileStream_.close();
+        if (path.empty()) { logPath_.clear(); logBytes_ = 0; return; }
+        logPath_  = path;
+        logBytes_ = 0;
+        if (std::filesystem::exists(path))
+            logBytes_ = static_cast<size_t>(std::filesystem::file_size(path));
         fileStream_.open(path, std::ios::app);
     }
 
@@ -189,14 +196,28 @@ public:
         if (fileStream_.is_open()) {
             fileStream_ << msg << "\n";
             fileStream_.flush();
+            logBytes_ += msg.size() + 1;
+            if (logBytes_ >= kMaxLogBytes_) rotateLog_();
         }
     }
 
 private:
     Logger() = default;
-    LogLevel      minLevel_ = LogLevel::INFO;
+    LogLevel      minLevel_  = LogLevel::INFO;
     std::mutex    mutex_;
     std::ofstream fileStream_;
+    std::string   logPath_;
+    size_t        logBytes_  = 0;
+    static constexpr size_t kMaxLogBytes_ = 100ULL * 1024 * 1024; // 100 MiB
+
+    // Called under mutex_ when file exceeds kMaxLogBytes_.
+    void rotateLog_() {
+        fileStream_.close();
+        std::error_code ec;
+        std::filesystem::rename(logPath_, logPath_ + ".1", ec);
+        fileStream_.open(logPath_, std::ios::trunc);
+        logBytes_ = 0;
+    }
 
     static const char* levelStr(LogLevel l) {
         switch (l) {

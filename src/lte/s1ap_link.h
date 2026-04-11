@@ -1,8 +1,9 @@
 #pragma once
 #include "s1ap_interface.h"
 #include "gtp_u.h"
-#include "../common/udp_socket.h"
+#include "../common/sctp_socket.h"
 #include "../common/logger.h"
+#include "../common/pcap_writer.h"
 #include <queue>
 #include <mutex>
 #include <string>
@@ -67,10 +68,30 @@ public:
                             uint32_t targetEnbId,
                             const ByteBuffer& rrcContainer)      override;
     bool handoverNotify    (uint32_t mmeUeS1apId, RNTI rnti)     override;
+    bool handoverRequestAcknowledge(uint32_t mmeUeS1apId, RNTI rnti,
+                                    const ByteBuffer& targetToSrcContainer) override;
+    bool enbStatusTransfer (uint32_t mmeUeS1apId, RNTI rnti)     override;
+    bool handoverFailure   (uint32_t mmeUeS1apId,
+                            uint8_t causeGroup, uint8_t causeValue) override;
+
+    // ── Paging ───────────────────────────────────────────────────────
+    bool paging(uint16_t ueIdxVal, const ByteBuffer& imsi,
+                uint32_t plmnId, uint16_t tac,
+                uint8_t cnDomain)                                 override;
+
+    // ── Reset / Error Indication ──────────────────────────────────────────────
+    bool reset(uint8_t causeGroup, uint8_t causeValue,
+               bool resetAll = true)                              override;
+    bool errorIndication(uint32_t mmeUeS1apId, uint32_t enbUeS1apId,
+                         uint8_t causeGroup, uint8_t causeValue)  override;
 
     // ── Сырой обмен ───────────────────────────────────────────────────────────
     bool sendS1APMsg(const S1APMessage& msg)                     override;
     bool recvS1APMsg(S1APMessage& msg)                           override;
+
+    // ── PCAP трассировка ──────────────────────────────────────────────────────
+    /// Открыть/перезаписать .pcap файл для записи S1AP трафика.
+    void enablePcap(const std::string& path);
 
 private:
     std::string enbId_;
@@ -89,11 +110,12 @@ private:
     std::queue<S1APMessage> rxQueue_;
     mutable std::mutex      rxMtx_;
 
-    net::UdpSocket socket_;
-    bool           socketReady_ = false;
+    net::SctpSocket  socket_;
+    bool             socketReady_ = false;
+    rbs::PcapWriter  pcap_;
 
     uint32_t allocateMmeId(RNTI rnti);
-    void     onRxPacket(const net::UdpPacket& pkt);
+    void     onRxPacket(const net::SctpPacket& pkt);
 };
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -117,6 +139,9 @@ public:
     bool recvGtpuPdu (RNTI rnti, uint8_t erabId,
                       ByteBuffer& ipPacket)                      override;
 
+    /// Открыть/перезаписать .pcap файл для записи GTP-U трафика.
+    void enablePcap(const std::string& path);
+
 private:
     std::string    enbId_;
     uint16_t       localPort_;
@@ -133,6 +158,7 @@ private:
     std::unordered_map<uint32_t, uint32_t>                teidToKey_;
     std::unordered_map<uint32_t, std::queue<ByteBuffer>>  dlQueues_;
     mutable std::mutex                                    mtx_;
+    rbs::PcapWriter                                       pcap_;
 
     void onRxPacket(const net::UdpPacket& pkt);
 };
