@@ -6,6 +6,7 @@
 #include <chrono>
 #include <iomanip>
 #include <iostream>
+#include <string_view>
 #include <cctype>
 #include <filesystem>
 
@@ -132,6 +133,55 @@ inline const char* logLevelColour(LogLevel l) {
     return ansiWhite();
 }
 
+// ── fmt-style {} placeholder substitution (C++17, no external deps) ─────────
+namespace detail {
+
+// Stream val to oss applying optional format spec (e.g. "X", "02X", "x").
+template<typename T>
+void applySpec(std::ostringstream& oss, std::string_view spec, T&& val) {
+    if (spec.empty()) { oss << val; return; }
+    // Parse: optional '0' fill, optional width digits, then type char.
+    char fill  = ' ';
+    int  width = 0;
+    size_t i   = 0;
+    if (spec.size() > 1 && spec[0] == '0') { fill = '0'; i = 1; }
+    while (i + 1 < spec.size() && std::isdigit(static_cast<unsigned char>(spec[i])))
+        width = width * 10 + (spec[i++] - '0');
+    char type = (i < spec.size()) ? spec[i] : '\0';
+    if (type == 'X' || type == 'x') {
+        if (width > 0) oss << std::setw(width) << std::setfill(fill);
+        oss << std::hex;
+        if (type == 'X') oss << std::uppercase;
+        oss << val;
+        oss << std::dec << std::nouppercase << std::setw(0) << std::setfill(' ');
+    } else {
+        oss << val;
+    }
+}
+
+// Forward declaration of recursive overload.
+template<typename T, typename... Rest>
+void buildFmt(std::ostringstream& oss, std::string_view fmt, T&& val, Rest&&... rest);
+
+// Base case: no more args — just append what remains of the format string.
+inline void buildFmt(std::ostringstream& oss, std::string_view fmt) { oss << fmt; }
+
+// Recursive case: find next {…} placeholder, substitute val, recurse.
+template<typename T, typename... Rest>
+void buildFmt(std::ostringstream& oss, std::string_view fmt, T&& val, Rest&&... rest) {
+    auto pos = fmt.find('{');
+    if (pos == std::string_view::npos) { oss << fmt; return; }
+    oss << fmt.substr(0, pos);
+    auto end = fmt.find('}', pos + 1);
+    if (end == std::string_view::npos) { oss << fmt.substr(pos); return; }
+    std::string_view spec = fmt.substr(pos + 1, end - pos - 1);
+    if (!spec.empty() && spec[0] == ':') spec = spec.substr(1);
+    applySpec(oss, spec, std::forward<T>(val));
+    buildFmt(oss, fmt.substr(end + 1), std::forward<Rest>(rest)...);
+}
+
+} // namespace detail
+
 // ── Thread-safe singleton logger ─────────────────────────────────────────────
 class Logger {
 public:
@@ -158,10 +208,12 @@ public:
         if (level < minLevel_) return;
         enableConsoleColours();
 
-        // Build message body — expand pack into ostringstream one arg at a time.
+        // Build message body.  If the first argument is a const char* that
+        // contains '{', treat it as a {}-placeholder format string and
+        // substitute values in order.  Otherwise stream-concatenate all args
+        // (legacy comma-separated style).
         std::ostringstream body;
-        int dummy[] = { 0, (body << args, 0)... };
-        (void)dummy;
+        buildBody_(body, std::forward<Args>(args)...);
         std::string bodyText = body.str();
 
         // Plain text for the log file (no ANSI escape codes).
@@ -202,6 +254,29 @@ public:
     }
 
 private:
+    // ── buildBody_ overloads ───────────────────────────────────────────────
+    // fmt-style: first arg is const char* that contains '{' → use buildFmt
+    template<typename... Rest>
+    static void buildBody_(std::ostringstream& oss,
+                           const char* fmt, Rest&&... rest) {
+        if (std::string_view(fmt).find('{') != std::string_view::npos)
+            detail::buildFmt(oss, std::string_view(fmt), std::forward<Rest>(rest)...);
+        else {
+            oss << fmt;
+            int dummy[] = { 0, (oss << rest, 0)... };
+            (void)dummy;
+        }
+    }
+    // stream-style: first arg is not const char* → concatenate everything
+    template<typename T, typename... Rest>
+    static void buildBody_(std::ostringstream& oss, T&& val, Rest&&... rest) {
+        oss << val;
+        int dummy[] = { 0, (oss << rest, 0)... };
+        (void)dummy;
+    }
+    // No-arg fallback (single message string without extras already handled above)
+    static void buildBody_(std::ostringstream&) {}
+
     Logger() = default;
     LogLevel      minLevel_  = LogLevel::INFO;
     std::mutex    mutex_;
