@@ -68,8 +68,7 @@ static void test_iub_edch_connected() {
     IubNbap iub("NodeB-TEST");
     iub.connect("127.0.0.1", 38412);
     assert(iub.isConnected());
-    bool ok = iub.radioLinkSetupEDCH(0x0010, 55, EDCHTTI::TTI_10MS);
-    assert(ok);
+    assert(iub.radioLinkSetupEDCH(0x0010, 55, EDCHTTI::TTI_10MS));
     std::puts("  [PASS] test_iub_edch_connected");
 }
 
@@ -77,8 +76,7 @@ static void test_iub_edch_connected() {
 static void test_iub_edch_not_connected() {
     IubNbap iub("NodeB-TEST2");
     // not connected — radioLinkSetupEDCH must return false
-    bool ok = iub.radioLinkSetupEDCH(0x0011, 56, EDCHTTI::TTI_2MS);
-    assert(!ok);
+    assert(!iub.radioLinkSetupEDCH(0x0011, 56, EDCHTTI::TTI_2MS));
     std::puts("  [PASS] test_iub_edch_not_connected");
 }
 
@@ -101,7 +99,7 @@ static void test_mac_assign_edch() {
     mac.start();
 
     assert(mac.edchUECount() == 0);
-    RNTI r = mac.assignEDCH();
+    [[maybe_unused]] RNTI r = mac.assignEDCH();
     assert(r != 0);
     assert(mac.edchUECount() == 1);
     assert(mac.activeChannelCount() == 1);
@@ -119,8 +117,8 @@ static void test_mac_release_edch() {
     UMTSMAC mac(phy, cfg);
     mac.start();
 
-    RNTI r1 = mac.assignEDCH();
-    RNTI r2 = mac.assignEDCH();
+    [[maybe_unused]] RNTI r1 = mac.assignEDCH();
+    [[maybe_unused]] RNTI r2 = mac.assignEDCH();
     assert(mac.edchUECount() == 2);
     assert(mac.releaseDCH(r1));
     assert(mac.edchUECount() == 1);

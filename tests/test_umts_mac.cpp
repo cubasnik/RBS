@@ -26,9 +26,9 @@ int main() {
     assert(mac.start());
 
     // Assign three DCH channels
-    rbs::RNTI ue1 = mac.assignDCH();
-    rbs::RNTI ue2 = mac.assignDCH(rbs::SF::SF32);
-    rbs::RNTI ue3 = mac.assignDCH();
+    [[maybe_unused]] rbs::RNTI ue1 = mac.assignDCH();
+    [[maybe_unused]] rbs::RNTI ue2 = mac.assignDCH(rbs::SF::SF32);
+    [[maybe_unused]] rbs::RNTI ue3 = mac.assignDCH();
     assert(ue1 != 0);
     assert(ue2 != 0);
     assert(ue3 != 0);
@@ -52,7 +52,7 @@ int main() {
     assert(mac.activeChannelCount() == 2);
 
     // Re-assign fills the gap
-    rbs::RNTI ue4 = mac.assignDCH();
+    [[maybe_unused]] rbs::RNTI ue4 = mac.assignDCH();
     assert(ue4 != 0);
     assert(mac.activeChannelCount() == 3);
 

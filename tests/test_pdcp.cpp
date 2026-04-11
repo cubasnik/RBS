@@ -57,14 +57,12 @@ int main() {
         rbs::ByteBuffer encPdu = pdcp2.processDlPacket(ar, 1, zeros);
         // Strip 2-byte PDCP header to get ciphertext
         assert(encPdu.size() == 18);
-        const uint8_t* ct = encPdu.data() + 2;
-
         // Expected first 16 bytes of AES-128-CTR keystream (NIST all-zeros vector)
         static const uint8_t kExpected[16] = {
             0x66,0xe9,0x4b,0xd4,0xef,0x8a,0x2c,0x3b,
             0x88,0x4c,0xfa,0x59,0xca,0x34,0x2b,0x2e
         };
-        assert(std::memcmp(ct, kExpected, 16) == 0);
+        assert(std::memcmp(encPdu.data() + 2, kExpected, 16) == 0);
     }
 
     // ── AES-128-CTR round-trip test ───────────────────────────────────────────

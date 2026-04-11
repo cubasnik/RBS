@@ -6,9 +6,9 @@
 
 namespace rbs::hal {
 
-RFHardware::RFHardware(uint8_t txAntennas, uint8_t rxAntennas)
-    : txAntennas_(txAntennas)
-    , rxAntennas_(rxAntennas)
+RFHardware::RFHardware(int txAntennas, int rxAntennas)
+    : txAntennas_(static_cast<uint8_t>(txAntennas))
+    , rxAntennas_(static_cast<uint8_t>(rxAntennas))
     , activeTxMask_((1u << txAntennas) - 1u)
 {}
 

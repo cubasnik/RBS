@@ -10,7 +10,7 @@ int main() {
     UMTSRrc rrc;
 
     const RNTI r1 = 100;
-    const RNTI r2 = 101;
+    [[maybe_unused]] const RNTI r2 = 101;
 
     // ── handleConnectionRequest ───────────────────────────────────────────────
     assert(rrc.rrcState(r1) == UMTSRrcState::IDLE);
@@ -22,7 +22,7 @@ int main() {
     assert(rrc.rrcState(r2) == UMTSRrcState::CELL_DCH);
 
     // ── setupRadioBearer ─────────────────────────────────────────────────────
-    RadioBearer rb1{1, 2 /*AM*/, 384000, true, true};
+    RadioBearer rb1{1, 2 /*AM*/, 384, true, true};  // 384 kbps
     assert(rrc.setupRadioBearer(r1, rb1));
     assert(!rrc.bearers(r1).empty());
     assert(rrc.bearers(r1)[0].rbId == 1);

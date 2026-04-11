@@ -40,8 +40,7 @@ int main() {
     (void)fn;
 
     // ── measuredRSCP возвращает начальное значение ─────────────────────────
-    double rscp = phy.measuredRSCP();
-    assert(rscp <= 0.0);  // должен быть отрицательным (дБм)
+    assert(phy.measuredRSCP() <= 0.0);  // должен быть отрицательным (дБм)
 
     // ── Rx callback устанавливается без краша ─────────────────────────────
     int cbFired = 0;

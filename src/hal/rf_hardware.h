@@ -11,7 +11,7 @@ namespace rbs::hal {
 // ────────────────────────────────────────────────────────────────
 class RFHardware final : public IRFHardware {
 public:
-    explicit RFHardware(uint8_t txAntennas = 2, uint8_t rxAntennas = 2);
+    explicit RFHardware(int txAntennas = 2, int rxAntennas = 2);
 
     bool  initialise()  override;
     bool  selfTest()    override;

@@ -29,13 +29,13 @@ int main() {
     assert(oms.getActiveAlarms().size() == 1);
     assert(oms.getActiveAlarms()[0].severity == AlarmSeverity::MAJOR);
 
-    uint32_t id2 = oms.raiseAlarm("GSM-Cell-2", "Clock sync lost", AlarmSeverity::CRITICAL);
+    [[maybe_unused]] uint32_t id2 = oms.raiseAlarm("GSM-Cell-2", "Clock sync lost", AlarmSeverity::CRITICAL);
     assert(id2 != 0);
     assert(id2 != id1);
     assert(cbCount.load() == 2);
     assert(oms.getActiveAlarms().size() == 2);
 
-    uint32_t id3 = oms.raiseAlarm("LTE-Cell-1", "Temp warning", AlarmSeverity::WARNING);
+    oms.raiseAlarm("LTE-Cell-1", "Temp warning", AlarmSeverity::WARNING);
     assert(oms.getActiveAlarms().size() == 3);
 
     // ── clearAlarm ────────────────────────────────────────────────────────────
@@ -45,6 +45,7 @@ int main() {
     auto active = oms.getActiveAlarms();
     assert(active.size() == 2);
     for (const auto& a : active) {
+        (void)a;
         assert(a.alarmId != id1);
     }
 

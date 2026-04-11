@@ -8,7 +8,7 @@ using namespace rbs::umts;
 int main() {
     UMTSRlc rlc;
 
-    const RNTI r1 = 10;
+    [[maybe_unused]] const RNTI r1 = 10;
     const RNTI r2 = 20;
 
     // ── addRB ─────────────────────────────────────────────────────────────────
@@ -69,8 +69,7 @@ int main() {
     rlc.deliverPdu(r2, 1, inboundAm);
 
     ByteBuffer rxSdu;
-    bool gotSdu = rlc.receiveSdu(r2, 1, rxSdu);
-    assert(gotSdu);
+    assert(rlc.receiveSdu(r2, 1, rxSdu));
     assert(!rxSdu.empty());
     assert(rlc.rxSN(r2, 1) == 1);
 

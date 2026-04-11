@@ -27,12 +27,6 @@ static int passed = 0, failed = 0;
 
 static OMS& oms() { return OMS::instance(); }
 
-static void clearCounters() {
-    // Reset OMS to clean state by overwriting counters with 0
-    oms().updateCounter("test.alpha", 0.0);
-    oms().updateCounter("test.beta",  0.0);
-}
-
 // ── Test 1: exportCsv creates file ───────────────────────────────────────────
 static void testExportCsvCreatesFile() {
     oms().updateCounter("pm.ues", 7.0, "");

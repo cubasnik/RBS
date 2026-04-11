@@ -159,8 +159,7 @@ static void test_nr_phy_pbch_sfn_encoding() {
     for (int i = 0; i < 15; ++i) phy.tick();   // 3 bursts
     assert(!ssbs.empty());
     // First burst: SFN=0 → top 4 bits of SFN in PBCH[0] bits 5:2 == 0
-    const uint8_t sfnMsn = (ssbs[0].pbch[0] >> 2) & 0x0F;
-    assert(sfnMsn == 0);
+    assert(((ssbs[0].pbch[0] >> 2) & 0x0F) == 0);
     phy.stop();
     std::puts("  test_nr_phy_pbch_sfn_encoding PASSED");
 }

@@ -13,12 +13,12 @@
 #include <vector>
 
 // ── helpers ───────────────────────────────────────────────────────────────────
-static uint16_t readBE16(const uint8_t* p)
+[[maybe_unused]] static uint16_t readBE16(const uint8_t* p)
 {
     return static_cast<uint16_t>((static_cast<uint16_t>(p[0]) << 8) | p[1]);
 }
 
-static uint32_t readBE32(const uint8_t* p)
+[[maybe_unused]] static uint32_t readBE32(const uint8_t* p)
 {
     return (static_cast<uint32_t>(p[0]) << 24)
          | (static_cast<uint32_t>(p[1]) << 16)
@@ -34,7 +34,7 @@ static uint32_t readLE32(const uint8_t* p)
          | (static_cast<uint32_t>(p[3]) << 24);
 }
 
-static uint16_t readLE16(const uint8_t* p)
+[[maybe_unused]] static uint16_t readLE16(const uint8_t* p)
 {
     return static_cast<uint16_t>(p[0] | (static_cast<uint16_t>(p[1]) << 8));
 }
@@ -56,13 +56,14 @@ static void readPacket(std::ifstream& f,
                        uint32_t& inclLen)
 {
     uint8_t rhdr[16];
-    assert(f.read(reinterpret_cast<char*>(rhdr), 16).gcount() == 16);
+    f.read(reinterpret_cast<char*>(rhdr), 16);
+    assert(f.gcount() == 16);
     inclLen = readLE32(rhdr + 8);
     assert(inclLen == readLE32(rhdr + 12));   // incl_len == orig_len
     pkt.resize(inclLen);
-    assert(f.read(reinterpret_cast<char*>(pkt.data()),
-                  static_cast<std::streamsize>(inclLen))
-           .gcount() == static_cast<std::streamsize>(inclLen));
+    f.read(reinterpret_cast<char*>(pkt.data()),
+           static_cast<std::streamsize>(inclLen));
+    assert(f.gcount() == static_cast<std::streamsize>(inclLen));
 }
 
 static int test_open_close()
@@ -90,7 +91,8 @@ static int test_global_header()
     assert(f.is_open());
 
     uint8_t gh[24];
-    assert(f.read(reinterpret_cast<char*>(gh), 24).gcount() == 24);
+    f.read(reinterpret_cast<char*>(gh), 24);
+    assert(f.gcount() == 24);
 
     assert(readLE32(gh +  0) == 0xa1b2c3d4u);  // magic
     assert(readLE16(gh +  4) == 2u);             // version_major
@@ -233,7 +235,8 @@ static int test_multiple_records()
     }
     // EOF after 3 records
     uint8_t probe[1];
-    assert(f.read(reinterpret_cast<char*>(probe), 1).gcount() == 0);
+    f.read(reinterpret_cast<char*>(probe), 1);
+    assert(f.gcount() == 0);
 
     f.close();
     std::remove(path);
