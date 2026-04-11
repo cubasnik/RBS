@@ -9,6 +9,39 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 option(RBS_ENABLE_TESTS   "Build unit tests"       ON)
 option(RBS_ENABLE_ASAN    "Enable AddressSanitizer" OFF)
 
+# ── usrsctp: userspace SCTP for Windows (no kernel SCTP driver needed) ─────────
+# On Linux, native IPPROTO_SCTP from <netinet/sctp.h> is used instead.
+if(WIN32)
+    include(FetchContent)
+    FetchContent_Declare(
+        usrsctp
+        GIT_REPOSITORY https://github.com/sctplab/usrsctp.git
+        GIT_TAG        0.9.5.0
+        GIT_SHALLOW    TRUE
+    )
+    set(sctp_build_programs   OFF CACHE BOOL "" FORCE)
+    set(sctp_build_shared_lib OFF CACHE BOOL "" FORCE)
+    # usrsctp ships an older cmake_minimum_required; allow it under modern CMake
+    set(CMAKE_POLICY_VERSION_MINIMUM "3.5" CACHE INTERNAL "")
+    FetchContent_MakeAvailable(usrsctp)
+    if(MSVC)
+        target_compile_options(usrsctp PRIVATE /W0)
+    endif()
+endif()
+
+# ── cpp-httplib: header-only HTTP server/client ────────────────────────
+include(FetchContent)
+FetchContent_Declare(
+    httplib
+    GIT_REPOSITORY https://github.com/yhirose/cpp-httplib.git
+    GIT_TAG        v0.18.5
+    GIT_SHALLOW    TRUE
+)
+set(HTTPLIB_USE_OPENSSL_IF_AVAILABLE OFF CACHE BOOL "" FORCE)
+set(HTTPLIB_REQUIRE_OPENSSL          OFF CACHE BOOL "" FORCE)
+set(HTTPLIB_COMPILE                  OFF CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(httplib)
+
 # ── Compiler flags ─────────────────────────────────────────────
 if(MSVC)
     add_compile_options(/W4 /WX- /MP)
@@ -27,13 +60,16 @@ endif()
 add_library(rbs_common STATIC
     src/common/config.cpp
     src/common/udp_socket.cpp
+    src/common/sctp_socket.cpp
     src/common/mobility_manager.cpp
     src/common/son.cpp
+    src/common/pcap_writer.cpp
 )
 target_include_directories(rbs_common PUBLIC src)
-# Winsock2 требуется для UdpSocket на Windows
+# Winsock2 + usrsctp на Windows; native SCTP на Linux (нет зависимостей)
 if(WIN32)
-    target_link_libraries(rbs_common PUBLIC ws2_32)
+    target_link_libraries(rbs_common PUBLIC ws2_32 usrsctp)
+    target_compile_definitions(rbs_common PUBLIC RBS_USE_USRSCTP=1)
 endif()
 
 # ─────────────────────────────────────────────────────────────────
@@ -87,7 +123,7 @@ add_library(rbs_lte STATIC
     src/lte/lte_rrc.cpp
     src/lte/lte_rlc.cpp
 )
-target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap)
+target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap rbs_oms)
 
 # ─────────────────────────────────────────────────────────────────
 # Library: OMS
@@ -97,6 +133,25 @@ add_library(rbs_oms STATIC
 )
 target_link_libraries(rbs_oms PUBLIC rbs_common)
 
+# ─────────────────────────────────────────────────────────────────
+# Library: 5G NR stack (gNB-DU stub, TS 38.211 / TS 38.473)
+# ─────────────────────────────────────────────────────────────────
+add_library(rbs_nr STATIC
+    src/nr/nr_phy.cpp
+    src/nr/nr_stack.cpp
+    src/nr/f1ap_codec.cpp
+)
+target_link_libraries(rbs_nr PUBLIC rbs_hal)
+# ───────────────────────────────────────────────────────────────
+# Library: REST API (HTTP/JSON, cpp-httplib, exposes OMS via /api/v1/)
+# ───────────────────────────────────────────────────────────────
+add_library(rbs_api STATIC
+    src/api/rest_server.cpp
+)
+target_link_libraries(rbs_api PUBLIC rbs_oms httplib::httplib)
+if(WIN32)
+    target_link_libraries(rbs_api PUBLIC ws2_32)
+endif()
 # ─────────────────────────────────────────────────────────────────
 # Generated ASN.1 codec libraries (asn1c-mouse, APER-only)
 #   Warnings suppressed — generated code, not maintained by hand.
@@ -170,7 +225,9 @@ target_link_libraries(rbs_node PRIVATE
     rbs_gsm
     rbs_umts
     rbs_lte
+    rbs_nr
     rbs_oms
+    rbs_api
 )
 
 # Link pthreads on Linux/macOS

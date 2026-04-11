@@ -1,6 +1,6 @@
 # RBS — Radio Base Station
 
-Симулятор многостандартной базовой станции (Multi-RAT RBS), реализующий протокольные стеки **GSM (2G)**, **UMTS (3G)** и **LTE (4G)** в одном исполняемом файле на языке **C++17**.
+Симулятор многостандартной базовой станции (Multi-RAT RBS), реализующий протокольные стеки **GSM (2G)**, **UMTS (3G)**, **LTE (4G)** и **5G NR** в одном исполняемом файле на языке **C++17**.
 
 ---
 
@@ -14,7 +14,9 @@
    - [GSM стек (2G)](#gsm-стек-2g)
    - [UMTS стек (3G)](#umts-стек-3g)
    - [LTE стек (4G)](#lte-стек-4g)
+   - [5G NR стек](#5g-nr-стек)
    - [OMS — Operations & Maintenance](#oms--operations--maintenance)
+   - [REST API — Web Dashboard](#rest-api--web-dashboard)
    - [Главный контроллер (main)](#главный-контроллер-main)
 4. [Диаграмма потоков данных](#диаграмма-потоков-данных)
 5. [Конфигурационный файл rbs.conf](#конфигурационный-файл-rbsconf)
@@ -24,6 +26,8 @@
 9. [Разработка с GitHub Copilot](#разработка-с-github-copilot)
 10. [Логирование](#логирование)
 11. [Стандарты и спецификации](#стандарты-и-спецификации)
+12. [История разработки](#история-разработки)
+13. [Дорожная карта](#дорожная-карта-план-следующих-итераций)
 
 ---
 
@@ -55,6 +59,7 @@
 | GSM  | ~577 мкс        | Временной слот TDMA  |
 | UMTS | 10 мс           | Радиофрейм WCDMA     |
 | LTE  | 1 мс            | Субфрейм E-UTRA      |
+| NR   | 1 мс            | Субфрейм NR (SSB burst) |
 
 ---
 
@@ -65,12 +70,14 @@ RBS/
 ├── CMakeLists.txt          # Система сборки CMake
 ├── rbs.conf                # Конфигурационный файл узла
 ├── rbs.log                 # Лог-файл (создаётся при запуске)
+├── fix/                    # Скрипты пост-обработки ASN.1 (run_all.py + 7 fix_*.py)
 ├── src/
 │   ├── main.cpp            # Точка входа, класс RadioBaseStation
 │   ├── common/
 │   │   ├── types.h         # Общие типы, константы, структуры данных
 │   │   ├── logger.h        # Потокобезопасный синглтон-логгер
-│   │   └── config.cpp/.h   # Парсер INI-конфигурации
+│   │   ├── config.cpp/.h   # Парсер INI-конфигурации
+│   │   └── pcap_writer.cpp/.h  # PCAP-экспорт: S1AP/X2AP/GTP-U → .pcap (Wireshark)
 │   ├── hal/
 │   │   ├── rf_interface.h  # Абстрактный интерфейс IRFHardware
 │   │   └── rf_hardware.cpp/.h  # Симулированное RF-железо
@@ -87,6 +94,12 @@ RBS/
 │   │   ├── lte_mac.cpp/.h  # MAC (PF-планировщик, HARQ, CQI)
 │   │   ├── lte_pdcp.cpp/.h # PDCP (заголовки, шифрование AES-128 CTR)
 │   │   └── lte_stack.cpp/.h # Контроллер LTE eNodeB
+│   ├── nr/
+│   │   ├── nr_phy.cpp/.h   # Физический уровень NR (SSB, PSS/SSS/PBCH, SFN)
+│   │   ├── nr_stack.cpp/.h # Контроллер gNB-DU (NR stub)
+│   │   └── f1ap_codec.cpp/.h # F1AP: F1 Setup Request/Response (TS 38.473)
+│   ├── api/
+│   │   └── rest_server.cpp/.h # HTTP/JSON REST API (cpp-httplib)
 │   └── oms/
 │       ├── oms.cpp/.h      # Fault management, счётчики производительности
 └── tests/
@@ -94,7 +107,7 @@ RBS/
     ├── test_config.cpp     # Тест парсера конфигурации
     ├── test_gsm_phy.cpp    # Тест GSM PHY
     ├── test_lte_mac.cpp    # Тест LTE MAC (CQI→MCS, планировщик)
-    └── test_pdcp.cpp       # Тест PDCP (DL/UL loopback)
+    └── test_pdcp.cpp       # Тест PDCP (DL/UL loopback, AES KAT, SNOW3G/ZUC round-trip)
 ```
 
 ---
@@ -222,8 +235,33 @@ clockLoop (thread) → tick() [каждые 10 мс]
 
 #### Контроллер — `UMTSStack`
 - Запускает PHY + MAC, стартует поток с тактом 10 мс
-- API: `admitUE(imsi)`, `releaseUE(rnti)`, `printStats()`
+- API: `admitUE(imsi, sf)`, `admitUEHSDPA(imsi)`, `reconfigureDCH(rnti, newSf)`, `releaseUE(rnti)`, `printStats()`
 - Счётчики OMS: `umts.connectedUEs`
+
+#### NBAP — `nbap_codec`, `iub_link`
+
+Протокол Node B Application Part (TS 25.433) — управляющий интерфейс NodeB ↔ RNC по Iub.
+Кодирование — ручной APER-кодировщик (без asn1c: спека NBAP > 1 МБ).
+
+Реализованные процедуры:
+
+| Процедура | Направление | Ссылка |
+|-----------|-------------|--------|
+| Cell Setup Request FDD | NodeB → RNC | TS 25.433 §8.3.6 |
+| Radio Link Setup Request FDD | NodeB → RNC | TS 25.433 §8.1.1 |
+| Radio Link Addition Request FDD | NodeB → RNC | TS 25.433 §8.1.4 |
+| Radio Link Deletion Request | NodeB → RNC | TS 25.433 §8.1.6 |
+| Common Transport Channel Setup (FACH/PCH/RACH) | NodeB → RNC | TS 25.433 §8.3.2 |
+| Radio Link Reconfigure Prepare (DCH SF change) | NodeB → RNC | TS 25.433 §8.1.5 |
+| Radio Link Reconfigure Commit | NodeB → RNC | TS 25.433 §8.1.6 |
+| Radio Link Setup Request FDD + HS-DSCH (HSDPA) | NodeB → RNC | TS 25.433 §8.3.15 |
+| Reset Request | NodeB → RNC | TS 25.433 §8.7.1 |
+| Audit Request | NodeB → RNC | TS 25.433 §8.6 |
+
+Каналы HS-DSCH (HSDPA, TS 25.308):
+- `UMTSMAC::assignHSDSCH()` — выделяет bearer с `UMTSChannelType::HS_DSCH`, фиксированный SF=16
+- `UMTSMAC::hsdschUECount()` — число активных HSDPA UE
+- `UMTSStack::admitUEHSDPA(imsi)` — полный путь: HS-DSCH MAC → RRC → RLC AM (DRB1)
 
 ---
 
@@ -299,15 +337,125 @@ MAC → rxQueue → decipher() → removeHeader() → IP-пакет
 ```
 
 - **Заголовок PDCP PDU**: 2 байта — 1 бит D/C (данные/управление) + 15 бит SN (sequence number)
-- **Шифрование**: AES-128 CTR (заглушка XOR в симуляции; ключ задаётся через `PDCPConfig`)
+- **Шифрование**: AES-128 CTR (EEA2), SNOW 3G (EEA1), ZUC (EEA3) — полная реализация TS 33.401 §6.4. Ключ задаётся через `PDCPConfig.cipherKey`, алгоритм — через `cipherAlg`.
 - **Алгоритмы**: `NULL_ALG`, `AES`, `SNOW3G`, `ZUC` (по TS 33.401)
+- **Целостность (EIA2)**: AES-128-CMAC (RFC 4493) — `applyIntegrity()` / `verifyIntegrity()` добавляют/проверяют 4-байтовый MAC-I; ключ задаётся через `PDCPConfig.integrityKey` (TS 33.401 §6.4.2b)
+- **PDCP COUNT / HFN wrap**: 32-бит COUNT = 20-бит HFN + 12-бит SN; HFN инкрементируется при переходе SN через 0xFFF→0; предупреждение LOG_ERR при HFN → 0xFFFFF (TS 33.401 §6.3.2)
 - **ROHC**: точка подключения IP-компрессии заголовков (stub)
 
-#### Контроллер — `LTEStack`
+##### Контроллер — `LTEStack`
 - `admitUE(imsi, cqi)` → RNTI: создаёт PDCP-bearer, добавляет UE в MAC-планировщик
 - `sendIPPacket(rnti, data)` → PDCP→MAC→PHY (DL путь)
 - `receiveIPPacket(rnti)` → PHY→MAC→PDCP (UL путь)
+- `triggerCSFB(rnti)` → Circuit-Switched Fallback (LTE→GSM/UMTS)
 - Счётчики OMS: `lte.connectedUEs`
+
+#### CSFB — Circuit-Switched Fallback (TS 23.272)
+
+CSFB позволяет LTE-терминалу совершать голосовые вызовы через GSM/UMTS, временно уходя с LTE.
+
+Поток сигнализации:
+```
+LTEStack::triggerCSFB(rnti)
+    │
+    ├── LTERrc::triggerCSFB()    → RRC Release + перенаправление на UARFCN/ARFCN
+    ├── S1APLink::sendCSFBInd()  → Extended Service Request (CM_SERVICE_REQUEST)
+    └── MobilityManager::triggerCSFB(rnti, rat)
+            ├── RAT::UMTS → UMTSStack::admitUE()   + NBAP RL Setup
+            └── RAT::GSM  → GSMStack::admitUE()    + Abis channel setup
+```
+
+**Компоненты CSFB:**
+- `LTERrc::triggerCSFB()` — формирует RRC Connection Release с `redirectedCarrierInfo` (UARFCN или ARFCN)
+- `S1APLink::sendCSFBInd()` — кодирует Extended Service Request (APER S1AP)
+- `MobilityManager::triggerCSFB()` — диспетчер возврата на целевой RAT; регистрирует событие в OMS
+
+#### S1AP — `s1ap_codec`, `s1ap_link`
+
+Протокольный уровень S1AP (TS 36.413) — управляющий интерфейс eNB ↔ MME поверх SCTP (TS 36.412).
+Кодирование — APER (X.691) через сгенерированную библиотеку `rbs_asn1_s1ap` (asn1c).
+
+Реализованные процедуры:
+
+| Процедура | Направление | Ссылка |
+|-----------|-------------|--------|
+| S1 Setup | eNB → MME (req) / MME → eNB (resp) | TS 36.413 §8.7.3 |
+| Reset | eNB → MME / MME → eNB | TS 36.413 §8.7.2 |
+| Error Indication | eNB ↔ MME | TS 36.413 §8.7.4 |
+| Paging | MME → eNB | TS 36.413 §8.7.1 |
+| Initial UE Message | eNB → MME | TS 36.413 §8.6.2.1 |
+| Downlink NAS Transport | MME → eNB | TS 36.413 §8.6.2.2 |
+| Uplink NAS Transport | eNB → MME | TS 36.413 §8.6.2.3 |
+| Initial Context Setup | MME → eNB (req) / eNB → MME (resp) | TS 36.413 §8.3.1 |
+| UE Context Release Request | eNB → MME | TS 36.413 §8.3.3 |
+| UE Context Release Command/Complete | MME → eNB / eNB → MME | TS 36.413 §8.3.4 |
+| E-RAB Setup | MME → eNB | TS 36.413 §8.4.1 |
+| E-RAB Release | MME → eNB | TS 36.413 §8.4.3 |
+| Path Switch Request | eNB → MME | TS 36.413 §8.5.4 |
+| Handover Required | eNB → MME | TS 36.413 §8.5.2 |
+| Handover Request Acknowledge | target eNB → MME | TS 36.413 §8.5.2 |
+| Handover Failure | target eNB → MME | TS 36.413 §8.5.2 |
+| eNB Status Transfer | eNB → MME | TS 36.413 §8.5.3 |
+| Handover Notify | eNB → MME | TS 36.413 §8.5.1 |
+
+Транспорт:
+- **Linux**: нативный SCTP kernel (`AF_SCTP`).
+- **Windows**: usrsctp (userspace SCTP), автоматически подключается через CMake FetchContent.
+
+PCAP-трассировка (S1AP/X2AP/GTP-U):
+```cpp
+s1ap.enablePcap("s1ap_trace.pcap");   // S1AP → IPv4+SCTP PPID=18
+x2ap.enablePcap("x2ap_trace.pcap");   // X2AP → IPv4+UDP  port=36422
+s1u.enablePcap ("s1u_trace.pcap");    // GTP-U → IPv4+UDP port=2152
+```
+Файлы открываются Wireshark без дополнительных настроек (LINKTYPE_RAW = raw IPv4).
+
+#### Просмотр трасс в Wireshark
+
+**Открытие файла:**
+```
+File → Open → выберите s1ap_trace.pcap / x2ap_trace.pcap / s1u_trace.pcap
+```
+
+**S1AP (файл `s1ap_trace.pcap`):**
+- Wireshark автоматически распознаёт S1AP по SCTP PPID = 18 (`nas-eps` / `s1ap`).
+- Фильтр для просмотра только S1AP: `sctp && sctp.ppi == 18`
+- Если декодирование AS PDU не срабатывает автоматически:
+  `Analyze → Decode As → SCTP PP ID 18 → S1AP`
+- Полезные колонки: *Frame*, *Time*, *Info* (название процедуры), *src IP / dst IP*.
+
+**X2AP (файл `x2ap_trace.pcap`):**
+- Транспорт UDP, порт 36422. Фильтр: `udp.port == 36422`
+- Декодирование X2AP вручную, если не сработало автоматически:
+  `Analyze → Decode As → UDP port 36422 → X2AP`
+
+**GTP-U (файл `s1u_trace.pcap`):**
+- Wireshark распознаёт GTP-U по UDP порту 2152 автоматически.
+- Фильтр для GTP-U: `gtpv1`
+- Просмотр инкапсулированного IP-пакета: раскройте дерево *GTP → IP → TCP/UDP*.
+- Полезный фильтр Inner IP: `ip.addr == <адрес UE>` при включённой опции
+  *Edit → Preferences → Protocols → GTP → Dissect GTP PDU as IP*.
+
+**Отключение проверки контрольных сумм (рекомендуется):**
+
+Симулятор устанавливает SCTP checksum = 0 и UDP checksum = 0.
+Чтобы Wireshark не помечал пакеты как `[Bad checksum]`:
+```
+Edit → Preferences → Protocols → SCTP → uncheck "Verify checksum"
+Edit → Preferences → Protocols → UDP  → uncheck "Validate the UDP checksum if possible"
+```
+
+**Полезные фильтры отображения:**
+
+| Цель | Фильтр |
+|------|--------|
+| Все S1AP кадры | `sctp.ppi == 18` |
+| Только Setup-процедуры | `s1ap` (если PPID распознан) |
+| X2AP трафик | `udp.port == 36422` |
+| GTP-U трафик | `udp.port == 2152` |
+| По IP eNB (127.0.0.1) | `ip.src == 127.0.0.1` |
+| По IP MME | `ip.dst == <mmeAddr>` |
+| Временной диапазон | `frame.time_relative >= 0.1 && frame.time_relative <= 0.5` |
 
 ---
 
@@ -324,8 +472,11 @@ OMS (синглтон)
  ├── Performance Management
  │   ├── updateCounter(name, value, unit)
  │   └── printPerformanceReport()          ← вызывается каждые 30 с
- └── State Management
-     └── setNodeState(UNLOCKED | LOCKED | SHUTTING_DOWN)
+ ├── State Management
+ │   └── setNodeState(UNLOCKED | LOCKED | SHUTTING_DOWN)
+ └── KPI Threshold Alarms
+     ├── setKpiThreshold(counterName, {threshold, belowIsAlarm, severity, description})
+     └── removeKpiThreshold(counterName)    ← сбрасывает активную аварию
 ```
 
 **Уровни аварий** (AlarmSeverity):
@@ -334,8 +485,223 @@ OMS (синглтон)
 - `CRITICAL` — полный отказ подсистемы (RF hardware FAULT)
 
 **Счётчики производительности** (обновляются из стеков):
-- `gsm.connectedUEs`, `umts.connectedUEs`, `lte.connectedUEs`
-- Расширяемы: достаточно вызвать `OMS::instance().updateCounter("имя", значение, "ед")`
+
+| Счётчик | Откуда | Описание |
+|---------|--------|----------|
+| `lte.connectedUEs` | `LTEStack` | Текущее число подключённых UE |
+| `lte.rrc.attempts` | `LTEStack::admitUE()` | Всего попыток RRC Setup |
+| `lte.rrc.successes` | `LTEStack::admitUE()` | Успешных RRC Setup |
+| `lte.rrc.successRate.pct` | `LTEStack::admitUE()` | RRC success rate (%) |
+| `lte.erab.setups` | `LTEStack::setupERAB()` | Успешных ERAB Setup |
+| `lte.erab.drops` | `LTEStack::releaseUE()` | Сброшенных bearer (внезапный release) |
+| `lte.erab.dropRate.pct` | оба выше | E-RAB drop rate (%) |
+| `lte.ho.attempts` | `X2APLink::handoverRequest()` | Попыток Handover (X2) |
+| `lte.ho.successes` | `X2APLink::onRxPacket()` (HO_ACK) | Успешных Handover |
+| `lte.ho.successRate.pct` | оба выше | HO success rate (%) |
+| `gsm.connectedUEs` | `GSMStack` | Текущее число подключённых UE |
+| `umts.connectedUEs` | `UMTSStack` | Текущее число подключённых UE |
+
+**Порог-триггер аварий (KPI Threshold Alarms):**
+
+`setKpiThreshold()` регистрирует порог для счётчика. Каждый раз при вызове `updateCounter()` OMS автоматически:
+- **поднимает** аварию (`raiseAlarm`), если значение пересекло порог (в любую из сторон, в зависимости от `belowIsAlarm`)
+- **снимает** аварию (`clearAlarm`), если значение вернулось в норму
+
+```cpp
+// Пример: аварий при падении RRC success rate ниже 80 %
+oms.setKpiThreshold("lte.rrc.successRate.pct", {
+    80.0,                  // threshold
+    true,                  // belowIsAlarm: низкое значение — авария
+    AlarmSeverity::MAJOR,
+    "RRC setup success rate below 80%"
+});
+
+// Рекомендуемые пороги
+// lte.rrc.successRate.pct  < 80 %  → MAJOR
+// lte.ho.successRate.pct   < 90 %  → MAJOR
+// lte.erab.dropRate.pct    > 5  %  → MINOR
+```
+
+---
+
+### 5G NR стек
+
+Соответствует **3GPP TS 38.211** (физические каналы NR), **TS 38.213** (тайминг SSB), **TS 38.473** (F1AP gNB-DU ↗ gNB-CU).
+
+#### Типы данных в `types.h`
+
+**`NRScs`** — межносубнесущее расстояние (параметр µ, TS 38.211 §4.2 Table 4.2-1):
+
+| Значение | МЖН | Полос | Диапазон | Слотов/фрейм |
+|----------|-------|--------|---------|-------------|
+| `SCS15`  | 15 кГц | 1 мс  | FR1     | 10          |
+| `SCS30`  | 30 кГц | 0.5 мс | FR1     | 20          |
+| `SCS60`  | 60 кГц | 0.25 мс| FR1/FR2 | 40          |
+| `SCS120` | 120 кГц| 0.125 мс| FR2 (mmWave) | 80     |
+
+**`NRCellConfig`** — полная конфигурация ячейки gNB-DU:
+
+| Поле | Тип | Описание |
+|-------|------|----------|
+| `cellId` | `CellId` | Внутренний ID ячейки |
+| `nrArfcn` | `uint32_t` | NR-ARFCN несущей DL (TS 38.101-1 §5.4.2) |
+| `scs` | `NRScs` | Межносубнесущее расстояние |
+| `band` | `uint8_t` | Операционный диапазон NR (74 = n74, 78 = n78 TDD FR1) |
+| `gnbDuId` | `uint64_t` | 36-бит gNB-DU ID (TS 38.473 §9.3.1.9) |
+| `nrCellIdentity` | `uint64_t` | 36-бит NCI = gNB-ID \|\| Cell-ID |
+| `nrPci` | `uint16_t` | Physical Cell Identity 0–1007 |
+| `ssbPeriodMs` | `uint8_t` | Период SSB: 5/10/20/40/80/160 мс |
+| `cuAddr` / `cuPort` | `string`/`uint16_t` | Адрес gNB-CU, F1AP SCTP-порт (38472) |
+
+**`NRSSBlock`** — один блок SS/PBCH (TS 38.211 §7.4.3):
+- `pss` (127 байт) — m-последовательность, `N_ID_2 = PCI % 3`
+- `sss` (127 байт) — Gold-последовательность, `N_ID_1 = PCI / 3`
+- `pbch` (7 байт) — MIB: SFN (10 бит), SCS, halfFrame, PCI, NR-ARFCN
+- `ssbIdx` — индекс луча 0–3 (до FR2 — до 63)
+
+#### Физический уровень — `NRPhy`
+
+```
+subframeThread (1×std::thread) → tick() [каждые 1 мс]
+                                     │
+                                     ├── измерение SS-RSRP (симул., -80 дБм)
+                                     ├── isSSBSubframe()  → true при sfIdx_==0
+                                     │   и (absMs % ssbPeriodMs)==0
+                                     │       │
+                                     │       ├── цикл ssbIdx 0–3 (FR1, 4 луча):
+                                     │       │   buildPSS(pci)  → 127 BPSK-символов
+                                     │       │   buildSSS(pci)  → 127 BPSK-символов
+                                     │       │   buildPBCH(сфн, полуфрейм) → 7 б. MIB
+                                     │       └── ssbCb_(ssBlock) → NRStack
+                                     └── sfIdx_++ ; sfn_ = (sfn_+1) % 1024
+```
+
+**PSS** (§ 7.4.2.2.1): m-последовательность длиной 127, регистр `0x74`.
+`d(n) = 1 − 2·x((n + 43·N_ID_2) % 127)`, `N_ID_2 = PCI % 3`.
+
+**SSS** (§ 7.4.2.3.1): Gold-последовательность длиной 127 из двух MLS x₀ и x₁.
+`m0 = 15·(N_ID_1/112) + 5·N_ID_2`, `m1 = N_ID_1 % 112`; `N_ID_1 = PCI / 3`.
+
+**PBCH** (структура MIB §§TS 38.331 §6.2.2):
+- Биты системного номера фрейма SFN[9:2], SFN[1:0] (заполняются из `sfn`)
+- SCS, Half-frame bit, nrPci (9 бит), nrArfcn (20 бит), CRC-stub
+
+**SFN-таймер**: 0–1023 (цикл = 10.24 с), разворачивается автоматически после 1024 фреймов.
+
+Public API `NRPhy`:
+```cpp
+bool     start();                     // запуск
+ void     stop();                      // остановка
+void     tick();                      // +1 мс: SSB если пришло время
+void     setSSBCallback(SSBCallback); // подписка на SSB-события
+uint32_t currentSFN();               // SFN 0–1023
+uint32_t ssbTxCount();               // счётчик переданных SSB
+double   measuredSSRSRP();           // симул. SS-RSRP (дБм)
+```
+
+#### Контроллер ячейки — `NRStack`
+
+```
+NRStack(rf, NRCellConfig)
+ │
+ ├── start()  →  создаёт NRPhy, запускает subframeThread (1 мс/тик)
+ ├── admitUE(imsi, cqi=9) → uint16_t C-RNTI
+ ├── releaseUE(crnti)
+ ├── connectedUECount()   → size_t
+ ├── buildF1SetupRequest() → ByteBuffer  (собирает gNB-DU Name = "RBS-gNB-DU-<cellId>")
+ ├── handleF1SetupResponse(pdu) → bool  (принимает Response или Failure)
+ └── currentSFN() → uint32_t
+```
+
+#### F1AP кодек — `f1ap_codec`
+
+Протокол F1 Application Protocol (TS 38.473 §8.7.1) — интерфейс gNB-DU ↗ gNB-CU по F1 (SCTP 38472).
+Кодирование — компактный TLV-формат (магик `0x3847`, big-endian), самостоятельно без asn1c.
+
+Реализованные процедуры:
+
+| Сообщение | Направление | Ссылка |
+|----------|-------------|--------|
+| F1 Setup Request | gNB-DU → gNB-CU | TS 38.473 §8.7.1.2 |
+| F1 Setup Response | gNB-CU → gNB-DU | TS 38.473 §8.7.1.3 |
+| F1 Setup Failure | gNB-CU → gNB-DU | TS 38.473 §8.7.1.4 |
+
+**F1 Setup Request** (`F1SetupRequest`) — отправляется gNB-DU при подключении к CU:
+- `gnbDuId` (36 бит), `gnbDuName` (строка), `transactionId`, список `servedCells`
+- Каждая `F1ServedCell`: NCI (36 бит), NR-ARFCN, SCS, PCI, TAC
+
+**F1 Setup Response** (`F1SetupResponse`) — Ответ CU: имя CU + список активированных NCI.
+
+**F1 Setup Failure** (`F1SetupFailure`) — Сбой: `causeType` + `causeValue` (radio/transport/protocol/misc).
+
+```cpp
+// Пример использования
+F1SetupRequest req;
+req.gnbDuId = 0x123456789ULL;
+req.gnbDuName = "RBS-gNB-DU-4";
+req.servedCells.push_back({0xABCDE01, 627264, NRScs::SCS30, 500, 1});
+ByteBuffer pdu = encodeF1SetupRequest(req);
+
+F1SetupResponse rsp;
+bool ok = decodeF1SetupResponse(pdu, rsp);
+```
+
+---
+
+### REST API — Web Dashboard
+
+Встроенный HTTP-сервер на базе **cpp-httplib** v0.18.5 (без OpenSSL, header-only).
+Класс `RestServer` (модуль `rbs_api`) запускается в фоновом потоке и предоставляет JSON-интерфейс к OMS.
+
+```cpp
+RestServer srv(8080);
+srv.start();           // неблокирующий запуск
+srv.stop();
+```
+
+**Endpoints:**
+
+| Метод | URL | Описание |
+|------|----|----------|
+| `GET` | `/api/v1/status` | Версия, `nodeState` (UNLOCKED/LOCKED/SHUTTING_DOWN), список RAT |
+| `GET` | `/api/v1/pm` | Все PM-счётчики OMS (`getAllCounters()`) |
+| `GET` | `/api/v1/alarms` | Активные аварии с severity |
+| `POST` | `/api/v1/admit` | Тело: `{"imsi":N,"rat":"LTE"}` → `{"status":"ok","crnti":N}` |
+
+Примеры ответов:
+
+```json
+// GET /api/v1/status
+{
+  "version": "1.0.0",
+  "nodeState": "UNLOCKED",
+  "rats": ["GSM","UMTS","LTE","NR"]
+}
+
+// GET /api/v1/pm
+{
+  "counters": [
+    {"name": "lte.connectedUEs", "value": 3},
+    {"name": "lte.rrc.successRate.pct", "value": 100}
+  ]
+}
+
+// GET /api/v1/alarms
+{
+  "alarms": [
+    {"id": 1, "source": "RFHardware", "description": "PA overheat", "severity": "MAJOR"}
+  ]
+}
+
+// POST /api/v1/admit  body: {"imsi":123456789,"rat":"LTE"}
+{"status": "ok", "crnti": 101}
+```
+
+**Особенности:**
+- Биндинг на `127.0.0.1` (не `0.0.0.0`) — USB​безопасность в локальной сети
+- `port=0` — автоматически выбирается свободный эфемерный порт (рекомендуется для тестов)
+- Нет SSL/TLS зависимостей (`HTTPLIB_USE_OPENSSL_IF_AVAILABLE OFF`)
+- Тесты используют `httplib::Client` для ОТП через те же заголовки cpp-httplib
 
 ---
 
@@ -344,19 +710,21 @@ OMS (синглтон)
 #### Класс `RadioBaseStation`
 
 ```
-RadioBaseStation(configPath, mode)         ← mode: GSM | UMTS | LTE | ALL
+RadioBaseStation(configPath, mode)         ← mode: GSM | UMTS | LTE | NR | ALL
  │
  ├── Config::instance().loadFile()         ← читает rbs.conf
  ├── if GSM/ALL:  RFHardware(2Tx,2Rx) + GSMStack
  ├── if UMTS/ALL: RFHardware(2Tx,2Rx) + UMTSStack
  ├── if LTE/ALL:  RFHardware(2Tx,4Rx) + LTEStack
+ ├── if NR/ALL:   RFHardware(4Tx,4Rx) + NRStack    ← SCS 30 кГц, SSB период 20 мс
  ├── setAlarmCallback() → OMS              ← аппаратные аварии
+ ├── RestServer(8080).start()              ← REST API / Web Dashboard (п.18)
  │
  ├── start()
  │   ├── OMS → UNLOCKED
  │   ├── rf.initialise() + selfTest()  (только активные RAT)
  │   ├── запуск выбранных стеков
- │   └── баннер ONLINE [GSM (2G) | UMTS (3G) | LTE (4G) | …]
+ │   └── баннер ONLINE [GSM (2G) | UMTS (3G) | LTE (4G) | NR (5G)]
  │
  ├── runDemo()
  │   └── для каждого активного RAT:
@@ -501,7 +869,8 @@ cmake --build build -j$(nproc)
 ./build/rbs_node rbs.conf gsm    # только GSM
 ./build/rbs_node rbs.conf umts   # только UMTS
 ./build/rbs_node rbs.conf lte    # только LTE
-./build/rbs_node rbs.conf        # все три RAT
+./build/rbs_node rbs.conf nr     # только 5G NR
+./build/rbs_node rbs.conf        # все четыре RAT (ALL)
 ```
 
 ### Опции CMake
@@ -515,7 +884,7 @@ cmake --build build -j$(nproc)
 
 ## Запуск
 
-Второй аргумент задаёт стандарт радиодоступа. При отсутствии аргумента запускаются все три стека одновременно.
+Второй аргумент задаёт стандарт радиодоступа. При отсутствии аргумента запускаются все четыре стека одновременно.
 
 ```powershell
 # Только GSM (2G)
@@ -527,7 +896,10 @@ cmake --build build -j$(nproc)
 # Только LTE (4G)
 .\build\Release\rbs_node.exe rbs.conf lte
 
-# Все три RAT одновременно (режим по умолчанию)
+# Только NR (5G)
+.\build\Release\rbs_node.exe rbs.conf nr
+
+# Все четыре RAT одновременно (режим по умолчанию)
 .\build\Release\rbs_node.exe rbs.conf
 
 # Справка по аргументам
@@ -553,23 +925,85 @@ cmake --build build -j$(nproc)
 2026-04-08 00:32:03.860 [INFO ] [RBS] [LTE ] UE RNTI=1 admitted on EARFCN=1800 PCI=300 CQI=12 → MCS=17
 ```
 
+### Open5GS interop (Linux, SCTP)
+
+Короткая проверка S1 Setup Request/Response с реальным MME (Open5GS):
+
+Детальный пошаговый quickstart с точными Linux-командами: `OPEN5GS_LINUX_QUICKSTART.md`.
+
+1. Поднимите Open5GS MME на Linux и убедитесь, что он слушает SCTP `36412` на нужном IP.
+2. В `rbs.conf` укажите `lte.mme_addr=<IP Linux-хоста с Open5GS>` и `lte.mme_port=36412`.
+3. Запустите узел в LTE-режиме:
+
+```bash
+./build/rbs_node rbs.conf lte
+```
+
+4. Убедитесь в логах RBS, что отправлен S1 Setup Request.
+5. Убедитесь в логах RBS, что получен и декодирован S1 Setup Response:
+
+```text
+[INFO ] [S1AP] [<enb-id>] RX S1SetupResponse decoded from <mme-ip>:36412 (len=<n>)
+```
+
+6. Дополнительно проверьте в логах Open5GS успешную обработку S1 Setup.
+
+Примечание: на Windows без нативного SCTP возможен fallback-транспорт, но для реального interop с Open5GS нужен нативный SCTP (рекомендуется запуск RBS на Linux).
+
 ---
 
 ## Тесты
 
 ```powershell
 cd build
-ctest -C Release --output-on-failure
+ctest -C Debug --output-on-failure
 ```
 
-| Тест              | Что проверяет                                           |
-|-------------------|---------------------------------------------------------|
-| `test_config`     | Чтение INI-файла, типи́зированные геттеры, buildXxxConfig() |
-| `test_gsm_phy`    | Счётчики фреймов/слотов PHY, формирование burst-пакетов |
-| `test_lte_mac`    | Вход UE, таблица CQI→MCS, обновление метрики PF        |
-| `test_pdcp`       | DL/UL loopback, добавление/удаление bearer, SN-счётчик  |
+| Тест                    | Что проверяет                                                   |
+|-------------------------|-----------------------------------------------------------------|
+| `test_config`           | INI-парсер, buildXxxConfig()                                    |
+| `test_gsm_phy`          | Счётчики фреймов/слотов PHY, burst-пакеты                      |
+| `test_lte_mac`          | CQI→MCS, PF-планировщик                                        |
+| `test_pdcp`             | DL/UL loopback, SN-счётчик, шифрование                         |
+| `test_lte_phy`          | PSS/SSS/PBCH, PDCCH/PDSCH                                      |
+| `test_lte_rlc`          | RLC AM/UM segmentation & reassembly                            |
+| `test_umts_mac`         | DCH assign/release, планировщик                                |
+| `test_s1ap_codec`       | APER encode/decode: S1Setup, NAS, Paging, Reset, ErrorInd, Handover (5 msg) |
+| `test_x2ap_codec`       | X2AP encode/decode: X2Setup, HO                                |
+| `test_nbap_codec`       | NBAP encode/decode: RadioLinkSetup                             |
+| `test_gtp_u`            | GTP-U encode/decode, S1ULink UDP loopback (eNB↔simulated SGW) |
+| `test_lte_stack`        | admitUE / DL-DU путь / releaseUE                               |
+| `test_gsm_stack`        | GSM admit/release, счётчики OMS                                |
+| `test_umts_stack`       | UMTS admit/release                                             |
+| `test_oms`              | Аварии (raise/clear), PM-метрики, состояния узла, KPI-пороги   |
+| `test_gsm_rlc`          | GSM RLC AM/UM                                                  |
+| `test_gsm_rr`           | GSM Radio Resource: Channel Request, IA                        |
+| `test_umts_phy`         | WCDMA spreading, CPICH/SCH                                     |
+| `test_umts_rlc`         | UMTS RLC                                                       |
+| `test_umts_rrc`         | RRC Connection Setup / Release (UMTS)                          |
+| `test_lte_rrc`          | RRC Connection Setup / Release (LTE)                           |
+| `test_s1ap_link`        | S1APLink connect / s1Setup / NAS transport                     |
+| `test_pcap_writer`      | PcapWriter: глобальный заголовок, SCTP/UDP записи (S1AP/X2AP/GTP-U) |
+| `test_x2ap_link`        | X2AP link setup / HO signalling                                |
+| `test_abis_link`        | Abis (GSM) link                                                |
+| `test_iub_link`         | Iub (UMTS) link — NBAP RL Setup/Addition/Deletion, измерения   |
+| `test_integration`      | Полный E2E: все RAT + OMS + admit/release                      |
+| `test_mobility`         | X2-хэндовер, Inter-RAT                                         |
+| `test_son`              | SON: ANR, MLB, MRO                                             |
+| `test_csfb`             | CSFB: LTE→GSM/UMTS trigger, RRC Release, S1AP Extended SvcReq |
+| `test_nbap_dch`         | NBAP DCH/HSDPA: CommonTransChSetup, RLReconfigPrepare/Commit, HS-DSCH, UMTS HSDPA admit |
+| `test_lte_ul_phy`       | PUCCH format 1/2, PUSCH scheduling grants, SRS периодический сигнал |
+| `test_lte_measurement`  | A1/A2/A3/A5 event triggers, MeasurementReport, X2 HO trigger |
+| `test_nbap_edch`        | E-DCH bearer assign, NBAP RadioLinkSetup с E-DCH MAC-d flow |
+| `test_umts_soft_ho`     | Active Set Add/Drop (SHO), RL Addition/Deletion NBAP, macro diversity |
+| `test_lte_ca`           | Carrier Aggregation: 2CC admit, PCell/SCell планировщик, DL throughput |
+| `test_rohc`             | ROHC профиль 0x0001: IPv4/UDP/RTP header compress/decompress round-trip |
+| `test_nr_phy`           | NR PHY: PSS/SSS/PBCH, SSB burst, SFN timing, PCI-dependent sequences |
+| `test_f1ap_codec`       | F1AP: F1 Setup Request/Response/Failure encode/decode, NRStack F1 flow |
+| `test_rest_api`         | HTTP REST API: GET /status /pm /alarms, POST /admit, JSON-схема, Content-Type |
+| `test_endc`             | EN-DC NSA Option 3/3a/3x: SgNB Add/Ack/Reject/Mod/Release, SCG bearer, NR C-RNTI |
 
-Все 4 теста проходят за ~0.53 с.
+Все **43 теста** проходят за ~8 с.
 
 ---
 
@@ -633,6 +1067,34 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 
 ---
 
+## История разработки
+
+| Итерация | Реализовано |
+|----------|-------------|
+| п.1 | Базовая архитектура: HAL, Common (types/logger/config), CMake |
+| п.2 | GSM PHY (TDMA, burst), GSM MAC (SI, TCH/SDCCH), GSM Stack |
+| п.3 | UMTS PHY (WCDMA, spreading, CPICH/SCH), UMTS MAC, UMTS Stack |
+| п.4 | LTE PHY (OFDMA, PSS/SSS/PBCH, PDCCH/PDSCH), LTE MAC (PF-планировщик, HARQ, CQI→MCS) |
+| п.5 | PDCP (AES-128 CTR, SNOW3G, ZUC), OMS (Fault/PM/State management, KPI-пороги) |
+| п.6 | S1AP (18 процедур, APER через asn1c), X2AP, NBAP-stub, GTP-U, PCAP-writer |
+| п.7 | RLC AM/UM (LTE/UMTS/GSM), RRC (LTE/UMTS), Abis link, Iub link, интеграционные тесты |
+| п.8 | Mobility Manager (X2-хэндовер, Inter-RAT), SON (ANR, MLB, MRO) |
+| п.9 | CSFB (Circuit-Switched Fallback LTE→GSM/UMTS): LTERrc, S1APLink, MobilityManager |
+| п.10 | NBAP DCH/HSDPA: CommonTransChSetup, RLReconfigurePrepare/Commit, HS-DSCH bearer, UMTS admitUEHSDPA |
+| п.11 | LTE UL PHY: PUCCH format 1/1a/2, PUSCH scheduling grants, SRS (Sounding Reference Signal) |
+| п.12 | LTE RRC Measurement Control: A1/A2/A3/A5 event triggers, MeasurementReport, A3→X2 HO |
+| п.13 | HSUPA/E-DCH: UMTSChannelType::E_DCH, UMTSMAC::assignEDCH(), NBAP RadioLinkSetup E-DCH |
+| п.14 | UMTS Soft Handover: Active Set Management, RL Addition/Deletion через NBAP, macro diversity |
+| п.15 | Carrier Aggregation (LTE-A Rel-10): до 5 CC, PCell/SCell планировщики, cross-carrier scheduling |
+| п.16 | ROHC (RFC 5225): профиль 0x0001 RTP/UDP/IP, rohcCompress/rohcDecompress в PDCP |
+| п.17 | 5G NR Stub: модуль rbs_nr, NRPhy SSB/PSS/SSS/PBCH, F1AP gNB-DU Setup (TS 38.473) |
+| п.18 | Web Dashboard: rbs_api (cpp-httplib), GET /status /pm /alarms, POST /admit |
+| п.19 | EN-DC NSA: Option 3a (SCG bearer), Option 3 (split-MN PDCP), Option 3x (split-SN PDCP); X2AP SgNB Add/Mod/Release; NRStack::acceptSCGBearer |
+| п.20 | PM Export: OMS::exportCsv (CSV с ISO-8601 timestamp), OMS::pushInflux (InfluxDB Line Protocol UDP), ротация rbs.log по размеру |
+| п.21 | PDCP Security: EIA2 (AES-128-CMAC, RFC 4493), applyIntegrity/verifyIntegrity, COUNT = HFN<<12\|SN, HFN wrap-around detection (TS 33.401 §6.4.2b) |
+
+---
+
 ## Стандарты и спецификации
 
 | Документ            | Назначение                                           |
@@ -650,5 +1112,80 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 | 3GPP TS 32.111      | OMS: управление авариями (Fault Management)          |
 | 3GPP TS 32.600      | OMS: Network Resource Model                          |
 | 3GPP TS 28.623      | OMS: IOC (Information Object Classes)                |
+| 3GPP TS 36.410      | S1: общие аспекты и принципы                         |
+| 3GPP TS 36.412      | S1: транспортный уровень (SCTP/IP)                   |
+| 3GPP TS 36.413      | S1AP: протокол уровня приложений eNB–MME              |
+| 3GPP TS 36.420      | X2: общие аспекты                                    |
+| 3GPP TS 36.423      | X2AP: протокол уровня приложений eNB–eNB             |
+| 3GPP TS 25.308      | UMTS: High Speed Downlink Packet Access (HSDPA)      |
+| 3GPP TS 25.433      | NBAP: протокол Node B – RNC                          |
+| 3GPP TS 38.211      | NR: физические каналы (PSS/SSS/PBCH, SSB, SCS, SFN)      |
+| 3GPP TS 38.213      | NR: физические процедуры (тайминг SSB, периодичность)       |
+| 3GPP TS 38.300      | NR: общая архитектура NG-RAN, цепочка gNB-CU/DU |
+| 3GPP TS 38.321      | NR: MAC-уровень (C-RNTI, планировщик)                    |
+| 3GPP TS 38.331      | NR: RRC, MIB (структура PBCH-полезной нагрузки)           |
+| 3GPP TS 38.401      | NR: архитектура NG-RAN (gNB-DU, gNB-CU, разделение)       |
+| 3GPP TS 38.473      | F1AP: протокол gNB-DU – gNB-CU (F1 Setup, F1AP SCTP 38472) |
+| RFC 7540            | HTTP/2 (справочно; REST API работает по HTTP/1.1)        |
+
+---
+
+## Дорожная карта (план следующих итераций)
+
+### п.22 — NG-AP (gNB ↔ AMF, 5G Core)
+**Цель:** полный интерфейс между gNB и 5G Core (аналог S1AP для NR SA).
+- `src/nr/ngap_codec.cpp/.h` — кодек NG-AP (TS 38.413), APER через asn1c
+- `src/nr/ngap_link.cpp/.h` — SCTP-транспорт, NGSetupRequest/Response, PDU Session Establishment
+- `NRStack`: вызов `ngap_link.ngSetup()` при старте
+- Тест: `test_ngap_codec` (NGSetup, PDU Session, UE Context Release)
+- Ссылки: TS 38.413, TS 38.401 §8.7
+
+### п.23 — NR MAC Scheduler + SDAP
+**Цель:** завершить DU data path для 5G NR (аналог LTE PDCP/MAC).
+- `NRMac` — планировщик NR: numerology-aware, BWP switching, DCI format 1_1
+- `SDAP` (TS 37.324) — QoS Flow → DRB mapping, QFI в заголовке SDAP
+- `NRPDCP` — 18-бит SN (long), интеграция с EIA2/EEA2
+- Тест: `test_nr_mac` (admit UE, DL scheduler, QoS flow → DRB)
+- Ссылки: TS 37.324, TS 38.321, TS 38.323
+
+### п.24 — VoLTE / IMS stub
+**Цель:** моделирование голосовых вызовов поверх LTE (IMS + SIP).
+- SIP REGISTER / INVITE / BYE — минимальный stub (строковый кодек)
+- RTP/RTCP header (RFC 3550) в GTP-U bearer
+- `LTEStack::setupVoLTEBearer(rnti)` — выделение QCI=1 bearer (GBR Voice)
+- Тест: `test_volte` (SIP INVITE → GTP-U RTP burst)
+- Ссылки: 3GPP TS 26.114, RFC 3261, RFC 3550
+
+### п.25 — Xn-AP (NR inter-gNB)
+**Цель:** inter-gNB хэндовер для 5G NR (аналог X2AP).
+- `src/nr/xnap_codec.cpp/.h` — Xn Setup Request/Response + XnAP HO (TS 38.423 §8.3)
+- `NRStack::handoverRequired()` → `XnAPLink::handoverRequest()`
+- Тест: `test_xnap` (Xn Setup, HO Required → Request → Notify)
+- Ссылки: TS 38.423
+
+### п.26 — Multi-Cell Topology & PM Export (Prometheus)
+**Цель:** запуск нескольких ячеек одновременно с агрегацией PM.
+- `RadioBaseStation`: массив `LTECellConfig[]`, несколько `LTEStack` экземпляров
+- `OMS::exportPrometheus(port)` — `/metrics` endpoint в формате OpenMetrics
+- Модель интерференции между ячейками (упрощённая SINR по расстоянию)
+- Тест: `test_multi_cell` (3 ячейки, admit UE в каждой, проверить OMS счётчики)
+- Ссылки: TS 36.300 §10.1, OpenMetrics RFC
+
+### п.27 — RAN Slicing (5G, TS 28.541)
+**Цель:** изоляция ресурсов для сетевых слайсов (eMBB / URLLC / mMTC).
+- `SliceConfig`: S-NSSAI (SST + SD), MAX_PRB per slice
+- `LTEMAC` / `NRMac`: slice-aware PF планировщик (PRB quota по NSSAI)
+- `OMS`: счётчики per-slice (`slice.eMBB.connectedUEs`, `slice.URLLC.prb_used`)
+- REST API: `GET /api/v1/slices` — статус слайсов
+- Тест: `test_slicing` (3 слайса, quota enforcement, OMS counters)
+- Ссылки: TS 28.541, TS 38.300 §5.7.1
+
+### п.28 — CI/CD Pipeline (GitHub Actions)
+**Цель:** автоматическая сборка и тестирование на каждый push.
+- `.github/workflows/build.yml` — Ubuntu 22.04 + GCC 12, cmake + ctest
+- Matrix: `{Debug, Release}` × `{ubuntu-22.04, ubuntu-24.04}`
+- Badge в README (`![CI](https://github.com/.../actions/...badge.svg)`)
+- Опционально: ASAN run в Debug matrix
+- Ссылки: GitHub Actions docs, CMake/CTest CI best practices
 
 

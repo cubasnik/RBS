@@ -45,3 +45,8 @@ build/
 
 # Runtime log
 rbs.log
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo

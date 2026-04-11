@@ -11,7 +11,7 @@ Run `fix_asn1_encoding.py` to replace non-ASCII characters in the spec files bef
 
 ```bash
 cd /c/Users/Alexey/Desktop/min/vNE/RBS/RBS
-python fix_asn1_encoding.py
+python fix/fix_asn1_encoding.py
 ```
 
 Confirm every `.asn` file prints "Чистый" or "Исправлен".
@@ -37,12 +37,18 @@ rm -rf src/generated/s1ap   # or x2ap / nbap
 ## Step 3 — Apply fix scripts (run in order)
 
 ```bash
-python fix_x2ap_c_includes.py
-python fix_x2ap_cycles.py
-python fix_x2ap_pdu_alias.py
-python fix_protocol_ie_field.py
-python fix_static_redefs.py
-python fix_msvc_asn1.py
+python fix/run_all.py
+```
+
+Or to run each script individually:
+
+```bash
+python fix/fix_x2ap_c_includes.py
+python fix/fix_x2ap_cycles.py
+python fix/fix_x2ap_pdu_alias.py
+python fix/fix_protocol_ie_field.py
+python fix/fix_static_redefs.py
+python fix/fix_msvc_asn1.py
 ```
 
 Each script prints what it changed. If a script reports errors, fix the script before continuing.
@@ -70,9 +76,9 @@ cmake --build . --config Debug
 
 | Symptom | Likely cause | Fix |
 |---------|-------------|-----|
-| Duplicate symbol linker error | New IE type added → duplicate statics | Re-run `fix_protocol_ie_field.py` or `fix_static_redefs.py` |
-| Circular include compile error | New container type | Re-run `fix_x2ap_cycles.py` |
-| `aioc__undefined` missing | `asn_ioc.h` not patched | Check `fix_x2ap_cycles.py` patch for `asn_ioc.h` |
-| `C2016` empty union | ProtocolExtensionField union empty | Check `fix_x2ap_cycles.py` empty-union patch |
+| Duplicate symbol linker error | New IE type added → duplicate statics | Re-run `fix/fix_protocol_ie_field.py` or `fix/fix_static_redefs.py` |
+| Circular include compile error | New container type | Re-run `fix/fix_x2ap_cycles.py` |
+| `aioc__undefined` missing | `asn_ioc.h` not patched | Check `fix/fix_x2ap_cycles.py` patch for `asn_ioc.h` |
+| `C2016` empty union | ProtocolExtensionField union empty | Check `fix/fix_x2ap_cycles.py` empty-union patch |
 | NBAP timed out, partial files | Large spec, normal | Use `gen_nbap.sh` (120 s timeout) |
-| Non-ASCII in generated `.c` | Spec file had encoding issues | Re-run `fix_asn1_encoding.py`, then regenerate |
+| Non-ASCII in generated `.c` | Spec file had encoding issues | Re-run `fix/fix_asn1_encoding.py`, then regenerate |
