@@ -745,7 +745,7 @@ srv.stop();
 
 | Метод | URL | Описание |
 |------|----|----------|
-| `GET` | `/api/v1/status` | Версия, `nodeState` (UNLOCKED/LOCKED/SHUTTING_DOWN), список RAT |
+| `GET` | `/api/v1/status` | Версия, `nodeState` (UNLOCKED/LOCKED/SHUTTING_DOWN), список RAT, EN-DC статус (`endcEnabled`, `endcOption`, `x2Peer`, `enbBearerId`, `scgDrbId`) |
 | `GET` | `/api/v1/pm` | Все PM-счётчики OMS (`getAllCounters()`) |
 | `GET` | `/api/v1/alarms` | Активные аварии с severity |
 | `POST` | `/api/v1/admit` | Тело: `{"imsi":N,"rat":"LTE"}` → `{"status":"ok","crnti":N}` |
@@ -765,7 +765,12 @@ srv.stop();
 {
   "version": "1.0.0",
   "nodeState": "UNLOCKED",
-  "rats": ["GSM","UMTS","LTE","NR"]
+  "rats": ["GSM","UMTS","LTE","NR"],
+  "endcEnabled": true,
+  "endcOption": "3a",
+  "x2Peer": "127.0.0.1:36422",
+  "enbBearerId": 5,
+  "scgDrbId": 1
 }
 
 // GET /api/v1/pm
@@ -1385,6 +1390,25 @@ curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
 > Invoke-RestMethod http://127.0.0.1:8080/api/v1/status
 > ```
 
+Для более удобного цветного вывода в WSL используйте helper-скрипт:
+```bash
+./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links
+./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10
+./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
+```
+
+Для PowerShell доступен аналогичный helper с цветным форматированием:
+```powershell
+.\tools\rbs_api.ps1 http://127.0.0.1:8080/api/v1/links
+.\tools\rbs_api.ps1 "http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10"
+.\tools\rbs_api.ps1 http://127.0.0.1:8080/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
+
+# Короткие алиасы без URL:
+.\tools\rbs_api.ps1 links
+.\tools\rbs_api.ps1 trace s1
+.\tools\rbs_api.ps1 inject s1 setup
+```
+
 ```bash
 # Статус узла:
 curl http://127.0.0.1:8080/api/v1/status
@@ -1403,6 +1427,51 @@ curl -X POST http://127.0.0.1:8080/api/v1/admit \
      -H "Content-Type: application/json" \
      -d '{"imsi": 300000000000003, "rat": "LTE"}'
 # → {"status":"ok","crnti":101}
+
+# Helper для WSL2/NAT, если обычный curl не достаёт Windows localhost:
+rbs_api () { powershell.exe -NoProfile -Command "Invoke-RestMethod '$1' | ConvertTo-Json -Depth 6 -Compress"; }
+```
+
+#### Быстрая проверка интерфейсов
+
+`abis` доступен в режиме `gsm`, `iub` в режиме `umts`, `s1` в режиме `lte`.
+При запуске без указания RAT поднимаются все стеки сразу.
+
+```bash
+# ABIS (GSM)
+# Windows: .\build\Release\rbs_node.exe rbs.conf gsm
+rbs_api "http://127.0.0.1:8080/api/v1/links"
+rbs_api "http://127.0.0.1:8080/api/v1/links/abis/inject"
+rbs_api "http://127.0.0.1:8080/api/v1/links/abis/trace?limit=10"
+
+# IUB (UMTS)
+# Windows: .\build\Release\rbs_node.exe rbs.conf umts
+rbs_api "http://127.0.0.1:8080/api/v1/links/iub/inject"
+rbs_api "http://127.0.0.1:8080/api/v1/links/iub/trace?limit=10"
+
+# S1 (LTE)
+# Windows: .\build\Release\rbs_node.exe rbs.conf lte
+rbs_api "http://127.0.0.1:8080/api/v1/links/s1/inject"
+rbs_api "http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10"
+```
+
+```bash
+# Block / unblock / inject examples
+curl -X POST http://127.0.0.1:8080/api/v1/links/iub/block \
+  -H 'Content-Type: application/json' \
+  -d '{"type":"NBAP:RESET"}'
+
+curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
+  -H 'Content-Type: application/json' \
+  -d '{"type":"NBAP:RESET"}'
+
+curl -X POST http://127.0.0.1:8080/api/v1/links/s1/inject \
+  -H 'Content-Type: application/json' \
+  -d '{"procedure":"S1AP:S1_SETUP"}'
+
+curl -X POST http://127.0.0.1:8080/api/v1/links/abis/inject \
+  -H 'Content-Type: application/json' \
+  -d '{"procedure":"OML:OPSTART"}'
 ```
 
 **PM Export:**

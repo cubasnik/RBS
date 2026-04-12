@@ -2,6 +2,7 @@
 #include "../oms/oms.h"
 #include "../common/logger.h"
 #include "../common/link_registry.h"
+#include "../common/config.h"
 
 #ifdef _WIN32
 #  ifndef WIN32_LEAN_AND_MEAN
@@ -68,6 +69,15 @@ static const char* nodeStateToStr(rbs::oms::IOMS::NodeState s) {
     return "UNKNOWN";
 }
 
+static const char* endcOptionToStr(rbs::ENDCOption o) {
+    switch (o) {
+        case rbs::ENDCOption::OPTION_3:  return "3";
+        case rbs::ENDCOption::OPTION_3A: return "3a";
+        case rbs::ENDCOption::OPTION_3X: return "3x";
+    }
+    return "3a";
+}
+
 // Minimal JSON field extractors (not a full parser — handles well-formed input).
 static std::string extractJsonStr(const std::string& json, const std::string& key) {
     auto it = json.find('"' + key + '"');
@@ -115,11 +125,17 @@ struct RestServer::Impl {
         // ── GET /api/v1/status ─────────────────────────────────────────
         svr.Get("/api/v1/status", [](const httplib::Request&, httplib::Response& res) {
             auto& oms = rbs::oms::OMS::instance();
+                        const auto endc = rbs::Config::instance().buildENDCConfig();
             std::ostringstream j;
             j << "{"
               << "\"version\":\"1.0.0\","
               << "\"nodeState\":" << jsonEscStr(nodeStateToStr(oms.getNodeState())) << ","
-              << "\"rats\":[\"GSM\",\"UMTS\",\"LTE\",\"NR\"]"
+                            << "\"rats\":[\"GSM\",\"UMTS\",\"LTE\",\"NR\"],"
+                            << "\"endcEnabled\":" << (endc.enabled ? "true" : "false") << ","
+                            << "\"endcOption\":" << jsonEscStr(endcOptionToStr(endc.option)) << ","
+                            << "\"x2Peer\":" << jsonEscStr(endc.x2Addr + ":" + std::to_string(endc.x2Port)) << ","
+                            << "\"enbBearerId\":" << static_cast<int>(endc.enbBearerId) << ","
+                            << "\"scgDrbId\":" << static_cast<int>(endc.scgDrbId)
               << "}";
             res.set_content(j.str(), "application/json");
         });
@@ -206,6 +222,7 @@ struct RestServer::Impl {
             }
             j << "]";
             res.set_content(j.str(), "application/json");
+            RBS_LOG_INFO("REST", "links list count=", links.size());
         });
 
         // ── GET /api/v1/links/{name}/trace ─────────────────────────────
@@ -215,6 +232,7 @@ struct RestServer::Impl {
             if (!e || !e->ctrl) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "trace link=", name, " not found");
                 return;
             }
             size_t limit = 50;
@@ -240,6 +258,7 @@ struct RestServer::Impl {
             }
             j << "]}";
             res.set_content(j.str(), "application/json");
+            RBS_LOG_INFO("REST", "trace link=", name, " limit=", limit, " count=", msgs.size());
         });
 
         // ── POST /api/v1/links/{name}/connect ──────────────────────────
@@ -249,10 +268,12 @@ struct RestServer::Impl {
             if (!e) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "connect link=", name, " not found");
                 return;
             }
             if (e->reconnect) e->reconnect();
             res.set_content("{\"status\":\"ok\"}", "application/json");
+            RBS_LOG_INFO("REST", "connect link=", name, " status=ok");
         });
 
         // ── POST /api/v1/links/{name}/disconnect ───────────────────────
@@ -262,10 +283,12 @@ struct RestServer::Impl {
             if (!e) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "disconnect link=", name, " not found");
                 return;
             }
             if (e->disconnect) e->disconnect();
             res.set_content("{\"status\":\"ok\"}", "application/json");
+            RBS_LOG_INFO("REST", "disconnect link=", name, " status=ok");
         });
 
         // ── POST /api/v1/links/{name}/block ────────────────────────────
@@ -276,16 +299,19 @@ struct RestServer::Impl {
             if (!e || !e->ctrl) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "block link=", name, " not found");
                 return;
             }
             std::string msgType = extractJsonStr(req.body, "type");
             if (msgType.empty()) {
                 res.status = 400;
                 res.set_content("{\"error\":\"missing type\"}", "application/json");
+                RBS_LOG_WARNING("REST", "block link=", name, " missing type");
                 return;
             }
             e->ctrl->blockMsg(msgType);
             res.set_content("{\"status\":\"ok\"}", "application/json");
+            RBS_LOG_INFO("REST", "block link=", name, " type=", msgType, " status=ok");
         });
 
         // ── POST /api/v1/links/{name}/unblock ──────────────────────────
@@ -295,16 +321,19 @@ struct RestServer::Impl {
             if (!e || !e->ctrl) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "unblock link=", name, " not found");
                 return;
             }
             std::string msgType = extractJsonStr(req.body, "type");
             if (msgType.empty()) {
                 res.status = 400;
                 res.set_content("{\"error\":\"missing type\"}", "application/json");
+                RBS_LOG_WARNING("REST", "unblock link=", name, " missing type");
                 return;
             }
             e->ctrl->unblockMsg(msgType);
             res.set_content("{\"status\":\"ok\"}", "application/json");
+            RBS_LOG_INFO("REST", "unblock link=", name, " type=", msgType, " status=ok");
         });
 
         // ── GET /api/v1/links/{name}/inject ────────────────────────────
@@ -314,12 +343,15 @@ struct RestServer::Impl {
             if (!e) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "inject list link=", name, " not found");
                 return;
             }
             std::ostringstream j;
             j << "{\"procedures\":[";
+            size_t procCount = 0;
             if (e->injectableProcs) {
                 auto procs = e->injectableProcs();
+                procCount = procs.size();
                 bool first = true;
                 for (const auto& p : procs) {
                     if (!first) j << ',';
@@ -329,6 +361,7 @@ struct RestServer::Impl {
             }
             j << "]}";
             res.set_content(j.str(), "application/json");
+            RBS_LOG_INFO("REST", "inject list link=", name, " count=", procCount);
         });
 
         // ── POST /api/v1/links/{name}/inject ───────────────────────────
@@ -339,20 +372,24 @@ struct RestServer::Impl {
             if (!e) {
                 res.status = 404;
                 res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "inject link=", name, " not found");
                 return;
             }
             std::string proc = extractJsonStr(req.body, "procedure");
             if (proc.empty()) {
                 res.status = 400;
                 res.set_content("{\"error\":\"missing procedure\"}", "application/json");
+                RBS_LOG_WARNING("REST", "inject link=", name, " missing procedure");
                 return;
             }
             bool ok = e->injectProcedure ? e->injectProcedure(proc) : false;
-            if (ok)
+            if (ok) {
                 res.set_content("{\"status\":\"ok\"}", "application/json");
-            else {
+                RBS_LOG_INFO("REST", "inject link=", name, " procedure=", proc, " status=ok");
+            } else {
                 res.status = 422;
                 res.set_content("{\"error\":\"inject failed or unknown procedure\"}", "application/json");
+                RBS_LOG_WARNING("REST", "inject link=", name, " procedure=", proc, " status=failed");
             }
         });
     }

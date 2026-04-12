@@ -349,20 +349,17 @@ void IubNbap::reconnect()
 
 std::vector<std::string> IubNbap::injectableProcs() const
 {
-    return {"NBAP:CELL_SETUP", "NBAP:RESET"};
+    return {"NBAP:RESET"};
 }
 
 bool IubNbap::injectProcedure(const std::string& proc)
 {
     if (proc == "NBAP:RESET") {
-        if (!connected_) return false;
         uint8_t txId = static_cast<uint8_t>(nextTxId());
         ByteBuffer payload{0x00, txId};
         NBAPMessage msg{NBAPProcedure::RESET, txId, std::move(payload)};
         return sendNbapMsg(msg);
     }
-    // NBAP:CELL_SETUP requires cell parameters stored at stack level —
-    // callers that need it should invoke sendCellSetup() directly.
     return false;
 }
 

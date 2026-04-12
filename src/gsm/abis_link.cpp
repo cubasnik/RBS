@@ -118,6 +118,14 @@ bool AbisOml::injectProcedure(const std::string& proc)
 {
     if (proc == "OML:OPSTART") {
         AbisMessage msg{0x00, {}};
+        if (!connected_) {
+            RBS_LOG_INFO("AbisOml", "[{}] injectProcedure: OML:OPSTART in simulation mode", btsId_);
+            pushTrace(true, "OML:OPSTART", "entity=0 len=0 SIM");
+            std::lock_guard<std::mutex> lk(rxMtx_);
+            AbisMessage ack{0x00, {}};
+            rxQueue_.push({OMLMsgType::OPSTART_ACK, ack});
+            return true;
+        }
         return sendOmlMsg(OMLMsgType::OPSTART, msg);
     }
     return false;
