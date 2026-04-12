@@ -1,24 +1,41 @@
 #pragma once
 #include "abis_interface.h"
+#include "ipa.h"
 #include "../common/link_controller.h"
+#include "../common/tcp_socket.h"
 #include "../common/logger.h"
 #include <queue>
 #include <mutex>
 #include <string>
 #include <unordered_map>
+#include <memory>
+#include <atomic>
+#include <thread>
 
 namespace rbs::gsm {
 
 // ─────────────────────────────────────────────────────────────────────────────
-// AbisOml — симуляционная реализация OML (TS 12.21).
+// AbisOml — Абис-поверх-IP реализация OML (TS 12.21).
 //
-// В реальной системе использовался бы IPA или TDM-транспорт.
-// Здесь сообщения помещаются во внутреннюю очередь и
-// логируются — достаточно для симуляторного BTS.
+// ТЕКУЩИЙ РЕЖИМ: In-memory симуляция (готовность для TCP/IPA).
+// Поддерживает оба режима (структурно готово):
+//   1. Реальный транспорт: TCP + IPA (IP Protocol for Abis, TS 12.21 §4.2) — через конфиг
+//   2. Симуляция: in-memory очередь сообщений — текущее поведение
+//
+// Для включения TCP/IPA: установить [gsm].abis_transport=ipa_tcp в rbs.conf.
 // ─────────────────────────────────────────────────────────────────────────────
 class AbisOml : public IAbisOml, public rbs::LinkController {
 public:
     explicit AbisOml(const std::string& btsId);
+    ~AbisOml();
+
+    // Transport mode control: false=simulation, true=TCP/IPA.
+    void setUseRealTransport(bool enable) { useRealTransport_ = enable; }
+    bool useRealTransport() const { return useRealTransport_; }
+    void setHealthTiming(uint32_t heartbeatIntervalMs, uint32_t staleRxMs);
+    void setKeepaliveConfig(bool enabled, uint32_t idleMs);
+    void setInteropProfile(const std::string& profileName);
+    std::string healthJson() const;
 
     // ── Управление соединением ────────────────────────────────────────────────
     bool connect   (const std::string& bscAddr, uint16_t port) override;
@@ -46,15 +63,56 @@ private:
     std::string bscAddr_;
     uint16_t    bscPort_   = 0;
     bool        connected_ = false;
+    
+    // Transport modes
+    bool useRealTransport_ = false;  // true: TCP/IPA, false: in-memory simulation
+    std::unique_ptr<rbs::net::TcpSocket> tcpSocket_;
+    ipa::FrameParser ipaParser_;
 
-    // Входящая очередь — сообщения «от BSC» (в симуляции вставляются тестами)
+    // Входящая очередь — для симуляции и буферизации
     struct RxItem { OMLMsgType type; AbisMessage msg; };
     std::queue<RxItem> rxQueue_;
     mutable std::mutex rxMtx_;
 
+    struct RslRxItem { RSLMsgType type; AbisMessage msg; };
+    std::queue<RslRxItem> rslRxQueue_;
+    mutable std::mutex rslRxMtx_;
+
     // Конфигурация TRX
     struct TRXConfig { uint16_t arfcn; int8_t txPower_dBm; };
     std::unordered_map<uint8_t, TRXConfig> trxMap_;
+    
+    // TCP receive callback
+    void onTcpRxPacket(const rbs::net::TcpPacket& pkt);
+    void healthMonitorLoop();
+    void startHealthMonitor();
+    void stopHealthMonitor();
+    bool sendKeepaliveProbe();
+    bool sendRslMsgInternal(RSLMsgType type, const AbisMessage& msg);
+
+    // Option B: reconnect/backoff state
+    std::atomic<uint32_t> reconnectAttempts_{0};
+    std::atomic<long long> lastRxEpochMs_{0};
+    std::atomic<long long> lastConnectEpochMs_{0};
+    std::atomic<long long> lastConnectAttemptEpochMs_{0};
+    std::atomic<long long> nextReconnectEpochMs_{0};
+
+    // Option B+: active heartbeat/health monitor
+    std::atomic<uint32_t> heartbeatIntervalMs_{1000};
+    std::atomic<uint32_t> staleRxMs_{10000};
+    std::atomic<uint8_t> healthStatus_{0}; // 0=DOWN, 1=DEGRADED, 2=UP
+    std::atomic<bool> keepaliveEnabled_{true};
+    std::atomic<uint32_t> keepaliveIdleMs_{3000};
+    std::atomic<uint32_t> keepaliveTxCount_{0};
+    std::atomic<uint32_t> keepaliveFailCount_{0};
+    std::atomic<long long> lastKeepaliveTxEpochMs_{0};
+    std::string interopProfile_{"default"};
+    std::atomic<uint64_t> omlTxFrames_{0};
+    std::atomic<uint64_t> omlRxFrames_{0};
+    std::atomic<uint64_t> rslTxFrames_{0};
+    std::atomic<uint64_t> rslRxFrames_{0};
+    std::atomic<bool> monitorRunning_{false};
+    std::thread monitorThread_;
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

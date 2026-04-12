@@ -115,6 +115,26 @@ static void test_pm_reflects_oms_counter() {
     }
 }
 
+static void test_slices_returns_200_and_body() {
+    auto& oms = rbs::oms::OMS::instance();
+    oms.updateCounter("slice.eMBB.max_prb", 12.0);
+    oms.updateCounter("slice.eMBB.prb_used", 6.0);
+    oms.updateCounter("slice.eMBB.connectedUEs", 2.0);
+
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Get("/api/v1/slices");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 200);
+    if (res) {
+        CHECK(contains(res->body, "eMBB"));
+        CHECK(contains(res->body, "URLLC"));
+        CHECK(contains(res->body, "mMTC"));
+        CHECK(contains(res->body, "maxPrb"));
+        CHECK(contains(res->body, "prbUsed"));
+    }
+}
+
 static void test_alarms_returns_200() {
     httplib::Client cli("127.0.0.1", gPort);
     cli.set_connection_timeout(2, 0);
@@ -184,6 +204,26 @@ static void test_content_type_is_json() {
     }
 }
 
+static void test_lte_start_call_returns_503_without_cells() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Post("/api/v1/lte/start_call",
+                        R"({"imsi":123456789})",
+                        "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 503);
+}
+
+static void test_lte_handover_validates_payload() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Post("/api/v1/lte/handover",
+                        R"({"cellId":1,"rnti":101})",
+                        "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 400);
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 int main() {
     std::cout << "=== test_rest_api ===\n";
@@ -204,12 +244,15 @@ int main() {
     test_status_has_four_rats();
     test_pm_returns_200();
     test_pm_reflects_oms_counter();
+    test_slices_returns_200_and_body();
     test_alarms_returns_200();
     test_alarms_reflects_oms_alarm();
     test_admit_returns_crnti();
     test_admit_missing_fields_returns_400();
     test_admit_multiple_ues_different_crnti();
     test_content_type_is_json();
+    test_lte_start_call_returns_503_without_cells();
+    test_lte_handover_validates_payload();
 
     server.stop();
 

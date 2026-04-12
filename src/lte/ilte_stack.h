@@ -1,6 +1,7 @@
 #pragma once
 #include "../common/types.h"
 #include "s1ap_interface.h"
+#include <string>
 
 namespace rbs::lte {
 
@@ -43,6 +44,16 @@ public:
     virtual bool setupERAB  (RNTI rnti, uint8_t erabId, const GTPUTunnel& sgw) = 0;
     /// Release the GTP-U tunnel (called on E-RAB release or UE context release).
     virtual bool teardownERAB(RNTI rnti, uint8_t erabId) = 0;
+
+    /// VoLTE/IMS stub: set up a dedicated conversational bearer (QCI=1).
+    virtual bool setupVoLTEBearer(RNTI rnti) = 0;
+
+    /// VoLTE/IMS stub: handle SIP text message (REGISTER/INVITE/BYE).
+    virtual bool handleSipMessage(RNTI rnti, const std::string& sipMessage) = 0;
+
+    /// VoLTE/IMS stub: send a burst of RTP payload packets over the VoLTE bearer.
+    virtual size_t sendVoLteRtpBurst(RNTI rnti, size_t packetCount,
+                                     size_t payloadBytes = 160) = 0;
 
     // ── Feedback ──────────────────────────────────────────────────────────────
     virtual void updateCQI(RNTI rnti, uint8_t cqi) = 0;

@@ -1,0 +1,49 @@
+#pragma once
+
+#include "ngap_codec.h"
+
+#include <cstdint>
+#include <mutex>
+#include <queue>
+#include <unordered_map>
+
+namespace rbs::nr {
+
+struct NgapMessage {
+    NgapProcedure procedure = NgapProcedure::NG_SETUP_REQUEST;
+    uint64_t sourceNodeId = 0;
+    uint64_t targetNodeId = 0;
+    ByteBuffer payload;
+};
+
+class NgapLink {
+public:
+    explicit NgapLink(uint64_t localNodeId);
+    ~NgapLink();
+
+    bool connect(uint64_t targetNodeId);
+    bool isConnected(uint64_t targetNodeId) const;
+
+    bool ngSetup(uint64_t targetNodeId, const NgSetupRequest& req);
+    bool ngSetupResponse(uint64_t targetNodeId, const NgSetupResponse& rsp);
+    bool pduSessionSetupRequest(uint64_t targetNodeId, const PduSessionSetupRequest& req);
+    bool pduSessionSetupResponse(uint64_t targetNodeId, const PduSessionSetupResponse& rsp);
+    bool ueContextReleaseCommand(uint64_t targetNodeId, const UeContextReleaseCommand& cmd);
+    bool ueContextReleaseComplete(uint64_t targetNodeId, const UeContextReleaseComplete& complete);
+
+    bool recvNgapMessage(NgapMessage& msg);
+
+private:
+    bool sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const ByteBuffer& payload);
+    void enqueue(NgapMessage&& msg);
+
+    uint64_t localNodeId_;
+    std::unordered_map<uint64_t, bool> peers_;
+    mutable std::mutex rxMutex_;
+    std::queue<NgapMessage> rxQueue_;
+
+    static std::mutex registryMutex_;
+    static std::unordered_map<uint64_t, NgapLink*> registry_;
+};
+
+}  // namespace rbs::nr

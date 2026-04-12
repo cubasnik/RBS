@@ -46,6 +46,12 @@ int main() {
     stack.updateCQI(r1, 15);   // max CQI
     stack.updateCQI(r2, 1);    // min CQI
 
+    // ── improved handover guard logic ────────────────────────────────────────
+    // Unknown UE must be rejected.
+    assert(!stack.requestHandover(0xEEEE, 200, 1850));
+    // Same-cell target must be rejected (prevents invalid self-HO).
+    assert(!stack.requestHandover(r1, cfg.pci, cfg.earfcn));
+
     // ── sendIPPacket + receiveIPPacket (DL user-plane round-trip) ────────────
     // Пакет уходит через PDCP → RLC → MAC DL-очередь; receiveIPPacket читает
     // из MAC UL-очереди (симулятор заполняет её из UL-планировщика).

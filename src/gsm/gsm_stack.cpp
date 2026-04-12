@@ -1,6 +1,8 @@
 #include "gsm_stack.h"
 #include "../common/logger.h"
 #include "../common/link_registry.h"
+#include "../common/config.h"
+#include <algorithm>
 #include <chrono>
 #include <thread>
 
@@ -28,6 +30,7 @@ GSMStack::GSMStack(std::shared_ptr<hal::IRFHardware> rf, const GSMCellConfig& cf
     entry.disconnect   = [this]() { abis_->disconnect(); };
     entry.injectableProcs  = [this]() { return abis_->injectableProcs(); };
     entry.injectProcedure  = [this](const std::string& p) { return abis_->injectProcedure(p); };
+    entry.healthJson       = [this]() { return abis_->healthJson(); };
     rbs::LinkRegistry::instance().registerLink(std::move(entry));
 }
 
@@ -46,6 +49,38 @@ bool GSMStack::start() {
     }
     running_.store(true);
     clockThread_ = std::thread(&GSMStack::clockLoop, this);
+
+    // Option A: config-gated Abis transport mode (sim | ipa_tcp)
+    std::string abisTransport = rbs::Config::instance().getString("gsm", "abis_transport", "sim");
+    std::transform(abisTransport.begin(), abisTransport.end(), abisTransport.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+    const bool useIpaTcp = (abisTransport == "ipa_tcp" || abisTransport == "ipa" || abisTransport == "tcp");
+
+    const auto hbMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_hb_interval_ms", 1000));
+    const auto staleMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_rx_stale_ms", 10000));
+    const bool keepaliveEnabled = rbs::Config::instance().getBool("gsm", "abis_keepalive_enabled", true);
+    const auto keepaliveIdleMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_keepalive_idle_ms", 3000));
+    std::string interopProfile = rbs::Config::instance().getString("gsm", "abis_interop_profile", "default");
+    std::transform(interopProfile.begin(), interopProfile.end(), interopProfile.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+
+    uint32_t hbCfg = hbMs;
+    uint32_t staleCfg = staleMs;
+    uint32_t keepaliveIdleCfg = keepaliveIdleMs;
+    if (interopProfile == "osmocom") {
+        hbCfg = std::min<uint32_t>(hbCfg, 1000);
+        staleCfg = std::max<uint32_t>(staleCfg, 5000);
+        keepaliveIdleCfg = std::min<uint32_t>(keepaliveIdleCfg, 2500);
+    }
+
+    abis_->setUseRealTransport(useIpaTcp);
+    abis_->setInteropProfile(interopProfile);
+    abis_->setHealthTiming(hbCfg, staleCfg);
+    abis_->setKeepaliveConfig(keepaliveEnabled, keepaliveIdleCfg);
+
+    RBS_LOG_INFO("GSMStack", "Abis mode={}, profile={}, bsc={}:{}, hb={}ms, stale={}ms, ka={} idle={}ms",
+                 useIpaTcp ? "ipa_tcp" : "sim", interopProfile, cfg_.bscAddr, cfg_.bscPort,
+                 hbCfg, staleCfg, keepaliveEnabled ? "on" : "off", keepaliveIdleCfg);
 
     // Connect Abis/OML to BSC if configured
     if (!cfg_.bscAddr.empty()) {

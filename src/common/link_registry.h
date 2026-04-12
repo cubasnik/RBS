@@ -28,6 +28,10 @@ struct LinkEntry {
     std::function<std::vector<std::string>()> injectableProcs;
     /// Triggers a pre-canned procedure by name; returns false if unknown.
     std::function<bool(const std::string&)>   injectProcedure;
+
+    // Optional per-link health payload as a JSON object body (without braces).
+    // Example: "mode":"ipa_tcp","reconnectAttempts":2
+    std::function<std::string()>              healthJson;
 };
 
 // ─────────────────────────────────────────────────────────────────────────────

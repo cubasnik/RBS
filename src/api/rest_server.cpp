@@ -2,6 +2,7 @@
 #include "../oms/oms.h"
 #include "../common/logger.h"
 #include "../common/link_registry.h"
+#include "../common/lte_service_registry.h"
 #include "../common/config.h"
 
 #ifdef _WIN32
@@ -24,6 +25,7 @@
 #include <mutex>
 #include <unordered_map>
 #include <cstdlib>
+#include <vector>
 
 namespace rbs::api {
 
@@ -45,6 +47,28 @@ static std::string jsonEscStr(const std::string& s) {
     }
     out += '"';
     return out;
+}
+
+static std::string buildSipInvite(const std::string& callId) {
+    std::ostringstream os;
+    os << "INVITE sip:peer@ims.local SIP/2.0\r\n"
+       << "From: <sip:rbs@ims.local>\r\n"
+       << "To: <sip:peer@ims.local>\r\n"
+       << "Call-ID: " << callId << "\r\n"
+       << "CSeq: 1 INVITE\r\n"
+       << "Content-Length: 0\r\n\r\n";
+    return os.str();
+}
+
+static std::string buildSipBye(const std::string& callId) {
+    std::ostringstream os;
+    os << "BYE sip:peer@ims.local SIP/2.0\r\n"
+       << "From: <sip:rbs@ims.local>\r\n"
+       << "To: <sip:peer@ims.local>\r\n"
+       << "Call-ID: " << callId << "\r\n"
+       << "CSeq: 1 BYE\r\n"
+       << "Content-Length: 0\r\n\r\n";
+    return os.str();
 }
 
 static const char* severityToStr(rbs::oms::AlarmSeverity s) {
@@ -105,6 +129,46 @@ static long long extractJsonInt(const std::string& json, const std::string& key)
     return (end == json.c_str() + it) ? -1 : val;
 }
 
+static bool extractJsonBool(const std::string& json, const std::string& key, bool defVal = false) {
+    auto it = json.find('"' + key + '"');
+    if (it == std::string::npos) return defVal;
+    it = json.find(':', it);
+    if (it == std::string::npos) return defVal;
+    ++it;
+    while (it < json.size() && (json[it] == ' ' || json[it] == '\t' || json[it] == '\n' || json[it] == '\r')) ++it;
+    if (it >= json.size()) return defVal;
+    if (json.compare(it, 4, "true") == 0) return true;
+    if (json.compare(it, 5, "false") == 0) return false;
+    return defVal;
+}
+
+static bool extractJsonU8Array(const std::string& json, const std::string& key, std::vector<uint8_t>& out) {
+    out.clear();
+    auto it = json.find('"' + key + '"');
+    if (it == std::string::npos) return false;
+    it = json.find(':', it);
+    if (it == std::string::npos) return false;
+    it = json.find('[', it);
+    if (it == std::string::npos) return false;
+    auto endArr = json.find(']', it);
+    if (endArr == std::string::npos) return false;
+
+    std::string body = json.substr(it + 1, endArr - (it + 1));
+    std::stringstream ss(body);
+    std::string token;
+    while (std::getline(ss, token, ',')) {
+        size_t p = 0;
+        while (p < token.size() && (token[p] == ' ' || token[p] == '\t' || token[p] == '\n' || token[p] == '\r')) ++p;
+        if (p >= token.size()) continue;
+        char* end = nullptr;
+        long v = std::strtol(token.c_str() + p, &end, 0);
+        if (end == token.c_str() + p) return false;
+        if (v < 0 || v > 255) return false;
+        out.push_back(static_cast<uint8_t>(v));
+    }
+    return true;
+}
+
 // ── Internal UE admission stub ───────────────────────────────────────────────
 struct UEEntry { uint64_t imsi; std::string rat; };
 
@@ -155,6 +219,33 @@ struct RestServer::Impl {
             res.set_content(j.str(), "application/json");
         });
 
+        // ── GET /api/v1/slices ────────────────────────────────────────
+        svr.Get("/api/v1/slices", [](const httplib::Request&, httplib::Response& res) {
+            auto counters = rbs::oms::OMS::instance().getAllCounters();
+            auto get = [&counters](const std::string& key, double fallback = 0.0) {
+                for (const auto& kv : counters) {
+                    if (kv.first == key) {
+                        return kv.second;
+                    }
+                }
+                return fallback;
+            };
+
+            std::ostringstream j;
+            j << "{\"slices\":["
+              << "{\"name\":\"eMBB\",\"maxPrb\":" << get("slice.eMBB.max_prb")
+              << ",\"prbUsed\":" << get("slice.eMBB.prb_used")
+              << ",\"connectedUEs\":" << get("slice.eMBB.connectedUEs") << "},"
+              << "{\"name\":\"URLLC\",\"maxPrb\":" << get("slice.URLLC.max_prb")
+              << ",\"prbUsed\":" << get("slice.URLLC.prb_used")
+              << ",\"connectedUEs\":" << get("slice.URLLC.connectedUEs") << "},"
+              << "{\"name\":\"mMTC\",\"maxPrb\":" << get("slice.mMTC.max_prb")
+              << ",\"prbUsed\":" << get("slice.mMTC.prb_used")
+              << ",\"connectedUEs\":" << get("slice.mMTC.connectedUEs") << "}"
+              << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
         // ── GET /api/v1/alarms ─────────────────────────────────────────
         svr.Get("/api/v1/alarms", [](const httplib::Request&, httplib::Response& res) {
             auto alarms = rbs::oms::OMS::instance().getActiveAlarms();
@@ -194,6 +285,157 @@ struct RestServer::Impl {
             RBS_LOG_INFO("REST", "admit imsi=", imsi, " rat=", rat, " crnti=", crnti);
         });
 
+        // ── GET /api/v1/lte/cells ──────────────────────────────────────
+        svr.Get("/api/v1/lte/cells", [](const httplib::Request&, httplib::Response& res) {
+            auto cells = rbs::LteServiceRegistry::instance().allCells();
+            std::ostringstream j;
+            j << "{\"cells\":[";
+            bool first = true;
+            for (const auto& c : cells) {
+                if (!first) j << ',';
+                first = false;
+                j << "{\"cellId\":" << c.cellId
+                  << ",\"earfcn\":" << c.earfcn
+                  << ",\"pci\":" << c.pci
+                  << ",\"connectedUEs\":" << (c.connectedUeCount ? c.connectedUeCount() : 0)
+                  << "}";
+            }
+            j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/lte/start_call ───────────────────────────────
+        svr.Post("/api/v1/lte/start_call", [](const httplib::Request& req, httplib::Response& res) {
+            const long long cellIdIn = extractJsonInt(req.body, "cellId");
+            long long rntiIn = extractJsonInt(req.body, "rnti");
+            const long long imsiIn = extractJsonInt(req.body, "imsi");
+            const long long packetsIn = extractJsonInt(req.body, "rtpPackets");
+            const long long payloadIn = extractJsonInt(req.body, "payloadBytes");
+
+            std::optional<rbs::LteCellService> cell;
+            if (cellIdIn > 0) {
+                cell = rbs::LteServiceRegistry::instance().getCell(static_cast<rbs::CellId>(cellIdIn));
+            } else {
+                auto all = rbs::LteServiceRegistry::instance().allCells();
+                if (!all.empty()) cell = all.front();
+            }
+
+            if (!cell.has_value()) {
+                res.status = 503;
+                res.set_content("{\"error\":\"no LTE cell available\"}", "application/json");
+                return;
+            }
+
+            rbs::RNTI rnti = 0;
+            if (rntiIn > 0) rnti = static_cast<rbs::RNTI>(rntiIn);
+            if (rnti == 0) {
+                if (imsiIn <= 0 || !cell->admitUe) {
+                    res.status = 400;
+                    res.set_content("{\"error\":\"missing rnti or valid imsi\"}", "application/json");
+                    return;
+                }
+                rnti = cell->admitUe(static_cast<rbs::IMSI>(imsiIn), 10);
+                if (rnti == 0) {
+                    res.status = 422;
+                    res.set_content("{\"error\":\"UE admission failed\"}", "application/json");
+                    return;
+                }
+            }
+
+            if (!cell->setupVoLteBearer || !cell->handleSipMessage || !cell->sendVoLteRtpBurst) {
+                res.status = 500;
+                res.set_content("{\"error\":\"LTE VoLTE service unavailable\"}", "application/json");
+                return;
+            }
+
+            if (!cell->setupVoLteBearer(rnti)) {
+                res.status = 422;
+                res.set_content("{\"error\":\"setupVoLTEBearer failed\"}", "application/json");
+                return;
+            }
+
+            const std::string callId = "rest-call-" + std::to_string(static_cast<unsigned>(rnti));
+            const std::string invite = buildSipInvite(callId);
+            if (!cell->handleSipMessage(rnti, invite)) {
+                res.status = 422;
+                res.set_content("{\"error\":\"SIP INVITE failed\"}", "application/json");
+                return;
+            }
+
+            const size_t packets = (packetsIn > 0) ? static_cast<size_t>(packetsIn) : 3;
+            const size_t payload = (payloadIn > 0) ? static_cast<size_t>(payloadIn) : 160;
+            const size_t sent = cell->sendVoLteRtpBurst(rnti, packets, payload);
+
+            std::ostringstream j;
+            j << "{\"status\":\"ok\",\"cellId\":" << cell->cellId
+              << ",\"rnti\":" << rnti
+              << ",\"rtpSent\":" << sent
+              << "}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/lte/end_call ─────────────────────────────────
+        svr.Post("/api/v1/lte/end_call", [](const httplib::Request& req, httplib::Response& res) {
+            const long long cellIdIn = extractJsonInt(req.body, "cellId");
+            const long long rntiIn = extractJsonInt(req.body, "rnti");
+            const bool releaseUe = extractJsonBool(req.body, "releaseUe", false);
+
+            if (cellIdIn <= 0 || rntiIn <= 0) {
+                res.status = 400;
+                res.set_content("{\"error\":\"cellId and rnti are required\"}", "application/json");
+                return;
+            }
+
+            auto cell = rbs::LteServiceRegistry::instance().getCell(static_cast<rbs::CellId>(cellIdIn));
+            if (!cell.has_value() || !cell->handleSipMessage) {
+                res.status = 404;
+                res.set_content("{\"error\":\"LTE cell not found\"}", "application/json");
+                return;
+            }
+
+            const rbs::RNTI rnti = static_cast<rbs::RNTI>(rntiIn);
+            const std::string bye = buildSipBye("rest-call-" + std::to_string(static_cast<unsigned>(rnti)));
+            if (!cell->handleSipMessage(rnti, bye)) {
+                res.status = 422;
+                res.set_content("{\"error\":\"SIP BYE failed\"}", "application/json");
+                return;
+            }
+
+            if (releaseUe && cell->releaseUe) cell->releaseUe(rnti);
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
+        // ── POST /api/v1/lte/handover ─────────────────────────────────
+        svr.Post("/api/v1/lte/handover", [](const httplib::Request& req, httplib::Response& res) {
+            const long long cellIdIn = extractJsonInt(req.body, "cellId");
+            const long long rntiIn = extractJsonInt(req.body, "rnti");
+            const long long targetPciIn = extractJsonInt(req.body, "targetPci");
+            const long long targetEarfcnIn = extractJsonInt(req.body, "targetEarfcn");
+
+            if (cellIdIn <= 0 || rntiIn <= 0 || targetPciIn < 0 || targetEarfcnIn < 0) {
+                res.status = 400;
+                res.set_content("{\"error\":\"cellId,rnti,targetPci,targetEarfcn are required\"}", "application/json");
+                return;
+            }
+
+            auto cell = rbs::LteServiceRegistry::instance().getCell(static_cast<rbs::CellId>(cellIdIn));
+            if (!cell.has_value() || !cell->requestHandover) {
+                res.status = 404;
+                res.set_content("{\"error\":\"LTE cell not found\"}", "application/json");
+                return;
+            }
+
+            const bool ok = cell->requestHandover(static_cast<rbs::RNTI>(rntiIn),
+                                                  static_cast<uint16_t>(targetPciIn),
+                                                  static_cast<rbs::EARFCN>(targetEarfcnIn));
+            if (!ok) {
+                res.status = 422;
+                res.set_content("{\"error\":\"handover rejected\"}", "application/json");
+                return;
+            }
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
         // ── GET /api/v1/links ──────────────────────────────────────────
         svr.Get("/api/v1/links", [](const httplib::Request&, httplib::Response& res) {
             auto links = rbs::LinkRegistry::instance().allLinks();
@@ -218,7 +460,16 @@ struct RestServer::Impl {
                         j << jsonEscStr(t);
                     }
                 }
-                j << "]}";
+                j << "]";
+
+                if (e->healthJson) {
+                    const std::string h = e->healthJson();
+                    if (!h.empty()) {
+                        j << ",\"health\":{" << h << "}";
+                    }
+                }
+
+                j << "}";
             }
             j << "]";
             res.set_content(j.str(), "application/json");
@@ -259,6 +510,34 @@ struct RestServer::Impl {
             j << "]}";
             res.set_content(j.str(), "application/json");
             RBS_LOG_INFO("REST", "trace link=", name, " limit=", limit, " count=", msgs.size());
+        });
+
+        // ── GET /api/v1/links/{name}/health ────────────────────────────
+        svr.Get(R"(/api/v1/links/([^/]+)/health)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                RBS_LOG_WARNING("REST", "health link=", name, " not found");
+                return;
+            }
+
+            std::ostringstream j;
+            j << "{"
+              << "\"name\":" << jsonEscStr(e->name) << ","
+              << "\"connected\":" << (e->isConnected ? (e->isConnected() ? "true" : "false") : "false");
+
+            if (e->healthJson) {
+                const std::string h = e->healthJson();
+                if (!h.empty()) {
+                    j << ",\"health\":{" << h << "}";
+                }
+            }
+
+            j << "}";
+            res.set_content(j.str(), "application/json");
+            RBS_LOG_INFO("REST", "health link=", name, " status=ok");
         });
 
         // ── POST /api/v1/links/{name}/connect ──────────────────────────
@@ -382,14 +661,38 @@ struct RestServer::Impl {
                 RBS_LOG_WARNING("REST", "inject link=", name, " missing procedure");
                 return;
             }
-            bool ok = e->injectProcedure ? e->injectProcedure(proc) : false;
+
+            std::string finalProc = proc;
+            if (name == "abis") {
+                const long long chanNr = extractJsonInt(req.body, "chanNr");
+                const long long entity = extractJsonInt(req.body, "entity");
+                std::vector<uint8_t> payload;
+                const bool hasPayload = extractJsonU8Array(req.body, "payload", payload);
+
+                if (chanNr >= 0 || entity >= 0 || hasPayload) {
+                    std::ostringstream spec;
+                    spec << proc;
+                    if (chanNr >= 0) spec << ";chan=" << chanNr;
+                    if (entity >= 0) spec << ";entity=" << entity;
+                    if (hasPayload) {
+                        spec << ";payload=";
+                        for (size_t i = 0; i < payload.size(); ++i) {
+                            if (i) spec << ',';
+                            spec << static_cast<int>(payload[i]);
+                        }
+                    }
+                    finalProc = spec.str();
+                }
+            }
+
+            bool ok = e->injectProcedure ? e->injectProcedure(finalProc) : false;
             if (ok) {
                 res.set_content("{\"status\":\"ok\"}", "application/json");
-                RBS_LOG_INFO("REST", "inject link=", name, " procedure=", proc, " status=ok");
+                RBS_LOG_INFO("REST", "inject link=", name, " procedure=", finalProc, " status=ok");
             } else {
                 res.status = 422;
                 res.set_content("{\"error\":\"inject failed or unknown procedure\"}", "application/json");
-                RBS_LOG_WARNING("REST", "inject link=", name, " procedure=", proc, " status=failed");
+                RBS_LOG_WARNING("REST", "inject link=", name, " procedure=", finalProc, " status=failed");
             }
         });
     }

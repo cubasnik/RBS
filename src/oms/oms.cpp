@@ -1,10 +1,13 @@
 #include "oms.h"
 #include "../common/logger.h"
+#include <httplib.h>
 #include <iomanip>
 #include <sstream>
 #include <fstream>
 #include <chrono>
 #include <cstring>
+#include <cctype>
+#include <thread>
 #ifdef _WIN32
 #  ifndef WIN32_LEAN_AND_MEAN
 #    define WIN32_LEAN_AND_MEAN
@@ -23,6 +26,18 @@
 #endif
 
 namespace rbs::oms {
+
+struct OMS::PrometheusExporter {
+    std::unique_ptr<httplib::Server> server;
+    std::thread thread;
+    bool running = false;
+};
+
+OMS::OMS() = default;
+
+OMS::~OMS() {
+    stopPrometheus();
+}
 
 // ────────────────────────────────────────────────────────────────
 // Fault Management
@@ -258,6 +273,64 @@ int OMS::pushInflux(const std::string& endpoint,
     RBS_LOG_INFO("OMS", "pushInflux: sent ", counters_.size(),
                  " metrics to ", endpoint);
     return static_cast<int>(counters_.size());
+}
+
+static std::string promName(const std::string& raw) {
+    std::string out;
+    out.reserve(raw.size() + 4);
+    out += "rbs_";
+    for (char c : raw) {
+        if (std::isalnum(static_cast<unsigned char>(c)) || c == '_') out.push_back(c);
+        else out.push_back('_');
+    }
+    return out;
+}
+
+std::string OMS::renderPrometheus() const {
+    std::ostringstream os;
+    for (const auto& [name, ctr] : counters_) {
+        const std::string metric = promName(name);
+        os << "# TYPE " << metric << " gauge\n";
+        os << metric << " " << ctr.value << "\n";
+    }
+
+    const auto active = getActiveAlarms();
+    os << "# TYPE rbs_alarms_active gauge\n";
+    os << "rbs_alarms_active " << active.size() << "\n";
+
+    const char* s = "UNLOCKED";
+    if (nodeState_ == NodeState::LOCKED) s = "LOCKED";
+    if (nodeState_ == NodeState::SHUTTING_DOWN) s = "SHUTTING_DOWN";
+    os << "# TYPE rbs_node_state_info gauge\n";
+    os << "rbs_node_state_info{state=\"" << s << "\"} 1\n";
+    return os.str();
+}
+
+bool OMS::exportPrometheus(int port, const std::string& bindAddr) {
+    if (prom_ && prom_->running) {
+        return true;
+    }
+
+    prom_ = std::make_unique<PrometheusExporter>();
+    prom_->server = std::make_unique<httplib::Server>();
+    prom_->server->Get("/metrics", [this](const httplib::Request&, httplib::Response& res) {
+        res.set_content(renderPrometheus(), "text/plain; version=0.0.4");
+    });
+
+    prom_->running = true;
+    prom_->thread = std::thread([this, bindAddr, port]() {
+        RBS_LOG_INFO("OMS", "Prometheus exporter listening on ", bindAddr, ":", port);
+        prom_->server->listen(bindAddr, port);
+        prom_->running = false;
+    });
+    return true;
+}
+
+void OMS::stopPrometheus() {
+    if (!prom_) return;
+    if (prom_->server) prom_->server->stop();
+    if (prom_->thread.joinable()) prom_->thread.join();
+    prom_.reset();
 }
 
 }  // namespace rbs::oms

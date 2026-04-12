@@ -129,6 +129,11 @@ add_executable(test_abis_link test_abis_link.cpp)
 target_link_libraries(test_abis_link PRIVATE rbs_gsm)
 add_test(NAME test_abis_link COMMAND test_abis_link)
 
+# ── test_abis_ipa_golden ──────────────────────────────────────────
+add_executable(test_abis_ipa_golden test_abis_ipa_golden.cpp)
+target_link_libraries(test_abis_ipa_golden PRIVATE rbs_gsm)
+add_test(NAME test_abis_ipa_golden COMMAND test_abis_ipa_golden)
+
 # ── test_iub_link ─────────────────────────────────────────────────
 add_executable(test_iub_link test_iub_link.cpp)
 target_link_libraries(test_iub_link PRIVATE rbs_umts)
@@ -199,6 +204,31 @@ add_executable(test_f1ap_codec test_f1ap_codec.cpp)
 target_link_libraries(test_f1ap_codec PRIVATE rbs_nr)
 add_test(NAME test_f1ap_codec COMMAND test_f1ap_codec)
 
+# ── test_ngap_codec ───────────────────────────────────────────────
+add_executable(test_ngap_codec test_ngap_codec.cpp)
+target_link_libraries(test_ngap_codec PRIVATE rbs_nr)
+add_test(NAME test_ngap_codec COMMAND test_ngap_codec)
+
+# ── test_nr_mac ───────────────────────────────────────────────────
+add_executable(test_nr_mac test_nr_mac.cpp)
+target_link_libraries(test_nr_mac PRIVATE rbs_nr)
+add_test(NAME test_nr_mac COMMAND test_nr_mac)
+
+# ── test_nr_stack ─────────────────────────────────────────────────
+add_executable(test_nr_stack test_nr_stack.cpp)
+target_link_libraries(test_nr_stack PRIVATE rbs_nr)
+add_test(NAME test_nr_stack COMMAND test_nr_stack)
+
+# ── test_slicing ──────────────────────────────────────────────────
+add_executable(test_slicing test_slicing.cpp)
+target_link_libraries(test_slicing PRIVATE rbs_nr)
+add_test(NAME test_slicing COMMAND test_slicing)
+
+# ── test_xnap ─────────────────────────────────────────────────────
+add_executable(test_xnap test_xnap.cpp)
+target_link_libraries(test_xnap PRIVATE rbs_nr)
+add_test(NAME test_xnap COMMAND test_xnap)
+
 # ── test_rest_api ─────────────────────────────────────────────────
 add_executable(test_rest_api test_rest_api.cpp)
 target_link_libraries(test_rest_api PRIVATE rbs_api)
@@ -218,3 +248,13 @@ add_test(NAME test_pdcp_security COMMAND test_pdcp_security)
 add_executable(test_pm_export test_pm_export.cpp)
 target_link_libraries(test_pm_export PRIVATE rbs_oms rbs_common)
 add_test(NAME test_pm_export COMMAND test_pm_export)
+
+# ── test_volte ───────────────────────────────────────────────────
+add_executable(test_volte test_volte.cpp)
+target_link_libraries(test_volte PRIVATE rbs_lte rbs_oms)
+add_test(NAME test_volte COMMAND test_volte)
+
+# ── test_multi_cell ──────────────────────────────────────────────
+add_executable(test_multi_cell test_multi_cell.cpp)
+target_link_libraries(test_multi_cell PRIVATE rbs_lte rbs_oms)
+add_test(NAME test_multi_cell COMMAND test_multi_cell)

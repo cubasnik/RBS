@@ -1,5 +1,7 @@
 # RBS — Radio Base Station
 
+[![CI](https://github.com/cubasnik/RBS/actions/workflows/build.yml/badge.svg)](https://github.com/cubasnik/RBS/actions/workflows/build.yml)
+
 Симулятор многостандартной базовой станции (Multi-RAT RBS), реализующий протокольные стеки **GSM (2G)**, **UMTS (3G)**, **LTE (4G)** и **5G NR** в одном исполняемом файле на языке **C++17**.
 
 ---
@@ -29,7 +31,146 @@
 11. [Логирование](#логирование)
 12. [Стандарты и спецификации](#стандарты-и-спецификации)
 13. [История разработки](#история-разработки)
-14. [Дорожная карта](#дорожная-карта-план-следующих-итераций)
+14. [Дорожная карта](ROADMAP.md)
+15. [Отдельно: Физическое подключение BSC (Ethernet, L1 -> L4)](#отдельно-физическое-подключение-bsc-ethernet-l1---l4)
+
+---
+
+## Быстрый старт REST из WSL (основной способ)
+
+Ниже основной способ работы с REST в WSL: используйте `tools/rbs_api.sh`.
+
+Подробный разбор Abis-over-IP/IPA: [ABIS_OVER_IP.md](ABIS_OVER_IP.md).
+
+```bash
+# 1) Запустить RBS в Windows PowerShell (отдельное окно)
+# .\build\Release\rbs_node.exe rbs.conf gsm
+
+# 2) В WSL перейти в корень проекта
+cd /mnt/c/Users/Alexey/Desktop/min/vNE/RBS/RBS
+
+# 3) База API
+BASE="http://127.0.0.1:8080/api/v1"
+
+# 4) Базовые запросы
+./tools/rbs_api.sh "$BASE/status"
+./tools/rbs_api.sh "$BASE/pm"
+./tools/rbs_api.sh "$BASE/alarms"
+./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":300000000000003,"rat":"LTE"}'
+
+# 5) Интерфейсы и управление
+./tools/rbs_api.sh "$BASE/links"
+./tools/rbs_api.sh "$BASE/links/abis/trace?limit=10"
+./tools/rbs_api.sh "$BASE/links/abis/inject"
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_RELEASE"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:PAGING_CMD"}'
+./tools/rbs_api.sh "$BASE/links/abis/block" POST '{"type":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/unblock" POST '{"type":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/connect" POST
+./tools/rbs_api.sh "$BASE/links/abis/disconnect" POST
+
+./tools/rbs_api.sh "$BASE/links/iub/trace?limit=10"
+./tools/rbs_api.sh "$BASE/links/iub/inject"
+./tools/rbs_api.sh "$BASE/links/iub/inject" POST '{"procedure":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/iub/block" POST '{"type":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/iub/unblock" POST '{"type":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/iub/connect" POST
+./tools/rbs_api.sh "$BASE/links/iub/disconnect" POST
+
+./tools/rbs_api.sh "$BASE/links/s1/trace?limit=10"
+./tools/rbs_api.sh "$BASE/links/s1/inject"
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/s1/block" POST '{"type":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh "$BASE/links/s1/unblock" POST '{"type":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh "$BASE/links/s1/connect" POST
+./tools/rbs_api.sh "$BASE/links/s1/disconnect" POST
+```
+
+Альтернативные варианты (raw `curl`, PowerShell `Invoke-RestMethod`) описаны ниже в разделе REST API.
+
+---
+
+## Отдельно: Физическое подключение BSC (Ethernet, L1 -> L4)
+
+Ниже отдельный пошаговый чеклист для сценария, где **BSC имеет адрес `10.10.10.1`**.
+
+Важно:
+- `bsc_addr=10.10.10.1` — это peer Abis (BSC).
+- REST API RBS нужно вызывать по IP **RBS-хоста**, а не по адресу BSC.
+
+### 1) L1/L2: кабель и линк
+
+1. Подключите Ethernet-кабель между RBS и BSC (или через свитч).
+2. Проверьте, что линк поднят (`Status=Up`).
+
+PowerShell (RBS/Windows):
+```powershell
+Get-NetAdapter | Format-Table Name, Status, LinkSpeed
+```
+
+Linux (BSC):
+```bash
+ip link show
+```
+
+### 2) L3: адресация в одной подсети
+
+Рекомендуемая схема:
+- BSC: `10.10.10.1/24`
+- RBS: `10.10.10.2/24`
+
+PowerShell (RBS/Windows):
+```powershell
+New-NetIPAddress -InterfaceAlias "Ethernet" -IPAddress 10.10.10.2 -PrefixLength 24
+Get-NetIPAddress -InterfaceAlias "Ethernet" | Format-Table IPAddress, PrefixLength, AddressFamily
+```
+
+Linux (BSC):
+```bash
+sudo ip addr add 10.10.10.1/24 dev eth0
+sudo ip link set eth0 up
+ip addr show dev eth0
+```
+
+### 3) L3: проверка ping в обе стороны
+
+```powershell
+ping 10.10.10.1
+```
+
+```bash
+ping 10.10.10.2
+```
+
+Если ping не проходит:
+- проверьте firewall (ICMP Echo),
+- проверьте ARP (`arp -a` на Windows, `ip neigh` на Linux),
+- убедитесь, что нет конфликтующего маршрута в `10.10.10.0/24`.
+
+### 4) L4/L7: REST и Abis поверх IP
+
+Пример для `[gsm]` в `rbs.conf`:
+```ini
+abis_transport = ipa_tcp
+abis_interop_profile = osmocom
+bsc_addr = 10.10.10.1
+bsc_port = 3002
+```
+
+Для REST желательно в `[api]`:
+```ini
+bind = 0.0.0.0
+port = 8080
+```
+
+Запросы REST выполняйте по адресу RBS (пример: `10.10.10.2`):
+```bash
+./tools/rbs_api.sh "http://10.10.10.2:8080/api/v1/status"
+./tools/rbs_api.sh "http://10.10.10.2:8080/api/v1/links/abis/health"
+```
 
 ---
 
@@ -704,7 +845,13 @@ bool ok = decodeF1SetupResponse(pdu, rsp);
 
 ```ini
 [gsm]
-bsc_addr =          # пусто = simulation mode (Abis не поднимается)
+abis_transport = sim # sim | ipa_tcp
+abis_interop_profile = default # default | osmocom
+abis_hb_interval_ms = 1000 # период health-monitor в ms
+abis_rx_stale_ms = 10000   # порог stale RX для DEGRADED
+abis_keepalive_enabled = true # активный keepalive probe в ipa_tcp
+abis_keepalive_idle_ms = 3000 # если нет RX дольше этого, шлём keepalive
+bsc_addr =          # для ipa_tcp укажите адрес BSC; пусто = simulation mode
 bsc_port = 3002
 
 [umts]
@@ -720,8 +867,8 @@ mme_port = 36412
 
 | Интерфейс | Имя в реестре | Инжектируемые процедуры |
 |-----------|--------------|-------------------------|
-| Abis (GSM↔BSC) | `abis` | `OML:OPSTART` |
-| Iub (UMTS↔RNC) | `iub` | `NBAP:CELL_SETUP`, `NBAP:RESET` |
+| Abis (GSM↔BSC) | `abis` | `OML:OPSTART`, `RSL:CHANNEL_ACTIVATION`, `RSL:CHANNEL_RELEASE`, `RSL:PAGING_CMD` |
+| Iub (UMTS↔RNC) | `iub` | `NBAP:RESET` |
 | S1 (LTE↔MME) | `s1` | `S1AP:S1_SETUP`, `S1AP:RESET` |
 
 #### REST API (управление через HTTP)
@@ -749,14 +896,34 @@ srv.stop();
 | `GET` | `/api/v1/pm` | Все PM-счётчики OMS (`getAllCounters()`) |
 | `GET` | `/api/v1/alarms` | Активные аварии с severity |
 | `POST` | `/api/v1/admit` | Тело: `{"imsi":N,"rat":"LTE"}` → `{"status":"ok","crnti":N}` |
+| `GET` | `/api/v1/lte/cells` | Список зарегистрированных LTE ячеек (`cellId`, `earfcn`, `pci`) |
+| `POST` | `/api/v1/lte/start_call` | VoLTE start: при необходимости admit UE, setup bearer, SIP INVITE, RTP burst |
+| `POST` | `/api/v1/lte/end_call` | VoLTE end: SIP BYE и опциональный release UE |
+| `POST` | `/api/v1/lte/handover` | Явный триггер HO (`imsi`/`rnti`, `targetCellId`) |
 | `GET` | `/api/v1/links` | Список всех интерфейсов: имя, RAT, peer, connected, blocked |
 | `GET` | `/api/v1/links/{name}/trace` | Трасса последних PDU (`?limit=N`, по умолчанию 50) |
+| `GET` | `/api/v1/links/{name}/health` | Health-профиль линка (для `abis`: mode/status/reconnect/timestamps) |
 | `POST` | `/api/v1/links/{name}/connect` | Поднять интерфейс (reconnect) |
 | `POST` | `/api/v1/links/{name}/disconnect` | Опустить интерфейс |
 | `GET` | `/api/v1/links/{name}/inject` | Список процедур для инжекции |
 | `POST` | `/api/v1/links/{name}/inject` | Тело: `{"procedure":"S1AP:S1_SETUP"}` → инжектировать |
 | `POST` | `/api/v1/links/{name}/block` | Тело: `{"type":"OML:OPSTART"}` → заблокировать тип сообщения |
 | `POST` | `/api/v1/links/{name}/unblock` | Тело: `{"type":"OML:OPSTART"}` → снять блокировку |
+
+Примечание по health полям:
+- Для `abis` в ответе `GET /api/v1/links` дополнительно возвращается объект `health` с полями
+  `mode`, `interopProfile`, `healthStatus`, `reconnectAttempts`, `lastRxEpochMs`, `lastConnectEpochMs`,
+  `lastConnectAttemptEpochMs`, `nextReconnectEpochMs`, `heartbeatIntervalMs`, `staleRxMs`,
+  `keepaliveEnabled`, `keepaliveIdleMs`, `keepaliveTxCount`, `keepaliveFailCount`,
+  `lastKeepaliveTxEpochMs`, `omlTxFrames`, `omlRxFrames`, `rslTxFrames`, `rslRxFrames`.
+
+Примечание по параметризованной inject для `abis` (Option C.1):
+- Поддерживаются опциональные поля тела `chanNr`, `entity`, `payload` (массив байт 0..255).
+- Пример `RSL:CHANNEL_ACTIVATION` с параметрами:
+
+```bash
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION","chanNr":3,"entity":3,"payload":[1,0,7]}'
+```
 
 Примеры ответов:
 
@@ -790,6 +957,15 @@ srv.stop();
 
 // POST /api/v1/admit  body: {"imsi":123456789,"rat":"LTE"}
 {"status": "ok", "crnti": 101}
+
+// GET /api/v1/lte/cells
+{"cells":[{"cellId":42,"earfcn":1800,"pci":10}]}
+
+// POST /api/v1/lte/start_call body: {"cellId":42,"imsi":300000000000003,"withRtpBurst":true}
+{"status":"ok","message":"call started","cellId":42,"rnti":101}
+
+// POST /api/v1/lte/handover body: {"cellId":42,"imsi":300000000000003,"targetCellId":43}
+{"status":"ok","message":"handover request accepted"}
 
 // GET /api/v1/links
 [
@@ -928,7 +1104,12 @@ bsic          = 10       # ID ячейки (0–63)
 lac           = 1000     # Location Area Code
 mcc           = 250      # Россия
 mnc           = 1        # МТС
-bsc_addr      =          # адрес BSC для Abis (пусто = simulation mode)
+abis_transport = sim     # транспорт Abis: sim | ipa_tcp
+abis_hb_interval_ms = 1000 # период health-monitor в ms
+abis_rx_stale_ms = 10000   # порог stale RX для DEGRADED
+abis_keepalive_enabled = true # активный keepalive probe в ipa_tcp
+abis_keepalive_idle_ms = 3000 # если нет RX дольше этого, шлём keepalive
+bsc_addr      =          # адрес BSC для Abis (для ipa_tcp обязателен)
 bsc_port      = 3002
 
 [umts]
@@ -1339,36 +1520,240 @@ nr->releaseUE(nrCrnti);
 
 REST-сервер запускается автоматически на порту **8080** (локальный биндинг `127.0.0.1`).
 
+#### WSL one-page (полная шпаргалка, copy-paste)
+
+Все команды ниже выполняются в WSL (bash/zsh), без PowerShell alias-логики.
+Основной вариант: `./tools/rbs_api.sh`.
+
+```bash
+# База
+BASE="http://127.0.0.1:8080/api/v1"
+
+# -----------------------------
+# 1) Общие endpoint'ы
+# -----------------------------
+
+# status / pm / alarms
+./tools/rbs_api.sh "$BASE/status"
+./tools/rbs_api.sh "$BASE/pm"
+./tools/rbs_api.sh "$BASE/alarms"
+
+# admit (rat: GSM | UMTS | LTE | NR)
+./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":300000000000003,"rat":"LTE"}'
+
+# -----------------------------
+# 1.1) LTE: VoLTE и handover
+# -----------------------------
+
+# список LTE ячеек
+./tools/rbs_api.sh "$BASE/lte/cells"
+
+# старт VoLTE звонка (авто-admit + RTP burst)
+./tools/rbs_api.sh "$BASE/lte/start_call" POST '{"cellId":42,"imsi":300000000000003,"withRtpBurst":true,"releaseAfter":false}'
+
+# завершение VoLTE звонка
+./tools/rbs_api.sh "$BASE/lte/end_call" POST '{"cellId":42,"imsi":300000000000003,"releaseAfter":true}'
+
+# ручной trigger handover
+./tools/rbs_api.sh "$BASE/lte/handover" POST '{"cellId":42,"imsi":300000000000003,"targetCellId":43}'
+
+# -----------------------------
+# 2) Links: общий список
+# -----------------------------
+
+./tools/rbs_api.sh "$BASE/links"
+
+# -----------------------------
+# 3) ABIS (name=abis)
+# -----------------------------
+
+# trace
+./tools/rbs_api.sh "$BASE/links/abis/trace?limit=10"
+
+# inject-list
+./tools/rbs_api.sh "$BASE/links/abis/inject"
+
+# inject
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_RELEASE"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:PAGING_CMD"}'
+
+# block / unblock
+./tools/rbs_api.sh "$BASE/links/abis/block" POST '{"type":"OML:OPSTART"}'
+
+./tools/rbs_api.sh "$BASE/links/abis/unblock" POST '{"type":"OML:OPSTART"}'
+
+# connect / disconnect
+./tools/rbs_api.sh "$BASE/links/abis/connect" POST
+./tools/rbs_api.sh "$BASE/links/abis/disconnect" POST
+
+# -----------------------------
+# 4) IUB (name=iub)
+# -----------------------------
+
+# trace
+./tools/rbs_api.sh "$BASE/links/iub/trace?limit=10"
+
+# inject-list
+./tools/rbs_api.sh "$BASE/links/iub/inject"
+
+# inject
+./tools/rbs_api.sh "$BASE/links/iub/inject" POST '{"procedure":"NBAP:RESET"}'
+
+# block / unblock
+./tools/rbs_api.sh "$BASE/links/iub/block" POST '{"type":"NBAP:RESET"}'
+
+./tools/rbs_api.sh "$BASE/links/iub/unblock" POST '{"type":"NBAP:RESET"}'
+
+# connect / disconnect
+./tools/rbs_api.sh "$BASE/links/iub/connect" POST
+./tools/rbs_api.sh "$BASE/links/iub/disconnect" POST
+
+# -----------------------------
+# 5) S1 (name=s1)
+# -----------------------------
+
+# trace
+./tools/rbs_api.sh "$BASE/links/s1/trace?limit=10"
+
+# inject-list
+./tools/rbs_api.sh "$BASE/links/s1/inject"
+
+# inject
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:S1_SETUP"}'
+
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:RESET"}'
+
+# block / unblock
+./tools/rbs_api.sh "$BASE/links/s1/block" POST '{"type":"S1AP:S1_SETUP"}'
+
+./tools/rbs_api.sh "$BASE/links/s1/unblock" POST '{"type":"S1AP:S1_SETUP"}'
+
+# connect / disconnect
+./tools/rbs_api.sh "$BASE/links/s1/connect" POST
+./tools/rbs_api.sh "$BASE/links/s1/disconnect" POST
+```
+
+Каталог inject-процедур (актуально по коду):
+
+| Link | Endpoint | Допустимые значения `procedure` |
+|------|----------|----------------------------------|
+| `abis` | `POST /api/v1/links/abis/inject` | `OML:OPSTART`, `RSL:CHANNEL_ACTIVATION`, `RSL:CHANNEL_RELEASE`, `RSL:PAGING_CMD` |
+| `iub` | `POST /api/v1/links/iub/inject` | `NBAP:RESET` |
+| `s1` | `POST /api/v1/links/s1/inject` | `S1AP:S1_SETUP`, `S1AP:RESET` |
+
+Дополнительные API-команды (готовые сценарии):
+
+```bash
+# Быстрая health-проверка API и ссылок
+./tools/rbs_api.sh "$BASE/status"
+./tools/rbs_api.sh "$BASE/links"
+
+# Развернутая диагностика по каждому интерфейсу
+for L in abis iub s1; do
+  echo "=== $L: procedures ==="
+  ./tools/rbs_api.sh "$BASE/links/$L/inject"
+  echo "=== $L: trace(last 50) ==="
+  ./tools/rbs_api.sh "$BASE/links/$L/trace?limit=50"
+  echo "=== $L: health ==="
+  ./tools/rbs_api.sh "$BASE/links/$L/health"
+done
+
+# Полный reconnect всех интерфейсов
+for L in abis iub s1; do
+  ./tools/rbs_api.sh "$BASE/links/$L/disconnect" POST
+  ./tools/rbs_api.sh "$BASE/links/$L/connect" POST
+done
+
+# Короткий B++ smoke (connect/disconnect + keepalive counters)
+./tools/abis_bpp_smoke.sh
+
+# Вариант с явной базой и ожиданием после reconnect
+./tools/abis_bpp_smoke.sh "$BASE" 3
+
+# Короткий C1 smoke (параметризованный RSL inject + frame counters)
+./tools/abis_c1_smoke.sh
+
+# Вариант с явной базой и ожиданием после inject
+./tools/abis_c1_smoke.sh "$BASE" 1
+
+# D1 mock interop smoke (mock BSC IPA + OML/RSL exchange)
+# Важно: rbs_node должен быть запущен в gsm режиме с:
+#   abis_transport=ipa_tcp
+#   abis_interop_profile=osmocom
+#   bsc_addr=127.0.0.1
+./tools/abis_d1_mock_smoke.sh "$BASE"
+
+# Smoke-test inject по всем доступным процедурам
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_RELEASE"}'
+./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:PAGING_CMD"}'
+./tools/rbs_api.sh "$BASE/links/iub/inject"  POST '{"procedure":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/s1/inject"   POST '{"procedure":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh "$BASE/links/s1/inject"   POST '{"procedure":"S1AP:RESET"}'
+
+# Проверка block/unblock для всех поддерживаемых типов
+./tools/rbs_api.sh "$BASE/links/abis/block"   POST '{"type":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/abis/unblock" POST '{"type":"OML:OPSTART"}'
+./tools/rbs_api.sh "$BASE/links/iub/block"    POST '{"type":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/iub/unblock"  POST '{"type":"NBAP:RESET"}'
+./tools/rbs_api.sh "$BASE/links/s1/block"     POST '{"type":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh "$BASE/links/s1/unblock"   POST '{"type":"S1AP:S1_SETUP"}'
+
+# Негативные тесты API (ожидаем 4xx/ошибку)
+./tools/rbs_api.sh "$BASE/links/unknown/trace?limit=5"
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:UNKNOWN"}'
+./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":0,"rat":"LTE"}'
+
+# Быстрый цикл мониторинга линков (каждые 2 секунды)
+while true; do
+  date '+%H:%M:%S'
+  ./tools/rbs_api.sh "$BASE/links"
+  sleep 2
+done
+```
+
+Если в вашей WSL2/NAT-конфигурации прямой `curl 127.0.0.1` не проходит, используйте helper-скрипт:
+
+```bash
+./tools/rbs_api.sh "$BASE/status"
+./tools/rbs_api.sh "$BASE/links/s1/inject" POST '{"procedure":"S1AP:S1_SETUP"}'
+```
+
 #### Управление интерфейсами Abis/Iub/S1
+
+Альтернативный вариант (raw `curl`), закомментирован для справки:
 
 ```bash
 # Список всех интерфейсов и их состояние:
-curl http://127.0.0.1:8080/api/v1/links
+# curl http://127.0.0.1:8080/api/v1/links
 
 # Трасса последних 10 PDU на S1:
-curl 'http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10'
+# curl 'http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10'
 
 # Поднять Iub вручную (если rnc_addr прописан в rbs.conf):
-curl -X POST http://127.0.0.1:8080/api/v1/links/iub/connect
+# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/connect
 
 # Инжектировать S1 Setup Request:
-curl -X POST http://127.0.0.1:8080/api/v1/links/s1/inject \
-     -H 'Content-Type: application/json' \
-     -d '{"procedure":"S1AP:S1_SETUP"}'
+# curl -X POST http://127.0.0.1:8080/api/v1/links/s1/inject \
+#      -H 'Content-Type: application/json' \
+#      -d '{"procedure":"S1AP:S1_SETUP"}'
 
 # Список доступных процедур для Abis:
-curl http://127.0.0.1:8080/api/v1/links/abis/inject
-# → {"procedures":["OML:OPSTART"]}
+# curl http://127.0.0.1:8080/api/v1/links/abis/inject
+# → {"procedures":["OML:OPSTART","RSL:CHANNEL_ACTIVATION","RSL:CHANNEL_RELEASE","RSL:PAGING_CMD"]}
 
 # Заблокировать NBAP Reset на Iub:
-curl -X POST http://127.0.0.1:8080/api/v1/links/iub/block \
-     -H 'Content-Type: application/json' \
-     -d '{"type":"NBAP:RESET"}'
+# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/block \
+#      -H 'Content-Type: application/json' \
+#      -d '{"type":"NBAP:RESET"}'
 
 # Снять блокировку:
-curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
-     -H 'Content-Type: application/json' \
-     -d '{"type":"NBAP:RESET"}'
+# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
+#      -H 'Content-Type: application/json' \
+#      -d '{"type":"NBAP:RESET"}'
 ```
 
 Имена интерфейсов: `abis` (GSM), `iub` (UMTS), `s1` (LTE).
@@ -1627,6 +2012,30 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 | п.20 | PM Export: OMS::exportCsv (CSV с ISO-8601 timestamp), OMS::pushInflux (InfluxDB Line Protocol UDP), ротация rbs.log по размеру |
 | п.21 | PDCP Security: EIA2 (AES-128-CMAC, RFC 4493), applyIntegrity/verifyIntegrity, COUNT = HFN<<12\|SN, HFN wrap-around detection (TS 33.401 §6.4.2b) |
 | п.22 | Link Management: `LinkController` (трасса PDU + блокировка), `LinkRegistry` singleton; `AbisOml`/`IubNbap`/`S1APLink` наследуют `LinkController`; REST API `/api/v1/links/*` (статус, трасса, connect/disconnect, block/unblock, inject); `bsc_addr`/`rnc_addr` в `rbs.conf` |
+| п.23 | LTE Operations Enhancements: `LteServiceRegistry`; REST API `/api/v1/lte/cells`, `/api/v1/lte/start_call`, `/api/v1/lte/end_call`, `/api/v1/lte/handover`; per-cell PM (`lte.cell.*.sinr.hist.*`, `lte.cell.*.throughput.dl.kbps`); HO guard (same-cell/no-UE/anti-ping-pong) |
+| п.24 | NR MAC Scheduler + SDAP: `NRMac` (queue-aware scheduler, BWP hysteresis/caps, DCI 1_1 model), `NRSDAP` (QFI->DRB), `NRPDCP` (SN18), `NRStack` (manual/auto DL scheduling, HARQ feedback loop), интеграционные multi-UE тесты |
+| п.25 | Xn-AP (NR inter-gNB): `xnap_codec` (Xn Setup Request/Response, HO Request/Notify), `XnAPLink` (in-memory inter-gNB transport), `NRStack::handoverRequired()` -> `XnAPLink::handoverRequest()`, end-to-end `test_xnap` |
+| п.26 | NG-AP (gNB <-> AMF): `ngap_codec` (NG Setup, PDU Session Setup, UE Context Release), `NgapLink` (in-memory NG transport), `NRStack` auto-NG Setup on start, базовый PDU Session и UE Context Release через `test_ngap_codec` |
+| п.27 | RAN Slicing (NR): slice-aware scheduler с PRB quota (`eMBB/URLLC/mMTC`) в `NRMac`, per-slice OMS counters (`slice.*`), REST API `GET /api/v1/slices`, тест `test_slicing` |
+| п.28 | CI/CD Pipeline (GitHub Actions): `.github/workflows/build.yml`, matrix `{Debug,Release}×{ubuntu-22.04,ubuntu-24.04}`, ASAN в Debug ubuntu-22.04, `ctest --output-on-failure`, badge в README |
+
+### Детализация последней выполненной итерации (п.28)
+
+Цель:
+автоматическая сборка и тестирование на каждый push/PR через GitHub Actions.
+
+Артефакты:
+- `.github/workflows/build.yml` — matrix build: `{Debug, Release}` × `{ubuntu-22.04, ubuntu-24.04}`; ASAN включён для `ubuntu-22.04 / Debug`
+- `CMakeLists.txt` — исправлена транзитивная линковка `Threads::Threads` для `rbs_common`, `rbs_nr`, `rbs_oms` на Linux
+- CI badge добавлен в `README.md`
+
+Тесты:
+- smoke build всех конфигураций матрицы (Ninja + GCC)
+- `ctest --output-on-failure --parallel 4` в каждом job
+
+Результат:
+- 51/51 тестов проходят локально (Windows/MSVC Debug)
+- workflow корректно покрывает Linux/GCC кросс-платформенный сценарий
 
 ---
 
@@ -1667,60 +2076,16 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 
 ## Дорожная карта (план следующих итераций)
 
-### п.23 — NG-AP (gNB ↔ AMF, 5G Core)
-**Цель:** полный интерфейс между gNB и 5G Core (аналог S1AP для NR SA).
-- `src/nr/ngap_codec.cpp/.h` — кодек NG-AP (TS 38.413), APER через asn1c
-- `src/nr/ngap_link.cpp/.h` — SCTP-транспорт, NGSetupRequest/Response, PDU Session Establishment
-- `NRStack`: вызов `ngap_link.ngSetup()` при старте
-- Тест: `test_ngap_codec` (NGSetup, PDU Session, UE Context Release)
-- Ссылки: TS 38.413, TS 38.401 §8.7
+Актуальная дорожная карта вынесена в отдельный файл: [ROADMAP.md](ROADMAP.md).
 
-### п.24 — NR MAC Scheduler + SDAP
-**Цель:** завершить DU data path для 5G NR (аналог LTE PDCP/MAC).
-- `NRMac` — планировщик NR: numerology-aware, BWP switching, DCI format 1_1
-- `SDAP` (TS 37.324) — QoS Flow → DRB mapping, QFI в заголовке SDAP
-- `NRPDCP` — 18-бит SN (long), интеграция с EIA2/EEA2
-- Тест: `test_nr_mac` (admit UE, DL scheduler, QoS flow → DRB)
-- Ссылки: TS 37.324, TS 38.321, TS 38.323
+Кратко:
+- завершено до п.28 включительно;
+- следующий этап: п.29-п.33 (real SCTP transport для NG/Xn, interop E2E, CI maturity, observability, security hardening).
 
-### п.25 — VoLTE / IMS stub
-**Цель:** моделирование голосовых вызовов поверх LTE (IMS + SIP).
-- SIP REGISTER / INVITE / BYE — минимальный stub (строковый кодек)
-- RTP/RTCP header (RFC 3550) в GTP-U bearer
-- `LTEStack::setupVoLTEBearer(rnti)` — выделение QCI=1 bearer (GBR Voice)
-- Тест: `test_volte` (SIP INVITE → GTP-U RTP burst)
-- Ссылки: 3GPP TS 26.114, RFC 3261, RFC 3550
-
-### п.26 — Xn-AP (NR inter-gNB)
-**Цель:** inter-gNB хэндовер для 5G NR (аналог X2AP).
-- `src/nr/xnap_codec.cpp/.h` — Xn Setup Request/Response + XnAP HO (TS 38.423 §8.3)
-- `NRStack::handoverRequired()` → `XnAPLink::handoverRequest()`
-- Тест: `test_xnap` (Xn Setup, HO Required → Request → Notify)
-- Ссылки: TS 38.423
-
-### п.27 — Multi-Cell Topology & PM Export (Prometheus)
-**Цель:** запуск нескольких ячеек одновременно с агрегацией PM.
-- `RadioBaseStation`: массив `LTECellConfig[]`, несколько `LTEStack` экземпляров
-- `OMS::exportPrometheus(port)` — `/metrics` endpoint в формате OpenMetrics
-- Модель интерференции между ячейками (упрощённая SINR по расстоянию)
-- Тест: `test_multi_cell` (3 ячейки, admit UE в каждой, проверить OMS счётчики)
-- Ссылки: TS 36.300 §10.1, OpenMetrics RFC
-
-### п.28 — RAN Slicing (5G, TS 28.541)
-**Цель:** изоляция ресурсов для сетевых слайсов (eMBB / URLLC / mMTC).
-- `SliceConfig`: S-NSSAI (SST + SD), MAX_PRB per slice
-- `LTEMAC` / `NRMac`: slice-aware PF планировщик (PRB quota по NSSAI)
-- `OMS`: счётчики per-slice (`slice.eMBB.connectedUEs`, `slice.URLLC.prb_used`)
-- REST API: `GET /api/v1/slices` — статус слайсов
-- Тест: `test_slicing` (3 слайса, quota enforcement, OMS counters)
-- Ссылки: TS 28.541, TS 38.300 §5.7.1
-
-### п.29 — CI/CD Pipeline (GitHub Actions)
-**Цель:** автоматическая сборка и тестирование на каждый push.
-- `.github/workflows/build.yml` — Ubuntu 22.04 + GCC 12, cmake + ctest
-- Matrix: `{Debug, Release}` × `{ubuntu-22.04, ubuntu-24.04}`
-- Badge в README (`![CI](https://github.com/.../actions/...badge.svg)`)
-- Опционально: ASAN run в Debug matrix
-- Ссылки: GitHub Actions docs, CMake/CTest CI best practices
+Итог текущего этапа проекта:
+- сформирован целостный Multi-RAT стенд GSM/UMTS/LTE/NR с единым OMS и REST-управлением;
+- реализованы NR core-функции симуляции (scheduler/SDAP/PDCP, XnAP, NGAP, slicing);
+- добавлены эксплуатационные механизмы (Link health, Prometheus export, CI pipeline);
+- тестовая база расширена и стабильно проходит (локально 51/51).
 
 

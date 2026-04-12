@@ -60,7 +60,9 @@ endif()
 add_library(rbs_common STATIC
     src/common/config.cpp
     src/common/link_registry.cpp
+    src/common/lte_service_registry.cpp
     src/common/udp_socket.cpp
+    src/common/tcp_socket.cpp
     src/common/sctp_socket.cpp
     src/common/mobility_manager.cpp
     src/common/son.cpp
@@ -116,6 +118,7 @@ add_library(rbs_lte STATIC
     src/lte/lte_mac.cpp
     src/lte/lte_pdcp.cpp
     src/lte/lte_stack.cpp
+    src/lte/volte_stub.cpp
     src/lte/s1ap_codec.cpp
     src/lte/s1ap_link.cpp
     src/lte/x2ap_codec.cpp
@@ -132,7 +135,10 @@ target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap rbs_oms
 add_library(rbs_oms STATIC
     src/oms/oms.cpp
 )
-target_link_libraries(rbs_oms PUBLIC rbs_common)
+target_link_libraries(rbs_oms PUBLIC rbs_common httplib::httplib)
+if(WIN32)
+    target_link_libraries(rbs_oms PUBLIC ws2_32)
+endif()
 
 # ─────────────────────────────────────────────────────────────────
 # Library: 5G NR stack (gNB-DU stub, TS 38.211 / TS 38.473)
@@ -140,7 +146,14 @@ target_link_libraries(rbs_oms PUBLIC rbs_common)
 add_library(rbs_nr STATIC
     src/nr/nr_phy.cpp
     src/nr/nr_stack.cpp
+    src/nr/nr_mac.cpp
+    src/nr/nr_sdap.cpp
+    src/nr/nr_pdcp.cpp
     src/nr/f1ap_codec.cpp
+    src/nr/ngap_codec.cpp
+    src/nr/ngap_link.cpp
+    src/nr/xnap_codec.cpp
+    src/nr/xnap_link.cpp
 )
 target_link_libraries(rbs_nr PUBLIC rbs_hal)
 # ───────────────────────────────────────────────────────────────
@@ -234,10 +247,13 @@ target_link_libraries(rbs_node PRIVATE
 # Link pthreads on Linux/macOS
 if(UNIX)
     find_package(Threads REQUIRED)
-    target_link_libraries(rbs_node PRIVATE Threads::Threads)
-    target_link_libraries(rbs_gsm  PUBLIC  Threads::Threads)
-    target_link_libraries(rbs_umts PUBLIC  Threads::Threads)
-    target_link_libraries(rbs_lte  PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_common PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_node   PRIVATE Threads::Threads)
+    target_link_libraries(rbs_gsm    PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_umts   PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_lte    PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_nr     PUBLIC  Threads::Threads)
+    target_link_libraries(rbs_oms    PUBLIC  Threads::Threads)
 endif()
 
 # ─────────────────────────────────────────────────────────────────

@@ -1,10 +1,24 @@
 #include "lte_stack.h"
 #include "../common/logger.h"
 #include "../common/link_registry.h"
+#include "../common/lte_service_registry.h"
 #include "../oms/oms.h"
 #include <chrono>
 #include <thread>
 #include <cstdio>
+#include <algorithm>
+
+#ifdef _WIN32
+#  ifndef WIN32_LEAN_AND_MEAN
+#    define WIN32_LEAN_AND_MEAN
+#  endif
+#  ifndef NOMINMAX
+#    define NOMINMAX
+#  endif
+#  include <winsock2.h>
+#else
+#  include <arpa/inet.h>
+#endif
 
 namespace rbs::lte {
 
@@ -34,9 +48,25 @@ LTEStack::LTEStack(std::shared_ptr<hal::IRFHardware> rf, const LTECellConfig& cf
     s1entry.injectableProcs = [this]() { return s1ap_->injectableProcs(); };
     s1entry.injectProcedure = [this](const std::string& p) { return s1ap_->injectProcedure(p); };
     rbs::LinkRegistry::instance().registerLink(std::move(s1entry));
+
+    rbs::LteCellService svc{};
+    svc.cellId = cfg_.cellId;
+    svc.earfcn = cfg_.earfcn;
+    svc.pci = cfg_.pci;
+    svc.admitUe = [this](IMSI imsi, uint8_t cqi) { return admitUE(imsi, cqi); };
+    svc.releaseUe = [this](RNTI rnti) { releaseUE(rnti); };
+    svc.setupVoLteBearer = [this](RNTI rnti) { return setupVoLTEBearer(rnti); };
+    svc.handleSipMessage = [this](RNTI rnti, const std::string& sip) { return handleSipMessage(rnti, sip); };
+    svc.sendVoLteRtpBurst = [this](RNTI rnti, size_t n, size_t payload) { return sendVoLteRtpBurst(rnti, n, payload); };
+    svc.requestHandover = [this](RNTI rnti, uint16_t pci, EARFCN earfcn) { return requestHandover(rnti, pci, earfcn); };
+    svc.connectedUeCount = [this]() { return connectedUECount(); };
+    rbs::LteServiceRegistry::instance().registerCell(std::move(svc));
 }
 
-LTEStack::~LTEStack() { stop(); }
+LTEStack::~LTEStack() {
+    rbs::LteServiceRegistry::instance().unregisterCell(cfg_.cellId);
+    stop();
+}
 
 // ────────────────────────────────────────────────────────────────
 bool LTEStack::start() {
@@ -52,20 +82,7 @@ bool LTEStack::start() {
 
     // Register RRC handover callback → X2AP Handover Request (TS 36.423 §8.3.1)
     rrc_->setHandoverCallback([this](RNTI rnti, uint16_t targetPci, EARFCN targetEarfcn) {
-        X2HORequest req{};
-        req.rnti         = rnti;
-        req.sourceEnbId  = cfg_.cellId;
-        req.targetCellId = static_cast<uint32_t>(targetPci);  // PCI used as target ID in sim
-        req.causeType    = 0;  // radio
-        ByteBuffer rrcCmd{0x04, 0x00,
-            static_cast<uint8_t>(targetPci >> 8), static_cast<uint8_t>(targetPci & 0xFF),
-            static_cast<uint8_t>(targetEarfcn >> 8), static_cast<uint8_t>(targetEarfcn & 0xFF)};
-        req.rrcContainer = std::move(rrcCmd);
-        x2ap_->handoverRequest(req);
-        auto& oms = rbs::oms::OMS::instance();
-        oms.updateCounter("lte.ho.attempts", oms.getCounter("lte.ho.attempts") + 1.0);
-        RBS_LOG_INFO("LTEStack", "HO Request via X2AP: rnti=", rnti,
-                     " targetPCI=", targetPci, " targetEARFCN=", targetEarfcn);
+        requestHandover(rnti, targetPci, targetEarfcn);
     });
 
     if (s1ap_ && !cfg_.mmeAddr.empty()) {
@@ -198,12 +215,17 @@ void LTEStack::releaseUE(RNTI rnti) {
                           setups > 0 ? drops / setups * 100.0 : 0.0, "%");
     }
     teardownERAB(rnti, 1);  // release DRB1 GTP-U tunnel (TS 36.413 §8.4.2)
+    teardownERAB(rnti, 5);  // release VoLTE dedicated bearer, if present
     rrc_->releaseConnection(rnti);
     rlc_->removeRB(rnti, 1);
     rlc_->removeRB(rnti, 3);
+    rlc_->removeRB(rnti, 7);
     pdcp_->removeBearer(rnti, 1);
+    pdcp_->removeBearer(rnti, 5);
+    volteState_.erase(rnti);
     mac_->releaseUE(rnti);
     ueMap_.erase(rnti);
+    rbs::oms::OMS::instance().updateCounter("volte.bearers.active", static_cast<double>(volteState_.size()));
     RBS_LOG_INFO("LTEStack", "UE released RNTI=", rnti);
 }
 
@@ -215,13 +237,18 @@ void LTEStack::triggerCSFB(RNTI rnti, uint16_t gsmArfcn) {
     rrc_->releaseWithRedirect(rnti, gsmArfcn);
     // Tear down PS bearers (not counted as E-RAB drop: this is a controlled fallback)
     teardownERAB(rnti, 1);
+    teardownERAB(rnti, 5);
     rlc_->removeRB(rnti, 1);
     rlc_->removeRB(rnti, 3);
+    rlc_->removeRB(rnti, 7);
     pdcp_->removeBearer(rnti, 1);
+    pdcp_->removeBearer(rnti, 5);
+    volteState_.erase(rnti);
     mac_->releaseUE(rnti);
     ueMap_.erase(rnti);
     auto& oms = rbs::oms::OMS::instance();
     oms.updateCounter("lte.csfb.count", oms.getCounter("lte.csfb.count") + 1.0);
+    oms.updateCounter("volte.bearers.active", static_cast<double>(volteState_.size()));
     RBS_LOG_INFO("LTEStack", "CSFB: RNTI=", rnti, " → GSM ARFCN=", gsmArfcn);
 }
 
@@ -285,6 +312,137 @@ bool LTEStack::teardownERAB(RNTI rnti, uint8_t erabId) {
     return s1u_->deleteTunnel(rnti, erabId);
 }
 
+bool LTEStack::requestHandover(RNTI rnti, uint16_t targetPci, EARFCN targetEarfcn) {
+    auto& oms = rbs::oms::OMS::instance();
+    if (!ueMap_.count(rnti)) {
+        oms.updateCounter("lte.ho.reject.no_ue", oms.getCounter("lte.ho.reject.no_ue") + 1.0);
+        return false;
+    }
+    if (targetPci == cfg_.pci) {
+        oms.updateCounter("lte.ho.reject.same_cell", oms.getCounter("lte.ho.reject.same_cell") + 1.0);
+        return false;
+    }
+
+    const auto nowMs = static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::system_clock::now().time_since_epoch()).count());
+    auto itTs = lastHoEpochMs_.find(rnti);
+    if (itTs != lastHoEpochMs_.end()) {
+        const auto lastTarget = lastHoTargetPci_[rnti];
+        if (lastTarget == targetPci && nowMs > itTs->second && nowMs - itTs->second < hoMinIntervalMs_) {
+            oms.updateCounter("lte.ho.reject.ping_pong", oms.getCounter("lte.ho.reject.ping_pong") + 1.0);
+            return false;
+        }
+    }
+
+    X2HORequest req{};
+    req.rnti         = rnti;
+    req.sourceEnbId  = cfg_.cellId;
+    req.targetCellId = static_cast<uint32_t>(targetPci);
+    req.causeType    = 0;
+    ByteBuffer rrcCmd{0x04, 0x00,
+        static_cast<uint8_t>(targetPci >> 8), static_cast<uint8_t>(targetPci & 0xFF),
+        static_cast<uint8_t>(targetEarfcn >> 8), static_cast<uint8_t>(targetEarfcn & 0xFF)};
+    req.rrcContainer = std::move(rrcCmd);
+
+    const bool ok = x2ap_->handoverRequest(req);
+    if (!ok) {
+        oms.updateCounter("lte.ho.reject.x2_send_fail", oms.getCounter("lte.ho.reject.x2_send_fail") + 1.0);
+        return false;
+    }
+
+    lastHoEpochMs_[rnti] = nowMs;
+    lastHoTargetPci_[rnti] = targetPci;
+    oms.updateCounter("lte.ho.attempts", oms.getCounter("lte.ho.attempts") + 1.0);
+    RBS_LOG_INFO("LTEStack", "HO Request via X2AP: rnti=", rnti,
+                 " targetPCI=", targetPci, " targetEARFCN=", targetEarfcn);
+    return true;
+}
+
+bool LTEStack::setupVoLTEBearer(RNTI rnti) {
+    if (!ueMap_.count(rnti)) return false;
+    if (volteState_.count(rnti)) return true;
+
+    GTPUTunnel voice{};
+    voice.teid = 0xA0000000u | (static_cast<uint32_t>(rnti) << 8) | 5u;
+    voice.remoteIPv4 = htonl(0x7F000001u);  // 127.0.0.1 in network byte order
+    voice.udpPort = GTPU_PORT;
+
+    if (!setupERAB(rnti, 5u, voice)) {
+        return false;
+    }
+
+    PDCPConfig cfg{};
+    cfg.bearerId = 5;
+    cfg.cipherAlg = PDCPCipherAlg::NULL_ALG;
+    cfg.headerCompression = false;
+    pdcp_->addBearer(rnti, cfg);
+    rlc_->addRB(rnti, 7, LTERlcMode::UM);
+
+    VoLTEState st{};
+    st.ssrc = 0x15000000u | static_cast<uint32_t>(rnti);
+    volteState_[rnti] = st;
+
+    auto& oms = rbs::oms::OMS::instance();
+    oms.updateCounter("volte.bearers.active", static_cast<double>(volteState_.size()));
+    oms.updateCounter("volte.bearers.setups", oms.getCounter("volte.bearers.setups") + 1.0);
+
+    RBS_LOG_INFO("LTEStack", "VoLTE bearer setup rnti=", rnti, " qci=1 erabId=5");
+    return true;
+}
+
+bool LTEStack::handleSipMessage(RNTI rnti, const std::string& sipMessage) {
+    auto msg = volte::parseMessage(sipMessage);
+    auto& oms = rbs::oms::OMS::instance();
+
+    if (msg.method == volte::SipMethod::REGISTER) {
+        oms.updateCounter("volte.sip.register", oms.getCounter("volte.sip.register") + 1.0);
+        return true;
+    }
+
+    if (msg.method == volte::SipMethod::INVITE) {
+        oms.updateCounter("volte.sip.invite", oms.getCounter("volte.sip.invite") + 1.0);
+        if (!setupVoLTEBearer(rnti)) return false;
+        return sendVoLteRtpBurst(rnti, 3, 160) >= 1;
+    }
+
+    if (msg.method == volte::SipMethod::BYE) {
+        oms.updateCounter("volte.sip.bye", oms.getCounter("volte.sip.bye") + 1.0);
+        teardownERAB(rnti, 5u);
+        pdcp_->removeBearer(rnti, 5);
+        rlc_->removeRB(rnti, 7);
+        volteState_.erase(rnti);
+        oms.updateCounter("volte.bearers.active", static_cast<double>(volteState_.size()));
+        return true;
+    }
+
+    return false;
+}
+
+size_t LTEStack::sendVoLteRtpBurst(RNTI rnti, size_t packetCount, size_t payloadBytes) {
+    auto it = volteState_.find(rnti);
+    if (it == volteState_.end() || !activeERABs_.count({rnti, 5u})) return 0;
+
+    size_t sent = 0;
+    for (size_t i = 0; i < packetCount; ++i) {
+        ByteBuffer amr(payloadBytes, static_cast<uint8_t>(0xD0 + (i & 0x0F)));
+        volte::RtpHeader h{};
+        h.payloadType = 96;
+        h.sequence = it->second.rtpSeq++;
+        h.timestamp = it->second.rtpTs;
+        h.ssrc = it->second.ssrc;
+        it->second.rtpTs += 160;
+
+        ByteBuffer rtp = volte::encodeRtp(h, amr);
+        if (s1u_->sendGtpuPdu(rnti, 5u, rtp)) {
+            ++sent;
+        }
+    }
+
+    auto& oms = rbs::oms::OMS::instance();
+    oms.updateCounter("volte.rtp.tx.packets", oms.getCounter("volte.rtp.tx.packets") + static_cast<double>(sent));
+    return sent;
+}
+
 // ────────────────────────────────────────────────────────────────
 // DL forwarding: drain incoming GTP-U frames each subframe tick.
 // SGW → S1-U UDP → GTP-U decode → PDCP → RLC → MAC → UE (air)
@@ -294,6 +452,8 @@ void LTEStack::forwardDlPackets() {
         ByteBuffer ip;
         while (s1u_->recvGtpuPdu(rnti, 1u, ip))
             sendIPPacket(rnti, 1, ip);
+        while (s1u_->recvGtpuPdu(rnti, 5u, ip))
+            sendIPPacket(rnti, 5, ip);
     }
 }
 

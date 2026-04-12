@@ -5,6 +5,7 @@
 #include "gsm/gsm_stack.h"
 #include "umts/umts_stack.h"
 #include "lte/lte_stack.h"
+#include "lte/multi_cell_model.h"
 #include "lte/x2ap_link.h"
 #include "nr/nr_stack.h"
 #include "oms/oms.h"
@@ -18,6 +19,7 @@
 #include <memory>
 #include <string>
 #include <algorithm>
+#include <vector>
 
 // ────────────────────────────────────────────────────────────────
 // Signal handler for graceful shutdown (SIGINT / SIGTERM)
@@ -104,9 +106,27 @@ public:
             umtsStack_ = std::make_unique<rbs::umts::UMTSStack>(umtsRF_, cfg.buildUMTSConfig());
         }
         if (rat_ == SelectedRAT::LTE || rat_ == SelectedRAT::ALL) {
-            lteRF_ = std::make_shared<rbs::hal::RFHardware>(2, 4);
-            lteRF_->setAlarmCallback(alarmCb);
-            lteStack_ = std::make_unique<rbs::lte::LTEStack>(lteRF_, cfg.buildLTEConfig());
+            const int cellCount = std::max(1, cfg.getInt("lte", "cell_count", 1));
+            const int cellIdStep = std::max(1, cfg.getInt("lte", "cell_id_step", 1));
+            const int earfcnStep = std::max(1, cfg.getInt("lte", "earfcn_step", 5));
+            const int pciStep = std::max(1, cfg.getInt("lte", "pci_step", 3));
+            const int s1uPortBase = std::max(1, cfg.getInt("lte", "s1u_port_base", 2152));
+            lteInterSiteDistanceM_ = std::max(10.0, cfg.getDouble("lte", "inter_site_distance_m", 500.0));
+
+            const auto base = cfg.buildLTEConfig();
+            for (int i = 0; i < cellCount; ++i) {
+                auto rf = std::make_shared<rbs::hal::RFHardware>(2, 4);
+                rf->setAlarmCallback(alarmCb);
+
+                rbs::LTECellConfig c = base;
+                c.cellId = static_cast<rbs::CellId>(base.cellId + i * cellIdStep);
+                c.earfcn = static_cast<rbs::EARFCN>(base.earfcn + i * earfcnStep);
+                c.pci = static_cast<uint16_t>((base.pci + i * pciStep) % 504);
+                c.s1uLocalPort = static_cast<uint16_t>(s1uPortBase + i);
+
+                lteRFs_.push_back(rf);
+                lteStacks_.push_back(std::make_unique<rbs::lte::LTEStack>(rf, c));
+            }
         }
         if (rat_ == SelectedRAT::NR || rat_ == SelectedRAT::ALL) {
             nrRF_ = std::make_shared<rbs::hal::RFHardware>(4, 4);
@@ -124,18 +144,35 @@ public:
             return false;
         }
 
+        auto& cfg = rbs::Config::instance();
+        if (cfg.getBool("oms", "prometheus_enabled", true)) {
+            const auto bind = cfg.getString("oms", "prometheus_bind", "127.0.0.1");
+            const int port = cfg.getInt("oms", "prometheus_port", 9108);
+            rbs::oms::OMS::instance().exportPrometheus(port, bind);
+        }
+
         auto initRF = [](std::shared_ptr<rbs::hal::RFHardware>& rf) -> bool {
             return rf && rf->initialise() && rf->selfTest();
         };
 
         if (gsmRF_  && !initRF(gsmRF_))  { RBS_LOG_CRITICAL("RBS", "GSM RF init failed");  return false; }
         if (umtsRF_ && !initRF(umtsRF_)) { RBS_LOG_CRITICAL("RBS", "UMTS RF init failed"); return false; }
-        if (lteRF_  && !initRF(lteRF_))  { RBS_LOG_CRITICAL("RBS", "LTE RF init failed");  return false; }
+        for (size_t i = 0; i < lteRFs_.size(); ++i) {
+            if (!initRF(lteRFs_[i])) {
+                RBS_LOG_CRITICAL("RBS", "LTE RF init failed for cell index ", i);
+                return false;
+            }
+        }
         if (nrRF_   && !initRF(nrRF_))   { RBS_LOG_CRITICAL("RBS", "NR RF init failed");   return false; }
 
         if (gsmStack_  && !gsmStack_->start())  { RBS_LOG_CRITICAL("RBS", "GSM stack start failed");  return false; }
         if (umtsStack_ && !umtsStack_->start()) { RBS_LOG_CRITICAL("RBS", "UMTS stack start failed"); return false; }
-        if (lteStack_  && !lteStack_->start())  { RBS_LOG_CRITICAL("RBS", "LTE stack start failed");  return false; }
+        for (size_t i = 0; i < lteStacks_.size(); ++i) {
+            if (!lteStacks_[i]->start()) {
+                RBS_LOG_CRITICAL("RBS", "LTE stack start failed for cell index ", i);
+                return false;
+            }
+        }
         if (nrStack_   && !nrStack_->start())   { RBS_LOG_CRITICAL("RBS", "NR stack start failed");   return false; }
 
         RBS_LOG_INFO("RBS", "====================================================");
@@ -148,11 +185,12 @@ public:
             RBS_LOG_INFO("RBS", "  UMTS cell ", umtsStack_->config().cellId,
                          "  UARFCN=", umtsStack_->config().uarfcn,
                          "  PSC=",    umtsStack_->config().primaryScrCode);
-        if (lteStack_)
-            RBS_LOG_INFO("RBS", "  LTE  cell ", lteStack_->config().cellId,
-                         "  EARFCN=", lteStack_->config().earfcn,
-                         "  PCI=",    lteStack_->config().pci,
-                         "  BW=",     lteBwMHz(lteStack_->config().bandwidth), " MHz");
+        for (const auto& lte : lteStacks_) {
+            RBS_LOG_INFO("RBS", "  LTE  cell ", lte->config().cellId,
+                         "  EARFCN=", lte->config().earfcn,
+                         "  PCI=",    lte->config().pci,
+                         "  BW=",     lteBwMHz(lte->config().bandwidth), " MHz");
+        }
         if (nrStack_)
             RBS_LOG_INFO("RBS", "  NR   cell ", nrStack_->config().cellId,
                          "  NR-ARFCN=", nrStack_->config().nrArfcn,
@@ -161,7 +199,7 @@ public:
         RBS_LOG_INFO("RBS", "====================================================");
 
         // ── EN-DC wiring: connect LTE(MN) ↔ NR(SN) when both stacks are active ──
-        if (lteStack_ && nrStack_) {
+        if (!lteStacks_.empty() && nrStack_) {
             const rbs::ENDCConfig endc = rbs::Config::instance().buildENDCConfig();
             if (endc.enabled) {
                 x2endc_ = std::make_unique<rbs::lte::X2APLink>("MN-eNB");
@@ -190,9 +228,13 @@ public:
         restServer_->stop();
         if (x2endc_)    { x2endc_->disconnect(1); }
         if (nrStack_)   { nrStack_->stop();   nrRF_->shutdown(); }
-        if (lteStack_)  { lteStack_->stop();  lteRF_->shutdown(); }
+        for (size_t i = 0; i < lteStacks_.size(); ++i) {
+            lteStacks_[i]->stop();
+            lteRFs_[i]->shutdown();
+        }
         if (umtsStack_) { umtsStack_->stop(); umtsRF_->shutdown(); }
         if (gsmStack_)  { gsmStack_->stop();  gsmRF_->shutdown(); }
+        rbs::oms::OMS::instance().stopPrometheus();
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::LOCKED);
         RBS_LOG_INFO("RBS", "Radio Base Station OFFLINE");
     }
@@ -230,22 +272,46 @@ public:
             umtsStack_->releaseUE(rnti);
         }
 
-        if (lteStack_) {
-            rbs::RNTI rnti = lteStack_->admitUE(300000000000003ULL, 12);
-            lteStack_->updateCQI(rnti, 12);
-            for (int i = 0; i < 3; ++i) {
-                rbs::ByteBuffer pkt(100, static_cast<uint8_t>(i));
-                lteStack_->sendIPPacket(rnti, 1, pkt);
+        if (!lteStacks_.empty()) {
+            uint64_t baseImsi = 300000000000003ULL;
+            for (size_t i = 0; i < lteStacks_.size(); ++i) {
+                auto& lte = lteStacks_[i];
+                rbs::RNTI rnti = lte->admitUE(baseImsi + i, 10);
+                const double sinrDb = rbs::lte::estimateSinrDb(
+                    lteInterSiteDistanceM_ * (1.0 + static_cast<double>(i) * 0.25),
+                    static_cast<uint32_t>(lteStacks_.size() - 1),
+                    lte->config().txPower.dBm);
+                const uint8_t cqi = rbs::lte::sinrToCqi(sinrDb);
+                lte->updateCQI(rnti, cqi);
+
+                for (int k = 0; k < 3; ++k) {
+                    rbs::ByteBuffer pkt(100, static_cast<uint8_t>(k));
+                    lte->sendIPPacket(rnti, 1, pkt);
+                }
+                lte->setupVoLTEBearer(rnti);
+                lte->sendVoLteRtpBurst(rnti, 2, 120);
+
+                RBS_LOG_INFO("RBS", "[LTE ] cell=", lte->config().cellId,
+                             " UE RNTI=", rnti,
+                             " EARFCN=", lte->config().earfcn,
+                             " PCI=", lte->config().pci,
+                             " SINR=", sinrDb,
+                             " dB CQI=", static_cast<int>(cqi));
+                const std::string cellBase = "lte.cell." + std::to_string(lte->config().cellId) + ".";
+                oms.updateCounter(cellBase + "sinr.db", sinrDb, "dB");
+                oms.updateCounter(cellBase + "connectedUEs", static_cast<double>(lte->connectedUECount()));
+                updateSinrHistogram(oms, lte->config().cellId, sinrDb);
+                const double dlBits = static_cast<double>(3 * 100 + 2 * 120) * 8.0;
+                oms.updateCounter(cellBase + "throughput.dl.kbps", dlBits / 200.0, "kbps");
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
+                lte->printStats();
+                lte->releaseUE(rnti);
             }
-            RBS_LOG_INFO("RBS", "[LTE ] UE RNTI=", rnti,
-                         " admitted on EARFCN=", lteStack_->config().earfcn,
-                         " PCI=", lteStack_->config().pci,
-                         " CQI=12 → MCS=17");
-            std::this_thread::sleep_for(std::chrono::seconds(2));
-            lteStack_->printStats();
-            oms.updateCounter("lte.connectedUEs",
-                              static_cast<double>(lteStack_->connectedUECount()));
-            lteStack_->releaseUE(rnti);
+
+            double total = 0.0;
+            for (const auto& lte : lteStacks_) total += static_cast<double>(lte->connectedUECount());
+            oms.updateCounter("lte.connectedUEs", total);
         }
 
         if (nrStack_) {
@@ -255,7 +321,7 @@ public:
                          " PCI=", nrStack_->config().nrPci,
                          " SCS=", rbs::nrScsKhz(nrStack_->config().scs), " kHz");
             // EN-DC Option 3a: wire SCG bearer if LTE is also running
-            if (lteStack_) {
+            if (!lteStacks_.empty()) {
                 rbs::DCBearerConfig bearer{};
                 bearer.enbBearerId = 5;
                 bearer.type        = rbs::DCBearerType::SCG;
@@ -270,7 +336,8 @@ public:
             nrStack_->printStats();
             oms.updateCounter("nr.connectedUEs",
                               static_cast<double>(nrStack_->connectedUECount()));
-            if (lteStack_) nrStack_->releaseSCGBearer(rnti);
+            updateSliceCounters(oms, nrStack_->currentSliceMetrics());
+            if (!lteStacks_.empty()) nrStack_->releaseSCGBearer(rnti);
             nrStack_->releaseUE(rnti);
         }
 
@@ -290,30 +357,77 @@ public:
             if (umtsStack_)
                 oms.updateCounter("umts.connectedUEs",
                                   static_cast<double>(umtsStack_->connectedUECount()));
-            if (lteStack_)
-                oms.updateCounter("lte.connectedUEs",
-                                  static_cast<double>(lteStack_->connectedUECount()));
-            if (nrStack_)
+            if (!lteStacks_.empty()) {
+                double total = 0.0;
+                for (const auto& lte : lteStacks_)
+                    total += static_cast<double>(lte->connectedUECount());
+                oms.updateCounter("lte.connectedUEs", total);
+            }
+            if (nrStack_) {
                 oms.updateCounter("nr.connectedUEs",
                                   static_cast<double>(nrStack_->connectedUECount()));
+                updateSliceCounters(oms, nrStack_->currentSliceMetrics());
+            }
             if (tick % 3 == 0) oms.printPerformanceReport();
+
+            if (!lteStacks_.empty()) {
+                for (size_t i = 0; i < lteStacks_.size(); ++i) {
+                    const auto& lte = lteStacks_[i];
+                    const double sinrDb = rbs::lte::estimateSinrDb(
+                        lteInterSiteDistanceM_ * (1.0 + static_cast<double>(i) * 0.25),
+                        static_cast<uint32_t>(lteStacks_.size() - 1),
+                        lte->config().txPower.dBm);
+                    const std::string cellBase = "lte.cell." + std::to_string(lte->config().cellId) + ".";
+                    oms.updateCounter(cellBase + "sinr.db", sinrDb, "dB");
+                    updateSinrHistogram(oms, lte->config().cellId, sinrDb);
+                }
+            }
         }
     }
 
 private:
+    static void updateSliceCounters(rbs::oms::OMS& oms,
+                                    const std::vector<rbs::nr::NRSliceMetrics>& metrics) {
+        for (const auto& metric : metrics) {
+            const std::string name = rbs::nr::NRMac::sliceName(metric.slice);
+            const std::string base = "slice." + name + ".";
+            oms.updateCounter(base + "prb_used", static_cast<double>(metric.usedPrbs));
+            oms.updateCounter(base + "max_prb", static_cast<double>(metric.maxPrbs));
+            oms.updateCounter(base + "connectedUEs", static_cast<double>(metric.activeUes));
+            oms.updateCounter(base + "pending_bytes", static_cast<double>(metric.pendingBytes));
+        }
+    }
+
+    static void updateSinrHistogram(rbs::oms::OMS& oms, rbs::CellId cellId, double sinrDb) {
+        const std::string base = "lte.cell." + std::to_string(cellId) + ".sinr.";
+        oms.updateCounter(base + "samples", oms.getCounter(base + "samples") + 1.0);
+        if (sinrDb < 0.0) {
+            oms.updateCounter(base + "bucket.lt0", oms.getCounter(base + "bucket.lt0") + 1.0);
+        } else if (sinrDb < 5.0) {
+            oms.updateCounter(base + "bucket.0_5", oms.getCounter(base + "bucket.0_5") + 1.0);
+        } else if (sinrDb < 10.0) {
+            oms.updateCounter(base + "bucket.5_10", oms.getCounter(base + "bucket.5_10") + 1.0);
+        } else if (sinrDb < 15.0) {
+            oms.updateCounter(base + "bucket.10_15", oms.getCounter(base + "bucket.10_15") + 1.0);
+        } else {
+            oms.updateCounter(base + "bucket.ge15", oms.getCounter(base + "bucket.ge15") + 1.0);
+        }
+    }
+
     SelectedRAT rat_;
     std::shared_ptr<rbs::hal::RFHardware>   gsmRF_;
     std::shared_ptr<rbs::hal::RFHardware>   umtsRF_;
-    std::shared_ptr<rbs::hal::RFHardware>   lteRF_;
+    std::vector<std::shared_ptr<rbs::hal::RFHardware>> lteRFs_;
     std::unique_ptr<rbs::gsm::GSMStack>      gsmStack_;
     std::unique_ptr<rbs::umts::UMTSStack>    umtsStack_;
-    std::unique_ptr<rbs::lte::LTEStack>      lteStack_;
+    std::vector<std::unique_ptr<rbs::lte::LTEStack>> lteStacks_;
     std::shared_ptr<rbs::hal::RFHardware>    nrRF_;
     std::unique_ptr<rbs::nr::NRStack>        nrStack_;
     // EN-DC X2AP link between LTE(MN) and NR(SN)
     std::unique_ptr<rbs::lte::X2APLink>      x2endc_;
     // REST API server
     std::unique_ptr<rbs::api::RestServer>    restServer_;
+    double lteInterSiteDistanceM_ = 500.0;
 };
 
 // ────────────────────────────────────────────────────────────────

@@ -6,6 +6,7 @@
 #include <vector>
 #include <functional>
 #include <chrono>
+#include <memory>
 
 namespace rbs::oms {
 
@@ -30,6 +31,8 @@ public:
         static OMS inst;
         return inst;
     }
+
+    ~OMS();
 
     // ── Fault Management ──────────────────────────────────────────
     uint32_t raiseAlarm(const std::string& source,
@@ -73,8 +76,18 @@ public:
     int  pushInflux(const std::string& endpoint,
                     const std::string& measurement = "rbs_pm") const;
 
+    /// Start Prometheus/OpenMetrics exporter at /metrics.
+    /// Returns true on successful startup.
+    bool exportPrometheus(int port, const std::string& bindAddr = "127.0.0.1");
+
+    /// Stop Prometheus exporter if running.
+    void stopPrometheus();
+
+    /// Build metrics snapshot in Prometheus text format.
+    std::string renderPrometheus() const;
+
 private:
-    OMS() = default;
+    OMS();
     uint32_t nextAlarmId_ = 1;
     std::unordered_map<uint32_t, Alarm>       alarms_;
     std::unordered_map<std::string, PerfCounter> counters_;
@@ -86,6 +99,9 @@ private:
         uint32_t activeAlarmId = 0;  ///< 0 = no alarm raised yet
     };
     std::unordered_map<std::string, ThresholdEntry> thresholds_;
+
+    struct PrometheusExporter;
+    std::unique_ptr<PrometheusExporter> prom_;
 };
 
 }  // namespace rbs::oms
