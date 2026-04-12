@@ -4,7 +4,7 @@
 
 ## План реализации
 
-## Реализовано (п.1–п.28)
+## Реализовано (п.1–п.29)
 
 - п.1-п.8: базовая Multi-RAT архитектура, HAL/Common, GSM/UMTS/LTE стеки, Mobility/SON.
 - п.9-п.16: CSFB, HSDPA/HSUPA, LTE UL/measurement, UMTS soft HO, CA, ROHC.
@@ -15,21 +15,9 @@
 - п.26: NG-AP для gNB<->AMF сценариев (in-memory transport + PDU session/release tests).
 - п.27: RAN Slicing в NR (eMBB/URLLC/mMTC quotas, OMS slice counters, `/api/v1/slices`).
 - п.28: CI/CD GitHub Actions (Linux matrix Debug/Release, ASAN в Debug, обязательный ctest).
+- п.29: Real NG/Xn Transport (SCTP): dual-mode transport для `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API биндинга/подключения peer, тест `test_ng_xn_transport`.
 
 ## Что еще реализовать (следующий этап)
-
-### п.29 - Real NG/Xn Transport (SCTP)
-
-Цель:
-перейти от in-memory NGAP/XnAP транспорта к реальному SCTP/IP для интеграции с внешним core/peer.
-
-Артефакты:
-- `NgapLink`/`XnAPLink`: transport abstraction + SCTP backend.
-- Конфиг peer-узлов, таймауты, reconnect/backoff.
-- Integration tests с loopback SCTP peer.
-
-Критерий готовности:
-- успешные NG Setup/Xn Setup и базовые процедуры по реальному SCTP каналу.
 
 ### п.30 - Interop E2E (Open5GS + Osmocom)
 

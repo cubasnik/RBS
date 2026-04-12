@@ -56,6 +56,7 @@ public:
     // ── NGAP interface ──────────────────────────────────────────
     void attachNgapLink(std::shared_ptr<NgapLink> ngap);
     bool connectNgPeer(uint64_t amfId);
+    bool connectNgPeer(uint64_t amfId, const std::string& amfIp, uint16_t amfPort, uint16_t localPort = 0);
     bool ngSetup(uint64_t amfId);
     bool ngSetupComplete(uint64_t amfId) const;
     size_t processNgMessages();
@@ -64,6 +65,7 @@ public:
     // ── XnAP interface ──────────────────────────────────────────
     void attachXnLink(std::shared_ptr<XnAPLink> xnap);
     bool connectXnPeer(uint64_t targetGnbId);
+    bool connectXnPeer(uint64_t targetGnbId, const std::string& targetIp, uint16_t targetPort, uint16_t localPort = 0);
     bool xnSetup(uint64_t targetGnbId);
     bool xnSetupComplete(uint64_t peerGnbId) const;
     bool handoverRequired(uint16_t crnti, uint64_t targetGnbId,

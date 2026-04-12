@@ -238,6 +238,22 @@ bool NRStack::connectNgPeer(uint64_t amfId) {
     return link ? link->connect(amfId) : false;
 }
 
+bool NRStack::connectNgPeer(uint64_t amfId, const std::string& amfIp, uint16_t amfPort, uint16_t localPort) {
+    std::shared_ptr<NgapLink> link;
+    {
+        std::lock_guard<std::mutex> lock(stateMutex_);
+        link = ngap_;
+        preferredAmfId_ = amfId;
+    }
+    if (!link) {
+        return false;
+    }
+    if (!link->bindTransport(localPort)) {
+        return false;
+    }
+    return link->connectSctpPeer(amfId, amfIp, amfPort);
+}
+
 bool NRStack::ngSetup(uint64_t amfId) {
     std::shared_ptr<NgapLink> link;
     {
@@ -369,6 +385,21 @@ bool NRStack::connectXnPeer(uint64_t targetGnbId) {
         link = xnap_;
     }
     return link ? link->connect(targetGnbId) : false;
+}
+
+bool NRStack::connectXnPeer(uint64_t targetGnbId, const std::string& targetIp, uint16_t targetPort, uint16_t localPort) {
+    std::shared_ptr<XnAPLink> link;
+    {
+        std::lock_guard<std::mutex> lock(stateMutex_);
+        link = xnap_;
+    }
+    if (!link) {
+        return false;
+    }
+    if (!link->bindTransport(localPort)) {
+        return false;
+    }
+    return link->connectSctpPeer(targetGnbId, targetIp, targetPort);
 }
 
 bool NRStack::xnSetup(uint64_t targetGnbId) {

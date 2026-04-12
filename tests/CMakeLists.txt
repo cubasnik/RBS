@@ -229,6 +229,11 @@ add_executable(test_xnap test_xnap.cpp)
 target_link_libraries(test_xnap PRIVATE rbs_nr)
 add_test(NAME test_xnap COMMAND test_xnap)
 
+# ── test_ng_xn_transport (p.29) ─────────────────────────────────
+add_executable(test_ng_xn_transport test_ng_xn_transport.cpp)
+target_link_libraries(test_ng_xn_transport PRIVATE rbs_nr)
+add_test(NAME test_ng_xn_transport COMMAND test_ng_xn_transport)
+
 # ── test_rest_api ─────────────────────────────────────────────────
 add_executable(test_rest_api test_rest_api.cpp)
 target_link_libraries(test_rest_api PRIVATE rbs_api)

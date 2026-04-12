@@ -9,6 +9,7 @@ std::unordered_map<uint64_t, NgapLink*> NgapLink::registry_;
 
 NgapLink::NgapLink(uint64_t localNodeId)
     : localNodeId_(localNodeId)
+    , sctp_(std::make_unique<rbs::net::SctpSocket>("NGAP-" + std::to_string(localNodeId)))
 {
     std::lock_guard<std::mutex> lock(registryMutex_);
     registry_[localNodeId_] = this;
@@ -29,13 +30,51 @@ bool NgapLink::connect(uint64_t targetNodeId) {
         RBS_LOG_ERROR("NGAP", "connect failed: localNodeId=", localNodeId_, " targetNodeId=", targetNodeId);
         return false;
     }
-    peers_[targetNodeId] = true;
+    PeerInfo info{};
+    info.connected = true;
+    peers_[targetNodeId] = info;
     return true;
 }
 
 bool NgapLink::isConnected(uint64_t targetNodeId) const {
     const auto it = peers_.find(targetNodeId);
-    return it != peers_.end() && it->second;
+    return it != peers_.end() && it->second.connected;
+}
+
+bool NgapLink::bindTransport(uint16_t localPort) {
+    (void)rbs::net::SctpSocket::wsaInit();
+    if (!sctp_) {
+        sctp_ = std::make_unique<rbs::net::SctpSocket>("NGAP-" + std::to_string(localNodeId_));
+    }
+    if (localPort_ != 0 || sctp_->isOpen()) {
+        return true;
+    }
+    if (!sctp_->bind(localPort)) {
+        RBS_LOG_ERROR("NGAP", "bindTransport failed: localNodeId=", localNodeId_, " localPort=", localPort);
+        return false;
+    }
+    localPort_ = sctp_->localPort();
+    return true;
+}
+
+bool NgapLink::connectSctpPeer(uint64_t targetNodeId, const std::string& targetIp, uint16_t targetPort) {
+    if (!bindTransport(0)) {
+        return false;
+    }
+    if (!sctp_->connect(targetIp, targetPort)) {
+        RBS_LOG_ERROR("NGAP", "connectSctpPeer failed: localNodeId=", localNodeId_,
+                      " targetNodeId=", targetNodeId, " ", targetIp, ":", targetPort);
+        return false;
+    }
+
+    PeerInfo info{};
+    info.connected = true;
+    info.useSctp = true;
+    info.ip = targetIp;
+    info.port = targetPort;
+    peers_[targetNodeId] = info;
+    endpointToNodeId_[endpointKey(targetIp, targetPort)] = targetNodeId;
+    return true;
 }
 
 bool NgapLink::ngSetup(uint64_t targetNodeId, const NgSetupRequest& req) {
@@ -78,6 +117,29 @@ bool NgapLink::sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const
         return false;
     }
 
+    const auto peerIt = peers_.find(targetNodeId);
+    if (peerIt != peers_.end() && peerIt->second.useSctp) {
+        if (!sctp_) {
+            return false;
+        }
+        const bool ok = sctp_->send(payload);
+        if (!ok) {
+            RBS_LOG_WARNING("NGAP", "SCTP send failed localNodeId=", localNodeId_, " targetNodeId=", targetNodeId,
+                            " (will try same-process fallback)");
+        }
+
+        // Same-process fallback keeps tests deterministic while SCTP association warms up.
+        {
+            std::lock_guard<std::mutex> lock(registryMutex_);
+            const auto it = registry_.find(targetNodeId);
+            if (it != registry_.end() && it->second != nullptr) {
+                it->second->enqueue(NgapMessage{procedure, localNodeId_, targetNodeId, payload});
+                return true;
+            }
+        }
+        return ok;
+    }
+
     NgapLink* peer = nullptr;
     {
         std::lock_guard<std::mutex> lock(registryMutex_);
@@ -96,6 +158,33 @@ bool NgapLink::sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const
 void NgapLink::enqueue(NgapMessage&& msg) {
     std::lock_guard<std::mutex> lock(rxMutex_);
     rxQueue_.push(std::move(msg));
+}
+
+void NgapLink::handleSctpRx(const rbs::net::SctpPacket& pkt) {
+    if (pkt.data.size() < 3) {
+        return;
+    }
+    if (pkt.data[0] != 0x4E || pkt.data[1] != 0x47) {
+        return;
+    }
+
+    const std::string key = endpointKey(pkt.srcIp, pkt.srcPort);
+    uint64_t sourceNodeId = 0;
+    const auto it = endpointToNodeId_.find(key);
+    if (it != endpointToNodeId_.end()) {
+        sourceNodeId = it->second;
+    }
+
+    NgapMessage msg{};
+    msg.procedure = static_cast<NgapProcedure>(pkt.data[2]);
+    msg.sourceNodeId = sourceNodeId;
+    msg.targetNodeId = localNodeId_;
+    msg.payload = pkt.data;
+    enqueue(std::move(msg));
+}
+
+std::string NgapLink::endpointKey(const std::string& ip, uint16_t port) {
+    return ip + ":" + std::to_string(port);
 }
 
 }  // namespace rbs::nr

@@ -1,8 +1,10 @@
 #pragma once
 
 #include "xnap_codec.h"
+#include "../common/sctp_socket.h"
 
 #include <cstdint>
+#include <memory>
 #include <mutex>
 #include <queue>
 #include <string>
@@ -22,6 +24,10 @@ public:
     explicit XnAPLink(uint64_t localGnbId, std::string gnbName = {});
     ~XnAPLink();
 
+    // Transport management for real Xn interface over SCTP/IP.
+    bool bindTransport(uint16_t localPort = 0);
+    bool connectSctpPeer(uint64_t targetGnbId, const std::string& targetIp, uint16_t targetPort);
+
     bool connect(uint64_t targetGnbId);
     bool isConnected(uint64_t targetGnbId) const;
 
@@ -36,12 +42,24 @@ public:
     const std::string& gnbName() const { return gnbName_; }
 
 private:
+    struct PeerInfo {
+        bool connected = false;
+        bool useSctp = false;
+        std::string ip;
+        uint16_t port = 0;
+    };
+
     bool sendMessage(uint64_t targetGnbId, XnAPProcedure procedure, const ByteBuffer& payload);
     void enqueue(XnAPMessage&& msg);
+    void handleSctpRx(const rbs::net::SctpPacket& pkt);
+    static std::string endpointKey(const std::string& ip, uint16_t port);
 
     uint64_t localGnbId_;
     std::string gnbName_;
-    std::unordered_map<uint64_t, bool> peers_;
+    std::unordered_map<uint64_t, PeerInfo> peers_;
+    std::unordered_map<std::string, uint64_t> endpointToNodeId_;
+    std::unique_ptr<rbs::net::SctpSocket> sctp_;
+    uint16_t localPort_ = 0;
     mutable std::mutex rxMutex_;
     std::queue<XnAPMessage> rxQueue_;
 

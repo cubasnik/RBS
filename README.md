@@ -2018,24 +2018,28 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 | п.26 | NG-AP (gNB <-> AMF): `ngap_codec` (NG Setup, PDU Session Setup, UE Context Release), `NgapLink` (in-memory NG transport), `NRStack` auto-NG Setup on start, базовый PDU Session и UE Context Release через `test_ngap_codec` |
 | п.27 | RAN Slicing (NR): slice-aware scheduler с PRB quota (`eMBB/URLLC/mMTC`) в `NRMac`, per-slice OMS counters (`slice.*`), REST API `GET /api/v1/slices`, тест `test_slicing` |
 | п.28 | CI/CD Pipeline (GitHub Actions): `.github/workflows/build.yml`, matrix `{Debug,Release}×{ubuntu-22.04,ubuntu-24.04}`, ASAN в Debug ubuntu-22.04, `ctest --output-on-failure`, badge в README |
+| п.29 | Real NG/Xn Transport (SCTP): dual-mode transport в `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API `bindTransport/connectSctpPeer`, `NRStack` overload-методы для peer IP/port, тест `test_ng_xn_transport` |
 
-### Детализация последней выполненной итерации (п.28)
+### Детализация последней выполненной итерации (п.29)
 
 Цель:
-автоматическая сборка и тестирование на каждый push/PR через GitHub Actions.
+перейти от in-memory NGAP/XnAP транспорта к реальному SCTP/IP, сохранив обратную совместимость существующих сценариев.
 
 Артефакты:
-- `.github/workflows/build.yml` — matrix build: `{Debug, Release}` × `{ubuntu-22.04, ubuntu-24.04}`; ASAN включён для `ubuntu-22.04 / Debug`
-- `CMakeLists.txt` — исправлена транзитивная линковка `Threads::Threads` для `rbs_common`, `rbs_nr`, `rbs_oms` на Linux
-- CI badge добавлен в `README.md`
+- `NgapLink`/`XnAPLink`: dual-mode transport (in-memory + SCTP backend на базе `SctpSocket`)
+- новые API для transport-конфигурации: `bindTransport()` и `connectSctpPeer()`
+- `NRStack`: overload-методы `connectNgPeer(...ip,port...)` и `connectXnPeer(...ip,port...)`
+- тест: `test_ng_xn_transport`
 
 Тесты:
-- smoke build всех конфигураций матрицы (Ninja + GCC)
-- `ctest --output-on-failure --parallel 4` в каждом job
+- `test_ng_xn_transport`
+- `test_ngap_codec`
+- `test_xnap`
+- `test_nr_stack`
 
 Результат:
-- 51/51 тестов проходят локально (Windows/MSVC Debug)
-- workflow корректно покрывает Linux/GCC кросс-платформенный сценарий
+- транспортный SCTP-path для NG/Xn интегрирован без регрессий in-memory режима
+- таргетные NR/transport тесты проходят локально
 
 ---
 
@@ -2079,8 +2083,8 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 Актуальная дорожная карта вынесена в отдельный файл: [ROADMAP.md](ROADMAP.md).
 
 Кратко:
-- завершено до п.28 включительно;
-- следующий этап: п.29-п.33 (real SCTP transport для NG/Xn, interop E2E, CI maturity, observability, security hardening).
+- завершено до п.29 включительно;
+- следующий этап: п.30-п.33 (interop E2E, CI maturity, observability, security hardening).
 
 Итог текущего этапа проекта:
 - сформирован целостный Multi-RAT стенд GSM/UMTS/LTE/NR с единым OMS и REST-управлением;

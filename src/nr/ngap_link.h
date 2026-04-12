@@ -1,10 +1,13 @@
 #pragma once
 
 #include "ngap_codec.h"
+#include "../common/sctp_socket.h"
 
 #include <cstdint>
+#include <memory>
 #include <mutex>
 #include <queue>
+#include <string>
 #include <unordered_map>
 
 namespace rbs::nr {
@@ -21,6 +24,10 @@ public:
     explicit NgapLink(uint64_t localNodeId);
     ~NgapLink();
 
+    // Transport management for real NG interface over SCTP/IP.
+    bool bindTransport(uint16_t localPort = 0);
+    bool connectSctpPeer(uint64_t targetNodeId, const std::string& targetIp, uint16_t targetPort);
+
     bool connect(uint64_t targetNodeId);
     bool isConnected(uint64_t targetNodeId) const;
 
@@ -34,11 +41,23 @@ public:
     bool recvNgapMessage(NgapMessage& msg);
 
 private:
+    struct PeerInfo {
+        bool connected = false;
+        bool useSctp = false;
+        std::string ip;
+        uint16_t port = 0;
+    };
+
     bool sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const ByteBuffer& payload);
     void enqueue(NgapMessage&& msg);
+    void handleSctpRx(const rbs::net::SctpPacket& pkt);
+    static std::string endpointKey(const std::string& ip, uint16_t port);
 
     uint64_t localNodeId_;
-    std::unordered_map<uint64_t, bool> peers_;
+    std::unordered_map<uint64_t, PeerInfo> peers_;
+    std::unordered_map<std::string, uint64_t> endpointToNodeId_;
+    std::unique_ptr<rbs::net::SctpSocket> sctp_;
+    uint16_t localPort_ = 0;
     mutable std::mutex rxMutex_;
     std::queue<NgapMessage> rxQueue_;
 
