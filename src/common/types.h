@@ -187,26 +187,30 @@ struct UEContext {
 // Cell Configuration
 // ────────────────────────────────────────────────────────────────
 struct GSMCellConfig {
-    CellId    cellId;
-    ARFCN     arfcn;
-    GSMBand   band;
-    TxPower   txPower;
-    uint8_t   bsic;         // Base Station Identity Code (0-63)
-    uint16_t  lac;          // Location Area Code
-    uint16_t  mcc;          // Mobile Country Code
-    uint16_t  mnc;          // Mobile Network Code
+    CellId      cellId;
+    ARFCN       arfcn;
+    GSMBand     band;
+    TxPower     txPower;
+    uint8_t     bsic;           // Base Station Identity Code (0-63)
+    uint16_t    lac;            // Location Area Code
+    uint16_t    mcc;            // Mobile Country Code
+    uint16_t    mnc;            // Mobile Network Code
+    std::string bscAddr;        // BSC address for Abis/OML (empty = simulation only)
+    uint16_t    bscPort = 3002; // Abis OML TCP port (IPA default)
 };
 
 struct UMTSCellConfig {
-    CellId    cellId;
-    UARFCN    uarfcn;
-    UMTSBand  band;
-    TxPower   txPower;
-    ScrCode   primaryScrCode;
-    uint16_t  lac;
-    uint16_t  rac;          // Routing Area Code
-    uint16_t  mcc;
-    uint16_t  mnc;
+    CellId      cellId;
+    UARFCN      uarfcn;
+    UMTSBand    band;
+    TxPower     txPower;
+    ScrCode     primaryScrCode;
+    uint16_t    lac;
+    uint16_t    rac;            // Routing Area Code
+    uint16_t    mcc;
+    uint16_t    mnc;
+    std::string rncAddr;        // RNC address for Iub/NBAP (empty = simulation only)
+    uint16_t    rncPort = 25412; // Iub NBAP SCTP port (TS 25.430)
 };
 
 struct LTECellConfig {

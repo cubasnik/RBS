@@ -109,6 +109,8 @@ GSMCellConfig Config::buildGSMConfig() const {
     c.lac      = static_cast<uint16_t>(getInt ("gsm", "lac",   1000));
     c.mcc      = static_cast<uint16_t>(getInt ("gsm", "mcc",    250));
     c.mnc      = static_cast<uint16_t>(getInt ("gsm", "mnc",      1));
+    c.bscAddr  = getString("gsm", "bsc_addr", "");
+    c.bscPort  = static_cast<uint16_t>(getInt ("gsm", "bsc_port", 3002));
     return c;
 }
 
@@ -123,6 +125,8 @@ UMTSCellConfig Config::buildUMTSConfig() const {
     c.rac            = static_cast<uint16_t>(getInt   ("umts", "rac",           1));
     c.mcc            = static_cast<uint16_t>(getInt   ("umts", "mcc",         250));
     c.mnc            = static_cast<uint16_t>(getInt   ("umts", "mnc",           1));
+    c.rncAddr        = getString("umts", "rnc_addr", "");
+    c.rncPort        = static_cast<uint16_t>(getInt   ("umts", "rnc_port",  25412));
     return c;
 }
 

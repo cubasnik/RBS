@@ -4,11 +4,33 @@
 namespace rbs::gsm {
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Helpers
+// ─────────────────────────────────────────────────────────────────────────────
+static const char* omlTypeStr(OMLMsgType t) {
+    switch (t) {
+        case OMLMsgType::SET_BTS_ATTR:             return "OML:SET_BTS_ATTR";
+        case OMLMsgType::GET_BTS_ATTR:             return "OML:GET_BTS_ATTR";
+        case OMLMsgType::SET_RADIO_CARRIER_ATTR:   return "OML:SET_RADIO_CARRIER_ATTR";
+        case OMLMsgType::CHANNEL_ACTIVATION:       return "OML:CHANNEL_ACTIVATION";
+        case OMLMsgType::CHANNEL_ACTIVATION_ACK:   return "OML:CHANNEL_ACTIVATION_ACK";
+        case OMLMsgType::CHANNEL_ACTIVATION_NACK:  return "OML:CHANNEL_ACTIVATION_NACK";
+        case OMLMsgType::RF_CHAN_REL:               return "OML:RF_CHAN_REL";
+        case OMLMsgType::OPSTART:                  return "OML:OPSTART";
+        case OMLMsgType::OPSTART_ACK:              return "OML:OPSTART_ACK";
+        case OMLMsgType::OPSTART_NACK:             return "OML:OPSTART_NACK";
+        case OMLMsgType::FAILURE_EVENT_REPORT:     return "OML:FAILURE_EVENT_REPORT";
+        case OMLMsgType::SOFTWARE_ACTIVATE_NOTICE: return "OML:SOFTWARE_ACTIVATE_NOTICE";
+        default:                                   return "OML:UNKNOWN";
+    }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 //  AbisOml
 // ─────────────────────────────────────────────────────────────────────────────
 
 AbisOml::AbisOml(const std::string& btsId)
-    : btsId_(btsId)
+    : rbs::LinkController("abis-" + btsId)
+    , btsId_(btsId)
 {}
 
 bool AbisOml::connect(const std::string& bscAddr, uint16_t port)
@@ -37,12 +59,19 @@ void AbisOml::disconnect()
 
 bool AbisOml::sendOmlMsg(OMLMsgType type, const AbisMessage& msg)
 {
+    const char* typeStr = omlTypeStr(type);
+    if (isBlocked(typeStr)) {
+        RBS_LOG_WARNING("AbisOml", "[{}] sendOmlMsg заблокирован: {}", btsId_, typeStr);
+        return false;
+    }
     if (!connected_) {
         RBS_LOG_WARNING("AbisOml", "[{}] sendOmlMsg: нет соединения с BSC", btsId_);
         return false;
     }
     RBS_LOG_DEBUG("AbisOml", "[{}] OML → BSC  type=0x{:02X} entity=0x{:02X} len={}",
                   btsId_, static_cast<uint8_t>(type), msg.entity, msg.payload.size());
+    pushTrace(true, typeStr, "entity=" + std::to_string(msg.entity) +
+                             " len=" + std::to_string(msg.payload.size()));
 
     // Симуляция автоответа BSC
     if (type == OMLMsgType::OPSTART) {
@@ -67,9 +96,31 @@ bool AbisOml::recvOmlMsg(OMLMsgType& type, AbisMessage& msg)
     type = front.type;
     msg  = front.msg;
     rxQueue_.pop();
+    const char* typeStr = omlTypeStr(type);
     RBS_LOG_DEBUG("AbisOml", "[{}] OML ← BSC  type=0x{:02X}", btsId_,
                   static_cast<uint8_t>(type));
+    pushTrace(false, typeStr, "entity=" + std::to_string(msg.entity));
     return true;
+}
+
+void AbisOml::reconnect()
+{
+    if (!bscAddr_.empty())
+        connect(bscAddr_, bscPort_);
+}
+
+std::vector<std::string> AbisOml::injectableProcs() const
+{
+    return {"OML:OPSTART"};
+}
+
+bool AbisOml::injectProcedure(const std::string& proc)
+{
+    if (proc == "OML:OPSTART") {
+        AbisMessage msg{0x00, {}};
+        return sendOmlMsg(OMLMsgType::OPSTART, msg);
+    }
+    return false;
 }
 
 bool AbisOml::configureTRX(uint8_t trxId, uint16_t arfcn, int8_t txPower_dBm)

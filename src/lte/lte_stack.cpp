@@ -1,5 +1,6 @@
 #include "lte_stack.h"
 #include "../common/logger.h"
+#include "../common/link_registry.h"
 #include "../oms/oms.h"
 #include <chrono>
 #include <thread>
@@ -19,6 +20,20 @@ LTEStack::LTEStack(std::shared_ptr<hal::IRFHardware> rf, const LTECellConfig& cf
     s1u_  = std::make_unique<S1ULink>("ENB-" + std::to_string(cfg_.cellId),
                                       cfg_.s1uLocalPort);
     x2ap_ = std::make_unique<X2APLink>("ENB-" + std::to_string(cfg_.cellId));
+
+    // Register S1 link in global registry
+    rbs::LinkEntry s1entry;
+    s1entry.name         = "s1";
+    s1entry.rat          = "LTE";
+    s1entry.peerAddr     = cfg_.mmeAddr;
+    s1entry.peerPort     = cfg_.mmePort;
+    s1entry.ctrl         = s1ap_.get();
+    s1entry.isConnected  = [this]() { return s1ap_->isConnected(); };
+    s1entry.reconnect    = [this]() { s1ap_->reconnect(); };
+    s1entry.disconnect   = [this]() { s1ap_->disconnect(); };
+    s1entry.injectableProcs = [this]() { return s1ap_->injectableProcs(); };
+    s1entry.injectProcedure = [this](const std::string& p) { return s1ap_->injectProcedure(p); };
+    rbs::LinkRegistry::instance().registerLink(std::move(s1entry));
 }
 
 LTEStack::~LTEStack() { stop(); }

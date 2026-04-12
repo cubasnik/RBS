@@ -8,7 +8,8 @@ namespace rbs::umts {
 // ─────────────────────────────────────────────────────────────────────────────
 
 IubNbap::IubNbap(const std::string& nodeBId)
-    : nodeBId_(nodeBId)
+    : rbs::LinkController("iub-" + nodeBId)
+    , nodeBId_(nodeBId)
 {}
 
 bool IubNbap::connect(const std::string& rncAddr, uint16_t port)
@@ -292,8 +293,18 @@ bool IubNbap::radioLinkSetupHSDPA(RNTI rnti, uint16_t scrCode, uint8_t hsDschCod
 
 bool IubNbap::sendNbapMsg(const NBAPMessage& msg)
 {
+    const std::string typeStr = "NBAP:" + std::to_string(
+        static_cast<int>(msg.procedure));
+    if (isBlocked(typeStr)) {
+        RBS_LOG_WARNING("IubNbap", "[{}] sendNbapMsg заблокирован: proc=0x{:02X}",
+                        nodeBId_, static_cast<uint8_t>(msg.procedure));
+        return false;
+    }
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP → RNC  proc=0x{:02X} txId={}",
                   nodeBId_, static_cast<uint8_t>(msg.procedure), msg.transactionId);
+    pushTrace(true, typeStr,
+              "txId=" + std::to_string(msg.transactionId) +
+              " len=" + std::to_string(msg.payload.size()));
     return true;  // в симуляции транспорт не нужен
 }
 
@@ -324,7 +335,35 @@ bool IubNbap::recvNbapMsg(NBAPMessage& msg)
     rxQueue_.pop();
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP ← RNC  proc=0x{:02X}",
                   nodeBId_, static_cast<uint8_t>(msg.procedure));
+    pushTrace(false,
+              "NBAP:" + std::to_string(static_cast<int>(msg.procedure)),
+              "txId=" + std::to_string(msg.transactionId));
     return true;
+}
+
+void IubNbap::reconnect()
+{
+    if (!rncAddr_.empty())
+        connect(rncAddr_, rncPort_);
+}
+
+std::vector<std::string> IubNbap::injectableProcs() const
+{
+    return {"NBAP:CELL_SETUP", "NBAP:RESET"};
+}
+
+bool IubNbap::injectProcedure(const std::string& proc)
+{
+    if (proc == "NBAP:RESET") {
+        if (!connected_) return false;
+        uint8_t txId = static_cast<uint8_t>(nextTxId());
+        ByteBuffer payload{0x00, txId};
+        NBAPMessage msg{NBAPProcedure::RESET, txId, std::move(payload)};
+        return sendNbapMsg(msg);
+    }
+    // NBAP:CELL_SETUP requires cell parameters stored at stack level —
+    // callers that need it should invoke sendCellSetup() directly.
+    return false;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

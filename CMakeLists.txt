@@ -59,6 +59,7 @@ endif()
 # ─────────────────────────────────────────────────────────────────
 add_library(rbs_common STATIC
     src/common/config.cpp
+    src/common/link_registry.cpp
     src/common/udp_socket.cpp
     src/common/sctp_socket.cpp
     src/common/mobility_manager.cpp

@@ -4,6 +4,7 @@
 #include "gsm_mac.h"
 #include "gsm_rr.h"
 #include "gsm_rlc.h"
+#include "abis_link.h"
 #include "../hal/rf_interface.h"
 #include "igsm_stack.h"
 #include <memory>
@@ -45,6 +46,7 @@ private:
     std::shared_ptr<GSMMAC>  mac_;
     std::shared_ptr<GSMRr>   rr_;
     std::shared_ptr<GSMRlc>  rlc_;
+    std::unique_ptr<AbisOml> abis_;
 
     std::atomic<bool>  running_{false};
     std::thread        clockThread_;

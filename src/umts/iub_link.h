@@ -1,5 +1,6 @@
 #pragma once
 #include "iub_interface.h"
+#include "../common/link_controller.h"
 #include "../common/logger.h"
 #include <queue>
 #include <mutex>
@@ -15,7 +16,7 @@ namespace rbs::umts {
 // инициирует общие и выделенные измерения.
 // Транспорт: SCTP over IP (в симуляции — in-memory очередь).
 // ─────────────────────────────────────────────────────────────────────────────
-class IubNbap : public IIubNbap {
+class IubNbap : public IIubNbap, public rbs::LinkController {
 public:
     explicit IubNbap(const std::string& nodeBId);
 
@@ -55,6 +56,11 @@ public:
     // ── Сырой обмен сообщениями ───────────────────────────────────────────────
     bool sendNbapMsg(const NBAPMessage& msg)                    override;
     bool recvNbapMsg(NBAPMessage& msg)                          override;
+
+    // ── LinkController hooks ──────────────────────────────────────────────────
+    void reconnect();
+    std::vector<std::string> injectableProcs() const;
+    bool injectProcedure(const std::string& proc);
 
 private:
     std::string nodeBId_;

@@ -1,5 +1,6 @@
 #include "umts_stack.h"
 #include "../common/logger.h"
+#include "../common/link_registry.h"
 #include <chrono>
 #include <thread>
 
@@ -13,6 +14,20 @@ UMTSStack::UMTSStack(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig&
     rrc_ = std::make_shared<UMTSRrc>();
     rlc_ = std::make_shared<UMTSRlc>();
     iub_ = std::make_unique<IubNbap>("NodeB-" + std::to_string(cfg_.cellId));
+
+    // Register Iub link in global registry
+    rbs::LinkEntry entry;
+    entry.name         = "iub";
+    entry.rat          = "UMTS";
+    entry.peerAddr     = cfg_.rncAddr;
+    entry.peerPort     = cfg_.rncPort;
+    entry.ctrl         = iub_.get();
+    entry.isConnected  = [this]() { return iub_->isConnected(); };
+    entry.reconnect    = [this]() { iub_->reconnect(); };
+    entry.disconnect   = [this]() { iub_->disconnect(); };
+    entry.injectableProcs  = [this]() { return iub_->injectableProcs(); };
+    entry.injectProcedure  = [this](const std::string& p) { return iub_->injectProcedure(p); };
+    rbs::LinkRegistry::instance().registerLink(std::move(entry));
 }
 
 UMTSStack::~UMTSStack() { stop(); }
@@ -20,6 +35,12 @@ UMTSStack::~UMTSStack() { stop(); }
 // ────────────────────────────────────────────────────────────────
 bool UMTSStack::start() {
     if (running_.load()) return true;
+    if (!cfg_.rncAddr.empty()) {
+        iub_->connect(cfg_.rncAddr, cfg_.rncPort);
+        RBS_LOG_INFO("UMTSStack", "Connecting Iub to RNC ", cfg_.rncAddr, ":", cfg_.rncPort);
+    } else {
+        RBS_LOG_INFO("UMTSStack", "Iub in simulation mode (no rnc_addr configured)");
+    }
     if (!phy_->start()) {
         RBS_LOG_ERROR("UMTSStack", "PHY start failed");
         return false;
@@ -153,9 +174,9 @@ void UMTSStack::softHandoverUpdate(const MeasurementReport& report)
         return;
     }
 
-    // Ensure Iub is logically connected (simulated)
+    // Ensure Iub is logically connected
     if (!iub_->isConnected())
-        iub_->connect("127.0.0.1", 25412);
+        iub_->reconnect();
 
     // Delegate AS decision to RRC (handles 1A/1B/1C logic, updates context)
     rrc_->processMeasurementReport(report);

@@ -1,6 +1,7 @@
 #include "rest_server.h"
 #include "../oms/oms.h"
 #include "../common/logger.h"
+#include "../common/link_registry.h"
 
 #ifdef _WIN32
 #  ifndef WIN32_LEAN_AND_MEAN
@@ -103,6 +104,7 @@ struct RestServer::Impl {
     std::thread       thread;
     int               requestedPort{0};
     int               actualPort{0};
+    std::string       bindAddr{"127.0.0.1"};
     std::atomic<bool> running{false};
 
     std::mutex                           ueMutex;
@@ -175,14 +177,193 @@ struct RestServer::Impl {
             res.set_content(j.str(), "application/json");
             RBS_LOG_INFO("REST", "admit imsi=", imsi, " rat=", rat, " crnti=", crnti);
         });
+
+        // ── GET /api/v1/links ──────────────────────────────────────────
+        svr.Get("/api/v1/links", [](const httplib::Request&, httplib::Response& res) {
+            auto links = rbs::LinkRegistry::instance().allLinks();
+            std::ostringstream j;
+            j << "[";
+            bool first = true;
+            for (const auto* e : links) {
+                if (!first) j << ',';
+                first = false;
+                j << "{"
+                  << "\"name\":"      << jsonEscStr(e->name)    << ","
+                  << "\"rat\":"       << jsonEscStr(e->rat)     << ","
+                  << "\"peer\":"      << jsonEscStr(e->peerAddr + ":" + std::to_string(e->peerPort)) << ","
+                  << "\"connected\":" << (e->isConnected ? (e->isConnected() ? "true" : "false") : "false") << ","
+                  << "\"blocked\":[";
+                if (e->ctrl) {
+                    auto bt = e->ctrl->blockedTypes();
+                    bool fb = true;
+                    for (const auto& t : bt) {
+                        if (!fb) j << ',';
+                        fb = false;
+                        j << jsonEscStr(t);
+                    }
+                }
+                j << "]}";
+            }
+            j << "]";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── GET /api/v1/links/{name}/trace ─────────────────────────────
+        svr.Get(R"(/api/v1/links/([^/]+)/trace)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e || !e->ctrl) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            size_t limit = 50;
+            if (req.has_param("limit")) {
+                try { limit = static_cast<size_t>(std::stoul(req.get_param_value("limit"))); }
+                catch (...) {}
+            }
+            auto msgs = e->ctrl->getTrace(limit);
+            std::ostringstream j;
+            j << "{\"messages\":[";
+            bool first = true;
+            for (const auto& m : msgs) {
+                if (!first) j << ',';
+                first = false;
+                auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                    m.timestamp.time_since_epoch()).count();
+                j << "{"
+                  << "\"tx\":"        << (m.tx ? "true" : "false") << ","
+                  << "\"type\":"      << jsonEscStr(m.type)         << ","
+                  << "\"summary\":"   << jsonEscStr(m.summary)      << ","
+                  << "\"timestampMs\":" << ms
+                  << "}";
+            }
+            j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/links/{name}/connect ──────────────────────────
+        svr.Post(R"(/api/v1/links/([^/]+)/connect)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            if (e->reconnect) e->reconnect();
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
+        // ── POST /api/v1/links/{name}/disconnect ───────────────────────
+        svr.Post(R"(/api/v1/links/([^/]+)/disconnect)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            if (e->disconnect) e->disconnect();
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
+        // ── POST /api/v1/links/{name}/block ────────────────────────────
+        // Body: {"type":"OML:OPSTART"}
+        svr.Post(R"(/api/v1/links/([^/]+)/block)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e || !e->ctrl) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            std::string msgType = extractJsonStr(req.body, "type");
+            if (msgType.empty()) {
+                res.status = 400;
+                res.set_content("{\"error\":\"missing type\"}", "application/json");
+                return;
+            }
+            e->ctrl->blockMsg(msgType);
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
+        // ── POST /api/v1/links/{name}/unblock ──────────────────────────
+        svr.Post(R"(/api/v1/links/([^/]+)/unblock)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e || !e->ctrl) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            std::string msgType = extractJsonStr(req.body, "type");
+            if (msgType.empty()) {
+                res.status = 400;
+                res.set_content("{\"error\":\"missing type\"}", "application/json");
+                return;
+            }
+            e->ctrl->unblockMsg(msgType);
+            res.set_content("{\"status\":\"ok\"}", "application/json");
+        });
+
+        // ── GET /api/v1/links/{name}/inject ────────────────────────────
+        svr.Get(R"(/api/v1/links/([^/]+)/inject)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            std::ostringstream j;
+            j << "{\"procedures\":[";
+            if (e->injectableProcs) {
+                auto procs = e->injectableProcs();
+                bool first = true;
+                for (const auto& p : procs) {
+                    if (!first) j << ',';
+                    first = false;
+                    j << jsonEscStr(p);
+                }
+            }
+            j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/links/{name}/inject ───────────────────────────
+        // Body: {"procedure":"S1AP:S1_SETUP"}
+        svr.Post(R"(/api/v1/links/([^/]+)/inject)", [](const httplib::Request& req, httplib::Response& res) {
+            const std::string name = req.matches[1];
+            auto* e = rbs::LinkRegistry::instance().getLink(name);
+            if (!e) {
+                res.status = 404;
+                res.set_content("{\"error\":\"link not found\"}", "application/json");
+                return;
+            }
+            std::string proc = extractJsonStr(req.body, "procedure");
+            if (proc.empty()) {
+                res.status = 400;
+                res.set_content("{\"error\":\"missing procedure\"}", "application/json");
+                return;
+            }
+            bool ok = e->injectProcedure ? e->injectProcedure(proc) : false;
+            if (ok)
+                res.set_content("{\"status\":\"ok\"}", "application/json");
+            else {
+                res.status = 422;
+                res.set_content("{\"error\":\"inject failed or unknown procedure\"}", "application/json");
+            }
+        });
     }
 };
 
 // ── RestServer ───────────────────────────────────────────────────────────────
-RestServer::RestServer(int port)
+RestServer::RestServer(int port, std::string bindAddr)
     : impl_(std::make_unique<Impl>())
 {
     impl_->requestedPort = port;
+    impl_->bindAddr      = std::move(bindAddr);
 }
 
 RestServer::~RestServer() {
@@ -192,15 +373,18 @@ RestServer::~RestServer() {
 bool RestServer::start() {
     impl_->setupRoutes();
 
+    // Use empty string for 0.0.0.0 (httplib interprets it better)
+    std::string bindHost = (impl_->bindAddr == "0.0.0.0") ? "" : impl_->bindAddr;
+
     if (impl_->requestedPort == 0) {
-        impl_->actualPort = impl_->svr.bind_to_any_port("127.0.0.1");
+        impl_->actualPort = impl_->svr.bind_to_any_port(bindHost);
         if (impl_->actualPort < 0) {
             RBS_LOG_ERROR("REST", "Failed to bind to any port");
             return false;
         }
     } else {
         impl_->actualPort = impl_->requestedPort;
-        if (!impl_->svr.bind_to_port("127.0.0.1", impl_->actualPort)) {
+        if (!impl_->svr.bind_to_port(bindHost, impl_->actualPort)) {
             RBS_LOG_ERROR("REST", "Failed to bind to port ", impl_->actualPort);
             return false;
         }
@@ -213,7 +397,7 @@ bool RestServer::start() {
 
     // Brief wait for the accept loop to start.
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    RBS_LOG_INFO("REST", "HTTP server listening on port ", impl_->actualPort);
+    RBS_LOG_INFO("REST", "HTTP server listening on ", impl_->bindAddr, ":", impl_->actualPort);
     return true;
 }
 

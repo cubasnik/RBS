@@ -4,10 +4,12 @@
 #include "../common/sctp_socket.h"
 #include "../common/logger.h"
 #include "../common/pcap_writer.h"
+#include "../common/link_controller.h"
 #include <queue>
 #include <mutex>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 namespace rbs::lte {
 
@@ -23,7 +25,7 @@ namespace rbs::lte {
 // Транспорт: SCTP over IP (TS 36.412).
 // В симуляции — in-memory очередь; S1AP PDU не ASN.1-кодируются.
 // ─────────────────────────────────────────────────────────────────────────────
-class S1APLink : public IS1AP {
+class S1APLink : public IS1AP, public rbs::LinkController {
 public:
     explicit S1APLink(const std::string& enbId);
 
@@ -93,8 +95,14 @@ public:
     /// Открыть/перезаписать .pcap файл для записи S1AP трафика.
     void enablePcap(const std::string& path);
 
+    // ── Link management (LinkController) ─────────────────────────────────────
+    void reconnect();
+    std::vector<std::string> injectableProcs() const;
+    bool injectProcedure(const std::string& proc);
+
 private:
     std::string enbId_;
+    std::string enbName_;         ///< Human-readable eNB name (stored in s1Setup)
     std::string mmeAddr_;
     uint16_t    mmePort_   = 0;
     bool        connected_ = false;

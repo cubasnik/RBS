@@ -64,6 +64,7 @@ inline const char* ansiCyan()      { return "\033[96m"; }
 inline const char* ansiRed()       { return "\033[91m"; }
 inline const char* ansiMagenta()   { return "\033[95m"; }
 inline const char* ansiLightBlue() { return "\033[38;5;153m"; }
+inline const char* ansiDarkMaroon(){ return "\033[38;5;88m"; }
 
 // Wrap tokens in green:
 //  - version strings:  v1.0.0
@@ -246,9 +247,16 @@ public:
         coloured += "]";
         coloured += ansiReset();
         coloured += " ";
-        // [component] message: light blue with green numbers
+        // [component] message: light blue with green numbers.
+        // Two specific RBS shutdown lines are emphasized with dark maroon.
         std::string bodyPart = std::string("[") + component + "] " + bodyText;
-        coloured += colouriseNumbers(bodyPart, ansiLightBlue());
+        bool specialShutdownLine =
+            std::string_view(component) == "RBS" &&
+            (bodyText == "Signal 2 received – initiating shutdown" ||
+             bodyText == "Radio Base Station OFFLINE");
+        coloured += colouriseNumbers(bodyPart,
+                                     specialShutdownLine ? ansiDarkMaroon()
+                                                         : ansiLightBlue());
         coloured += ansiReset();
 
         std::lock_guard<std::mutex> lock(mutex_);

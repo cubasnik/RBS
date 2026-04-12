@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <atomic>
+#include <string>
 
 namespace rbs::api {
 
@@ -16,7 +17,7 @@ namespace rbs::api {
 class RestServer {
 public:
     // port=0 binds to any available ephemeral port (recommended for tests).
-    explicit RestServer(int port = 8080);
+    explicit RestServer(int port = 8080, std::string bindAddr = "127.0.0.1");
     ~RestServer();
 
     // Non-copyable, non-movable (owns a live socket).

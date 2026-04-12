@@ -1,5 +1,6 @@
 #pragma once
 #include "abis_interface.h"
+#include "../common/link_controller.h"
 #include "../common/logger.h"
 #include <queue>
 #include <mutex>
@@ -15,7 +16,7 @@ namespace rbs::gsm {
 // Здесь сообщения помещаются во внутреннюю очередь и
 // логируются — достаточно для симуляторного BTS.
 // ─────────────────────────────────────────────────────────────────────────────
-class AbisOml : public IAbisOml {
+class AbisOml : public IAbisOml, public rbs::LinkController {
 public:
     explicit AbisOml(const std::string& btsId);
 
@@ -33,6 +34,12 @@ public:
                       int8_t txPower_dBm)                    override;
     void reportHwFailure(uint8_t objectClass,
                          const std::string& cause)           override;
+
+    // ── LinkController hooks ──────────────────────────────────────────────────
+    /// Повторно подключиться к BSC (если bscAddr известен).
+    void reconnect();
+    std::vector<std::string> injectableProcs() const;
+    bool injectProcedure(const std::string& proc);
 
 private:
     std::string btsId_;

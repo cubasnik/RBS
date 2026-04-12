@@ -1,5 +1,6 @@
 #include "gsm_stack.h"
 #include "../common/logger.h"
+#include "../common/link_registry.h"
 #include <chrono>
 #include <thread>
 
@@ -9,10 +10,25 @@ GSMStack::GSMStack(std::shared_ptr<hal::IRFHardware> rf, const GSMCellConfig& cf
     : cfg_(cfg)
     , rf_(std::move(rf))
 {
-    phy_ = std::make_shared<GSMPhy>(rf_, cfg_);
-    mac_ = std::make_shared<GSMMAC>(phy_, cfg_);
-    rr_  = std::make_shared<GSMRr>();
-    rlc_ = std::make_shared<GSMRlc>();
+    phy_  = std::make_shared<GSMPhy>(rf_, cfg_);
+    mac_  = std::make_shared<GSMMAC>(phy_, cfg_);
+    rr_   = std::make_shared<GSMRr>();
+    rlc_  = std::make_shared<GSMRlc>();
+    abis_ = std::make_unique<AbisOml>("BTS-" + std::to_string(cfg_.cellId));
+
+    // Register Abis link in global registry
+    rbs::LinkEntry entry;
+    entry.name         = "abis";
+    entry.rat          = "GSM";
+    entry.peerAddr     = cfg_.bscAddr;
+    entry.peerPort     = cfg_.bscPort;
+    entry.ctrl         = abis_.get();
+    entry.isConnected  = [this]() { return abis_->isConnected(); };
+    entry.reconnect    = [this]() { abis_->reconnect(); };
+    entry.disconnect   = [this]() { abis_->disconnect(); };
+    entry.injectableProcs  = [this]() { return abis_->injectableProcs(); };
+    entry.injectProcedure  = [this](const std::string& p) { return abis_->injectProcedure(p); };
+    rbs::LinkRegistry::instance().registerLink(std::move(entry));
 }
 
 GSMStack::~GSMStack() { stop(); }
@@ -30,6 +46,16 @@ bool GSMStack::start() {
     }
     running_.store(true);
     clockThread_ = std::thread(&GSMStack::clockLoop, this);
+
+    // Connect Abis/OML to BSC if configured
+    if (!cfg_.bscAddr.empty()) {
+        if (!abis_->connect(cfg_.bscAddr, cfg_.bscPort))
+            RBS_LOG_WARNING("GSMStack", "Abis/OML: не удалось подключиться к BSC {}:{}",
+                            cfg_.bscAddr, cfg_.bscPort);
+    } else {
+        RBS_LOG_INFO("GSMStack", "Abis/OML: BSC не настроен, режим симуляции");
+    }
+
     RBS_LOG_INFO("GSMStack", "GSM cell ", cfg_.cellId, " started");
     return true;
 }

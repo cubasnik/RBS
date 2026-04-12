@@ -8,6 +8,7 @@
 #include "lte/x2ap_link.h"
 #include "nr/nr_stack.h"
 #include "oms/oms.h"
+#include "api/rest_server.h"
 
 #include <iostream>
 #include <csignal>
@@ -80,6 +81,11 @@ public:
         auto& cfg = rbs::Config::instance();
         if (!configPath.empty()) cfg.loadFile(configPath);
 
+        restServer_ = std::make_unique<rbs::api::RestServer>(
+            cfg.getInt("api", "port", 8080),
+            cfg.getString("api", "bind", "127.0.0.1")
+        );
+
         auto alarmCb = [](rbs::HardwareStatus s, const std::string& msg) {
             rbs::oms::AlarmSeverity sev = rbs::oms::AlarmSeverity::WARNING;
             if (s == rbs::HardwareStatus::FAULT)
@@ -112,6 +118,11 @@ public:
     // ── Lifecycle ─────────────────────────────────────────────────
     bool start() {
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::UNLOCKED);
+
+        if (!restServer_->start()) {
+            RBS_LOG_CRITICAL("RBS", "Failed to start REST API server");
+            return false;
+        }
 
         auto initRF = [](std::shared_ptr<rbs::hal::RFHardware>& rf) -> bool {
             return rf && rf->initialise() && rf->selfTest();
@@ -176,6 +187,7 @@ public:
     void stop() {
         RBS_LOG_INFO("RBS", "Stopping cell(s)...");
         rbs::oms::OMS::instance().setNodeState(rbs::oms::OMS::NodeState::SHUTTING_DOWN);
+        restServer_->stop();
         if (x2endc_)    { x2endc_->disconnect(1); }
         if (nrStack_)   { nrStack_->stop();   nrRF_->shutdown(); }
         if (lteStack_)  { lteStack_->stop();  lteRF_->shutdown(); }
@@ -300,6 +312,8 @@ private:
     std::unique_ptr<rbs::nr::NRStack>        nrStack_;
     // EN-DC X2AP link between LTE(MN) and NR(SN)
     std::unique_ptr<rbs::lte::X2APLink>      x2endc_;
+    // REST API server
+    std::unique_ptr<rbs::api::RestServer>    restServer_;
 };
 
 // ────────────────────────────────────────────────────────────────

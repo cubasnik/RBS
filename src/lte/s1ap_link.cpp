@@ -9,6 +9,7 @@ namespace rbs::lte {
 
 S1APLink::S1APLink(const std::string& enbId)
     : enbId_(enbId)
+    , rbs::LinkController("s1-" + enbId)
     , socket_("S1AP-" + enbId)
 {}
 
@@ -71,6 +72,7 @@ bool S1APLink::s1Setup(uint32_t enbId, const std::string& enbName,
     enbIdNum_ = enbId;
     tac_      = static_cast<uint16_t>(tac);
     plmnId_   = plmnId;
+    enbName_  = enbName;
 
     RBS_LOG_INFO("S1AP",
                  "[{}] S1 SETUP enbId=0x{:07X} name={} TAC=0x{:04X} PLMN=0x{:06X}",
@@ -315,14 +317,25 @@ bool S1APLink::errorIndication(uint32_t mmeUeS1apId, uint32_t enbUeS1apId,
 
 bool S1APLink::sendS1APMsg(const S1APMessage& msg)
 {
+    const std::string typeStr = "S1AP:" + std::to_string(
+        static_cast<int>(msg.procedure));
+    if (isBlocked(typeStr)) {
+        RBS_LOG_DEBUG("S1AP", "[{}] blocked {}", enbId_, typeStr);
+        return false;
+    }
     if (!connected_ || !socketReady_) return false;
 
     const auto& payload = msg.payload;
     const uint32_t plLen = static_cast<uint32_t>(payload.size());
-    bool ok = socket_.send(payload);    if (ok && pcap_.isOpen())
+    bool ok = socket_.send(payload);
+    if (ok && pcap_.isOpen())
         pcap_.writeSctp("127.0.0.1", socket_.localPort(),
                         mmeAddr_, mmePort_,
-                        rbs::PcapWriter::PPID_S1AP, payload);    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} len={} {}",
+                        rbs::PcapWriter::PPID_S1AP, payload);
+    pushTrace(true, typeStr,
+              "proc=" + typeStr + " len=" + std::to_string(plLen) +
+              (ok ? " OK" : " FAIL"));
+    RBS_LOG_DEBUG("S1AP", "[{}] S1AP → MME  proc=0x{:02X} len={} {}",
                   enbId_, static_cast<uint8_t>(msg.procedure), plLen,
                   ok ? "OK" : "FAIL");
     return ok;
@@ -334,9 +347,40 @@ bool S1APLink::recvS1APMsg(S1APMessage& msg)
     if (rxQueue_.empty()) return false;
     msg = rxQueue_.front();
     rxQueue_.pop();
+    const std::string typeStr = "S1AP:" + std::to_string(
+        static_cast<int>(msg.procedure));
+    pushTrace(false, typeStr,
+              "proc=" + typeStr + " len=" + std::to_string(msg.payload.size()));
     RBS_LOG_DEBUG("S1AP", "[{}] S1AP ← MME  proc=0x{:02X}",
                   enbId_, static_cast<uint8_t>(msg.procedure));
     return true;
+}
+
+void S1APLink::reconnect()
+{
+    if (mmeAddr_.empty()) {
+        RBS_LOG_WARNING("S1AP", "[{}] reconnect: no MME address configured", enbId_);
+        return;
+    }
+    if (connected_) disconnect();
+    connect(mmeAddr_, mmePort_);
+}
+
+std::vector<std::string> S1APLink::injectableProcs() const
+{
+    return {"S1AP:S1_SETUP", "S1AP:RESET"};
+}
+
+bool S1APLink::injectProcedure(const std::string& proc)
+{
+    if (proc == "S1AP:S1_SETUP") {
+        return s1Setup(enbIdNum_, enbName_, tac_, plmnId_);
+    }
+    if (proc == "S1AP:RESET") {
+        return reset(0, 0, true);
+    }
+    RBS_LOG_WARNING("S1AP", "[{}] injectProcedure: unknown procedure '{}'", enbId_, proc);
+    return false;
 }
 
 void S1APLink::enablePcap(const std::string& path)
