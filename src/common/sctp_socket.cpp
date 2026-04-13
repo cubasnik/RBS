@@ -141,6 +141,20 @@ bool SctpSocket::connectMulti(const std::vector<std::pair<std::string, uint16_t>
     return connectNativeMulti(remoteAddrs, primaryIdx);
 }
 
+void SctpSocket::setNotificationCallback(NotificationCallback cb)
+{
+    notificationCb_ = std::move(cb);
+}
+
+bool SctpSocket::applyTuning(const SctpTuning& tuning)
+{
+    if (useUdpFallback_) {
+        RBS_LOG_WARNING("SctpSocket", "[{}] applyTuning: not supported on UDP fallback", name_);
+        return true;  // No-op but return success
+    }
+    return applyTuningNative(tuning);
+}
+
 bool SctpSocket::setPrimaryPath(int primaryIdx)
 {
     if (primaryIdx < 0 || primaryIdx >= static_cast<int>(remoteAddrs_.size())) {
@@ -420,38 +434,60 @@ void SctpSocket::rxLoopNative()
             break;
         }
         if (n == 0) break;  // EOF / association closed
-        if (!rxCb_) continue;
-        SctpPacket pkt{remoteIp_, remotePort_,
-                       ByteBuffer(buf.data(), buf.data() + static_cast<size_t>(n))};
-        rxCb_(pkt);
+        
+        // Check if this is a notification or data
+        if (flags & MSG_NOTIFICATION) {
+            // Process SCTP notification
+            ByteBuffer notifData(buf.data(), buf.data() + static_cast<size_t>(n));
+            processNotification(notifData);
+        } else if (!rxCb_) {
+            continue;
+        } else {
+            // Regular data packet
+            SctpPacket pkt{remoteIp_, remotePort_,
+                           ByteBuffer(buf.data(), buf.data() + static_cast<size_t>(n))};
+            rxCb_(pkt);
+        }
     }
 #elif RBS_HAS_NATIVE_SCTP
     constexpr int BUF_SZ = 65536;
     std::vector<uint8_t> buf(BUF_SZ);
-
+    struct msghdr msg{};
+    struct iovec iov;
+    struct sockaddr_in peer{};
+    
     while (running_) {
-        int n = ::recv(sock_, reinterpret_cast<char*>(buf.data()), BUF_SZ, 0);
+        iov.iov_base = buf.data();
+        iov.iov_len = BUF_SZ;
+        msg.msg_name = &peer;
+        msg.msg_namelen = sizeof(peer);
+        msg.msg_iov = &iov;
+        msg.msg_iovlen = 1;
+        
+        // Use recvmsg to capture MSG_NOTIFICATION flag
+        int n = ::recvmsg(sock_, &msg, 0);
         if (n == SCTP_SOCK_ERR) {
             if (running_) {
-                RBS_LOG_WARNING("SctpSocket", "[{}] recv failed", name_);
+                RBS_LOG_WARNING("SctpSocket", "[{}] recvmsg failed", name_);
             }
             break;
         }
-        if (n <= 0 || !rxCb_) continue;
+        if (n <= 0) continue;
 
-        sockaddr_in peer{};
-        socklen_t peerLen = sizeof(peer);
-        std::string srcIp = "0.0.0.0";
-        uint16_t srcPort = 0;
-        if (::getpeername(sock_, reinterpret_cast<sockaddr*>(&peer), &peerLen) == 0) {
+        // Check if this is a notification
+        if (msg.msg_flags & MSG_NOTIFICATION) {
+            // Process SCTP notification
+            ByteBuffer notifData(buf.data(), buf.data() + static_cast<size_t>(n));
+            processNotification(notifData);
+        } else if (rxCb_) {
+            // Regular data packet
             char ipStr[INET_ADDRSTRLEN] = {};
             ::inet_ntop(AF_INET, &peer.sin_addr, ipStr, sizeof(ipStr));
-            srcIp = ipStr;
-            srcPort = ntohs(peer.sin_port);
+            
+            SctpPacket pkt{ipStr, ntohs(peer.sin_port),
+                          ByteBuffer(buf.data(), buf.data() + n)};
+            rxCb_(pkt);
         }
-
-        SctpPacket pkt{srcIp, srcPort, ByteBuffer(buf.data(), buf.data() + n)};
-        rxCb_(pkt);
     }
 #endif
 }
@@ -644,6 +680,173 @@ bool SctpSocket::setPrimaryPathNative(int primaryIdx)
 #else
     (void)primaryIdx;
     return false;
+#endif
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Performance tuning support
+// ────────────────────────────────────────────────────────────────────────────
+
+bool SctpSocket::applyTuningNative(const SctpTuning& tuning)
+{
+#if RBS_HAS_NATIVE_SCTP
+    if (sock_ == SCTP_SOCK_INVALID) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] applyTuningNative: socket not open", name_);
+        return false;
+    }
+
+    // Apply heartbeat interval
+    if (tuning.heartbeatInterval) {
+        struct sctp_paddrparams params{};
+        params.spp_hbinterval = tuning.heartbeatInterval.value();
+        params.spp_flags = SPP_HB_ENABLE;
+        if (::setsockopt(sock_, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS,
+                        reinterpret_cast<const char*>(&params), sizeof(params)) != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_PEER_ADDR_PARAMS (heartbeat) failed", name_);
+        }
+    }
+
+    // Apply RTO bounds
+    if (tuning.rtoInitial || tuning.rtoMin || tuning.rtoMax) {
+        struct sctp_rtoinfo rtoinfo{};
+        if (tuning.rtoInitial) rtoinfo.srto_initial = tuning.rtoInitial.value();
+        if (tuning.rtoMin) rtoinfo.srto_min = tuning.rtoMin.value();
+        if (tuning.rtoMax) rtoinfo.srto_max = tuning.rtoMax.value();
+        if (::setsockopt(sock_, IPPROTO_SCTP, SCTP_RTOINFO,
+                        reinterpret_cast<const char*>(&rtoinfo), sizeof(rtoinfo)) != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_RTOINFO failed", name_);
+        }
+    }
+
+    // Apply init retransmit params
+    if (tuning.initNumAttempts || tuning.initMaxTimeout) {
+        struct sctp_initmsg initm{};
+        if (tuning.initNumAttempts) initm.sinit_max_attempts = tuning.initNumAttempts.value();
+        if (tuning.initMaxTimeout) initm.sinit_max_init_timeo = tuning.initMaxTimeout.value();
+        if (::setsockopt(sock_, IPPROTO_SCTP, SCTP_INITMSG,
+                        reinterpret_cast<const char*>(&initm), sizeof(initm)) != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_INITMSG failed", name_);
+        }
+    }
+
+    // Apply socket buffer sizes
+    if (tuning.rcvBufSize) {
+        if (::setsockopt(sock_, SOL_SOCKET, SO_RCVBUF,
+                        reinterpret_cast<const char*>(&tuning.rcvBufSize.value()),
+                        sizeof(uint32_t)) != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] SO_RCVBUF failed", name_);
+        }
+    }
+    if (tuning.sndBufSize) {
+        if (::setsockopt(sock_, SOL_SOCKET, SO_SNDBUF,
+                        reinterpret_cast<const char*>(&tuning.sndBufSize.value()),
+                        sizeof(uint32_t)) != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] SO_SNDBUF failed", name_);
+        }
+    }
+
+    RBS_LOG_INFO("SctpSocket", "[{}] applyTuningNative: tuning applied successfully", name_);
+    return true;
+#elif RBS_HAS_USRSCTP
+    // usrsctp: apply basic tuning
+    auto* s = static_cast<struct socket*>(usrSock_);
+    if (!s) return false;
+
+    if (tuning.heartbeatInterval) {
+        struct sctp_paddrparams params{};
+        params.spp_hbinterval = tuning.heartbeatInterval.value();
+        params.spp_flags = SPP_HB_ENABLE;
+        usrsctp_setsockopt(s, IPPROTO_SCTP, SCTP_PEER_ADDR_PARAMS, &params, sizeof(params));
+    }
+
+    RBS_LOG_INFO("SctpSocket", "[{}] applyTuningNative (usrsctp): basic tuning applied", name_);
+    return true;
+#else
+    (void)tuning;
+    return false;
+#endif
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// SCTP Notification Handling
+// ────────────────────────────────────────────────────────────────────────────
+
+void SctpSocket::processNotification(const ByteBuffer& notifData)
+{
+    if (notifData.empty() || notifData.size() < 4) {
+        return;  // Too short to be valid notification
+    }
+
+#if RBS_HAS_NATIVE_SCTP || RBS_HAS_USRSCTP
+    SctpNotification notif;
+    notif.rawData = notifData;
+
+    // Get notification type from first 2 bytes (sn_type, sn_flags)
+    uint16_t notifType = *reinterpret_cast<const uint16_t*>(notifData.data());
+    notifType &= 0xFF;  // Extract sn_type from low byte
+
+    switch (notifType) {
+        case SCTP_ASSOC_CHANGE: {
+            notif.type = SctpNotificationType::ASSOC_CHANGE;
+            if (notifData.size() >= sizeof(struct sctp_assoc_change)) {
+                auto* ac = reinterpret_cast<const struct sctp_assoc_change*>(notifData.data());
+                notif.associationId = ac->sac_assoc_id;
+                const char* stateName = "UNKNOWN";
+                switch (ac->sac_state) {
+                    case SCTP_COMM_UP: stateName = "COMM_UP"; break;
+                    case SCTP_COMM_LOST: stateName = "COMM_LOST"; break;
+                    case SCTP_RESTART: stateName = "RESTART"; break;
+                    case SCTP_SHUTDOWN_COMP: stateName = "SHUTDOWN_COMP"; break;
+                    case SCTP_CANT_STR_ASSOC: stateName = "CANT_STR_ASSOC"; break;
+                }
+                notif.description = "ASSOC_CHANGE: " + std::string(stateName);
+                RBS_LOG_INFO("SctpSocket", "[{}] SCTP_ASSOC_CHANGE: {}, assoc_id={}", 
+                            name_, stateName, ac->sac_assoc_id);
+            }
+            break;
+        }
+        case SCTP_PEER_ADDR_CHANGE: {
+            notif.type = SctpNotificationType::PEER_ADDR_CHANGE;
+            if (notifData.size() >= sizeof(struct sctp_paddr_change)) {
+                auto* pc = reinterpret_cast<const struct sctp_paddr_change*>(notifData.data());
+                notif.associationId = pc->spc_assoc_id;
+                const char* stateName = "UNKNOWN";
+                switch (pc->spc_state) {
+                    case SCTP_ADDR_AVAILABLE: stateName = "AVAILABLE"; break;
+                    case SCTP_ADDR_UNREACHABLE: stateName = "UNREACHABLE"; break;
+                    case SCTP_ADDR_REMOVED: stateName = "REMOVED"; break;
+                    case SCTP_ADDR_ADDED: stateName = "ADDED"; break;
+                    case SCTP_ADDR_MADE_PRIM: stateName = "MADE_PRIM"; break;
+                    case SCTP_ADDR_CONFIRMED: stateName = "CONFIRMED"; break;
+                }
+                notif.description = "PEER_ADDR_CHANGE: " + std::string(stateName);
+                RBS_LOG_INFO("SctpSocket", "[{}] SCTP_PEER_ADDR_CHANGE: {} (multi-homing event)",
+                            name_, stateName);
+            }
+            break;
+        }
+        case SCTP_SEND_FAILED: {
+            notif.type = SctpNotificationType::SEND_FAILED;
+            notif.description = "SEND_FAILED: data could not be transmitted";
+            RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_SEND_FAILED: transmission error", name_);
+            break;
+        }
+        case SCTP_SHUTDOWN_EVENT: {
+            notif.type = SctpNotificationType::SHUTDOWN_EVENT;
+            notif.description = "SHUTDOWN_EVENT: association was shut down";
+            RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_SHUTDOWN_EVENT", name_);
+            break;
+        }
+        default:
+            notif.type = SctpNotificationType::UNKNOWN;
+            notif.description = "Unknown notification type";
+            RBS_LOG_DEBUG("SctpSocket", "[{}] Unknown SCTP notification type {}", name_, notifType);
+    }
+
+    // Invoke application callback if registered
+    if (notificationCb_) {
+        notificationCb_(notif);
+    }
 #endif
 }
 

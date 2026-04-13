@@ -14,6 +14,11 @@ add_executable(test_sctp_multihoming test_sctp_multihoming.cpp)
 target_link_libraries(test_sctp_multihoming PRIVATE rbs_common)
 add_test(NAME test_sctp_multihoming COMMAND test_sctp_multihoming)
 
+# ── test_sctp_tuning_notifications ────────────────────────────────
+add_executable(test_sctp_tuning_notifications test_sctp_tuning_notifications.cpp)
+target_link_libraries(test_sctp_tuning_notifications PRIVATE rbs_common)
+add_test(NAME test_sctp_tuning_notifications COMMAND test_sctp_tuning_notifications)
+
 # ── test_gsm_phy ──────────────────────────────────────────────────
 add_executable(test_gsm_phy test_gsm_phy.cpp)
 target_link_libraries(test_gsm_phy PRIVATE rbs_gsm)

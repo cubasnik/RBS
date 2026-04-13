@@ -29,6 +29,7 @@
 #include <atomic>
 #include <thread>
 #include <functional>
+#include <optional>
 
 namespace rbs::net {
 
@@ -37,6 +38,49 @@ struct SctpPacket {
     uint16_t    srcPort;
     ByteBuffer  data;
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// Performance tuning parameters for SCTP socket
+// ─────────────────────────────────────────────────────────────────────────
+
+struct SctpTuning {
+    // Heartbeat: keep-alive interval in milliseconds (0 = disabled)
+    std::optional<uint32_t> heartbeatInterval;
+    
+    // Retransmit timeout (RTO) bounds: initial/min/max in milliseconds
+    // RFC 4960 default: initial=3000ms, min=1000ms, max=60000ms
+    std::optional<uint32_t> rtoInitial;
+    std::optional<uint32_t> rtoMin;
+    std::optional<uint32_t> rtoMax;
+    
+    // Init retransmit parameters
+    // numAttempts: how many INIT attempts before abort (default 8)
+    // maxTimeout: max backoff time in milliseconds (default 60000ms)
+    std::optional<uint16_t> initNumAttempts;
+    std::optional<uint32_t> initMaxTimeout;
+    
+    // Socket buffer sizes
+    std::optional<uint32_t> rcvBufSize;
+    std::optional<uint32_t> sndBufSize;
+};
+
+// SCTP notification event type
+enum class SctpNotificationType {
+    ASSOC_CHANGE,      // Association state changed
+    PEER_ADDR_CHANGE,  // Peer address state changed
+    SEND_FAILED,       // Send failed
+    SHUTDOWN_EVENT,    // Shutdown event
+    UNKNOWN,
+};
+
+struct SctpNotification {
+    SctpNotificationType type = SctpNotificationType::UNKNOWN;
+    uint64_t associationId = 0;
+    std::string description;
+    ByteBuffer rawData;  // Raw notification data for deep inspection
+};
+
+using NotificationCallback = std::function<void(const SctpNotification&)>;
 
 class SctpSocket {
 public:
@@ -73,6 +117,15 @@ public:
     // Returns true if successfully set.
     bool setPrimaryPath(int primaryIdx);
 
+    // Performance tuning: apply SCTP socket options.
+    // Called after bind() but before connect for optimal effect.
+    // Returns true if all parameters successfully applied.
+    bool applyTuning(const SctpTuning& tuning);
+
+    // Notification callback: called for SCTP events (ASSOC_CHANGE, SEND_FAILED, etc.)
+    // Set before startReceive() to capture events.
+    void setNotificationCallback(NotificationCallback cb);
+
     uint16_t localPort() const { return localPort_; }
     int primaryRemoteIdx() const { return primaryRemoteIdx_; }
     size_t remoteAddrsCount() const { return remoteAddrs_.size(); }
@@ -103,16 +156,19 @@ private:
     std::atomic<bool> running_{false};
     std::thread rxThread_;
     RxCallback rxCb_;
+    NotificationCallback notificationCb_;
 
     bool bindNative(uint16_t localPort);
     bool bindNativeMulti(const std::vector<std::string>& localAddrs, uint16_t localPort);
     bool connectNative(const std::string& remoteIp, uint16_t remotePort);
     bool connectNativeMulti(const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs, int primaryIdx);
     bool setPrimaryPathNative(int primaryIdx);
+    bool applyTuningNative(const SctpTuning& tuning);
     bool sendNative(const uint8_t* data, size_t len);
     bool startReceiveNative(RxCallback cb);
     void closeNative();
     void rxLoopNative();
+    void processNotification(const ByteBuffer& notifData);
 };
 
 } // namespace rbs::net
