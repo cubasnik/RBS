@@ -19,6 +19,13 @@
 - п.30a: NR MAC HARQ retransmit counters + CQI/RI feedback loop: `HarqStats` (totalRetx/failures), `HARQ_MAX_RETX=3` (TS 38.321), `CsiReport` struct, `reportCsiRi()`/`reportCsi()`, RI-scaled TBS, тесты `test_nr_mac_harq_max_retx`/`test_nr_mac_csi_ri_tbs_scaling`/`test_nr_mac_csi_combined_report`.
 - п.30b: GSM BSSGP/NS layer поверх Abis (GPRS tracing): `GprsNs` (TS 48.016 — NS-RESET/ALIVE/UNITDATA state machine), `GprsBssgp` (TS 48.018 — UL/DL-UNITDATA, BVC-RESET, RADIO-STATUS, трассировка `GprsBssgpTrace` с BCD Cell ID), 9 тестов в `test_gprs_bssgp`.
 - п.30c: Динамический reload `rbs.conf` без перезапуска (SIGHUP / REST PATCH): потокобезопасный `Config`, endpoint `PATCH /api/v1/config` (reload from disk + key patch + batch `updates[]`), whitelist валидация изменяемых ключей, `dryRun` (валидация без применения), `all-or-nothing` транзакция с явной ошибкой `updateIndex`, runtime apply callback (logging + GSM Abis tunables), сигнал `SIGHUP` (и `SIGBREAK` на Windows), тесты в `test_rest_api`.
+- п.30d: **SCTP Multi-homing + Performance Tuning + Notifications** *(новое)*:
+  - **Multi-homing support**: `bindMulti(localAddrs[])`, `connectMulti(remoteAddrs[], primaryIdx)`, `setPrimaryPath(idx)` для failover; Linux использует `sctp_bindx()/sctp_connectx()`, Windows graceful fallback к first address.
+  - **Performance Tuning**: `SctpTuning` struct (heartbeat interval, RTO bounds, init retransmit params, buffer sizes), `applyTuning()` для Linux native SCTP/usrsctp.
+  - **SCTP Notifications**: `SctpNotificationType` enum (ASSOC_CHANGE, PEER_ADDR_CHANGE, SEND_FAILED), `SctpNotification` struct, `NotificationCallback`, `setNotificationCallback()`, real event parsing + logging.
+  - **RX Enhancement**: `recvmsg()` с MSG_NOTIFICATION flag для разделения данные/события, асинхронный dispatch к приложению.
+  - **Tests**: `test_sctp_multihoming.cpp` (9 unit tests), `test_sctp_tuning_notifications.cpp` (5 unit tests), все pass на Windows UDP fallback.
+  - **Windows Backend Plan**: Документировано в `WINDOWS_USRSCTP_BACKEND.md` (deferred; полный userland I/O backend с callback bridge, буферизацией, синхронизацией).
 
 ## Что еще реализовать (следующий этап)
 
