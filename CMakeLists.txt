@@ -93,6 +93,8 @@ add_library(rbs_gsm STATIC
     src/gsm/abis_link.cpp
     src/gsm/gsm_rr.cpp
     src/gsm/gsm_rlc.cpp
+    src/gsm/gprs_ns.cpp
+    src/gsm/gprs_bssgp.cpp
 )
 target_link_libraries(rbs_gsm PUBLIC rbs_hal)
 

@@ -134,6 +134,11 @@ add_executable(test_abis_ipa_golden test_abis_ipa_golden.cpp)
 target_link_libraries(test_abis_ipa_golden PRIVATE rbs_gsm)
 add_test(NAME test_abis_ipa_golden COMMAND test_abis_ipa_golden)
 
+# ── test_gprs_bssgp ───────────────────────────────────────────────
+add_executable(test_gprs_bssgp test_gprs_bssgp.cpp)
+target_link_libraries(test_gprs_bssgp PRIVATE rbs_gsm)
+add_test(NAME test_gprs_bssgp COMMAND test_gprs_bssgp)
+
 # ── test_iub_link ─────────────────────────────────────────────────
 add_executable(test_iub_link test_iub_link.cpp)
 target_link_libraries(test_iub_link PRIVATE rbs_umts)

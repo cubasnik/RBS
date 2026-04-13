@@ -17,6 +17,8 @@
 - п.28: CI/CD GitHub Actions (Linux matrix Debug/Release, ASAN в Debug, обязательный ctest).
 - п.29: Real NG/Xn Transport (SCTP): dual-mode transport для `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API биндинга/подключения peer, тест `test_ng_xn_transport`.
 - п.30a: NR MAC HARQ retransmit counters + CQI/RI feedback loop: `HarqStats` (totalRetx/failures), `HARQ_MAX_RETX=3` (TS 38.321), `CsiReport` struct, `reportCsiRi()`/`reportCsi()`, RI-scaled TBS, тесты `test_nr_mac_harq_max_retx`/`test_nr_mac_csi_ri_tbs_scaling`/`test_nr_mac_csi_combined_report`.
+- п.30a: NR MAC HARQ retransmit counters + CQI/RI feedback loop: `HarqStats` (totalRetx/failures), `HARQ_MAX_RETX=3` (TS 38.321), `CsiReport` struct, `reportCsiRi()`/`reportCsi()`, RI-scaled TBS, тесты `test_nr_mac_harq_max_retx`/`test_nr_mac_csi_ri_tbs_scaling`/`test_nr_mac_csi_combined_report`.
+- п.30b: GSM BSSGP/NS layer поверх Abis (GPRS tracing): `GprsNs` (TS 48.016 — NS-RESET/ALIVE/UNITDATA state machine), `GprsBssgp` (TS 48.018 — UL/DL-UNITDATA, BVC-RESET, RADIO-STATUS, трассировка `GprsBssgpTrace` с BCD Cell ID), 9 тестов в `test_gprs_bssgp`.
 
 ## Что еще реализовать (следующий этап)
 
