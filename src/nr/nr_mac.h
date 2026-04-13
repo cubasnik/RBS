@@ -47,6 +47,18 @@ struct NRSliceMetrics {
     uint32_t pendingBytes = 0;
 };
 
+// HARQ process statistics accumulated per UE.
+struct HarqStats {
+    uint32_t totalRetx = 0;  // cumulative retransmissions (all processes)
+    uint32_t failures  = 0;  // processes discarded at HARQ_MAX_RETX limit
+};
+
+// Combined Channel State Information report (CQI + Rank Indicator).
+struct CsiReport {
+    uint8_t cqi = 0;   // 1-15
+    uint8_t ri  = 1;   // Rank Indicator: 1-4 (2 = 2-layer MIMO)
+};
+
 // Minimal NR MAC scheduler model for simulation tests.
 class NRMac {
 public:
@@ -62,6 +74,9 @@ public:
     bool enqueueDlBytes(RNTI crnti, uint32_t bytes);
     uint32_t pendingDlBytes(RNTI crnti) const;
     bool reportHarqFeedback(RNTI crnti, uint8_t harqId, bool ack);
+    bool reportCsiRi(RNTI crnti, uint8_t ri);
+    bool reportCsi(RNTI crnti, const CsiReport& csi);
+    HarqStats getHarqStats(RNTI crnti) const;
 
     bool setUeSlice(RNTI crnti, NRSlice slice);
     NRSlice ueSlice(RNTI crnti) const;
@@ -87,6 +102,10 @@ private:
         bool waitingFeedback = false;
         uint64_t feedbackDeadlineTick = 0;
         NRSlice slice = NRSlice::EMBB;
+        uint8_t  ri = 1;               // Rank Indicator (1 or 2)
+        uint8_t  harqRetxCount = 0;    // retransmissions of current HARQ process
+        uint32_t totalRetxCount = 0;   // cumulative retransmissions for this UE
+        uint32_t harqFailures = 0;     // TB discards due to max-retx overflow
     };
 
     std::unordered_map<RNTI, UeState> ue_;
@@ -99,6 +118,7 @@ private:
     static constexpr uint16_t BWP0_MAX_PRBS = 10;
     static constexpr uint16_t BWP1_MAX_PRBS = 30;
     static constexpr uint8_t HARQ_RTT_TICKS = 4;
+    static constexpr uint8_t HARQ_MAX_RETX  = 3;  // TS 38.321: max 3 retransmissions
     static constexpr uint16_t BWP0_START_PRB = 0;
     static constexpr uint16_t BWP0_SIZE_PRB = 24;
     static constexpr uint16_t BWP1_START_PRB = 24;

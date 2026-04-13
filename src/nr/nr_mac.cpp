@@ -119,19 +119,33 @@ bool NRMac::reportHarqFeedback(RNTI crnti, uint8_t harqId, bool ack) {
         it->second.waitingFeedback = false;
         it->second.feedbackDeadlineTick = 0;
         it->second.harqRv = 1;
+        it->second.harqRetxCount = 0;
         // Advance HARQ process only when ACK refers to the current process.
         if (harqId == currentHarqId) {
             it->second.harqId = static_cast<uint8_t>((it->second.harqId + 1) % 16);
         }
     } else {
-        it->second.harqActive = true;
-        it->second.waitingFeedback = false;
-        it->second.feedbackDeadlineTick = 0;
-        if (harqId != currentHarqId) {
-            it->second.harqId = harqId;
-        }
-        if (it->second.harqRv == 0) {
+        ++it->second.harqRetxCount;
+        ++it->second.totalRetxCount;
+        if (it->second.harqRetxCount >= HARQ_MAX_RETX) {
+            // Max retransmits exceeded: discard TB, reset process (TS 38.321).
+            ++it->second.harqFailures;
+            it->second.harqActive = false;
+            it->second.waitingFeedback = false;
+            it->second.feedbackDeadlineTick = 0;
+            it->second.harqRetxCount = 0;
             it->second.harqRv = 1;
+            it->second.harqId = static_cast<uint8_t>((it->second.harqId + 1) % 16);
+        } else {
+            it->second.harqActive = true;
+            it->second.waitingFeedback = false;
+            it->second.feedbackDeadlineTick = 0;
+            if (harqId != currentHarqId) {
+                it->second.harqId = harqId;
+            }
+            if (it->second.harqRv == 0) {
+                it->second.harqRv = 1;
+            }
         }
     }
     return true;
@@ -311,7 +325,8 @@ std::vector<NRScheduleGrant> NRMac::scheduleDl(uint16_t totalPrbs) {
             entry.second->waitingFeedback = true;
             entry.second->feedbackDeadlineTick = tick_ + HARQ_RTT_TICKS;
         }
-        g.dci.tbsBytes = static_cast<uint16_t>(g.prbs * (g.mcs + 1));
+        // TBS scaled by Rank Indicator: RI=2 (2-layer MIMO) doubles throughput.
+        g.dci.tbsBytes = static_cast<uint16_t>(g.prbs * (g.mcs + 1) * entry.second->ri);
         grants.push_back(g);
         remaining = static_cast<uint16_t>(remaining - grantPrbs);
         sliceBudget[sidx] = static_cast<uint16_t>(sliceBudget[sidx] - grantPrbs);
@@ -324,6 +339,39 @@ std::vector<NRScheduleGrant> NRMac::scheduleDl(uint16_t totalPrbs) {
     }
 
     return grants;
+}
+
+bool NRMac::reportCsiRi(RNTI crnti, uint8_t ri) {
+    if (ri == 0 || ri > 4) {
+        return false;
+    }
+    auto it = ue_.find(crnti);
+    if (it == ue_.end()) {
+        return false;
+    }
+    it->second.ri = ri;
+    return true;
+}
+
+bool NRMac::reportCsi(RNTI crnti, const CsiReport& csi) {
+    if (csi.cqi == 0 || csi.ri == 0 || csi.ri > 4) {
+        return false;
+    }
+    auto it = ue_.find(crnti);
+    if (it == ue_.end()) {
+        return false;
+    }
+    it->second.cqi = csi.cqi;
+    it->second.ri  = csi.ri;
+    return true;
+}
+
+HarqStats NRMac::getHarqStats(RNTI crnti) const {
+    const auto it = ue_.find(crnti);
+    if (it == ue_.end()) {
+        return {};
+    }
+    return {it->second.totalRetxCount, it->second.harqFailures};
 }
 
 std::vector<NRDci11> NRMac::buildDci11(const std::vector<NRScheduleGrant>& grants) const {

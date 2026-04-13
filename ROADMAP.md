@@ -16,6 +16,7 @@
 - п.27: RAN Slicing в NR (eMBB/URLLC/mMTC quotas, OMS slice counters, `/api/v1/slices`).
 - п.28: CI/CD GitHub Actions (Linux matrix Debug/Release, ASAN в Debug, обязательный ctest).
 - п.29: Real NG/Xn Transport (SCTP): dual-mode transport для `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API биндинга/подключения peer, тест `test_ng_xn_transport`.
+- п.30a: NR MAC HARQ retransmit counters + CQI/RI feedback loop: `HarqStats` (totalRetx/failures), `HARQ_MAX_RETX=3` (TS 38.321), `CsiReport` struct, `reportCsiRi()`/`reportCsi()`, RI-scaled TBS, тесты `test_nr_mac_harq_max_retx`/`test_nr_mac_csi_ri_tbs_scaling`/`test_nr_mac_csi_combined_report`.
 
 ## Что еще реализовать (следующий этап)
 

@@ -227,6 +227,85 @@ static void test_nr_mac_fairness_equal_ues() {
     std::puts("  test_nr_mac_fairness_equal_ues PASSED");
 }
 
+// HARQ_MAX_RETX = 3: three consecutive NACKs must discard the TB, increment
+// harqFailures, reset the process, and re-enable new-data transmission.
+static void test_nr_mac_harq_max_retx() {
+    NRMac mac(NRScs::SCS30);
+    assert(mac.addUE(1101, 11));
+    assert(mac.enqueueDlBytes(1101, 4000));
+
+    // Initial new transmission.
+    auto g1 = mac.scheduleDl(10);
+    assert(g1.size() == 1 && g1[0].dci.ndi == true && g1[0].dci.rv == 0);
+    const uint8_t hid = g1[0].dci.harqId;
+
+    // NACK 1 → retransmit #1
+    assert(mac.reportHarqFeedback(1101, hid, false));
+    auto g2 = mac.scheduleDl(10);
+    assert(g2.size() == 1 && g2[0].dci.ndi == false && g2[0].dci.rv == 1);
+
+    // NACK 2 → retransmit #2
+    assert(mac.reportHarqFeedback(1101, hid, false));
+    auto g3 = mac.scheduleDl(10);
+    assert(g3.size() == 1 && g3[0].dci.ndi == false && g3[0].dci.rv == 2);
+
+    // NACK 3 → max-retx exceeded: process discarded, failure logged.
+    assert(mac.reportHarqFeedback(1101, hid, false));
+    const HarqStats stats = mac.getHarqStats(1101);
+    assert(stats.totalRetx == 3);
+    assert(stats.failures == 1);
+
+    // Next grant must start a fresh new-data transmission.
+    auto g4 = mac.scheduleDl(10);
+    assert(g4.size() == 1 && g4[0].dci.ndi == true);
+    assert(g4[0].dci.harqId != hid);  // process advanced
+    std::puts("  test_nr_mac_harq_max_retx PASSED");
+}
+
+// RI=2 (2-layer MIMO) must double the TBS relative to RI=1 for the same PRB/MCS.
+static void test_nr_mac_csi_ri_tbs_scaling() {
+    NRMac mac(NRScs::SCS30);
+    assert(mac.addUE(1201, 10));
+    assert(mac.enqueueDlBytes(1201, 8000));
+
+    // Baseline: RI=1 (default).
+    auto g1 = mac.scheduleDl(10);
+    assert(g1.size() == 1);
+    const uint16_t tbs1 = g1[0].dci.tbsBytes;
+    assert(tbs1 > 0);
+    assert(mac.reportHarqFeedback(1201, g1[0].dci.harqId, true));
+
+    // Upgrade to RI=2.
+    assert(mac.reportCsiRi(1201, 2));
+    auto g2 = mac.scheduleDl(10);
+    assert(g2.size() == 1);
+    assert(g2[0].prbs == g1[0].prbs);       // same PRB allocation
+    assert(g2[0].mcs  == g1[0].mcs);        // same MCS (CQI unchanged)
+    assert(g2[0].dci.tbsBytes == tbs1 * 2); // double throughput
+    std::puts("  test_nr_mac_csi_ri_tbs_scaling PASSED");
+}
+
+// reportCsi() must atomically update CQI and RI, triggering BWP switch on next
+// scheduleDl and preserving the new RI in TBS.
+static void test_nr_mac_csi_combined_report() {
+    NRMac mac(NRScs::SCS30);
+    assert(mac.addUE(1301, 5));  // low CQI → BWP0
+    assert(mac.enqueueDlBytes(1301, 8000));
+
+    auto g0 = mac.scheduleDl(10);
+    assert(!g0.empty() && g0[0].bwpId == 0);
+    assert(mac.reportHarqFeedback(1301, g0[0].dci.harqId, true));
+
+    // Combined CSI: high CQI triggers BWP1, RI=2 doubles TBS.
+    assert(mac.reportCsi(1301, CsiReport{12, 2}));
+
+    auto g1 = mac.scheduleDl(10);
+    assert(!g1.empty());
+    assert(g1[0].bwpId == 1);                       // switched to BWP1
+    assert(g1[0].dci.tbsBytes == g1[0].prbs * (g1[0].mcs + 1) * 2);  // RI=2 in TBS
+    std::puts("  test_nr_mac_csi_combined_report PASSED");
+}
+
 int main() {
     std::puts("=== test_nr_mac ===");
     test_nr_mac_schedule_prioritizes_cqi();
@@ -240,6 +319,9 @@ int main() {
     test_nr_mac_bwp_capacity_caps();
     test_nr_mac_harq_retx_progression();
     test_nr_mac_fairness_equal_ues();
+    test_nr_mac_harq_max_retx();
+    test_nr_mac_csi_ri_tbs_scaling();
+    test_nr_mac_csi_combined_report();
     std::puts("test_nr_mac PASSED");
     return 0;
 }
