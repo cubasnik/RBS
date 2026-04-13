@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 #include <optional>
+#include <shared_mutex>
 
 namespace rbs {
 
@@ -16,6 +17,11 @@ public:
     }
 
     bool loadFile(const std::string& path);
+
+    // Runtime overrides used by REST PATCH config endpoint.
+    void setString(const std::string& section,
+                   const std::string& key,
+                   const std::string& value);
 
     // ── typed getters (return default if key missing) ──────────────
     std::string getString(const std::string& section,
@@ -46,6 +52,9 @@ private:
     // storage:  section → key → value
     std::unordered_map<std::string,
         std::unordered_map<std::string, std::string>> data_;
+    mutable std::shared_mutex mtx_;
+
+    static std::string normalize(std::string s);
 
     std::optional<std::string> find(const std::string& section,
                                     const std::string& key) const;

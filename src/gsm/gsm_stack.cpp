@@ -161,4 +161,51 @@ void GSMStack::printStats() const {
                  " Frame=", phy_->currentFrameNumber());
 }
 
+void GSMStack::reloadRuntimeConfig() {
+    std::string abisTransport = rbs::Config::instance().getString("gsm", "abis_transport", "sim");
+    std::transform(abisTransport.begin(), abisTransport.end(), abisTransport.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+    const bool useIpaTcp = (abisTransport == "ipa_tcp" || abisTransport == "ipa" || abisTransport == "tcp");
+
+    const auto hbMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_hb_interval_ms", 1000));
+    const auto staleMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_rx_stale_ms", 10000));
+    const bool keepaliveEnabled = rbs::Config::instance().getBool("gsm", "abis_keepalive_enabled", true);
+    const auto keepaliveIdleMs = static_cast<uint32_t>(rbs::Config::instance().getInt("gsm", "abis_keepalive_idle_ms", 3000));
+    std::string interopProfile = rbs::Config::instance().getString("gsm", "abis_interop_profile", "default");
+    std::transform(interopProfile.begin(), interopProfile.end(), interopProfile.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+
+    uint32_t hbCfg = hbMs;
+    uint32_t staleCfg = staleMs;
+    uint32_t keepaliveIdleCfg = keepaliveIdleMs;
+    if (interopProfile == "osmocom") {
+        hbCfg = std::min<uint32_t>(hbCfg, 1000);
+        staleCfg = std::max<uint32_t>(staleCfg, 5000);
+        keepaliveIdleCfg = std::min<uint32_t>(keepaliveIdleCfg, 2500);
+    }
+
+    const std::string newBscAddr = rbs::Config::instance().getString("gsm", "bsc_addr", cfg_.bscAddr);
+    const uint16_t newBscPort = static_cast<uint16_t>(
+        rbs::Config::instance().getInt("gsm", "bsc_port", cfg_.bscPort));
+    const bool endpointChanged = (newBscAddr != cfg_.bscAddr) || (newBscPort != cfg_.bscPort);
+
+    abis_->setUseRealTransport(useIpaTcp);
+    abis_->setInteropProfile(interopProfile);
+    abis_->setHealthTiming(hbCfg, staleCfg);
+    abis_->setKeepaliveConfig(keepaliveEnabled, keepaliveIdleCfg);
+
+    if (endpointChanged) {
+        cfg_.bscAddr = newBscAddr;
+        cfg_.bscPort = newBscPort;
+        abis_->disconnect();
+        if (!cfg_.bscAddr.empty()) {
+            abis_->connect(cfg_.bscAddr, cfg_.bscPort);
+        }
+    }
+
+    RBS_LOG_INFO("GSMStack", "Runtime config reloaded: mode={}, profile={}, bsc={}:{}, hb={}ms, stale={}ms, ka={} idle={}ms",
+                 useIpaTcp ? "ipa_tcp" : "sim", interopProfile, cfg_.bscAddr, cfg_.bscPort,
+                 hbCfg, staleCfg, keepaliveEnabled ? "on" : "off", keepaliveIdleCfg);
+}
+
 }  // namespace rbs::gsm

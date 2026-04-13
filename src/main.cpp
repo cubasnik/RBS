@@ -20,13 +20,27 @@
 #include <string>
 #include <algorithm>
 #include <vector>
+#include <mutex>
 
 // ────────────────────────────────────────────────────────────────
 // Signal handler for graceful shutdown (SIGINT / SIGTERM)
 // ────────────────────────────────────────────────────────────────
 static std::atomic<bool> gShutdown{false};
+static std::atomic<bool> gReloadConfig{false};
 
 static void signalHandler(int sig) {
+    bool isReload = false;
+#ifdef SIGHUP
+    if (sig == SIGHUP) isReload = true;
+#endif
+#ifdef SIGBREAK
+    if (sig == SIGBREAK) isReload = true;
+#endif
+    if (isReload) {
+        RBS_LOG_INFO("RBS", "Signal ", sig, " received – scheduling config reload");
+        gReloadConfig.store(true);
+        return;
+    }
     RBS_LOG_INFO("RBS", "Signal ", sig, " received – initiating shutdown");
     gShutdown.store(true);
 }
@@ -78,7 +92,7 @@ static const char* ratName(SelectedRAT r) {
 class RadioBaseStation {
 public:
     explicit RadioBaseStation(const std::string& configPath, SelectedRAT rat)
-        : rat_(rat)
+        : rat_(rat), configPath_(configPath)
     {
         auto& cfg = rbs::Config::instance();
         if (!configPath.empty()) cfg.loadFile(configPath);
@@ -87,6 +101,8 @@ public:
             cfg.getInt("api", "port", 8080),
             cfg.getString("api", "bind", "127.0.0.1")
         );
+        restServer_->setConfigPath(configPath_);
+        restServer_->setConfigApplyCallback([this]() { this->applyRuntimeConfig(); });
 
         auto alarmCb = [](rbs::HardwareStatus s, const std::string& msg) {
             rbs::oms::AlarmSeverity sev = rbs::oms::AlarmSeverity::WARNING;
@@ -132,6 +148,46 @@ public:
             nrRF_ = std::make_shared<rbs::hal::RFHardware>(4, 4);
             nrRF_->setAlarmCallback(alarmCb);
             nrStack_ = std::make_unique<rbs::nr::NRStack>(nrRF_, cfg.buildNRConfig());
+        }
+
+        applyRuntimeConfig();
+    }
+
+    bool reloadConfigFromFile() {
+        if (configPath_.empty()) return false;
+        if (!rbs::Config::instance().loadFile(configPath_)) {
+            RBS_LOG_ERROR("RBS", "Config reload failed from ", configPath_);
+            return false;
+        }
+        applyRuntimeConfig();
+        rbs::oms::OMS::instance().updateCounter("rbs.config.reload.success",
+            rbs::oms::OMS::instance().getCounter("rbs.config.reload.success") + 1.0);
+        RBS_LOG_INFO("RBS", "Config reloaded from ", configPath_);
+        return true;
+    }
+
+    void applyRuntimeConfig() {
+        std::lock_guard<std::mutex> lock(runtimeCfgMtx_);
+        auto& cfg = rbs::Config::instance();
+
+        // Logging settings are safe to apply live.
+        const std::string level = cfg.getString("logging", "level", "INFO");
+        std::string lvl = level;
+        std::transform(lvl.begin(), lvl.end(), lvl.begin(), ::toupper);
+        if (lvl == "DEBUG")      rbs::Logger::instance().setLevel(rbs::LogLevel::DBG);
+        else if (lvl == "INFO")  rbs::Logger::instance().setLevel(rbs::LogLevel::INFO);
+        else if (lvl == "WARNING") rbs::Logger::instance().setLevel(rbs::LogLevel::WARNING);
+        else if (lvl == "ERROR") rbs::Logger::instance().setLevel(rbs::LogLevel::ERR);
+        else if (lvl == "CRITICAL") rbs::Logger::instance().setLevel(rbs::LogLevel::CRITICAL);
+
+        const std::string logFile = cfg.getString("logging", "log_file", "rbs.log");
+        if (!logFile.empty()) {
+            rbs::Logger::instance().enableFile(logFile);
+        }
+
+        lteInterSiteDistanceM_ = std::max(10.0, cfg.getDouble("lte", "inter_site_distance_m", lteInterSiteDistanceM_));
+        if (gsmStack_) {
+            gsmStack_->reloadRuntimeConfig();
         }
     }
 
@@ -349,7 +405,13 @@ public:
         auto& oms = rbs::oms::OMS::instance();
         uint32_t tick = 0;
         while (!gShutdown.load()) {
-            std::this_thread::sleep_for(std::chrono::seconds(10));
+            for (int i = 0; i < 20 && !gShutdown.load(); ++i) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                if (gReloadConfig.exchange(false)) {
+                    reloadConfigFromFile();
+                }
+            }
+            if (gShutdown.load()) break;
             ++tick;
             if (gsmStack_)
                 oms.updateCounter("gsm.connectedUEs",
@@ -428,6 +490,8 @@ private:
     // REST API server
     std::unique_ptr<rbs::api::RestServer>    restServer_;
     double lteInterSiteDistanceM_ = 500.0;
+    std::string configPath_;
+    std::mutex runtimeCfgMtx_;
 };
 
 // ────────────────────────────────────────────────────────────────
@@ -449,6 +513,12 @@ int main(int argc, char* argv[]) {
 
     std::signal(SIGINT,  signalHandler);
     std::signal(SIGTERM, signalHandler);
+#ifdef SIGHUP
+    std::signal(SIGHUP,  signalHandler);
+#endif
+#ifdef SIGBREAK
+    std::signal(SIGBREAK, signalHandler);
+#endif
 
     std::string configPath = "rbs.conf";
     SelectedRAT rat = SelectedRAT::ALL;

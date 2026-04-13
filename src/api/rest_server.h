@@ -2,6 +2,7 @@
 #include <memory>
 #include <atomic>
 #include <string>
+#include <functional>
 
 namespace rbs::api {
 
@@ -35,6 +36,10 @@ public:
 
     // Returns the actual bound port (useful when port=0 was requested).
     int  port() const;
+
+    // Runtime configuration hooks used by PATCH /api/v1/config.
+    void setConfigPath(std::string path);
+    void setConfigApplyCallback(std::function<void()> cb);
 
 private:
     struct Impl;

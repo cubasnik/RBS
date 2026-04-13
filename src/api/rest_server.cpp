@@ -26,6 +26,7 @@
 #include <unordered_map>
 #include <cstdlib>
 #include <vector>
+#include <functional>
 
 namespace rbs::api {
 
@@ -185,6 +186,10 @@ struct RestServer::Impl {
     std::unordered_map<uint16_t, UEEntry> ues;
     uint16_t                             nextCrnti{101};
 
+    std::mutex cfgCbMutex;
+    std::string configPath{"rbs.conf"};
+    std::function<void()> configApplyCb;
+
     void setupRoutes() {
         // ── GET /api/v1/status ─────────────────────────────────────────
         svr.Get("/api/v1/status", [](const httplib::Request&, httplib::Response& res) {
@@ -202,6 +207,73 @@ struct RestServer::Impl {
                             << "\"scgDrbId\":" << static_cast<int>(endc.scgDrbId)
               << "}";
             res.set_content(j.str(), "application/json");
+        });
+
+        // ── PATCH /api/v1/config ───────────────────────────────────────
+        // Body example:
+        //   {"reloadFromDisk":true,"path":"rbs.conf"}
+        //   {"section":"logging","key":"level","value":"DEBUG"}
+        svr.Patch("/api/v1/config", [this](const httplib::Request& req, httplib::Response& res) {
+            const bool reloadFromDisk = extractJsonBool(req.body, "reloadFromDisk", false);
+            std::string path = extractJsonStr(req.body, "path");
+            if (path.empty()) {
+                std::lock_guard<std::mutex> lk(cfgCbMutex);
+                path = configPath;
+            }
+
+            const std::string section = extractJsonStr(req.body, "section");
+            const std::string key = extractJsonStr(req.body, "key");
+            const bool hasSection = !section.empty() || !key.empty() || req.body.find("\"value\"") != std::string::npos;
+            if ((!section.empty() && key.empty()) || (section.empty() && !key.empty())) {
+                res.status = 400;
+                res.set_content("{\"error\":\"section and key must be provided together\"}", "application/json");
+                return;
+            }
+
+            bool patched = false;
+            bool reloaded = false;
+
+            if (reloadFromDisk) {
+                if (!rbs::Config::instance().loadFile(path)) {
+                    res.status = 422;
+                    res.set_content("{\"error\":\"config reload failed\"}", "application/json");
+                    return;
+                }
+                reloaded = true;
+            }
+
+            if (!section.empty()) {
+                const std::string value = extractJsonStr(req.body, "value");
+                rbs::Config::instance().setString(section, key, value);
+                patched = true;
+            } else if (hasSection) {
+                res.status = 400;
+                res.set_content("{\"error\":\"missing section/key/value\"}", "application/json");
+                return;
+            }
+
+            if (!reloaded && !patched) {
+                res.status = 400;
+                res.set_content("{\"error\":\"nothing to apply\"}", "application/json");
+                return;
+            }
+
+            std::function<void()> cb;
+            {
+                std::lock_guard<std::mutex> lk(cfgCbMutex);
+                cb = configApplyCb;
+            }
+            if (cb) cb();
+
+            std::ostringstream j;
+            j << "{"
+              << "\"status\":\"ok\"," 
+              << "\"reloaded\":" << (reloaded ? "true" : "false") << ","
+              << "\"patched\":" << (patched ? "true" : "false") << ","
+              << "\"path\":" << jsonEscStr(path)
+              << "}";
+            res.set_content(j.str(), "application/json");
+            RBS_LOG_INFO("REST", "config patch reloaded=", reloaded, " patched=", patched, " path=", path);
         });
 
         // ── GET /api/v1/pm ─────────────────────────────────────────────
@@ -750,5 +822,15 @@ void RestServer::stop() {
 
 bool RestServer::isRunning() const { return impl_->running.load(); }
 int  RestServer::port()      const { return impl_->actualPort; }
+
+void RestServer::setConfigPath(std::string path) {
+    std::lock_guard<std::mutex> lk(impl_->cfgCbMutex);
+    impl_->configPath = std::move(path);
+}
+
+void RestServer::setConfigApplyCallback(std::function<void()> cb) {
+    std::lock_guard<std::mutex> lk(impl_->cfgCbMutex);
+    impl_->configApplyCb = std::move(cb);
+}
 
 }  // namespace rbs::api

@@ -4,6 +4,7 @@
 //
 #include "../src/api/rest_server.h"
 #include "../src/oms/oms.h"
+#include "../src/common/config.h"
 
 #ifdef _WIN32
 #  ifndef WIN32_LEAN_AND_MEAN
@@ -224,6 +225,29 @@ static void test_lte_handover_validates_payload() {
     CHECK(res && res->status == 400);
 }
 
+static void test_config_patch_updates_runtime_key() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Patch("/api/v1/config",
+                         R"({"section":"logging","key":"level","value":"DEBUG"})",
+                         "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 200);
+    if (res) {
+        CHECK(contains(res->body, "patched"));
+        CHECK(contains(res->body, "true"));
+    }
+    CHECK(rbs::Config::instance().getString("logging", "level", "") == "DEBUG");
+}
+
+static void test_config_patch_rejects_empty_request() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Patch("/api/v1/config", "{}", "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 400);
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 int main() {
     std::cout << "=== test_rest_api ===\n";
@@ -253,6 +277,8 @@ int main() {
     test_content_type_is_json();
     test_lte_start_call_returns_503_without_cells();
     test_lte_handover_validates_payload();
+    test_config_patch_updates_runtime_key();
+    test_config_patch_rejects_empty_request();
 
     server.stop();
 

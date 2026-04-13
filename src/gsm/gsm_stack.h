@@ -37,6 +37,9 @@ public:
     size_t connectedUECount() const                      override;
     void   printStats() const                            override;
 
+    // Re-apply runtime tunables from Config without restarting the stack.
+    void   reloadRuntimeConfig();
+
     const GSMCellConfig& config() const                  override { return cfg_; }
 
 private:

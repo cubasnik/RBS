@@ -7,6 +7,12 @@
 
 namespace rbs {
 
+std::string Config::normalize(std::string s) {
+    std::transform(s.begin(), s.end(), s.begin(),
+                   [](unsigned char c) { return static_cast<char>(::tolower(c)); });
+    return s;
+}
+
 // ────────────────────────────────────────────────────────────────
 // File loader (minimal INI parser)
 // ────────────────────────────────────────────────────────────────
@@ -16,6 +22,9 @@ bool Config::loadFile(const std::string& path) {
         RBS_LOG_ERROR("Config", "Cannot open config file: ", path);
         return false;
     }
+
+    std::unordered_map<std::string,
+        std::unordered_map<std::string, std::string>> parsed;
 
     std::string currentSection = "global";
     std::string line;
@@ -30,11 +39,7 @@ bool Config::loadFile(const std::string& path) {
         if (line.empty()) continue;
 
         if (line.front() == '[' && line.back() == ']') {
-            currentSection = line.substr(1, line.size() - 2);
-            // Normalise to lower-case
-            std::transform(currentSection.begin(), currentSection.end(),
-                           currentSection.begin(),
-                           [](unsigned char c) { return static_cast<char>(::tolower(c)); });
+            currentSection = normalize(line.substr(1, line.size() - 2));
         } else {
             auto eqPos = line.find('=');
             if (eqPos == std::string::npos) continue;
@@ -47,12 +52,23 @@ bool Config::loadFile(const std::string& path) {
                 if (e != std::string::npos) s.erase(e + 1);
             };
             trim(key); trim(val);
-            std::transform(key.begin(), key.end(), key.begin(), ::tolower);
-            data_[currentSection][key] = val;
+            key = normalize(key);
+            parsed[currentSection][key] = val;
         }
+    }
+    {
+        std::unique_lock<std::shared_mutex> lk(mtx_);
+        data_.swap(parsed);
     }
     RBS_LOG_INFO("Config", "Loaded configuration from ", path);
     return true;
+}
+
+void Config::setString(const std::string& section,
+                       const std::string& key,
+                       const std::string& value) {
+    std::unique_lock<std::shared_mutex> lk(mtx_);
+    data_[normalize(section)][normalize(key)] = value;
 }
 
 // ────────────────────────────────────────────────────────────────
@@ -60,9 +76,12 @@ bool Config::loadFile(const std::string& path) {
 // ────────────────────────────────────────────────────────────────
 std::optional<std::string> Config::find(const std::string& section,
                                         const std::string& key) const {
-    auto sit = data_.find(section);
+    std::shared_lock<std::shared_mutex> lk(mtx_);
+    const std::string sectionNorm = normalize(section);
+    const std::string keyNorm = normalize(key);
+    auto sit = data_.find(sectionNorm);
     if (sit == data_.end()) return std::nullopt;
-    auto kit = sit->second.find(key);
+    auto kit = sit->second.find(keyNorm);
     if (kit == sit->second.end()) return std::nullopt;
     return kit->second;
 }
@@ -92,7 +111,8 @@ bool Config::getBool(const std::string& s, const std::string& k, bool def) const
     auto v = find(s, k);
     if (!v) return def;
     std::string lc = *v;
-    std::transform(lc.begin(), lc.end(), lc.begin(), ::tolower);
+    std::transform(lc.begin(), lc.end(), lc.begin(),
+                   [](unsigned char c) { return static_cast<char>(::tolower(c)); });
     return (lc == "true" || lc == "1" || lc == "yes" || lc == "on");
 }
 
