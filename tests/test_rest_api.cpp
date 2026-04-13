@@ -248,6 +248,34 @@ static void test_config_patch_rejects_empty_request() {
     CHECK(res && res->status == 400);
 }
 
+static void test_config_patch_batch_updates() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Patch(
+        "/api/v1/config",
+        R"({"updates":[{"section":"logging","key":"level","value":"INFO"},{"section":"gsm","key":"abis_keepalive_enabled","value":"false"}]})",
+        "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 200);
+    if (res) {
+        CHECK(contains(res->body, "appliedUpdates"));
+        CHECK(contains(res->body, "2"));
+    }
+    CHECK(rbs::Config::instance().getString("logging", "level", "") == "INFO");
+    CHECK(rbs::Config::instance().getString("gsm", "abis_keepalive_enabled", "") == "false");
+}
+
+static void test_config_patch_rejects_non_whitelisted_key() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+    auto res = cli.Patch(
+        "/api/v1/config",
+        R"({"updates":[{"section":"nr","key":"cell_id","value":"123"}]})",
+        "application/json");
+    CHECK(res != nullptr);
+    CHECK(res && res->status == 403);
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 int main() {
     std::cout << "=== test_rest_api ===\n";
@@ -279,6 +307,8 @@ int main() {
     test_lte_handover_validates_payload();
     test_config_patch_updates_runtime_key();
     test_config_patch_rejects_empty_request();
+    test_config_patch_batch_updates();
+    test_config_patch_rejects_non_whitelisted_key();
 
     server.stop();
 

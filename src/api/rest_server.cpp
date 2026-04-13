@@ -24,9 +24,11 @@
 #include <atomic>
 #include <mutex>
 #include <unordered_map>
+#include <unordered_set>
 #include <cstdlib>
 #include <vector>
 #include <functional>
+#include <algorithm>
 
 namespace rbs::api {
 
@@ -170,6 +172,90 @@ static bool extractJsonU8Array(const std::string& json, const std::string& key, 
     return true;
 }
 
+struct ConfigPatchUpdate {
+    std::string section;
+    std::string key;
+    std::string value;
+};
+
+static std::string toLowerCopy(const std::string& s) {
+    std::string out = s;
+    std::transform(out.begin(), out.end(), out.begin(),
+                   [](unsigned char c) { return static_cast<char>(std::tolower(c)); });
+    return out;
+}
+
+static bool extractJsonUpdates(const std::string& json, std::vector<ConfigPatchUpdate>& out) {
+    out.clear();
+    auto keyPos = json.find("\"updates\"");
+    if (keyPos == std::string::npos) {
+        return false;
+    }
+    auto arrStart = json.find('[', keyPos);
+    if (arrStart == std::string::npos) {
+        return false;
+    }
+
+    size_t i = arrStart + 1;
+    while (i < json.size()) {
+        while (i < json.size() && (json[i] == ' ' || json[i] == '\t' || json[i] == '\n' || json[i] == '\r' || json[i] == ',')) {
+            ++i;
+        }
+        if (i >= json.size()) return false;
+        if (json[i] == ']') {
+            return true;
+        }
+        if (json[i] != '{') {
+            return false;
+        }
+
+        size_t objStart = i;
+        int depth = 0;
+        while (i < json.size()) {
+            if (json[i] == '{') ++depth;
+            if (json[i] == '}') {
+                --depth;
+                if (depth == 0) {
+                    ++i;
+                    break;
+                }
+            }
+            ++i;
+        }
+        if (depth != 0) {
+            return false;
+        }
+
+        const std::string obj = json.substr(objStart, i - objStart);
+        const std::string section = extractJsonStr(obj, "section");
+        const std::string key = extractJsonStr(obj, "key");
+        const std::string value = extractJsonStr(obj, "value");
+        if (section.empty() || key.empty()) {
+            return false;
+        }
+        out.push_back({section, key, value});
+    }
+    return false;
+}
+
+static bool isConfigPatchKeyAllowed(const std::string& section, const std::string& key) {
+    static const std::unordered_set<std::string> allowed = {
+        "logging.level",
+        "logging.log_file",
+        "lte.inter_site_distance_m",
+        "gsm.abis_transport",
+        "gsm.abis_interop_profile",
+        "gsm.abis_hb_interval_ms",
+        "gsm.abis_rx_stale_ms",
+        "gsm.abis_keepalive_enabled",
+        "gsm.abis_keepalive_idle_ms",
+        "gsm.bsc_addr",
+        "gsm.bsc_port"
+    };
+    const std::string compound = toLowerCopy(section) + "." + toLowerCopy(key);
+    return allowed.find(compound) != allowed.end();
+}
+
 // ── Internal UE admission stub ───────────────────────────────────────────────
 struct UEEntry { uint64_t imsi; std::string rat; };
 
@@ -210,9 +296,11 @@ struct RestServer::Impl {
         });
 
         // ── PATCH /api/v1/config ───────────────────────────────────────
-        // Body example:
+        // Body examples:
         //   {"reloadFromDisk":true,"path":"rbs.conf"}
         //   {"section":"logging","key":"level","value":"DEBUG"}
+        //   {"updates":[{"section":"logging","key":"level","value":"DEBUG"},
+        //               {"section":"gsm","key":"abis_keepalive_enabled","value":"false"}]}
         svr.Patch("/api/v1/config", [this](const httplib::Request& req, httplib::Response& res) {
             const bool reloadFromDisk = extractJsonBool(req.body, "reloadFromDisk", false);
             std::string path = extractJsonStr(req.body, "path");
@@ -221,13 +309,26 @@ struct RestServer::Impl {
                 path = configPath;
             }
 
-            const std::string section = extractJsonStr(req.body, "section");
-            const std::string key = extractJsonStr(req.body, "key");
-            const bool hasSection = !section.empty() || !key.empty() || req.body.find("\"value\"") != std::string::npos;
-            if ((!section.empty() && key.empty()) || (section.empty() && !key.empty())) {
+            std::vector<ConfigPatchUpdate> updates;
+            const bool hasUpdatesArrayKey = req.body.find("\"updates\"") != std::string::npos;
+            if (hasUpdatesArrayKey && !extractJsonUpdates(req.body, updates)) {
                 res.status = 400;
-                res.set_content("{\"error\":\"section and key must be provided together\"}", "application/json");
+                res.set_content("{\"error\":\"invalid updates array\"}", "application/json");
                 return;
+            }
+
+            if (!hasUpdatesArrayKey) {
+                const std::string section = extractJsonStr(req.body, "section");
+                const std::string key = extractJsonStr(req.body, "key");
+                const bool hasSinglePatch = !section.empty() || !key.empty() || req.body.find("\"value\"") != std::string::npos;
+                if (hasSinglePatch) {
+                    if (section.empty() || key.empty()) {
+                        res.status = 400;
+                        res.set_content("{\"error\":\"section and key must be provided together\"}", "application/json");
+                        return;
+                    }
+                    updates.push_back({section, key, extractJsonStr(req.body, "value")});
+                }
             }
 
             bool patched = false;
@@ -242,14 +343,20 @@ struct RestServer::Impl {
                 reloaded = true;
             }
 
-            if (!section.empty()) {
-                const std::string value = extractJsonStr(req.body, "value");
-                rbs::Config::instance().setString(section, key, value);
+            for (const auto& upd : updates) {
+                if (!isConfigPatchKeyAllowed(upd.section, upd.key)) {
+                    std::ostringstream e;
+                    e << "{\"error\":\"config key is not allowed\",\"section\":"
+                      << jsonEscStr(upd.section) << ",\"key\":" << jsonEscStr(upd.key) << "}";
+                    res.status = 403;
+                    res.set_content(e.str(), "application/json");
+                    return;
+                }
+            }
+
+            for (const auto& upd : updates) {
+                rbs::Config::instance().setString(upd.section, upd.key, upd.value);
                 patched = true;
-            } else if (hasSection) {
-                res.status = 400;
-                res.set_content("{\"error\":\"missing section/key/value\"}", "application/json");
-                return;
             }
 
             if (!reloaded && !patched) {
@@ -270,6 +377,7 @@ struct RestServer::Impl {
               << "\"status\":\"ok\"," 
               << "\"reloaded\":" << (reloaded ? "true" : "false") << ","
               << "\"patched\":" << (patched ? "true" : "false") << ","
+                            << "\"appliedUpdates\":" << updates.size() << ","
               << "\"path\":" << jsonEscStr(path)
               << "}";
             res.set_content(j.str(), "application/json");
