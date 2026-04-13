@@ -4,6 +4,18 @@
 
 namespace rbs::nr {
 
+namespace {
+ByteBuffer makeXnapTransportFrame(XnAPProcedure procedure, const ByteBuffer& payload) {
+    ByteBuffer framed;
+    framed.reserve(payload.size() + 3);
+    framed.push_back(0x38);
+    framed.push_back(0x42);
+    framed.push_back(static_cast<uint8_t>(procedure));
+    framed.insert(framed.end(), payload.begin(), payload.end());
+    return framed;
+}
+}  // namespace
+
 std::mutex XnAPLink::registryMutex_;
 std::unordered_map<uint64_t, XnAPLink*> XnAPLink::registry_;
 
@@ -55,6 +67,15 @@ bool XnAPLink::bindTransport(uint16_t localPort) {
         return false;
     }
     localPort_ = sctp_->localPort();
+    if (!rxStarted_) {
+        rxStarted_ = sctp_->startReceive([this](const rbs::net::SctpPacket& pkt) {
+            handleSctpRx(pkt);
+        });
+        if (!rxStarted_) {
+            RBS_LOG_ERROR("XnAP", "startReceive failed: localGnbId=", localGnbId_);
+            return false;
+        }
+    }
     return true;
 }
 
@@ -115,20 +136,10 @@ bool XnAPLink::sendMessage(uint64_t targetGnbId, XnAPProcedure procedure, const 
         if (!sctp_) {
             return false;
         }
-        const bool ok = sctp_->send(payload);
+        const ByteBuffer framed = makeXnapTransportFrame(procedure, payload);
+        const bool ok = sctp_->send(framed);
         if (!ok) {
-            RBS_LOG_WARNING("XnAP", "SCTP send failed localGnbId=", localGnbId_, " targetGnbId=", targetGnbId,
-                            " (will try same-process fallback)");
-        }
-
-        // Same-process fallback keeps tests deterministic while SCTP association warms up.
-        {
-            std::lock_guard<std::mutex> lock(registryMutex_);
-            const auto it = registry_.find(targetGnbId);
-            if (it != registry_.end() && it->second != nullptr) {
-                it->second->enqueue(XnAPMessage{procedure, localGnbId_, targetGnbId, payload});
-                return true;
-            }
+            RBS_LOG_WARNING("XnAP", "SCTP send failed localGnbId=", localGnbId_, " targetGnbId=", targetGnbId);
         }
         return ok;
     }
@@ -172,7 +183,7 @@ void XnAPLink::handleSctpRx(const rbs::net::SctpPacket& pkt) {
     msg.procedure = static_cast<XnAPProcedure>(pkt.data[2]);
     msg.sourceGnbId = sourceGnbId;
     msg.targetGnbId = localGnbId_;
-    msg.payload = pkt.data;
+    msg.payload = ByteBuffer(pkt.data.begin() + 3, pkt.data.end());
     enqueue(std::move(msg));
 }
 

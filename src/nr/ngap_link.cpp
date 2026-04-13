@@ -4,6 +4,18 @@
 
 namespace rbs::nr {
 
+namespace {
+ByteBuffer makeNgapTransportFrame(NgapProcedure procedure, const ByteBuffer& payload) {
+    ByteBuffer framed;
+    framed.reserve(payload.size() + 3);
+    framed.push_back(0x4E);  // 'N'
+    framed.push_back(0x47);  // 'G'
+    framed.push_back(static_cast<uint8_t>(procedure));
+    framed.insert(framed.end(), payload.begin(), payload.end());
+    return framed;
+}
+}  // namespace
+
 std::mutex NgapLink::registryMutex_;
 std::unordered_map<uint64_t, NgapLink*> NgapLink::registry_;
 
@@ -54,6 +66,15 @@ bool NgapLink::bindTransport(uint16_t localPort) {
         return false;
     }
     localPort_ = sctp_->localPort();
+    if (!rxStarted_) {
+        rxStarted_ = sctp_->startReceive([this](const rbs::net::SctpPacket& pkt) {
+            handleSctpRx(pkt);
+        });
+        if (!rxStarted_) {
+            RBS_LOG_ERROR("NGAP", "startReceive failed: localNodeId=", localNodeId_);
+            return false;
+        }
+    }
     return true;
 }
 
@@ -122,20 +143,10 @@ bool NgapLink::sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const
         if (!sctp_) {
             return false;
         }
-        const bool ok = sctp_->send(payload);
+        const ByteBuffer framed = makeNgapTransportFrame(procedure, payload);
+        const bool ok = sctp_->send(framed);
         if (!ok) {
-            RBS_LOG_WARNING("NGAP", "SCTP send failed localNodeId=", localNodeId_, " targetNodeId=", targetNodeId,
-                            " (will try same-process fallback)");
-        }
-
-        // Same-process fallback keeps tests deterministic while SCTP association warms up.
-        {
-            std::lock_guard<std::mutex> lock(registryMutex_);
-            const auto it = registry_.find(targetNodeId);
-            if (it != registry_.end() && it->second != nullptr) {
-                it->second->enqueue(NgapMessage{procedure, localNodeId_, targetNodeId, payload});
-                return true;
-            }
+            RBS_LOG_WARNING("NGAP", "SCTP send failed localNodeId=", localNodeId_, " targetNodeId=", targetNodeId);
         }
         return ok;
     }
@@ -179,7 +190,7 @@ void NgapLink::handleSctpRx(const rbs::net::SctpPacket& pkt) {
     msg.procedure = static_cast<NgapProcedure>(pkt.data[2]);
     msg.sourceNodeId = sourceNodeId;
     msg.targetNodeId = localNodeId_;
-    msg.payload = pkt.data;
+    msg.payload = ByteBuffer(pkt.data.begin() + 3, pkt.data.end());
     enqueue(std::move(msg));
 }
 

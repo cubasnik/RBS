@@ -15,7 +15,7 @@
 - п.26: NG-AP для gNB<->AMF сценариев (in-memory transport + PDU session/release tests).
 - п.27: RAN Slicing в NR (eMBB/URLLC/mMTC quotas, OMS slice counters, `/api/v1/slices`).
 - п.28: CI/CD GitHub Actions (Linux matrix Debug/Release, ASAN в Debug, обязательный ctest).
-- п.29: Real NG/Xn Transport (SCTP): dual-mode transport для `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API биндинга/подключения peer, тест `test_ng_xn_transport`.
+- п.29: Real NG/Xn Transport (SCTP): dual-mode transport для `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API биндинга/подключения peer, согласованный transport framing, активный RX-поток и тест доставки `test_ng_xn_transport`.
 - п.30a: NR MAC HARQ retransmit counters + CQI/RI feedback loop: `HarqStats` (totalRetx/failures), `HARQ_MAX_RETX=3` (TS 38.321), `CsiReport` struct, `reportCsiRi()`/`reportCsi()`, RI-scaled TBS, тесты `test_nr_mac_harq_max_retx`/`test_nr_mac_csi_ri_tbs_scaling`/`test_nr_mac_csi_combined_report`.
 - п.30b: GSM BSSGP/NS layer поверх Abis (GPRS tracing): `GprsNs` (TS 48.016 — NS-RESET/ALIVE/UNITDATA state machine), `GprsBssgp` (TS 48.018 — UL/DL-UNITDATA, BVC-RESET, RADIO-STATUS, трассировка `GprsBssgpTrace` с BCD Cell ID), 9 тестов в `test_gprs_bssgp`.
 - п.30c: Динамический reload `rbs.conf` без перезапуска (SIGHUP / REST PATCH): потокобезопасный `Config`, endpoint `PATCH /api/v1/config` (reload from disk + key patch + batch `updates[]`), whitelist валидация изменяемых ключей, `dryRun` (валидация без применения), `all-or-nothing` транзакция с явной ошибкой `updateIndex`, runtime apply callback (logging + GSM Abis tunables), сигнал `SIGHUP` (и `SIGBREAK` на Windows), тесты в `test_rest_api`.

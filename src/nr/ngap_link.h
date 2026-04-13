@@ -58,6 +58,7 @@ private:
     std::unordered_map<std::string, uint64_t> endpointToNodeId_;
     std::unique_ptr<rbs::net::SctpSocket> sctp_;
     uint16_t localPort_ = 0;
+    bool rxStarted_ = false;
     mutable std::mutex rxMutex_;
     std::queue<NgapMessage> rxQueue_;
 

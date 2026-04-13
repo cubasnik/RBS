@@ -2,9 +2,33 @@
 #include "../src/nr/xnap_link.h"
 
 #include <cassert>
+#include <chrono>
 #include <cstdio>
+#include <thread>
 
 using namespace rbs::nr;
+
+static bool waitNgMsg(NgapLink& link, NgapMessage& msg, int timeoutMs = 1000) {
+    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
+    while (std::chrono::steady_clock::now() < deadline) {
+        if (link.recvNgapMessage(msg)) {
+            return true;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+    return false;
+}
+
+static bool waitXnMsg(XnAPLink& link, XnAPMessage& msg, int timeoutMs = 1000) {
+    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
+    while (std::chrono::steady_clock::now() < deadline) {
+        if (link.recvXnApMessage(msg)) {
+            return true;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    }
+    return false;
+}
 
 static void test_ngap_transport_path() {
     NgapLink gnb(0x3001);
@@ -25,7 +49,20 @@ static void test_ngap_transport_path() {
     req.tac = 7;
     req.mcc = 250;
     req.mnc = 1;
-    assert(gnb.ngSetup(0xA001, req));
+
+    NgapMessage rx{};
+    bool delivered = false;
+    for (int attempt = 0; attempt < 50 && !delivered; ++attempt) {
+        if (gnb.ngSetup(0xA001, req)) {
+            delivered = waitNgMsg(amf, rx, 100);
+        } else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        }
+    }
+    assert(delivered);
+    assert(rx.procedure == NgapProcedure::NG_SETUP_REQUEST);
+    assert(rx.targetNodeId == 0xA001);
+    assert(!rx.payload.empty());
 
     std::puts("  test_ngap_transport_path PASSED");
 }
@@ -47,7 +84,20 @@ static void test_xnap_transport_path() {
     req.localGnbId = 0x1101;
     req.gnbName = "gNB-A";
     req.servedCells.push_back(XnServedCell{0xABC001, 620100, 111, 1});
-    assert(gnbA.xnSetup(0x2202, req));
+
+    XnAPMessage rx{};
+    bool delivered = false;
+    for (int attempt = 0; attempt < 50 && !delivered; ++attempt) {
+        if (gnbA.xnSetup(0x2202, req)) {
+            delivered = waitXnMsg(gnbB, rx, 100);
+        } else {
+            std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        }
+    }
+    assert(delivered);
+    assert(rx.procedure == XnAPProcedure::XN_SETUP_REQUEST);
+    assert(rx.targetGnbId == 0x2202);
+    assert(!rx.payload.empty());
 
     std::puts("  test_xnap_transport_path PASSED");
 }

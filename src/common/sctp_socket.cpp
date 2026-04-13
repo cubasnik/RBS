@@ -55,7 +55,13 @@ SctpSocket::SctpSocket(const std::string& name)
     : name_(name)
     , udpFallback_(name + "-udp-fallback")
 {
-#if RBS_HAS_USRSCTP || RBS_HAS_NATIVE_SCTP
+#if defined(_WIN32)
+    // Windows usrsctp backend is not yet wired to a userland I/O path
+    // (register_address/conninput), so keep UDP fallback enabled there until
+    // a full backend is implemented. Linux native SCTP still uses the real
+    // transport path.
+    useUdpFallback_ = true;
+#elif RBS_HAS_USRSCTP || RBS_HAS_NATIVE_SCTP
     useUdpFallback_ = false;
 #else
     useUdpFallback_ = true;
@@ -267,15 +273,13 @@ bool SctpSocket::sendNative(const uint8_t* data, size_t len)
 #if RBS_HAS_USRSCTP
     auto* s = static_cast<struct socket*>(usrSock_);
     if (!s) return false;
-    // Fire-and-forget: if the SCTP association is not yet established the send
-    // is silently dropped, matching the prior UDP-fallback behaviour.
     ssize_t sent = usrsctp_sendv(s, data, len, nullptr, 0, nullptr, 0,
                                  SCTP_SENDV_NOINFO, 0);
     if (sent < 0) {
         RBS_LOG_WARNING("SctpSocket", "[{}] usrsctp_sendv failed (errno={})",
                         name_, errno);
     }
-    return (usrSock_ != nullptr);  // simulate fire-and-forget while connecting
+    return sent >= 0;
 #elif RBS_HAS_NATIVE_SCTP
     if (sock_ == SCTP_SOCK_INVALID) return false;
     int sent = ::send(sock_, reinterpret_cast<const char*>(data), static_cast<int>(len), 0);
