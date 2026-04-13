@@ -9,6 +9,11 @@ add_executable(test_config test_config.cpp)
 target_link_libraries(test_config PRIVATE rbs_common)
 add_test(NAME test_config COMMAND test_config)
 
+# ── test_sctp_multihoming ─────────────────────────────────────────
+add_executable(test_sctp_multihoming test_sctp_multihoming.cpp)
+target_link_libraries(test_sctp_multihoming PRIVATE rbs_common)
+add_test(NAME test_sctp_multihoming COMMAND test_sctp_multihoming)
+
 # ── test_gsm_phy ──────────────────────────────────────────────────
 add_executable(test_gsm_phy test_gsm_phy.cpp)
 target_link_libraries(test_gsm_phy PRIVATE rbs_gsm)

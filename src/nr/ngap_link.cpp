@@ -98,6 +98,106 @@ bool NgapLink::connectSctpPeer(uint64_t targetNodeId, const std::string& targetI
     return true;
 }
 
+bool NgapLink::bindTransportMulti(const std::vector<std::string>& localAddrs, uint16_t localPort)
+{
+    (void)rbs::net::SctpSocket::wsaInit();
+    if (!sctp_) {
+        sctp_ = std::make_unique<rbs::net::SctpSocket>("NGAP-" + std::to_string(localNodeId_));
+    }
+    if (localPort_ != 0 || sctp_->isOpen()) {
+        return true;
+    }
+    if (!sctp_->bindMulti(localAddrs, localPort)) {
+        RBS_LOG_ERROR("NGAP", "bindTransportMulti failed: localNodeId=", localNodeId_);
+        return false;
+    }
+    localPort_ = sctp_->localPort();
+    if (!rxStarted_) {
+        rxStarted_ = sctp_->startReceive([this](const rbs::net::SctpPacket& pkt) {
+            handleSctpRx(pkt);
+        });
+        if (!rxStarted_) {
+            RBS_LOG_ERROR("NGAP", "startReceive (multi) failed: localNodeId=", localNodeId_);
+            return false;
+        }
+    }
+    return true;
+}
+
+bool NgapLink::connectSctpPeerMulti(uint64_t targetNodeId, 
+                                     const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs,
+                                     int primaryIdx)
+{
+    if (!bindTransport(0)) {
+        return false;
+    }
+    if (!sctp_->connectMulti(remoteAddrs, primaryIdx)) {
+        RBS_LOG_ERROR("NGAP", "connectSctpPeerMulti failed: localNodeId=", localNodeId_,
+                      " targetNodeId=", targetNodeId, " addresses=", remoteAddrs.size());
+        return false;
+    }
+
+    PeerInfo info{};
+    info.connected = true;
+    info.useSctp = true;
+    info.sctpAddrs = remoteAddrs;
+    info.primaryAddrIdx = primaryIdx;
+    if (primaryIdx >= 0 && primaryIdx < static_cast<int>(remoteAddrs.size())) {
+        info.ip = remoteAddrs[primaryIdx].first;
+        info.port = remoteAddrs[primaryIdx].second;
+    }
+    peers_[targetNodeId] = info;
+    
+    // Register all endpoints to this target
+    for (size_t i = 0; i < remoteAddrs.size(); ++i) {
+        endpointToNodeId_[endpointKey(remoteAddrs[i].first, remoteAddrs[i].second)] = targetNodeId;
+    }
+    
+    RBS_LOG_INFO("NGAP", "connectSctpPeerMulti: localNodeId=", localNodeId_, " targetNodeId=", targetNodeId,
+                 " addresses=", remoteAddrs.size(), " primary=", primaryIdx);
+    return true;
+}
+
+bool NgapLink::switchToPath(uint64_t targetNodeId, int pathIdx)
+{
+    const auto it = peers_.find(targetNodeId);
+    if (it == peers_.end()) {
+        RBS_LOG_ERROR("NGAP", "switchToPath failed: peer not found, localNodeId=", localNodeId_, 
+                      " targetNodeId=", targetNodeId);
+        return false;
+    }
+
+    auto& info = it->second;
+    if (info.sctpAddrs.empty()) {
+        RBS_LOG_ERROR("NGAP", "switchToPath failed: not multi-homing, localNodeId=", localNodeId_, 
+                      " targetNodeId=", targetNodeId);
+        return false;
+    }
+
+    if (pathIdx < 0 || pathIdx >= static_cast<int>(info.sctpAddrs.size())) {
+        RBS_LOG_ERROR("NGAP", "switchToPath failed: invalid pathIdx, localNodeId=", localNodeId_,
+                      " targetNodeId=", targetNodeId, " pathIdx=", pathIdx, " count=", info.sctpAddrs.size());
+        return false;
+    }
+
+    // Update peer info
+    info.primaryAddrIdx = pathIdx;
+    info.ip = info.sctpAddrs[pathIdx].first;
+    info.port = info.sctpAddrs[pathIdx].second;
+
+    // Notify SCTP layer
+    if (!sctp_->setPrimaryPath(pathIdx)) {
+        RBS_LOG_WARNING("NGAP", "SCTP setPrimaryPath failed: localNodeId=", localNodeId_,
+                        " targetNodeId=", targetNodeId, " pathIdx=", pathIdx);
+        return false;
+    }
+
+    RBS_LOG_INFO("NGAP", "switchToPath: localNodeId=", localNodeId_, " targetNodeId=", targetNodeId,
+                 " switched to path ", pathIdx, " (", info.ip, ":", info.port, ")");
+    return true;
+}
+
+
 bool NgapLink::ngSetup(uint64_t targetNodeId, const NgSetupRequest& req) {
     return sendMessage(targetNodeId, NgapProcedure::NG_SETUP_REQUEST, encodeNgSetupRequest(req));
 }

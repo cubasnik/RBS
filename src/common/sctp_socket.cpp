@@ -85,10 +85,29 @@ bool SctpSocket::bind(uint16_t localPort)
     return bindNative(localPort);
 }
 
+bool SctpSocket::bindMulti(const std::vector<std::string>& localAddrs, uint16_t localPort)
+{
+    if (localAddrs.empty()) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] bindMulti: empty address list", name_);
+        return false;
+    }
+    if (useUdpFallback_) {
+        // UDP fallback: use only the first address
+        RBS_LOG_WARNING("SctpSocket", 
+                        "[{}] bindMulti: multi-homing not supported on fallback transport, "
+                        "using first address ({})", name_, localAddrs[0]);
+        return bind(localPort);
+    }
+    return bindNativeMulti(localAddrs, localPort);
+}
+
 bool SctpSocket::connect(const std::string& remoteIp, uint16_t remotePort)
 {
     remoteIp_ = remoteIp;
     remotePort_ = remotePort;
+    remoteAddrs_.clear();
+    remoteAddrs_.push_back({remoteIp, remotePort});
+    primaryRemoteIdx_ = 0;
 
     if (useUdpFallback_) {
         // UDP fallback is connectionless; treat configured peer as connected.
@@ -96,6 +115,48 @@ bool SctpSocket::connect(const std::string& remoteIp, uint16_t remotePort)
     }
     return connectNative(remoteIp, remotePort);
 }
+
+bool SctpSocket::connectMulti(const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs, int primaryIdx)
+{
+    if (remoteAddrs.empty()) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] connectMulti: empty address list", name_);
+        return false;
+    }
+    if (primaryIdx < 0 || primaryIdx >= static_cast<int>(remoteAddrs.size())) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] connectMulti: invalid primaryIdx {}", name_, primaryIdx);
+        return false;
+    }
+    remoteAddrs_ = remoteAddrs;
+    primaryRemoteIdx_ = primaryIdx;
+    remoteIp_ = remoteAddrs[primaryIdx].first;
+    remotePort_ = remoteAddrs[primaryIdx].second;
+
+    if (useUdpFallback_) {
+        // UDP fallback: treat primary address as connected
+        RBS_LOG_WARNING("SctpSocket", 
+                        "[{}] connectMulti: multi-homing not supported on fallback transport, "
+                        "using primary address ({}:{})", name_, remoteIp_, remotePort_);
+        return true;
+    }
+    return connectNativeMulti(remoteAddrs, primaryIdx);
+}
+
+bool SctpSocket::setPrimaryPath(int primaryIdx)
+{
+    if (primaryIdx < 0 || primaryIdx >= static_cast<int>(remoteAddrs_.size())) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] setPrimaryPath: invalid index {}", name_, primaryIdx);
+        return false;
+    }
+    primaryRemoteIdx_ = primaryIdx;
+    remoteIp_ = remoteAddrs_[primaryIdx].first;
+    remotePort_ = remoteAddrs_[primaryIdx].second;
+
+    if (useUdpFallback_) {
+        return true;  // No-op for fallback; just update cached primary
+    }
+    return setPrimaryPathNative(primaryIdx);
+}
+
 
 bool SctpSocket::send(const uint8_t* data, size_t len)
 {
@@ -392,6 +453,197 @@ void SctpSocket::rxLoopNative()
         SctpPacket pkt{srcIp, srcPort, ByteBuffer(buf.data(), buf.data() + n)};
         rxCb_(pkt);
     }
+#endif
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Multi-homing support: bind to multiple local addresses
+// ────────────────────────────────────────────────────────────────────────────
+
+bool SctpSocket::bindNativeMulti(const std::vector<std::string>& localAddrs, uint16_t localPort)
+{
+#if RBS_HAS_NATIVE_SCTP && !defined(_WIN32)
+    // Linux native SCTP: use sctp_bindx to bind to multiple addresses
+    if (sock_ != SCTP_SOCK_INVALID) return true;
+
+    sock_ = ::socket(AF_INET, SOCK_STREAM, IPPROTO_SCTP);
+    if (sock_ == SCTP_SOCK_INVALID) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] socket(AF_INET,SOCK_STREAM,IPPROTO_SCTP) failed", name_);
+        return false;
+    }
+
+    int opt = 1;
+    ::setsockopt(sock_, SOL_SOCKET, SO_REUSEADDR,
+                 reinterpret_cast<const char*>(&opt), sizeof(opt));
+
+    // Collect all addresses as sockaddr_in array
+    std::vector<sockaddr_in> addrs;
+    for (const auto& addrStr : localAddrs) {
+        sockaddr_in addr{};
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(localPort);
+        if (::inet_pton(AF_INET, addrStr.c_str(), &addr.sin_addr) != 1) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] bindNativeMulti: invalid IP '{}', skipping", 
+                           name_, addrStr);
+            continue;
+        }
+        addrs.push_back(addr);
+    }
+
+    if (addrs.empty()) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] bindNativeMulti: no valid addresses", name_);
+        ::closesocket(sock_);
+        sock_ = SCTP_SOCK_INVALID;
+        return false;
+    }
+
+    // Bind to first address with explicit bind
+    if (::bind(sock_, reinterpret_cast<sockaddr*>(&addrs[0]), sizeof(addrs[0])) == SCTP_SOCK_ERR) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] bindNativeMulti: bind to {} failed", 
+                     name_, localAddrs[0]);
+        ::closesocket(sock_);
+        sock_ = SCTP_SOCK_INVALID;
+        return false;
+    }
+
+    // Add remaining addresses with sctp_bindx
+    if (addrs.size() > 1) {
+#if RBS_HAS_NATIVE_SCTP
+        int ret = sctp_bindx(sock_, reinterpret_cast<sockaddr*>(addrs.data() + 1), 
+                            addrs.size() - 1, SCTP_BINDX_ADD_ADDR);
+        if (ret != 0) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] sctp_bindx: added {} addresses (first only ok)", 
+                           name_, addrs.size() - 1);
+            // Don't fail; at least primary is bound
+        } else {
+            RBS_LOG_INFO("SctpSocket", "[{}] sctp_bindx: bound {} addresses successfully", 
+                        name_, addrs.size());
+        }
+#endif
+    }
+
+    // Get actual bound port
+    sockaddr_in bound{};
+    socklen_t len = sizeof(bound);
+    ::getsockname(sock_, reinterpret_cast<sockaddr*>(&bound), &len);
+    localPort_ = ntohs(bound.sin_port);
+
+    RBS_LOG_INFO("SctpSocket", "[{}] bindNativeMulti: bound {} address(es) on port {}",
+                 name_, addrs.size(), localPort_);
+    return true;
+#elif RBS_HAS_USRSCTP
+    // Windows usrsctp: doesn't support multi-homing in this iteration
+    RBS_LOG_WARNING("SctpSocket", "[{}] bindNativeMulti: multi-homing not supported on usrsctp, "
+                   "using first address", name_);
+    return bindNative(localPort);
+#else
+    (void)localAddrs;
+    (void)localPort;
+    return false;
+#endif
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Multi-homing support: connect to multiple remote addresses with failover
+// ────────────────────────────────────────────────────────────────────────────
+
+bool SctpSocket::connectNativeMulti(const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs, int primaryIdx)
+{
+#if RBS_HAS_NATIVE_SCTP && !defined(_WIN32)
+    // Linux native SCTP: use sctp_connectx to connect with multi-homing
+    if (sock_ == SCTP_SOCK_INVALID) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] connectNativeMulti: socket not bound", name_);
+        return false;
+    }
+
+    std::vector<sockaddr_in> addrs;
+    for (const auto& [ip, port] : remoteAddrs) {
+        sockaddr_in addr{};
+        addr.sin_family = AF_INET;
+        addr.sin_port = htons(port);
+        if (::inet_pton(AF_INET, ip.c_str(), &addr.sin_addr) != 1) {
+            RBS_LOG_WARNING("SctpSocket", "[{}] connectNativeMulti: invalid IP '{}', skipping", 
+                           name_, ip);
+            continue;
+        }
+        addrs.push_back(addr);
+    }
+
+    if (addrs.empty()) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] connectNativeMulti: no valid addresses", name_);
+        return false;
+    }
+
+    // Use sctp_connectx to establish association with multiple addresses
+    sctp_assoc_t assoc_id = SCTP_FUTURE_ASSOC;
+#if RBS_HAS_NATIVE_SCTP
+    int ret = sctp_connectx(sock_, reinterpret_cast<sockaddr*>(addrs.data()), addrs.size(), &assoc_id);
+    if (ret != 0) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] sctp_connectx failed (ret={})", name_, ret);
+        return false;
+    }
+#else
+    return false;
+#endif
+
+    RBS_LOG_INFO("SctpSocket", "[{}] connectNativeMulti: connected with {} addresses, primary=[{}:{}]",
+                 name_, addrs.size(), remoteAddrs[primaryIdx].first, remoteAddrs[primaryIdx].second);
+    
+    // Now set primary address to the one at primaryIdx
+    return setPrimaryPathNative(primaryIdx);
+#elif RBS_HAS_USRSCTP
+    // Windows usrsctp: fall back to single-address connect
+    if (remoteAddrs.empty()) return false;
+    RBS_LOG_WARNING("SctpSocket", "[{}] connectNativeMulti: multi-homing not supported on usrsctp, "
+                   "using primary address", name_);
+    return connectNative(remoteAddrs[primaryIdx].first, remoteAddrs[primaryIdx].second);
+#else
+    (void)remoteAddrs;
+    (void)primaryIdx;
+    return false;
+#endif
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// Multi-homing support: set primary path
+// ────────────────────────────────────────────────────────────────────────────
+
+bool SctpSocket::setPrimaryPathNative(int primaryIdx)
+{
+#if RBS_HAS_NATIVE_SCTP && !defined(_WIN32)
+    // Linux native SCTP: use SCTP_PRIMARY_ADDR sockopt to select primary
+    if (sock_ == SCTP_SOCK_INVALID) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] setPrimaryPathNative: socket not open", name_);
+        return false;
+    }
+
+    if (primaryIdx < 0 || primaryIdx >= static_cast<int>(remoteAddrs_.size())) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] setPrimaryPathNative: invalid index {}", name_, primaryIdx);
+        return false;
+    }
+
+    const auto& [ip, port] = remoteAddrs_[primaryIdx];
+    sockaddr_in primary{};
+    primary.sin_family = AF_INET;
+    primary.sin_port = htons(port);
+    if (::inet_pton(AF_INET, ip.c_str(), &primary.sin_addr) != 1) {
+        RBS_LOG_ERROR("SctpSocket", "[{}] setPrimaryPathNative: invalid IP '{}'", name_, ip);
+        return false;
+    }
+
+    sctp_assoc_t assoc_id = SCTP_FUTURE_ASSOC;
+    if (::setsockopt(sock_, IPPROTO_SCTP, SCTP_PRIMARY_ADDR, 
+                     reinterpret_cast<const char*>(&primary), sizeof(primary)) != 0) {
+        RBS_LOG_WARNING("SctpSocket", "[{}] SCTP_PRIMARY_ADDR failed (errno={})", name_, errno);
+        return false;
+    }
+
+    RBS_LOG_INFO("SctpSocket", "[{}] setPrimaryPathNative: primary path set to {}:{}",
+                 name_, ip, port);
+    return true;
+#else
+    (void)primaryIdx;
+    return false;
 #endif
 }
 

@@ -26,7 +26,23 @@ public:
 
     // Transport management for real Xn interface over SCTP/IP.
     bool bindTransport(uint16_t localPort = 0);
+    
+    // Multi-homing: bind to multiple local addresses for load distribution.
+    // Returns true if at least one address bound successfully.
+    bool bindTransportMulti(const std::vector<std::string>& localAddrs, uint16_t localPort = 0);
+    
     bool connectSctpPeer(uint64_t targetGnbId, const std::string& targetIp, uint16_t targetPort);
+    
+    // Multi-homing: connect to multiple remote addresses with primary path selection.
+    // remoteAddrs: list of {IP, port} pairs; primaryIdx: which one is primary (default 0).
+    // Returns true if connection initiated successfully.
+    bool connectSctpPeerMulti(uint64_t targetGnbId, 
+                             const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs, 
+                             int primaryIdx = 0);
+    
+    // Failover: switch to a different remote address (multi-homing only).
+    // Requires prior connectSctpPeerMulti() call for the target.
+    bool switchToPath(uint64_t targetGnbId, int pathIdx);
 
     bool connect(uint64_t targetGnbId);
     bool isConnected(uint64_t targetGnbId) const;
@@ -45,8 +61,10 @@ private:
     struct PeerInfo {
         bool connected = false;
         bool useSctp = false;
-        std::string ip;
-        uint16_t port = 0;
+        std::string ip;                                              // Primary IP (single-address mode)
+        uint16_t port = 0;                                           // Primary port
+        std::vector<std::pair<std::string, uint16_t>> sctpAddrs;     // All remote addresses (multi-homing)
+        int primaryAddrIdx = 0;                                       // Index of primary address in sctpAddrs
     };
 
     bool sendMessage(uint64_t targetGnbId, XnAPProcedure procedure, const ByteBuffer& payload);

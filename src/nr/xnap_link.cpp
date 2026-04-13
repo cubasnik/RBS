@@ -99,6 +99,106 @@ bool XnAPLink::connectSctpPeer(uint64_t targetGnbId, const std::string& targetIp
     return true;
 }
 
+bool XnAPLink::bindTransportMulti(const std::vector<std::string>& localAddrs, uint16_t localPort)
+{
+    (void)rbs::net::SctpSocket::wsaInit();
+    if (!sctp_) {
+        sctp_ = std::make_unique<rbs::net::SctpSocket>("XNAP-" + std::to_string(localGnbId_));
+    }
+    if (localPort_ != 0 || sctp_->isOpen()) {
+        return true;
+    }
+    if (!sctp_->bindMulti(localAddrs, localPort)) {
+        RBS_LOG_ERROR("XnAP", "bindTransportMulti failed: localGnbId=", localGnbId_);
+        return false;
+    }
+    localPort_ = sctp_->localPort();
+    if (!rxStarted_) {
+        rxStarted_ = sctp_->startReceive([this](const rbs::net::SctpPacket& pkt) {
+            handleSctpRx(pkt);
+        });
+        if (!rxStarted_) {
+            RBS_LOG_ERROR("XnAP", "startReceive (multi) failed: localGnbId=", localGnbId_);
+            return false;
+        }
+    }
+    return true;
+}
+
+bool XnAPLink::connectSctpPeerMulti(uint64_t targetGnbId, 
+                                     const std::vector<std::pair<std::string, uint16_t>>& remoteAddrs,
+                                     int primaryIdx)
+{
+    if (!bindTransport(0)) {
+        return false;
+    }
+    if (!sctp_->connectMulti(remoteAddrs, primaryIdx)) {
+        RBS_LOG_ERROR("XnAP", "connectSctpPeerMulti failed: localGnbId=", localGnbId_,
+                      " targetGnbId=", targetGnbId, " addresses=", remoteAddrs.size());
+        return false;
+    }
+
+    PeerInfo info{};
+    info.connected = true;
+    info.useSctp = true;
+    info.sctpAddrs = remoteAddrs;
+    info.primaryAddrIdx = primaryIdx;
+    if (primaryIdx >= 0 && primaryIdx < static_cast<int>(remoteAddrs.size())) {
+        info.ip = remoteAddrs[primaryIdx].first;
+        info.port = remoteAddrs[primaryIdx].second;
+    }
+    peers_[targetGnbId] = info;
+    
+    // Register all endpoints to this target
+    for (size_t i = 0; i < remoteAddrs.size(); ++i) {
+        endpointToNodeId_[endpointKey(remoteAddrs[i].first, remoteAddrs[i].second)] = targetGnbId;
+    }
+    
+    RBS_LOG_INFO("XnAP", "connectSctpPeerMulti: localGnbId=", localGnbId_, " targetGnbId=", targetGnbId,
+                 " addresses=", remoteAddrs.size(), " primary=", primaryIdx);
+    return true;
+}
+
+bool XnAPLink::switchToPath(uint64_t targetGnbId, int pathIdx)
+{
+    const auto it = peers_.find(targetGnbId);
+    if (it == peers_.end()) {
+        RBS_LOG_ERROR("XnAP", "switchToPath failed: peer not found, localGnbId=", localGnbId_, 
+                      " targetGnbId=", targetGnbId);
+        return false;
+    }
+
+    auto& info = it->second;
+    if (info.sctpAddrs.empty()) {
+        RBS_LOG_ERROR("XnAP", "switchToPath failed: not multi-homing, localGnbId=", localGnbId_, 
+                      " targetGnbId=", targetGnbId);
+        return false;
+    }
+
+    if (pathIdx < 0 || pathIdx >= static_cast<int>(info.sctpAddrs.size())) {
+        RBS_LOG_ERROR("XnAP", "switchToPath failed: invalid pathIdx, localGnbId=", localGnbId_,
+                      " targetGnbId=", targetGnbId, " pathIdx=", pathIdx, " count=", info.sctpAddrs.size());
+        return false;
+    }
+
+    // Update peer info
+    info.primaryAddrIdx = pathIdx;
+    info.ip = info.sctpAddrs[pathIdx].first;
+    info.port = info.sctpAddrs[pathIdx].second;
+
+    // Notify SCTP layer
+    if (!sctp_->setPrimaryPath(pathIdx)) {
+        RBS_LOG_WARNING("XnAP", "SCTP setPrimaryPath failed: localGnbId=", localGnbId_,
+                        " targetGnbId=", targetGnbId, " pathIdx=", pathIdx);
+        return false;
+    }
+
+    RBS_LOG_INFO("XnAP", "switchToPath: localGnbId=", localGnbId_, " targetGnbId=", targetGnbId,
+                 " switched to path ", pathIdx, " (", info.ip, ":", info.port, ")");
+    return true;
+}
+
+
 bool XnAPLink::xnSetup(uint64_t targetGnbId, const XnSetupRequest& req) {
     return sendMessage(targetGnbId, XnAPProcedure::XN_SETUP_REQUEST, encodeXnSetupRequest(req));
 }
