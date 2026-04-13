@@ -22,7 +22,7 @@ uint32_t S1APLink::allocateMmeId(RNTI rnti)
     return id;
 }
 
-bool S1APLink::connect(const std::string& mmeAddr, uint16_t port)
+bool S1APLink::connect(const std::string& mmeAddr, uint16_t port, uint16_t localPort)
 {
     if (connected_) {
         RBS_LOG_WARNING("S1AP", "[{}] уже подключён к MME {}:{}", enbId_, mmeAddr_, mmePort_);
@@ -33,7 +33,7 @@ bool S1APLink::connect(const std::string& mmeAddr, uint16_t port)
 
     if (!socketReady_) {
         net::SctpSocket::wsaInit();
-        if (!socket_.bind(0)) {
+        if (!socket_.bind(localPort)) {
             RBS_LOG_ERROR("S1AP", "[{}] connect: SCTP bind failed", enbId_);
             return false;
         }
@@ -346,6 +346,9 @@ bool S1APLink::recvS1APMsg(S1APMessage& msg)
     std::lock_guard<std::mutex> lk(rxMtx_);
     if (rxQueue_.empty()) return false;
     msg = rxQueue_.front();
+    if (!msg.traceId.empty()) {
+        rbs::Logger::instance().setTraceId(msg.traceId);
+    }
     rxQueue_.pop();
     const std::string typeStr = "S1AP:" + std::to_string(
         static_cast<int>(msg.procedure));
@@ -396,6 +399,7 @@ void S1APLink::onRxPacket(const net::SctpPacket& pkt)
                         enbId_, pkt.srcIp, pkt.srcPort, pkt.data.size());
         return;
     }
+    msg.traceId = rbs::Logger::makeTraceId("s1ap-rx", msg.mmeUeS1apId);
 
     RBS_LOG_DEBUG("S1AP", "[{}] S1AP ← MME  proc=0x{:02X} mmeId=0x{:X} len={}",
                   enbId_, static_cast<uint8_t>(msg.procedure),

@@ -71,6 +71,9 @@ static void test_xn_handover_request_notify_roundtrip() {
     req.sourceCrnti = 0x44;
     req.ueImsi = 250010000000777ULL;
     req.causeType = 1;
+    req.sourceUeAmbr = 2048;
+    req.pduSessionIds = {5, 9};
+    req.securityContext = {0x5A, 0x01, 0x00};
     req.rrcContainer = {0xAA, 0xBB};
 
     const ByteBuffer pdu = encodeXnHandoverRequest(req);
@@ -78,6 +81,9 @@ static void test_xn_handover_request_notify_roundtrip() {
     assert(decodeXnHandoverRequest(pdu, decoded));
     assert(decoded.targetGnbId == req.targetGnbId);
     assert(decoded.ueImsi == req.ueImsi);
+    assert(decoded.sourceUeAmbr == req.sourceUeAmbr);
+    assert(decoded.pduSessionIds == req.pduSessionIds);
+    assert(decoded.securityContext == req.securityContext);
     assert(decoded.rrcContainer == req.rrcContainer);
 
     XnHandoverNotify notify{};

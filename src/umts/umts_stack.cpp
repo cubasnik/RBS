@@ -6,6 +6,21 @@
 
 namespace rbs::umts {
 
+namespace {
+uint16_t bitrateFromSfKbps(SF sf) {
+    switch (sf) {
+        case SF::SF4:   return 2048;
+        case SF::SF8:   return 1024;
+        case SF::SF16:  return 512;
+        case SF::SF32:  return 256;
+        case SF::SF64:  return 128;
+        case SF::SF128: return 64;
+        case SF::SF256: return 32;
+        default:        return 512;
+    }
+}
+} // namespace
+
 UMTSStack::UMTSStack(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig& cfg)
     : cfg_(cfg), rf_(std::move(rf))
 {
@@ -30,7 +45,10 @@ UMTSStack::UMTSStack(std::shared_ptr<hal::IRFHardware> rf, const UMTSCellConfig&
     rbs::LinkRegistry::instance().registerLink(std::move(entry));
 }
 
-UMTSStack::~UMTSStack() { stop(); }
+UMTSStack::~UMTSStack() {
+    stop();
+    rbs::LinkRegistry::instance().unregisterLink("iub");
+}
 
 // ────────────────────────────────────────────────────────────────
 bool UMTSStack::start() {
@@ -78,10 +96,46 @@ void UMTSStack::frameLoop() {
 
 // ────────────────────────────────────────────────────────────────
 RNTI UMTSStack::admitUE(IMSI imsi, SF sf) {
+    RBS_TRACE_SCOPE_AUTO("umts-imsi", imsi);
     RNTI rnti = mac_->assignDCH(sf);
     if (rnti != 0) {
         ueMap_[rnti] = imsi;
-        rrc_->handleConnectionRequest(rnti, imsi);
+        if (!rrc_->handleConnectionRequest(rnti, imsi)) {
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+
+        if (iub_->isConnected() && !iub_->radioLinkSetup(rnti, cfg_.primaryScrCode, sf)) {
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+
+        const RadioBearer drb1{3, 2 /*AM*/, 384, true, true};
+        if (!rrc_->setupRadioBearer(rnti, drb1)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+
+        if (iub_->isConnected() &&
+            !iub_->radioBearerSetup(rnti, drb1.rbId, drb1.rlcMode, drb1.maxBitrate,
+                                    drb1.ul, drb1.dl)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+
         rlc_->addRB(rnti, 3, RLCMode::AM);   // DRB1 (AM mode)
         RBS_LOG_INFO("UMTSStack", "UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
@@ -89,6 +143,12 @@ RNTI UMTSStack::admitUE(IMSI imsi, SF sf) {
 }
 
 void UMTSStack::releaseUE(RNTI rnti) {
+    RBS_TRACE_SCOPE_AUTO("umts-ue", rnti);
+    if (iub_->isConnected()) {
+        iub_->radioBearerRelease(rnti, 3);
+        iub_->radioLinkDeletion(rnti);
+    }
+    rrc_->releaseRadioBearer(rnti, 3);
     rrc_->releaseConnection(rnti);
     rlc_->removeRB(rnti, 3);
     mac_->releaseDCH(rnti);
@@ -100,7 +160,38 @@ RNTI UMTSStack::admitUEHSDPA(IMSI imsi) {
     RNTI rnti = mac_->assignHSDSCH();
     if (rnti != 0) {
         ueMap_[rnti] = imsi;
-        rrc_->handleConnectionRequest(rnti, imsi);
+        if (!rrc_->handleConnectionRequest(rnti, imsi)) {
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        if (iub_->isConnected() && !iub_->radioLinkSetupHSDPA(rnti, cfg_.primaryScrCode, 5)) {
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        const RadioBearer hsdpaDrb{3, 2 /*AM*/, 2048, true, true};
+        if (!rrc_->setupRadioBearer(rnti, hsdpaDrb)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        if (iub_->isConnected() &&
+            !iub_->radioBearerSetup(rnti, hsdpaDrb.rbId, hsdpaDrb.rlcMode, hsdpaDrb.maxBitrate,
+                                    hsdpaDrb.ul, hsdpaDrb.dl)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
         rlc_->addRB(rnti, 3, RLCMode::AM);
         RBS_LOG_INFO("UMTSStack", "HSDPA UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
@@ -111,7 +202,38 @@ RNTI UMTSStack::admitUEEDCH(IMSI imsi) {
     RNTI rnti = mac_->assignEDCH();
     if (rnti != 0) {
         ueMap_[rnti] = imsi;
-        rrc_->handleConnectionRequest(rnti, imsi);
+        if (!rrc_->handleConnectionRequest(rnti, imsi)) {
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        if (iub_->isConnected() && !iub_->radioLinkSetupEDCH(rnti, cfg_.primaryScrCode, EDCHTTI::TTI_10MS)) {
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        const RadioBearer edchDrb{3, 2 /*AM*/, 1024, true, true};
+        if (!rrc_->setupRadioBearer(rnti, edchDrb)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
+        if (iub_->isConnected() &&
+            !iub_->radioBearerSetup(rnti, edchDrb.rbId, edchDrb.rlcMode, edchDrb.maxBitrate,
+                                    edchDrb.ul, edchDrb.dl)) {
+            if (iub_->isConnected()) {
+                iub_->radioLinkDeletion(rnti);
+            }
+            rrc_->releaseConnection(rnti);
+            mac_->releaseDCH(rnti);
+            ueMap_.erase(rnti);
+            return 0;
+        }
         rlc_->addRB(rnti, 3, RLCMode::AM);
         RBS_LOG_INFO("UMTSStack", "E-DCH UE admitted IMSI=", imsi, " RNTI=", rnti);
     }
@@ -122,8 +244,22 @@ bool UMTSStack::reconfigureDCH(RNTI rnti, SF newSf) {
     if (ueMap_.find(rnti) == ueMap_.end()) return false;
     RBS_LOG_INFO("UMTSStack", "DCH reconfig RNTI=", rnti,
                  " newSF=", static_cast<int>(newSf));
-    // MAC-level SF change is transparent in the simulator
-    // (PHY spreading factor update would happen here on real HW)
+
+    // Reconfigure bearer resources over Iub first; on failure keep UE context unchanged.
+    if (iub_->isConnected()) {
+        const uint16_t targetBr = bitrateFromSfKbps(newSf);
+        if (!iub_->radioBearerSetup(rnti, 3 /*DRB1*/, 2 /*AM*/, targetBr, true, true)) {
+            return false;
+        }
+    }
+
+    // Reflect new transport expectation in RRC bearer profile.
+    const RadioBearer rb{3, 2 /*AM*/, bitrateFromSfKbps(newSf), true, true};
+    if (!rrc_->setupRadioBearer(rnti, rb)) {
+        return false;
+    }
+
+    // MAC-level SF change is transparent in the simulator.
     return true;
 }
 

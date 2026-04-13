@@ -5,12 +5,19 @@
 namespace rbs::nr {
 
 namespace {
-ByteBuffer makeNgapTransportFrame(NgapProcedure procedure, const ByteBuffer& payload) {
+ByteBuffer makeNgapTransportFrame(NgapProcedure procedure, const ByteBuffer& payload, const std::string& traceId) {
     ByteBuffer framed;
-    framed.reserve(payload.size() + 3);
+    const uint8_t traceLen = static_cast<uint8_t>(std::min<size_t>(traceId.size(), 64));
+    framed.reserve(payload.size() + 6 + traceLen);
     framed.push_back(0x4E);  // 'N'
     framed.push_back(0x47);  // 'G'
     framed.push_back(static_cast<uint8_t>(procedure));
+    framed.push_back(0x54);  // 'T'
+    framed.push_back(0x52);  // 'R'
+    framed.push_back(traceLen);
+    if (traceLen > 0) {
+        framed.insert(framed.end(), traceId.begin(), traceId.begin() + traceLen);
+    }
     framed.insert(framed.end(), payload.begin(), payload.end());
     return framed;
 }
@@ -214,6 +221,10 @@ bool NgapLink::pduSessionSetupResponse(uint64_t targetNodeId, const PduSessionSe
     return sendMessage(targetNodeId, NgapProcedure::PDU_SESSION_SETUP_RESPONSE, encodePduSessionSetupResponse(rsp));
 }
 
+bool NgapLink::paging(uint64_t targetNodeId, const PagingMessage& paging) {
+    return sendMessage(targetNodeId, NgapProcedure::PAGING, encodePagingMessage(paging));
+}
+
 bool NgapLink::ueContextReleaseCommand(uint64_t targetNodeId, const UeContextReleaseCommand& cmd) {
     return sendMessage(targetNodeId, NgapProcedure::UE_CONTEXT_RELEASE_COMMAND, encodeUeContextReleaseCommand(cmd));
 }
@@ -229,6 +240,9 @@ bool NgapLink::recvNgapMessage(NgapMessage& msg) {
     }
     msg = std::move(rxQueue_.front());
     rxQueue_.pop();
+    if (!msg.traceId.empty()) {
+        rbs::Logger::instance().setTraceId(msg.traceId);
+    }
     return true;
 }
 
@@ -243,7 +257,8 @@ bool NgapLink::sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const
         if (!sctp_) {
             return false;
         }
-        const ByteBuffer framed = makeNgapTransportFrame(procedure, payload);
+        const std::string traceId = rbs::Logger::instance().traceId();
+        const ByteBuffer framed = makeNgapTransportFrame(procedure, payload, traceId);
         const bool ok = sctp_->send(framed);
         if (!ok) {
             RBS_LOG_WARNING("NGAP", "SCTP send failed localNodeId=", localNodeId_, " targetNodeId=", targetNodeId);
@@ -262,7 +277,7 @@ bool NgapLink::sendMessage(uint64_t targetNodeId, NgapProcedure procedure, const
         peer = it->second;
     }
 
-    peer->enqueue(NgapMessage{procedure, localNodeId_, targetNodeId, payload});
+    peer->enqueue(NgapMessage{procedure, localNodeId_, targetNodeId, payload, rbs::Logger::instance().traceId()});
     return true;
 }
 
@@ -290,7 +305,23 @@ void NgapLink::handleSctpRx(const rbs::net::SctpPacket& pkt) {
     msg.procedure = static_cast<NgapProcedure>(pkt.data[2]);
     msg.sourceNodeId = sourceNodeId;
     msg.targetNodeId = localNodeId_;
-    msg.payload = ByteBuffer(pkt.data.begin() + 3, pkt.data.end());
+
+    size_t payloadOffset = 3;
+    if (pkt.data.size() >= 6 && pkt.data[3] == 0x54 && pkt.data[4] == 0x52) {
+        const size_t traceLen = pkt.data[5];
+        if (pkt.data.size() >= 6 + traceLen) {
+            if (traceLen > 0) {
+                msg.traceId.assign(reinterpret_cast<const char*>(pkt.data.data() + 6), traceLen);
+            }
+            payloadOffset = 6 + traceLen;
+        }
+    }
+    msg.payload = ByteBuffer(pkt.data.begin() + payloadOffset, pkt.data.end());
+
+    const std::string rxTrace = msg.traceId.empty()
+        ? rbs::Logger::makeTraceId("ngap-rx", sourceNodeId)
+        : msg.traceId;
+    RBS_TRACE_SCOPE(rxTrace);
     enqueue(std::move(msg));
 }
 

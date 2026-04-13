@@ -120,6 +120,7 @@ void GSMStack::clockLoop() {
 
 // ────────────────────────────────────────────────────────────────
 RNTI GSMStack::admitUE(IMSI imsi) {
+    RBS_TRACE_SCOPE_AUTO("gsm-imsi", imsi);
     RNTI rnti = mac_->assignChannel(0, GSMChannelType::TCH_F);
     if (rnti != 0) {
         RNTI rrRnti;
@@ -132,6 +133,7 @@ RNTI GSMStack::admitUE(IMSI imsi) {
 }
 
 void GSMStack::releaseUE(RNTI rnti) {
+    RBS_TRACE_SCOPE_AUTO("gsm-ue", rnti);
     rr_->releaseChannel(rnti);
     rlc_->releaseLink(rnti, SAPI::RR_MM_CC);
     mac_->releaseChannel(rnti);

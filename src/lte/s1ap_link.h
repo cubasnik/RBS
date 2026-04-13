@@ -31,7 +31,8 @@ public:
 
     // ── Управление соединением ────────────────────────────────────────────────
     bool connect   (const std::string& mmeAddr,
-                    uint16_t port = 36412)                      override;
+                    uint16_t port = 36412,
+                    uint16_t localPort = 0)                     override;
     void disconnect()                                            override;
     bool isConnected() const                                     override { return connected_; }
 

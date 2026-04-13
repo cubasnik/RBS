@@ -243,6 +243,7 @@ static bool isConfigPatchKeyAllowed(const std::string& section, const std::strin
     static const std::unordered_set<std::string> allowed = {
         "logging.level",
         "logging.log_file",
+        "logging.format",
         "lte.inter_site_distance_m",
         "gsm.abis_transport",
         "gsm.abis_interop_profile",
@@ -255,6 +256,16 @@ static bool isConfigPatchKeyAllowed(const std::string& section, const std::strin
     };
     const std::string compound = toLowerCopy(section) + "." + toLowerCopy(key);
     return allowed.find(compound) != allowed.end();
+}
+
+static std::string resolveRequestTraceId(const httplib::Request& req, const char* routeTag) {
+    if (req.has_header("X-Trace-Id")) {
+        const std::string incoming = req.get_header_value("X-Trace-Id");
+        if (!incoming.empty()) {
+            return incoming;
+        }
+    }
+    return rbs::Logger::makeTraceId(routeTag);
 }
 
 // ── Internal UE admission stub ───────────────────────────────────────────────
@@ -279,19 +290,29 @@ struct RestServer::Impl {
 
     void setupRoutes() {
         // ── GET /api/v1/status ─────────────────────────────────────────
-        svr.Get("/api/v1/status", [](const httplib::Request&, httplib::Response& res) {
-            auto& oms = rbs::oms::OMS::instance();
-                        const auto endc = rbs::Config::instance().buildENDCConfig();
+        svr.Get("/api/v1/status", [this](const httplib::Request&, httplib::Response& res) {
+            auto& oms  = rbs::oms::OMS::instance();
+            auto& cfg  = rbs::Config::instance();
+            const auto endc = cfg.buildENDCConfig();
+            // Resolved bind addresses (what the node is actually listening on)
+            const std::string nodeAddr  = cfg.getString("node", "node_addr", "127.0.0.1");
+            const std::string restAddr  = cfg.getString("api",  "bind",      nodeAddr);
+            const int         restPort  = cfg.getInt   ("api",  "port",      8080);
+            const std::string promBind  = cfg.getString("oms",  "prometheus_bind", nodeAddr);
+            const int         promPort  = cfg.getInt   ("oms",  "prometheus_port", 9108);
             std::ostringstream j;
             j << "{"
               << "\"version\":\"1.0.0\","
               << "\"nodeState\":" << jsonEscStr(nodeStateToStr(oms.getNodeState())) << ","
-                            << "\"rats\":[\"GSM\",\"UMTS\",\"LTE\",\"NR\"],"
-                            << "\"endcEnabled\":" << (endc.enabled ? "true" : "false") << ","
-                            << "\"endcOption\":" << jsonEscStr(endcOptionToStr(endc.option)) << ","
-                            << "\"x2Peer\":" << jsonEscStr(endc.x2Addr + ":" + std::to_string(endc.x2Port)) << ","
-                            << "\"enbBearerId\":" << static_cast<int>(endc.enbBearerId) << ","
-                            << "\"scgDrbId\":" << static_cast<int>(endc.scgDrbId)
+              << "\"nodeAddr\":"  << jsonEscStr(nodeAddr) << ","
+              << "\"restAddr\":"  << jsonEscStr(restAddr  + ":" + std::to_string(restPort)) << ","
+              << "\"promAddr\":"  << jsonEscStr(promBind  + ":" + std::to_string(promPort)) << ","
+              << "\"rats\":[\"GSM\",\"UMTS\",\"LTE\",\"NR\"],"
+              << "\"endcEnabled\":" << (endc.enabled ? "true" : "false") << ","
+              << "\"endcOption\":" << jsonEscStr(endcOptionToStr(endc.option)) << ","
+              << "\"x2Peer\":" << jsonEscStr(endc.x2Addr + ":" + std::to_string(endc.x2Port)) << ","
+              << "\"enbBearerId\":" << static_cast<int>(endc.enbBearerId) << ","
+              << "\"scgDrbId\":" << static_cast<int>(endc.scgDrbId)
               << "}";
             res.set_content(j.str(), "application/json");
         });
@@ -304,6 +325,7 @@ struct RestServer::Impl {
         //               {"section":"gsm","key":"abis_keepalive_enabled","value":"false"}]}
         //   {"dryRun":true,"updates":[...]} // validate only, no apply
         svr.Patch("/api/v1/config", [this](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-config"));
             const bool reloadFromDisk = extractJsonBool(req.body, "reloadFromDisk", false);
             const bool dryRun = extractJsonBool(req.body, "dryRun", false);
             std::string path = extractJsonStr(req.body, "path");
@@ -477,6 +499,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/admit ─────────────────────────────────────────
         svr.Post("/api/v1/admit", [this](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-admit"));
             long long imsiRaw = extractJsonInt(req.body, "imsi");
             std::string rat   = extractJsonStr(req.body, "rat");
             if (imsiRaw <= 0 || rat.empty()) {
@@ -515,6 +538,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/lte/start_call ───────────────────────────────
         svr.Post("/api/v1/lte/start_call", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-lte-start-call"));
             const long long cellIdIn = extractJsonInt(req.body, "cellId");
             long long rntiIn = extractJsonInt(req.body, "rnti");
             const long long imsiIn = extractJsonInt(req.body, "imsi");
@@ -585,6 +609,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/lte/end_call ─────────────────────────────────
         svr.Post("/api/v1/lte/end_call", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-lte-end-call"));
             const long long cellIdIn = extractJsonInt(req.body, "cellId");
             const long long rntiIn = extractJsonInt(req.body, "rnti");
             const bool releaseUe = extractJsonBool(req.body, "releaseUe", false);
@@ -616,6 +641,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/lte/handover ─────────────────────────────────
         svr.Post("/api/v1/lte/handover", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-lte-ho"));
             const long long cellIdIn = extractJsonInt(req.body, "cellId");
             const long long rntiIn = extractJsonInt(req.body, "rnti");
             const long long targetPciIn = extractJsonInt(req.body, "targetPci");
@@ -751,6 +777,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/links/{name}/connect ──────────────────────────
         svr.Post(R"(/api/v1/links/([^/]+)/connect)", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-connect"));
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e) {
@@ -766,6 +793,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/links/{name}/disconnect ───────────────────────
         svr.Post(R"(/api/v1/links/([^/]+)/disconnect)", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-disconnect"));
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e) {
@@ -782,6 +810,7 @@ struct RestServer::Impl {
         // ── POST /api/v1/links/{name}/block ────────────────────────────
         // Body: {"type":"OML:OPSTART"}
         svr.Post(R"(/api/v1/links/([^/]+)/block)", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-block"));
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e || !e->ctrl) {
@@ -804,6 +833,7 @@ struct RestServer::Impl {
 
         // ── POST /api/v1/links/{name}/unblock ──────────────────────────
         svr.Post(R"(/api/v1/links/([^/]+)/unblock)", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-unblock"));
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e || !e->ctrl) {
@@ -855,6 +885,7 @@ struct RestServer::Impl {
         // ── POST /api/v1/links/{name}/inject ───────────────────────────
         // Body: {"procedure":"S1AP:S1_SETUP"}
         svr.Post(R"(/api/v1/links/([^/]+)/inject)", [](const httplib::Request& req, httplib::Response& res) {
+            RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-inject"));
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e) {
@@ -922,8 +953,12 @@ RestServer::~RestServer() {
 bool RestServer::start() {
     impl_->setupRoutes();
 
-    // Use empty string for 0.0.0.0 (httplib interprets it better)
-    std::string bindHost = (impl_->bindAddr == "0.0.0.0") ? "" : impl_->bindAddr;
+    // Pass bind address directly — do NOT convert 0.0.0.0 to "" because
+    // httplib on Windows treats "" as IPv6 wildcard ([::1]) instead of
+    // IPv4 wildcard (0.0.0.0), which blocks WSL2 and LAN access.
+    // Force AF_INET so getaddrinfo always resolves to an IPv4 socket.
+    impl_->svr.set_address_family(AF_INET);
+    const std::string& bindHost = impl_->bindAddr;
 
     if (impl_->requestedPort == 0) {
         impl_->actualPort = impl_->svr.bind_to_any_port(bindHost);

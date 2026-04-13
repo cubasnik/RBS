@@ -5,6 +5,40 @@
 using namespace rbs;
 using namespace rbs::umts;
 
+static void test_bearer_setup_rollback_negative_cases() {
+    IubNbap nbap("NodeB-rollback");
+    assert(nbap.connect("127.0.0.1", 25099));
+    assert(nbap.radioLinkSetup(0x2A, 7, SF::SF16));
+
+    // Baseline bearer must exist before negative reconfigure cases.
+    assert(nbap.radioBearerSetup(0x2A, 3, 2, 384, true, true));
+
+    // Case 1: Prepare failure must rollback (existing bearer preserved).
+    nbap.blockMsg("NBAP:82"); // RADIO_LINK_RECONFIGURE_PREP
+    assert(!nbap.radioBearerSetup(0x2A, 3, 2, 2048, true, true));
+    nbap.unblockMsg("NBAP:82");
+
+    // Existing bearer context should remain valid after failed update.
+    assert(nbap.radioBearerRelease(0x2A, 3));
+
+    // Recreate baseline bearer for commit-failure case.
+    assert(nbap.radioBearerSetup(0x2A, 3, 2, 384, true, true));
+
+    // Case 2: Commit failure must rollback and keep previously configured bearer.
+    nbap.blockMsg("NBAP:83"); // RADIO_LINK_RECONFIGURE_COMMIT
+    assert(!nbap.radioBearerSetup(0x2A, 4, 2, 1024, true, true));
+    nbap.unblockMsg("NBAP:83");
+
+    // Failed new bearer must not appear, baseline bearer must still be present.
+    assert(!nbap.radioBearerRelease(0x2A, 4));
+    assert(nbap.radioBearerRelease(0x2A, 3));
+
+    // UE radio link must remain intact after failed bearer attempts.
+    assert(nbap.radioLinkDeletion(0x2A));
+    nbap.disconnect();
+    std::puts("  test_bearer_setup_rollback_negative_cases PASSED");
+}
+
 int main() {
     // ── IubNbap: control plane ────────────────────────────────────────────────
     IubNbap nbap("NodeB-01");
@@ -41,15 +75,27 @@ int main() {
     assert(nbap.radioLinkSetup(0x0A /*rnti*/, 0 /*scrCode*/, SF::SF16));
     assert(nbap.radioLinkSetup(0x0B /*rnti*/, 16 /*scrCode*/, SF::SF8));
 
+    // radioBearerSetup: полноценный NBAP workflow (prepare/commit)
+    assert(nbap.radioBearerSetup(0x0A, 3 /*rbId*/, 2 /*AM*/, 384, true, true));
+    assert(nbap.radioBearerSetup(0x0B, 4 /*rbId*/, 2 /*AM*/, 1024, true, true));
+
+    // Повторная настройка bearer допускается (reconfigure existing bearer)
+    assert(nbap.radioBearerSetup(0x0A, 3 /*rbId*/, 2 /*AM*/, 2048, true, true));
+
     // dedicatedMeasurementInitiation
     assert(nbap.dedicatedMeasurementInitiation(0x0A, 10 /*measId*/));
 
     // radioLinkDeletion
+    assert(nbap.radioBearerRelease(0x0A, 3));
+    assert(nbap.radioBearerRelease(0x0B, 4));
     assert(nbap.radioLinkDeletion(0x0A));
     assert(nbap.radioLinkDeletion(0x0B));
 
     // Повторное удаление → false
     assert(!nbap.radioLinkDeletion(0x0A));
+    assert(!nbap.radioBearerRelease(0x0A, 3));
+
+    test_bearer_setup_rollback_negative_cases();
 
     // disconnect
     nbap.disconnect();

@@ -9,6 +9,8 @@
 #include <string_view>
 #include <cctype>
 #include <filesystem>
+#include <atomic>
+#include <thread>
 
 // ── Windows headers (must come before enum definitions) ──────────────────────
 #ifdef _WIN32
@@ -65,6 +67,8 @@ inline const char* ansiRed()       { return "\033[91m"; }
 inline const char* ansiMagenta()   { return "\033[95m"; }
 inline const char* ansiLightBlue() { return "\033[38;5;153m"; }
 inline const char* ansiDarkMaroon(){ return "\033[38;5;88m"; }
+inline const char* ansiBgYellow()  { return "\033[43m";  }
+inline const char* ansiBgRed()     { return "\033[41m";  }
 
 // Wrap tokens in green:
 //  - version strings:  v1.0.0
@@ -125,13 +129,35 @@ inline std::string colouriseNumbers(const std::string& text, const char* baseCol
 
 inline const char* logLevelColour(LogLevel l) {
     switch (l) {
-        case LogLevel::DBG:      return ansiCyan();
-        case LogLevel::INFO:     return ansiYellow();
-        case LogLevel::WARNING:  return ansiMagenta();
-        case LogLevel::ERR:      return ansiRed();
-        case LogLevel::CRITICAL: return ansiRed();
+        case LogLevel::DBG:      return "\033[2;37m";  // dim gray
+        case LogLevel::INFO:     return "\033[92m";    // bright green
+        case LogLevel::WARNING:  return "\033[1;93m";  // bold yellow
+        case LogLevel::ERR:      return "\033[1;91m";  // bold red
+        case LogLevel::CRITICAL: return "\033[1;97m";  // bold white
     }
     return ansiWhite();
+}
+
+// Background colour for WARNING/ERR/CRITICAL lines; empty string for others.
+inline const char* logLevelBg(LogLevel l) {
+    switch (l) {
+        case LogLevel::WARNING:  return ansiBgYellow();
+        case LogLevel::ERR:      return ansiBgRed();
+        case LogLevel::CRITICAL: return ansiBgRed();
+        default:                 return "";
+    }
+}
+
+// Per-RAT / per-subsystem foreground colour for the [component] token.
+inline const char* componentColour(std::string_view comp) {
+    if (comp == "GSM")                                       return "\033[32m";  // green
+    if (comp == "UMTS" || comp == "NBAP")                   return "\033[36m";  // cyan
+    if (comp == "LTE"  || comp == "S1AP" || comp == "X2AP") return "\033[94m";  // bright blue
+    if (comp == "NR"   || comp == "F1AP" || comp == "NGAP") return "\033[95m";  // magenta
+    if (comp == "RBS")                                       return "\033[97m";  // white
+    if (comp == "OMS")                                       return "\033[33m";  // orange
+    if (comp == "HAL")                                       return "\033[90m";  // dark gray
+    return ansiLightBlue();
 }
 
 // ── fmt-style {} placeholder substitution (C++17, no external deps) ─────────
@@ -201,6 +227,23 @@ public:
 
     void setLevel(LogLevel level) { minLevel_ = level; }
 
+    void setJsonOutput(bool enabled) { jsonOutput_.store(enabled); }
+    bool jsonOutputEnabled() const { return jsonOutput_.load(); }
+
+    void setTraceId(const std::string& traceId) { traceIdTls_ = traceId; }
+    void clearTraceId() { traceIdTls_.clear(); }
+    std::string traceId() const { return traceIdTls_; }
+
+    static std::string makeTraceId(const char* scope, uint64_t key = 0) {
+        using namespace std::chrono;
+        static std::atomic<uint64_t> seq{0};
+        const uint64_t tick = static_cast<uint64_t>(duration_cast<microseconds>(
+            system_clock::now().time_since_epoch()).count());
+        std::ostringstream oss;
+        oss << scope << "-" << std::hex << key << "-" << tick << "-" << seq.fetch_add(1);
+        return oss.str();
+    }
+
     void enableFile(const std::string& path) {
         std::lock_guard<std::mutex> lock(mutex_);
         if (fileStream_.is_open()) fileStream_.close();
@@ -215,7 +258,6 @@ public:
     template<typename... Args>
     void log(LogLevel level, const char* component, Args&&... args) {
         if (level < minLevel_) return;
-        enableConsoleColours();
 
         // Build message body.  If the first argument is a const char* that
         // contains '{', treat it as a {}-placeholder format string and
@@ -225,42 +267,90 @@ public:
         buildBody_(body, std::forward<Args>(args)...);
         std::string bodyText = body.str();
 
-        // Plain text for the log file (no ANSI escape codes).
         std::string ts  = timestamp();
         std::string lv  = levelStr(level);
-        std::string msg = ts + " [" + lv + "] [" + component + "] " + bodyText;
+        std::string tid = traceIdTls_;
 
-        // Coloured output for the console:
-        //   timestamp       → white
-        //   [LEVEL]         → level colour (yellow for INFO, etc.)
-        //   [component] msg → light blue; numeric values inside → green
-        std::string coloured;
-        // Timestamp: white
-        coloured  = ansiWhite();
-        coloured += ts;
-        coloured += ansiReset();
-        coloured += " ";
-        // [LEVEL]: level colour
-        coloured += logLevelColour(level);
-        coloured += "[";
-        coloured += lv;
-        coloured += "]";
-        coloured += ansiReset();
-        coloured += " ";
-        // [component] message: light blue with green numbers.
-        // Two specific RBS shutdown lines are emphasized with dark maroon.
-        std::string bodyPart = std::string("[") + component + "] " + bodyText;
-        bool specialShutdownLine =
-            std::string_view(component) == "RBS" &&
-            (bodyText == "Signal 2 received – initiating shutdown" ||
-             bodyText == "Radio Base Station OFFLINE");
-        coloured += colouriseNumbers(bodyPart,
-                                     specialShutdownLine ? ansiDarkMaroon()
-                                                         : ansiLightBlue());
-        coloured += ansiReset();
+        std::string msg;
+        if (jsonOutput_.load()) {
+            msg = buildJsonLine_(ts, lv, component, bodyText, tid);
+        } else {
+            msg = ts + " [" + lv + "] [" + component + "] ";
+            if (!tid.empty()) {
+                msg += "[trace=" + tid + "] ";
+            }
+            msg += bodyText;
+        }
+
+        std::string consoleLine;
+        if (jsonOutput_.load()) {
+            consoleLine = msg;
+        } else {
+            enableConsoleColours();
+
+            // Coloured output for the console:
+            //   full line bg  → yellow (WARNING) / red (ERR / CRITICAL)
+            //   timestamp     → white
+            //   [LEVEL]       → dim-gray / bright-green / bold-yellow / bold-red / bold-white
+            //   [component]   → per-RAT: GSM=green UMTS=cyan LTE=blue NR=magenta OMS=orange HAL=gray
+            //   message body  → light blue + green numbers; plain white on alert bg
+            const char* levelBg    = logLevelBg(level);
+            const char* compColour = componentColour(component);
+            const bool  hasBg      = (levelBg[0] != '\0');
+
+            std::string coloured;
+            if (hasBg) coloured += levelBg;       // full-line background
+
+            // Timestamp: white
+            coloured += ansiWhite();
+            coloured += ts;
+            coloured += ansiReset();
+            if (hasBg) coloured += levelBg;
+            coloured += " ";
+
+            // [LEVEL]: level foreground colour
+            coloured += logLevelColour(level);
+            coloured += "[";
+            coloured += lv;
+            coloured += "]";
+            coloured += ansiReset();
+            if (hasBg) coloured += levelBg;
+            coloured += " ";
+
+            // [component]: per-RAT colour
+            coloured += compColour;
+            coloured += "[";
+            coloured += component;
+            coloured += "]";
+            coloured += ansiReset();
+            if (hasBg) coloured += levelBg;
+            coloured += " ";
+
+            // Message body
+            std::string bodyPart;
+            if (!tid.empty()) bodyPart += "[trace=" + tid + "] ";
+            bodyPart += bodyText;
+
+            bool specialShutdownLine =
+                std::string_view(component) == "RBS" &&
+                (bodyText == "Signal 2 received \xe2\x80\x93 initiating shutdown" ||
+                 bodyText == "Radio Base Station OFFLINE");
+
+            if (specialShutdownLine) {
+                coloured += colouriseNumbers(bodyPart, ansiDarkMaroon());
+            } else if (hasBg) {
+                // On coloured backgrounds: plain white — keeps text readable
+                coloured += ansiWhite();
+                coloured += bodyPart;
+            } else {
+                coloured += colouriseNumbers(bodyPart, ansiLightBlue());
+            }
+            coloured += ansiReset();
+            consoleLine = std::move(coloured);
+        }
 
         std::lock_guard<std::mutex> lock(mutex_);
-        std::cout << coloured << "\n";
+        std::cout << consoleLine << "\n";
         if (fileStream_.is_open()) {
             fileStream_ << msg << "\n";
             fileStream_.flush();
@@ -299,7 +389,9 @@ private:
     std::ofstream fileStream_;
     std::string   logPath_;
     size_t        logBytes_  = 0;
+    std::atomic<bool> jsonOutput_{false};
     static constexpr size_t kMaxLogBytes_ = 100ULL * 1024 * 1024; // 100 MiB
+    inline static thread_local std::string traceIdTls_;
 
     // Called under mutex_ when file exceeds kMaxLogBytes_.
     void rotateLog_() {
@@ -321,6 +413,41 @@ private:
         return "?????";
     }
 
+    static std::string jsonEscape_(std::string_view src) {
+        std::string out;
+        out.reserve(src.size() + 8);
+        for (char c : src) {
+            switch (c) {
+                case '\\': out += "\\\\"; break;
+                case '"':  out += "\\\""; break;
+                case '\n': out += "\\n"; break;
+                case '\r': out += "\\r"; break;
+                case '\t': out += "\\t"; break;
+                default:   out += c; break;
+            }
+        }
+        return out;
+    }
+
+    static std::string buildJsonLine_(const std::string& ts,
+                                      const std::string& level,
+                                      const char* component,
+                                      const std::string& message,
+                                      const std::string& traceId) {
+        const auto tid = std::hash<std::thread::id>{}(std::this_thread::get_id());
+        std::ostringstream oss;
+        oss << "{"
+            << "\"ts\":\"" << jsonEscape_(ts) << "\","
+            << "\"level\":\"" << jsonEscape_(level) << "\","
+            << "\"component\":\"" << jsonEscape_(component) << "\","
+            << "\"thread\":\"" << std::hex << tid << "\",";
+        if (!traceId.empty()) {
+            oss << "\"trace_id\":\"" << jsonEscape_(traceId) << "\",";
+        }
+        oss << "\"message\":\"" << jsonEscape_(message) << "\"}";
+        return oss.str();
+    }
+
     static std::string timestamp() {
         using namespace std::chrono;
         auto now = system_clock::now();
@@ -338,6 +465,33 @@ private:
         return oss.str();
     }
 };
+
+class ScopedTraceId {
+public:
+    explicit ScopedTraceId(std::string traceId)
+        : hadPrev_(!Logger::instance().traceId().empty())
+        , previous_(Logger::instance().traceId()) {
+        Logger::instance().setTraceId(traceId);
+    }
+
+    ~ScopedTraceId() {
+        if (hadPrev_) {
+            Logger::instance().setTraceId(previous_);
+        } else {
+            Logger::instance().clearTraceId();
+        }
+    }
+
+private:
+    bool hadPrev_;
+    std::string previous_;
+};
+
+#define RBS_TRACE_CONCAT_INNER_(a, b) a##b
+#define RBS_TRACE_CONCAT_(a, b) RBS_TRACE_CONCAT_INNER_(a, b)
+#define RBS_TRACE_SCOPE(id) rbs::ScopedTraceId RBS_TRACE_CONCAT_(_rbsTraceScope_, __LINE__)(id)
+#define RBS_TRACE_SCOPE_AUTO(scope, key) \
+    rbs::ScopedTraceId RBS_TRACE_CONCAT_(_rbsTraceScope_, __LINE__)(rbs::Logger::makeTraceId(scope, static_cast<uint64_t>(key)))
 
 // Convenience macros
 #define RBS_LOG_DEBUG(comp, ...)    rbs::Logger::instance().log(rbs::LogLevel::DBG,      comp, __VA_ARGS__)

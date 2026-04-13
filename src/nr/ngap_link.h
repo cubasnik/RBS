@@ -17,6 +17,7 @@ struct NgapMessage {
     uint64_t sourceNodeId = 0;
     uint64_t targetNodeId = 0;
     ByteBuffer payload;
+    std::string traceId;
 };
 
 class NgapLink {
@@ -51,6 +52,7 @@ public:
     bool ngSetupResponse(uint64_t targetNodeId, const NgSetupResponse& rsp);
     bool pduSessionSetupRequest(uint64_t targetNodeId, const PduSessionSetupRequest& req);
     bool pduSessionSetupResponse(uint64_t targetNodeId, const PduSessionSetupResponse& rsp);
+    bool paging(uint64_t targetNodeId, const PagingMessage& paging);
     bool ueContextReleaseCommand(uint64_t targetNodeId, const UeContextReleaseCommand& cmd);
     bool ueContextReleaseComplete(uint64_t targetNodeId, const UeContextReleaseComplete& complete);
 

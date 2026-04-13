@@ -29,7 +29,8 @@ public:
 
     // ── Управление соединением ────────────────────────────────────────────────
     bool connect   (uint32_t targetEnbId, const std::string& addr,
-                    uint16_t port = 36422)                       override;
+                    uint16_t port = 36422,
+                    uint16_t localPort = 0)                      override;
     void disconnect(uint32_t targetEnbId)                        override;
     bool isConnected(uint32_t targetEnbId) const                 override;
 

@@ -13,7 +13,7 @@ X2APLink::X2APLink(const std::string& enbId)
     , socket_("X2AP-" + enbId)
 {}
 
-bool X2APLink::connect(uint32_t targetEnbId, const std::string& addr, uint16_t port)
+bool X2APLink::connect(uint32_t targetEnbId, const std::string& addr, uint16_t port, uint16_t localPort)
 {
     auto& p = peers_[targetEnbId];
     if (p.connected) {
@@ -24,7 +24,7 @@ bool X2APLink::connect(uint32_t targetEnbId, const std::string& addr, uint16_t p
 
     if (!socketReady_) {
         net::UdpSocket::wsaInit();
-        if (!socket_.bind(0)) {
+        if (!socket_.bind(localPort)) {
             RBS_LOG_ERROR("X2AP", "[{}] connect: UDP bind failed", enbId_);
             p.connected = false;
             return false;
@@ -261,6 +261,15 @@ bool X2APLink::sendX2APMsg(const X2APMessage& msg)
     frame.push_back(static_cast<uint8_t>(plLen));
     frame.insert(frame.end(), pl.begin(), pl.end());
 
+    const std::string traceId = !msg.traceId.empty() ? msg.traceId : rbs::Logger::instance().traceId();
+    const uint8_t traceLen = static_cast<uint8_t>(std::min<size_t>(traceId.size(), 64));
+    frame.push_back(0x54); // 'T'
+    frame.push_back(0x52); // 'R'
+    frame.push_back(traceLen);
+    if (traceLen > 0) {
+        frame.insert(frame.end(), traceId.begin(), traceId.begin() + traceLen);
+    }
+
     bool ok = socket_.send(targetAddr, targetPort, frame);    if (ok && pcap_.isOpen())
         pcap_.writeUdp("127.0.0.1", socket_.localPort(),
                        targetAddr, targetPort, frame);    RBS_LOG_DEBUG("X2AP", "[{}] X2AP → eNB  proc=0x{:02X} len={} {}",
@@ -275,6 +284,9 @@ bool X2APLink::recvX2APMsg(X2APMessage& msg)
     if (rxQueue_.empty()) return false;
     msg = rxQueue_.front();
     rxQueue_.pop();
+    if (!msg.traceId.empty()) {
+        rbs::Logger::instance().setTraceId(msg.traceId);
+    }
     RBS_LOG_DEBUG("X2AP", "[{}] X2AP ← eNB  proc=0x{:02X}",
                   enbId_, static_cast<uint8_t>(msg.procedure));
     return true;
@@ -302,6 +314,21 @@ void X2APLink::onRxPacket(const net::UdpPacket& pkt)
                           |  static_cast<uint32_t>(d[12]);
     if (plLen > pkt.data.size() - 13) return;
     ByteBuffer payload(d.begin() + 13, d.begin() + 13 + plLen);
+
+    std::string traceId;
+    const size_t trailerOffset = 13 + plLen;
+    if (pkt.data.size() >= trailerOffset + 3 &&
+        pkt.data[trailerOffset] == 0x54 && pkt.data[trailerOffset + 1] == 0x52) {
+        const size_t traceLen = pkt.data[trailerOffset + 2];
+        if (pkt.data.size() >= trailerOffset + 3 + traceLen && traceLen > 0) {
+            traceId.assign(reinterpret_cast<const char*>(pkt.data.data() + trailerOffset + 3), traceLen);
+        }
+    }
+
+    const std::string rxTrace = traceId.empty()
+        ? rbs::Logger::makeTraceId("x2ap-rx", srcId)
+        : traceId;
+    RBS_TRACE_SCOPE(rxTrace);
     RBS_LOG_DEBUG("X2AP", "[{}] X2AP ← eNB  proc=0x{:02X} srcId=0x{:X} len={}",
                   enbId_, static_cast<uint8_t>(proc), srcId, plLen);
     // Track HO success for KPI aggregation
@@ -316,7 +343,7 @@ void X2APLink::onRxPacket(const net::UdpPacket& pkt)
     if (pcap_.isOpen())
         pcap_.writeUdp(pkt.srcIp, pkt.srcPort,
                        "127.0.0.1", socket_.localPort(), pkt.data);    std::lock_guard<std::mutex> lk(rxMtx_);
-    rxQueue_.push({proc, srcId, tgtId, std::move(payload)});
+    rxQueue_.push({proc, srcId, tgtId, std::move(payload), traceId});
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

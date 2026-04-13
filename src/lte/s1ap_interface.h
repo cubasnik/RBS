@@ -65,6 +65,7 @@ struct S1APMessage {
     uint32_t      mmeUeS1apId;
     uint32_t      enbUeS1apId;
     ByteBuffer    payload;
+    std::string   traceId;
     bool          isSuccessfulOutcome = false;
     bool          isUnsuccessfulOutcome = false;
 };
@@ -76,7 +77,8 @@ public:
 
     // ── Link management ───────────────────────────────────────────────────────
     virtual bool connect   (const std::string& mmeAddr,
-                            uint16_t port = 36412) = 0;
+                            uint16_t port = 36412,
+                            uint16_t localPort = 0) = 0;
     virtual void disconnect() = 0;
     virtual bool isConnected() const = 0;
 

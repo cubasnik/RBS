@@ -69,6 +69,7 @@ size_t NRStack::connectedUECount() const {
 }
 
 uint16_t NRStack::admitUE(uint64_t imsi, uint8_t defaultCQI) {
+    RBS_TRACE_SCOPE_AUTO("nr-imsi", imsi);
     std::lock_guard<std::mutex> lock(stateMutex_);
     uint16_t crnti = nextCrnti_++;
     ueMap_[crnti] = imsi;
@@ -80,6 +81,7 @@ uint16_t NRStack::admitUE(uint64_t imsi, uint8_t defaultCQI) {
 }
 
 void NRStack::releaseUE(uint16_t crnti) {
+    RBS_TRACE_SCOPE_AUTO("nr-ue", crnti);
     std::lock_guard<std::mutex> lock(stateMutex_);
     ueMap_.erase(crnti);
     if (mac_) {
@@ -350,7 +352,31 @@ size_t NRStack::processNgMessages() {
             complete.transactionId = cmd.transactionId;
             complete.amfUeNgapId = cmd.amfUeNgapId;
             complete.ranUeNgapId = cmd.ranUeNgapId;
+            complete.releaseReport = {cmd.causeType, cmd.causeValue, cmd.releaseAction};
             (void)link->ueContextReleaseComplete(message.sourceNodeId, complete);
+            break;
+        }
+        case NgapProcedure::PAGING: {
+            PagingMessage paging{};
+            if (!decodePagingMessage(message.payload, paging)) {
+                break;
+            }
+            bool found = false;
+            {
+                std::lock_guard<std::mutex> lock(stateMutex_);
+                for (const auto& [crnti, imsi] : ueMap_) {
+                    if (imsi == paging.uePagingIdentity) {
+                        found = true;
+                        RBS_LOG_INFO("NRStack", "NGAP paging matched UE: imsi=", imsi,
+                                     " crnti=", crnti, " priority=", static_cast<int>(paging.pagingPriority));
+                        break;
+                    }
+                }
+            }
+            if (!found) {
+                RBS_LOG_INFO("NRStack", "NGAP paging received for idle/unknown UE: imsi=", paging.uePagingIdentity,
+                             " fivegTmsi=", paging.fivegTmsi, " priority=", static_cast<int>(paging.pagingPriority));
+            }
             break;
         }
         case NgapProcedure::NG_SETUP_REQUEST:
@@ -428,6 +454,7 @@ bool NRStack::xnSetupComplete(uint64_t peerGnbId) const {
 
 bool NRStack::handoverRequired(uint16_t crnti, uint64_t targetGnbId,
                                uint64_t targetCellId, uint8_t causeType) {
+    RBS_TRACE_SCOPE_AUTO("nr-ho", crnti);
     std::shared_ptr<XnAPLink> link;
     uint64_t imsi = 0;
     {
@@ -452,6 +479,19 @@ bool NRStack::handoverRequired(uint16_t crnti, uint64_t targetGnbId,
     req.sourceCrnti = crnti;
     req.ueImsi = imsi;
     req.causeType = causeType;
+    req.sourceUeAmbr = 1024;
+    {
+        std::lock_guard<std::mutex> lock(stateMutex_);
+        const auto sessionIt = pduSessions_.find(crnti);
+        if (sessionIt != pduSessions_.end()) {
+            for (const auto& [psi, session] : sessionIt->second) {
+                if (session.active) {
+                    req.pduSessionIds.push_back(psi);
+                }
+            }
+        }
+    }
+    req.securityContext = {0x5A, 0x01, 0x00};
     req.rrcContainer = {0x01, 0x02, 0x03};
 
     const bool ok = link->handoverRequest(req);

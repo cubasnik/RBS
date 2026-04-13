@@ -96,6 +96,10 @@ std::vector<Alarm> OMS::getActiveAlarms() const {
 void OMS::updateCounter(const std::string& name, double value,
                          const std::string& unit) {
     counters_[name] = {name, value, unit};
+    const std::string traceId = rbs::Logger::instance().traceId();
+    if (!traceId.empty()) {
+        counterTraceIds_[name] = traceId;
+    }
 
     // KPI threshold evaluation: auto-raise or auto-clear an alarm.
     auto it = thresholds_.find(name);
@@ -286,12 +290,41 @@ static std::string promName(const std::string& raw) {
     return out;
 }
 
+static std::string promLabelEsc(const std::string& raw) {
+    std::string out;
+    out.reserve(raw.size() + 8);
+    for (char c : raw) {
+        if (c == '\\' || c == '"') {
+            out.push_back('\\');
+        }
+        out.push_back(c);
+    }
+    return out;
+}
+
 std::string OMS::renderPrometheus() const {
     std::ostringstream os;
     for (const auto& [name, ctr] : counters_) {
         const std::string metric = promName(name);
         os << "# TYPE " << metric << " gauge\n";
-        os << metric << " " << ctr.value << "\n";
+        const auto traceIt = counterTraceIds_.find(name);
+        if (traceIt != counterTraceIds_.end() && !traceIt->second.empty()) {
+            os << metric << "{trace_id=\"" << promLabelEsc(traceIt->second) << "\"} " << ctr.value << "\n";
+        } else {
+            os << metric << " " << ctr.value << "\n";
+        }
+    }
+
+    // Latency histograms (Prometheus histogram type)
+    for (const auto& [name, h] : histograms_) {
+        const std::string metric = promName(name);
+        os << "# TYPE " << metric << " histogram\n";
+        for (size_t i = 0; i < h.bounds.size(); ++i) {
+            os << metric << "_bucket{le=\"" << h.bounds[i] << "\"} " << h.buckCounts[i] << "\n";
+        }
+        os << metric << "_bucket{le=\"+Inf\"} " << h.count << "\n";
+        os << metric << "_sum "   << h.sum   << "\n";
+        os << metric << "_count " << h.count << "\n";
     }
 
     const auto active = getActiveAlarms();
@@ -304,6 +337,27 @@ std::string OMS::renderPrometheus() const {
     os << "# TYPE rbs_node_state_info gauge\n";
     os << "rbs_node_state_info{state=\"" << s << "\"} 1\n";
     return os.str();
+}
+
+void OMS::observeHistogram(const std::string& name, double value,
+                            const std::vector<double>& bounds) {
+    auto& h = histograms_[name];
+    if (h.bounds.empty()) {
+        h.bounds     = bounds;
+        h.buckCounts.assign(bounds.size(), 0);
+    }
+    h.sum += value;
+    ++h.count;
+    for (size_t i = 0; i < h.bounds.size(); ++i) {
+        if (value <= h.bounds[i]) ++h.buckCounts[i];
+    }
+}
+
+std::vector<std::string> OMS::getHistogramNames() const {
+    std::vector<std::string> names;
+    names.reserve(histograms_.size());
+    for (const auto& [n, _] : histograms_) names.push_back(n);
+    return names;
 }
 
 bool OMS::exportPrometheus(int port, const std::string& bindAddr) {

@@ -44,6 +44,9 @@ struct XnHandoverRequest {
     uint16_t sourceCrnti = 0;
     uint64_t ueImsi = 0;
     uint8_t causeType = 0;
+    uint16_t sourceUeAmbr = 0;
+    std::vector<uint8_t> pduSessionIds;
+    ByteBuffer securityContext;
     ByteBuffer rrcContainer;
 };
 

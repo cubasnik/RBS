@@ -206,6 +206,13 @@ ByteBuffer encodeXnHandoverRequest(const XnHandoverRequest& req) {
     pushU16(buffer, req.sourceCrnti);
     pushU64(buffer, req.ueImsi);
     pushU8(buffer, req.causeType);
+    pushU16(buffer, req.sourceUeAmbr);
+    const uint8_t pduCount = static_cast<uint8_t>(req.pduSessionIds.size() > 255 ? 255 : req.pduSessionIds.size());
+    pushU8(buffer, pduCount);
+    for (uint8_t i = 0; i < pduCount; ++i) {
+        pushU8(buffer, req.pduSessionIds[i]);
+    }
+    pushBytes(buffer, req.securityContext);
     pushBytes(buffer, req.rrcContainer);
     return buffer;
 }
@@ -223,6 +230,15 @@ bool decodeXnHandoverRequest(const ByteBuffer& pdu, XnHandoverRequest& out) {
     out.sourceCrnti = reader.u16();
     out.ueImsi = reader.u64();
     out.causeType = reader.u8();
+    if (reader.position < pdu.size()) {
+        out.sourceUeAmbr = reader.u16();
+        const uint8_t pduCount = reader.u8();
+        out.pduSessionIds.clear();
+        for (uint8_t i = 0; i < pduCount && reader.ok; ++i) {
+            out.pduSessionIds.push_back(reader.u8());
+        }
+        out.securityContext = reader.bytes();
+    }
     out.rrcContainer = reader.bytes();
     return reader.ok;
 }

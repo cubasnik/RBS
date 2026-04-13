@@ -152,6 +152,7 @@ uint32_t LTEStack::packPlmnHex(uint16_t mcc, uint16_t mnc)
 
 // ────────────────────────────────────────────────────────────────
 RNTI LTEStack::admitUE(IMSI imsi, uint8_t defaultCQI) {
+    RBS_TRACE_SCOPE_AUTO("lte-imsi", imsi);
     RNTI rnti = nextRnti_++;
 
     auto& oms = rbs::oms::OMS::instance();
@@ -205,6 +206,7 @@ RNTI LTEStack::admitUECA(IMSI imsi, uint8_t ccCount, uint8_t defaultCQI) {
 }
 
 void LTEStack::releaseUE(RNTI rnti) {
+    RBS_TRACE_SCOPE_AUTO("lte-ue", rnti);
     // Count ERAB drop: UE released while bearer was active.
     {
         auto& oms = rbs::oms::OMS::instance();
@@ -313,6 +315,7 @@ bool LTEStack::teardownERAB(RNTI rnti, uint8_t erabId) {
 }
 
 bool LTEStack::requestHandover(RNTI rnti, uint16_t targetPci, EARFCN targetEarfcn) {
+    RBS_TRACE_SCOPE_AUTO("lte-ho", rnti);
     auto& oms = rbs::oms::OMS::instance();
     if (!ueMap_.count(rnti)) {
         oms.updateCounter("lte.ho.reject.no_ue", oms.getCounter("lte.ho.reject.no_ue") + 1.0);

@@ -26,6 +26,13 @@
   - **RX Enhancement**: `recvmsg()` с MSG_NOTIFICATION flag для разделения данные/события, асинхронный dispatch к приложению.
   - **Tests**: `test_sctp_multihoming.cpp` (9 unit tests), `test_sctp_tuning_notifications.cpp` (5 unit tests), все pass на Windows UDP fallback.
   - **Windows Backend Plan**: Документировано в `WINDOWS_USRSCTP_BACKEND.md` (deferred; полный userland I/O backend с callback bridge, буферизацией, синхронизацией).
+- п.30e: **Infrastructure & UX improvements**:
+  - **REST bind fix**: httplib `set_address_family(AF_INET)` перед bind — устраняет выбор IPv6-сокета на Windows при `AF_UNSPEC`; REST-сервер стабильно слушает `0.0.0.0:8181`.
+  - **Port change 8080 → 8181**: порт 8080 занят `svchost` (WSL2 Hyper-V bridge service); новый порт по умолчанию — **8181**.
+  - **Address fields in status API**: `GET /api/v1/status` возвращает `nodeAddr`, `restAddr`, `promAddr` для самодиагностики.
+  - **WSL2 mirrored networking**: рекомендуемый режим `networkingMode=mirrored` в `~/.wslconfig`; `127.0.0.1` становится доступен из WSL напрямую без NAT-обходов.
+  - **Logger color scheme**: ANSI 256-color на консоли — per-RAT цвет тега `[component]`, фоновый цвет строки для WARNING/ERR/CRITICAL, уровень логирования с цветом (`DBG`=серый, `INFO`=зелёный, `WARNING`=жёлтый, `ERR`/`CRITICAL`=красный).
+  - **`tools/rbs_api.sh` rewrite**: заменён `powershell.exe Invoke-RestMethod` на `curl`, добавлен rich Python renderer (цветные badges методов, семантическая окраска RAT/IP/version, состояния UNLOCKED/LOCKED, цветные числа и булевы).
 
 ## Что еще реализовать (следующий этап)
 

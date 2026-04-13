@@ -99,21 +99,48 @@ static void test_ue_context_release_roundtrip() {
     cmd.ranUeNgapId = 0x77;
     cmd.causeType = 2;
     cmd.causeValue = 3;
+    cmd.releaseAction = 1;
+    cmd.contextInfo = {0x10, 0x20};
     const ByteBuffer pdu = encodeUeContextReleaseCommand(cmd);
     UeContextReleaseCommand decoded{};
     assert(decodeUeContextReleaseCommand(pdu, decoded));
     assert(decoded.amfUeNgapId == cmd.amfUeNgapId);
     assert(decoded.ranUeNgapId == cmd.ranUeNgapId);
+    assert(decoded.releaseAction == cmd.releaseAction);
+    assert(decoded.contextInfo == cmd.contextInfo);
 
     UeContextReleaseComplete complete{};
     complete.transactionId = 10;
     complete.amfUeNgapId = 0x9988;
     complete.ranUeNgapId = 0x77;
+    complete.releaseReport = {0x01, 0x02, 0x03};
     const ByteBuffer completePdu = encodeUeContextReleaseComplete(complete);
     UeContextReleaseComplete decodedComplete{};
     assert(decodeUeContextReleaseComplete(completePdu, decodedComplete));
     assert(decodedComplete.ranUeNgapId == complete.ranUeNgapId);
+    assert(decodedComplete.releaseReport == complete.releaseReport);
     std::puts("  test_ue_context_release_roundtrip PASSED");
+}
+
+static void test_paging_roundtrip() {
+    PagingMessage paging{};
+    paging.transactionId = 44;
+    paging.uePagingIdentity = 250010000000444ULL;
+    paging.fivegTmsi = 0xABCDEF11;
+    paging.tac = 7;
+    paging.mcc = 250;
+    paging.mnc = 1;
+    paging.pagingPriority = 5;
+    paging.drxCycle = 64;
+
+    const ByteBuffer pdu = encodePagingMessage(paging);
+    PagingMessage decoded{};
+    assert(decodePagingMessage(pdu, decoded));
+    assert(decoded.uePagingIdentity == paging.uePagingIdentity);
+    assert(decoded.fivegTmsi == paging.fivegTmsi);
+    assert(decoded.pagingPriority == paging.pagingPriority);
+    assert(decoded.drxCycle == paging.drxCycle);
+    std::puts("  test_paging_roundtrip PASSED");
 }
 
 static void test_nr_stack_ng_setup_pdu_session_and_release() {
@@ -193,6 +220,7 @@ int main() {
     test_ng_setup_roundtrip();
     test_pdu_session_roundtrip();
     test_ue_context_release_roundtrip();
+    test_paging_roundtrip();
     test_nr_stack_ng_setup_pdu_session_and_release();
     std::puts("test_ngap_codec PASSED");
     return 0;

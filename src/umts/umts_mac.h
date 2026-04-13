@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <queue>
 #include <memory>
+#include <mutex>
 
 namespace rbs::umts {
 
@@ -42,9 +43,9 @@ public:
     bool  enqueueDlData(RNTI rnti, ByteBuffer data)    override;
     bool  dequeueUlData(RNTI rnti, ByteBuffer& data)   override;
 
-    size_t activeChannelCount() const override { return channels_.size(); }
-    size_t hsdschUECount()      const override { return hsdschCount_; }
-    size_t edchUECount()        const override { return edchCount_; }
+    size_t activeChannelCount() const override;
+    size_t hsdschUECount()      const override;
+    size_t edchUECount()        const override;
 
 private:
     std::shared_ptr<UMTSPhy> phy_;
@@ -53,6 +54,7 @@ private:
     RNTI     nextRnti_ = 1;
     uint16_t nextCode_ = 4;  // Channel codes 0-3 reserved for common channels
 
+    mutable std::mutex channelsMtx_;
     std::unordered_map<RNTI, UMTSUEContext> channels_;
     size_t   hsdschCount_ = 0;
     size_t   edchCount_   = 0;

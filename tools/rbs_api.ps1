@@ -66,7 +66,7 @@ $CLR_BOOL  = "$ESC[38;5;213m"
 $CLR_ERR   = "$ESC[38;5;203m"
 $CLR_HDR   = "$ESC[38;5;81m"
 
-$BaseUrl = 'http://127.0.0.1:8080/api/v1'
+$BaseUrl = 'http://127.0.0.1:8181/api/v1'
 $Methods = @('GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS')
 
 function Resolve-ProcedureAlias {

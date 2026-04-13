@@ -1,4 +1,6 @@
 #include "../src/nr/nr_stack.h"
+#include "../src/nr/ngap_codec.h"
+#include "../src/nr/ngap_link.h"
 #include "../src/hal/rf_hardware.h"
 #include <cassert>
 #include <cstdio>
@@ -29,6 +31,17 @@ static NRCellConfig makeCfg() {
     cfg.cuPort = 38472;
     cfg.numTxRx = 2;
     return cfg;
+}
+
+static bool waitNgMsg(NgapLink& link, NgapMessage& msg, int timeoutMs = 1000) {
+    const auto deadline = std::chrono::steady_clock::now() + std::chrono::milliseconds(timeoutMs);
+    while (std::chrono::steady_clock::now() < deadline) {
+        if (link.recvNgapMessage(msg)) {
+            return true;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+    return false;
 }
 
 static void test_nr_stack_qos_flow_and_dl_path() {
@@ -282,6 +295,132 @@ static void test_nr_stack_long_mixed_traffic_fairness() {
     std::puts("  test_nr_stack_long_mixed_traffic_fairness PASSED");
 }
 
+static void test_nr_stack_ngap_paging_and_release_lifecycle() {
+    auto rf = std::make_shared<RFHardware>();
+    NRStack stack(rf, makeCfg());
+
+    auto ngapGnb = std::make_shared<NgapLink>(makeCfg().gnbDuId);
+    auto ngapAmf = std::make_shared<NgapLink>(0xA001);
+    stack.attachNgapLink(ngapGnb);
+    assert(stack.connectNgPeer(0xA001));
+    assert(ngapAmf->connect(makeCfg().gnbDuId));
+
+    assert(stack.start());
+
+    const uint64_t targetImsi = 250010000000333ULL;
+    const uint64_t survivorImsi = 250010000000334ULL;
+    NgapMessage msg{};
+    assert(waitNgMsg(*ngapAmf, msg));
+    assert(msg.procedure == NgapProcedure::NG_SETUP_REQUEST);
+
+    NgSetupRequest setupReq{};
+    assert(decodeNgSetupRequest(msg.payload, setupReq));
+    assert(setupReq.ranNodeId == makeCfg().gnbDuId);
+
+    NgSetupResponse setupRsp{};
+    setupRsp.transactionId = setupReq.transactionId;
+    setupRsp.amfId = 0xA001;
+    setupRsp.amfName = "AMF-Test";
+    setupRsp.relativeCapacity = 180;
+    assert(ngapAmf->ngSetupResponse(makeCfg().gnbDuId, setupRsp));
+    assert(stack.processNgMessages() == 1);
+    assert(stack.ngSetupComplete(0xA001));
+
+    const uint16_t targetCrnti = stack.admitUE(targetImsi, 10);
+    const uint16_t survivorCrnti = stack.admitUE(survivorImsi, 11);
+    assert(targetCrnti != 0);
+    assert(survivorCrnti != 0);
+    assert(targetCrnti != survivorCrnti);
+    assert(stack.connectedUECount() == 2);
+
+    PduSessionSetupRequest targetPduReq{};
+    targetPduReq.transactionId = 2;
+    targetPduReq.amfUeNgapId = 0x5001;
+    targetPduReq.ranUeNgapId = targetCrnti;
+    targetPduReq.pduSessionId = 10;
+    targetPduReq.sst = 1;
+    targetPduReq.sd = 0x010203;
+    targetPduReq.nasPdu = {0x7E, 0x01};
+    assert(ngapAmf->pduSessionSetupRequest(makeCfg().gnbDuId, targetPduReq));
+    assert(stack.processNgMessages() == 1);
+    assert(stack.connectedUECount() == 2);
+    assert(stack.hasActivePduSession(targetCrnti, 10));
+
+    PduSessionSetupRequest survivorPduReq{};
+    survivorPduReq.transactionId = 3;
+    survivorPduReq.amfUeNgapId = 0x5002;
+    survivorPduReq.ranUeNgapId = survivorCrnti;
+    survivorPduReq.pduSessionId = 11;
+    survivorPduReq.sst = 1;
+    survivorPduReq.sd = 0x020304;
+    survivorPduReq.nasPdu = {0x7E, 0x02};
+    assert(ngapAmf->pduSessionSetupRequest(makeCfg().gnbDuId, survivorPduReq));
+    assert(stack.processNgMessages() == 1);
+    assert(stack.connectedUECount() == 2);
+    assert(stack.hasActivePduSession(targetCrnti, 10));
+    assert(stack.hasActivePduSession(survivorCrnti, 11));
+
+    assert(waitNgMsg(*ngapAmf, msg));
+    assert(msg.procedure == NgapProcedure::PDU_SESSION_SETUP_RESPONSE);
+    PduSessionSetupResponse pduRsp{};
+    assert(decodePduSessionSetupResponse(msg.payload, pduRsp));
+    assert(pduRsp.ranUeNgapId == targetCrnti);
+    assert(pduRsp.pduSessionId == 10);
+    assert(pduRsp.gtpTeid != 0);
+
+    assert(waitNgMsg(*ngapAmf, msg));
+    assert(msg.procedure == NgapProcedure::PDU_SESSION_SETUP_RESPONSE);
+    assert(decodePduSessionSetupResponse(msg.payload, pduRsp));
+    assert(pduRsp.ranUeNgapId == survivorCrnti);
+    assert(pduRsp.pduSessionId == 11);
+    assert(pduRsp.gtpTeid != 0);
+
+    PagingMessage paging{};
+    paging.transactionId = 4;
+    paging.uePagingIdentity = targetImsi;
+    paging.fivegTmsi = 0x01020304;
+    paging.tac = makeCfg().tac;
+    paging.mcc = makeCfg().mcc;
+    paging.mnc = makeCfg().mnc;
+    paging.pagingPriority = 7;
+    paging.drxCycle = 64;
+    assert(ngapAmf->paging(makeCfg().gnbDuId, paging));
+    assert(stack.processNgMessages() == 1);
+    assert(stack.connectedUECount() == 2);
+    assert(stack.hasActivePduSession(targetCrnti, 10));
+    assert(stack.hasActivePduSession(survivorCrnti, 11));
+    assert(!ngapAmf->recvNgapMessage(msg));
+
+    UeContextReleaseCommand releaseCmd{};
+    releaseCmd.transactionId = 5;
+    releaseCmd.amfUeNgapId = 0x5001;
+    releaseCmd.ranUeNgapId = targetCrnti;
+    releaseCmd.causeType = 1;
+    releaseCmd.causeValue = 9;
+    releaseCmd.releaseAction = 1;
+    releaseCmd.contextInfo = {0xDE, 0xAD, 0xBE, 0xEF};
+    assert(ngapAmf->ueContextReleaseCommand(makeCfg().gnbDuId, releaseCmd));
+    assert(stack.processNgMessages() == 1);
+    assert(!stack.hasActivePduSession(targetCrnti, 10));
+    assert(stack.hasActivePduSession(survivorCrnti, 11));
+    assert(stack.connectedUECount() == 1);
+
+    assert(waitNgMsg(*ngapAmf, msg));
+    assert(msg.procedure == NgapProcedure::UE_CONTEXT_RELEASE_COMPLETE);
+    UeContextReleaseComplete complete{};
+    assert(decodeUeContextReleaseComplete(msg.payload, complete));
+    assert(complete.transactionId == releaseCmd.transactionId);
+    assert(complete.amfUeNgapId == releaseCmd.amfUeNgapId);
+    assert(complete.ranUeNgapId == targetCrnti);
+    assert(complete.releaseReport == ByteBuffer({releaseCmd.causeType, releaseCmd.causeValue, releaseCmd.releaseAction}));
+
+    assert(stack.hasActivePduSession(survivorCrnti, 11));
+    stack.releaseUE(survivorCrnti);
+
+    stack.stop();
+    std::puts("  test_nr_stack_ngap_paging_and_release_lifecycle PASSED");
+}
+
 int main() {
     std::puts("=== test_nr_stack ===");
     test_nr_stack_qos_flow_and_dl_path();
@@ -290,6 +429,7 @@ int main() {
     test_nr_stack_auto_scheduler_queue_drain();
     test_nr_stack_fairness_and_harq_feedback_loop();
     test_nr_stack_long_mixed_traffic_fairness();
+    test_nr_stack_ngap_paging_and_release_lifecycle();
     std::puts("test_nr_stack PASSED");
     return 0;
 }

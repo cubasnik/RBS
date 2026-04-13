@@ -8,6 +8,7 @@ UMTSMAC::UMTSMAC(std::shared_ptr<UMTSPhy> phy, const UMTSCellConfig& cfg)
 
 // ────────────────────────────────────────────────────────────────
 bool UMTSMAC::start() {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     if (running_) return true;
     phy_->setRxCallback([this](const UMTSFrame& f) { onRxFrame(f); });
     running_ = true;
@@ -17,6 +18,7 @@ bool UMTSMAC::start() {
 }
 
 void UMTSMAC::stop() {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     channels_.clear();
     running_ = false;
     RBS_LOG_INFO("UMTSMAC", "Stopped");
@@ -24,12 +26,16 @@ void UMTSMAC::stop() {
 
 // ────────────────────────────────────────────────────────────────
 void UMTSMAC::tick() {
-    if (!running_) return;
+    {
+        std::lock_guard<std::mutex> lk(channelsMtx_);
+        if (!running_) return;
+    }
     scheduleDlTransmissions();
 }
 
 // ────────────────────────────────────────────────────────────────
 RNTI UMTSMAC::assignDCH(SF sf) {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     RNTI rnti = nextRnti_++;
     UMTSUEContext ctx{};
     ctx.rnti           = rnti;
@@ -45,6 +51,7 @@ RNTI UMTSMAC::assignDCH(SF sf) {
 }
 
 RNTI UMTSMAC::assignHSDSCH() {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     RNTI rnti = nextRnti_++;
     UMTSUEContext ctx{};
     ctx.rnti            = rnti;
@@ -60,6 +67,7 @@ RNTI UMTSMAC::assignHSDSCH() {
 }
 
 RNTI UMTSMAC::assignEDCH() {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     RNTI rnti = nextRnti_++;
     UMTSUEContext ctx{};
     ctx.rnti            = rnti;
@@ -75,6 +83,7 @@ RNTI UMTSMAC::assignEDCH() {
 }
 
 bool UMTSMAC::releaseDCH(RNTI rnti) {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     auto it = channels_.find(rnti);
     if (it == channels_.end()) return false;
     if (it->second.channelType == UMTSChannelType::HS_DSCH && hsdschCount_ > 0)
@@ -88,6 +97,7 @@ bool UMTSMAC::releaseDCH(RNTI rnti) {
 
 // ────────────────────────────────────────────────────────────────
 bool UMTSMAC::enqueueDlData(RNTI rnti, ByteBuffer data) {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     auto it = channels_.find(rnti);
     if (it == channels_.end()) return false;
     it->second.txQueue.push(std::move(data));
@@ -95,6 +105,7 @@ bool UMTSMAC::enqueueDlData(RNTI rnti, ByteBuffer data) {
 }
 
 bool UMTSMAC::dequeueUlData(RNTI rnti, ByteBuffer& data) {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     auto it = channels_.find(rnti);
     if (it == channels_.end() || it->second.rxQueue.empty()) return false;
     data = std::move(it->second.rxQueue.front());
@@ -102,10 +113,26 @@ bool UMTSMAC::dequeueUlData(RNTI rnti, ByteBuffer& data) {
     return true;
 }
 
+size_t UMTSMAC::activeChannelCount() const {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
+    return channels_.size();
+}
+
+size_t UMTSMAC::hsdschUECount() const {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
+    return hsdschCount_;
+}
+
+size_t UMTSMAC::edchUECount() const {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
+    return edchCount_;
+}
+
 // ────────────────────────────────────────────────────────────────
 void UMTSMAC::onRxFrame(const UMTSFrame& frame) {
     (void)frame;
     // Demultiplex received data to all active UL channels (simplified)
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     for (auto& [rnti, ctx] : channels_) {
         if (!ctx.active) continue;
         ByteBuffer data;
@@ -116,6 +143,7 @@ void UMTSMAC::onRxFrame(const UMTSFrame& frame) {
 }
 
 void UMTSMAC::scheduleDlTransmissions() {
+    std::lock_guard<std::mutex> lk(channelsMtx_);
     for (auto& [rnti, ctx] : channels_) {
         if (ctx.txQueue.empty()) continue;
         ByteBuffer& data = ctx.txQueue.front();

@@ -97,9 +97,11 @@ public:
         auto& cfg = rbs::Config::instance();
         if (!configPath.empty()) cfg.loadFile(configPath);
 
+        // node_addr is the primary bind address; individual services may override it.
+        const std::string nodeAddr = cfg.getString("node", "node_addr", "127.0.0.1");
         restServer_ = std::make_unique<rbs::api::RestServer>(
             cfg.getInt("api", "port", 8080),
-            cfg.getString("api", "bind", "127.0.0.1")
+            cfg.getString("api", "bind", nodeAddr)
         );
         restServer_->setConfigPath(configPath_);
         restServer_->setConfigApplyCallback([this]() { this->applyRuntimeConfig(); });
@@ -185,6 +187,10 @@ public:
             rbs::Logger::instance().enableFile(logFile);
         }
 
+        std::string format = cfg.getString("logging", "format", "text");
+        std::transform(format.begin(), format.end(), format.begin(), ::tolower);
+        rbs::Logger::instance().setJsonOutput(format == "json");
+
         lteInterSiteDistanceM_ = std::max(10.0, cfg.getDouble("lte", "inter_site_distance_m", lteInterSiteDistanceM_));
         if (gsmStack_) {
             gsmStack_->reloadRuntimeConfig();
@@ -202,7 +208,8 @@ public:
 
         auto& cfg = rbs::Config::instance();
         if (cfg.getBool("oms", "prometheus_enabled", true)) {
-            const auto bind = cfg.getString("oms", "prometheus_bind", "127.0.0.1");
+            const std::string nodeAddrProm = cfg.getString("node", "node_addr", "127.0.0.1");
+            const auto bind = cfg.getString("oms", "prometheus_bind", nodeAddrProm);
             const int port = cfg.getInt("oms", "prometheus_port", 9108);
             rbs::oms::OMS::instance().exportPrometheus(port, bind);
         }

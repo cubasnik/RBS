@@ -83,6 +83,7 @@ struct X2APMessage {
     uint32_t      sourceEnbUeX2apId;
     uint32_t      targetEnbUeX2apId;
     ByteBuffer    payload;
+    std::string   traceId;
 };
 
 // ── IX2AP — X2 Application Protocol ─────────────────────────────────────────
@@ -92,7 +93,8 @@ public:
 
     // ── Link management ───────────────────────────────────────────────────────
     virtual bool connect   (uint32_t targetEnbId, const std::string& addr,
-                            uint16_t port = 36422) = 0;
+                            uint16_t port = 36422,
+                            uint16_t localPort = 0) = 0;
     virtual void disconnect(uint32_t targetEnbId) = 0;
     virtual bool isConnected(uint32_t targetEnbId) const = 0;
 

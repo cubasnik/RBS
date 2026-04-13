@@ -38,6 +38,13 @@ public:
     // ── Dedicated NBAP ────────────────────────────────────────────────────────
     bool radioLinkSetup  (RNTI rnti, uint16_t scrCode, SF sf)  override;
     bool radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf)  override;
+    bool radioBearerSetup(RNTI rnti,
+                          uint8_t rbId,
+                          uint8_t rlcMode,
+                          uint16_t maxBitrateKbps,
+                          bool uplinkEnabled,
+                          bool downlinkEnabled)                 override;
+    bool radioBearerRelease(RNTI rnti, uint8_t rbId)            override;
     bool radioLinkDeletion(RNTI rnti)                          override;
     bool radioLinkDeletionSHO(RNTI rnti, uint16_t scrCode)     override;
     bool dedicatedMeasurementInitiation(RNTI rnti,
@@ -76,7 +83,16 @@ private:
         SF       sf;
         bool     softHoLeg = false;  ///< true = secondary active-set leg
     };
+    struct RadioBearerCfg {
+        uint8_t  rbId;
+        uint8_t  rlcMode;
+        uint16_t maxBitrateKbps;
+        bool     uplinkEnabled;
+        bool     downlinkEnabled;
+        SF       targetSf;
+    };
     std::unordered_map<RNTI, RadioLink> links_;
+    std::unordered_map<RNTI, std::unordered_map<uint8_t, RadioBearerCfg>> bearers_;
     /// Per-UE map of secondary legs keyed by scrambling code
     std::unordered_map<RNTI, std::unordered_map<uint16_t, RadioLink>> shoLegs_;
 
@@ -86,6 +102,7 @@ private:
     // Входящая очередь «от RNC»
     std::queue<NBAPMessage> rxQueue_;
     mutable std::mutex      rxMtx_;
+    std::unordered_map<uint16_t, std::string> pendingTraceSummary_;
 
     uint16_t nextTxId() { return nextTxId_++; }
 };

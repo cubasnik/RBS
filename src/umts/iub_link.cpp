@@ -3,6 +3,18 @@
 
 namespace rbs::umts {
 
+namespace {
+SF sfFromBitrateKbps(uint16_t maxBitrateKbps) {
+    if (maxBitrateKbps > 2048) return SF::SF4;
+    if (maxBitrateKbps > 1024) return SF::SF8;
+    if (maxBitrateKbps > 512)  return SF::SF16;
+    if (maxBitrateKbps > 256)  return SF::SF32;
+    if (maxBitrateKbps > 128)  return SF::SF64;
+    if (maxBitrateKbps > 64)   return SF::SF128;
+    return SF::SF256;
+}
+} // namespace
+
 // ─────────────────────────────────────────────────────────────────────────────
 //  IubNbap
 // ─────────────────────────────────────────────────────────────────────────────
@@ -30,7 +42,9 @@ void IubNbap::disconnect()
     if (!connected_) return;
     connected_ = false;
     links_.clear();
+    bearers_.clear();
     commonMeas_.clear();
+    pendingTraceSummary_.clear();
     RBS_LOG_INFO("IubNbap", "[{}] NBAP-соединение закрыто", nodeBId_);
 }
 
@@ -114,6 +128,9 @@ bool IubNbap::radioLinkSetup(RNTI rnti, uint16_t scrCode, SF sf)
         txId
     );
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL SETUP APER len={}", nodeBId_, payload.size());
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti) +
+                                 " scrCode=" + std::to_string(scrCode) +
+                                 " sf=" + std::to_string(static_cast<int>(sf));
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_SETUP, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
@@ -126,6 +143,7 @@ bool IubNbap::radioLinkDeletion(RNTI rnti)
         return false;
     }
     links_.erase(it);
+    bearers_.erase(rnti);
     shoLegs_.erase(rnti);  // also clean up any SHO legs
     RBS_LOG_INFO("IubNbap", "[{}] NBAP RADIO LINK DELETION rnti={}", nodeBId_, rnti);
 
@@ -137,8 +155,93 @@ bool IubNbap::radioLinkDeletion(RNTI rnti)
         txId
     );
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL DELETION APER len={}", nodeBId_, payload.size());
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti);
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, txId, std::move(payload)};
     return sendNbapMsg(msg);
+}
+
+bool IubNbap::radioBearerSetup(RNTI rnti,
+                               uint8_t rbId,
+                               uint8_t rlcMode,
+                               uint16_t maxBitrateKbps,
+                               bool uplinkEnabled,
+                               bool downlinkEnabled)
+{
+    if (!connected_) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerSetup: not connected", nodeBId_);
+        return false;
+    }
+    auto linkIt = links_.find(rnti);
+    if (linkIt == links_.end()) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerSetup: rnti={} has no radio link",
+                        nodeBId_, rnti);
+        return false;
+    }
+    if (!uplinkEnabled && !downlinkEnabled) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerSetup: rbId={} has no active direction",
+                        nodeBId_, rbId);
+        return false;
+    }
+
+    const SF targetSf = sfFromBitrateKbps(maxBitrateKbps);
+    RBS_LOG_INFO("IubNbap",
+                 "[{}] NBAP RADIO BEARER SETUP rnti={} rbId={} rlcMode={} maxBr={}kbps UL={} DL={} targetSF={}",
+                 nodeBId_, rnti, rbId, rlcMode, maxBitrateKbps,
+                 uplinkEnabled ? 1 : 0, downlinkEnabled ? 1 : 0,
+                 static_cast<int>(targetSf));
+
+    // TS 25.433 §8.1.5/§8.1.6: apply bearer transport resources via RL reconfigure.
+    if (!radioLinkReconfigurePrepare(rnti, targetSf)) {
+        return false;
+    }
+
+    // Consume the simulated immediate ACK produced by reconfigure prepare.
+    NBAPMessage ack{};
+    if (!recvNbapMsg(ack) || ack.procedure != NBAPProcedure::RADIO_LINK_RECONFIGURE_COMMIT) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerSetup: missing reconfigure ack rnti={} rbId={}",
+                        nodeBId_, rnti, rbId);
+        return false;
+    }
+
+    if (!radioLinkReconfigureCommit(rnti)) {
+        return false;
+    }
+
+    linkIt->second.sf = targetSf;
+    bearers_[rnti][rbId] = RadioBearerCfg{
+        rbId,
+        rlcMode,
+        maxBitrateKbps,
+        uplinkEnabled,
+        downlinkEnabled,
+        targetSf
+    };
+
+    return true;
+}
+
+bool IubNbap::radioBearerRelease(RNTI rnti, uint8_t rbId)
+{
+    auto ueIt = bearers_.find(rnti);
+    if (ueIt == bearers_.end()) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerRelease: no bearer context for rnti={}",
+                        nodeBId_, rnti);
+        return false;
+    }
+    auto rbIt = ueIt->second.find(rbId);
+    if (rbIt == ueIt->second.end()) {
+        RBS_LOG_WARNING("IubNbap", "[{}] radioBearerRelease: rnti={} rbId={} not found",
+                        nodeBId_, rnti, rbId);
+        return false;
+    }
+
+    ueIt->second.erase(rbIt);
+    if (ueIt->second.empty()) {
+        bearers_.erase(ueIt);
+    }
+
+    RBS_LOG_INFO("IubNbap", "[{}] NBAP RADIO BEARER RELEASE rnti={} rbId={}", nodeBId_, rnti, rbId);
+    return true;
 }
 
 bool IubNbap::radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf)
@@ -166,6 +269,9 @@ bool IubNbap::radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf)
     ByteBuffer payload = nbap_encode_RadioLinkAdditionRequestFDD(ctxId, txId);
     RBS_LOG_DEBUG("IubNbap",
         "[{}] NBAP RL ADDITION APER len={}", nodeBId_, payload.size());
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti) +
+                                 " scrCode=" + std::to_string(scrCode) +
+                                 " sf=" + std::to_string(static_cast<int>(sf));
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_ADDITION, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
@@ -190,6 +296,8 @@ bool IubNbap::radioLinkDeletionSHO(RNTI rnti, uint16_t scrCode)
     ByteBuffer payload = nbap_encode_RadioLinkDeletionRequest(ctxId, ctxId, txId);
     RBS_LOG_DEBUG("IubNbap",
         "[{}] NBAP RL DELETION (SHO) APER len={}", nodeBId_, payload.size());
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti) +
+                                 " scrCode=" + std::to_string(scrCode);
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_DELETION, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
@@ -243,17 +351,24 @@ bool IubNbap::radioLinkReconfigurePrepare(RNTI rnti, SF newSf)
     ByteBuffer payload = nbap_encode_RadioLinkReconfigurePrepare(
         static_cast<uint32_t>(rnti), newSf, txId);
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL RECONFIG PREPARE APER len={}", nodeBId_, payload.size());
-    // Simulate RNC ACK: queue a COMMIT response so caller can retrieve it
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti) +
+                                 " newSf=" + std::to_string(static_cast<int>(newSf));
+    NBAPMessage msg{NBAPProcedure::RADIO_LINK_RECONFIGURE_PREP, txId, std::move(payload)};
+    if (!sendNbapMsg(msg)) {
+        return false;
+    }
+
+    // Simulate RNC ACK: queue a COMMIT response so caller can retrieve it.
     {
         std::lock_guard<std::mutex> lk(rxMtx_);
         ByteBuffer ack{static_cast<uint8_t>(rnti >> 8), static_cast<uint8_t>(rnti)};
         rxQueue_.push({NBAPProcedure::RADIO_LINK_RECONFIGURE_COMMIT,
                        static_cast<uint16_t>(nextTxId()), std::move(ack)});
     }
-    // Update SF in the link record
+
+    // Apply target SF only after Prepare was successfully transmitted.
     it->second.sf = newSf;
-    NBAPMessage msg{NBAPProcedure::RADIO_LINK_RECONFIGURE_PREP, txId, std::move(payload)};
-    return sendNbapMsg(msg);
+    return true;
 }
 
 bool IubNbap::radioLinkReconfigureCommit(RNTI rnti)
@@ -269,6 +384,7 @@ bool IubNbap::radioLinkReconfigureCommit(RNTI rnti)
     ByteBuffer payload = nbap_encode_RadioLinkReconfigureCommit(
         static_cast<uint32_t>(rnti), txId);
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP RL RECONFIG COMMIT APER len={}", nodeBId_, payload.size());
+    pendingTraceSummary_[txId] = "rnti=" + std::to_string(rnti);
     NBAPMessage msg{NBAPProcedure::RADIO_LINK_RECONFIGURE_COMMIT, txId, std::move(payload)};
     return sendNbapMsg(msg);
 }
@@ -295,16 +411,23 @@ bool IubNbap::sendNbapMsg(const NBAPMessage& msg)
 {
     const std::string typeStr = "NBAP:" + std::to_string(
         static_cast<int>(msg.procedure));
+    std::string summary = "txId=" + std::to_string(msg.transactionId) +
+                          " len=" + std::to_string(msg.payload.size());
+    const auto metaIt = pendingTraceSummary_.find(msg.transactionId);
+    if (metaIt != pendingTraceSummary_.end() && !metaIt->second.empty()) {
+        summary = metaIt->second + " " + summary;
+    }
     if (isBlocked(typeStr)) {
         RBS_LOG_WARNING("IubNbap", "[{}] sendNbapMsg заблокирован: proc=0x{:02X}",
                         nodeBId_, static_cast<uint8_t>(msg.procedure));
+        pushTrace(true, typeStr, summary + " blocked=1");
+        pendingTraceSummary_.erase(msg.transactionId);
         return false;
     }
     RBS_LOG_DEBUG("IubNbap", "[{}] NBAP → RNC  proc=0x{:02X} txId={}",
                   nodeBId_, static_cast<uint8_t>(msg.procedure), msg.transactionId);
-    pushTrace(true, typeStr,
-              "txId=" + std::to_string(msg.transactionId) +
-              " len=" + std::to_string(msg.payload.size()));
+    pushTrace(true, typeStr, summary);
+    pendingTraceSummary_.erase(msg.transactionId);
     return true;  // в симуляции транспорт не нужен
 }
 

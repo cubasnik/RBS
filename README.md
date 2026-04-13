@@ -50,7 +50,7 @@
 cd /mnt/c/Users/Alexey/Desktop/min/vNE/RBS/RBS
 
 # 3) База API
-BASE="http://127.0.0.1:8080/api/v1"
+BASE="http://127.0.0.1:8181/api/v1"
 
 # 4) Базовые запросы
 ./tools/rbs_api.sh "$BASE/status"
@@ -163,13 +163,13 @@ bsc_port = 3002
 Для REST желательно в `[api]`:
 ```ini
 bind = 0.0.0.0
-port = 8080
+port = 8181
 ```
 
 Запросы REST выполняйте по адресу RBS (пример: `10.10.10.2`):
 ```bash
-./tools/rbs_api.sh "http://10.10.10.2:8080/api/v1/status"
-./tools/rbs_api.sh "http://10.10.10.2:8080/api/v1/links/abis/health"
+./tools/rbs_api.sh "http://10.10.10.2:8181/api/v1/status"
+./tools/rbs_api.sh "http://10.10.10.2:8181/api/v1/links/abis/health"
 ```
 
 ---
@@ -179,21 +179,28 @@ port = 8080
 Программа построена по **многоуровневой (layered) архитектуре**, где каждый уровень зависит только от уровня ниже:
 
 ```
-┌─────────────────────────────────────────────────┐
-│               RadioBaseStation                  │  ← main.cpp
-├──────────────┬──────────────┬───────────────────┤
-│  GSMStack    │  UMTSStack   │    LTEStack        │  ← Стеки RAT
-├──────────────┼──────────────┼───────────────────┤
-│  GSM MAC     │  UMTS MAC    │  LTE MAC + PDCP    │  ← Протокол MAC/PDCP
-├──────────────┼──────────────┼───────────────────┤
-│  GSM PHY     │  UMTS PHY   │    LTE PHY         │  ← Физический уровень
-├──────────────┴──────────────┴───────────────────┤
-│           HAL — IRFHardware / RFHardware        │  ← Железо (симуляция)
-├─────────────────────────────────────────────────┤
-│           Common — types, logger, config        │  ← Общие утилиты
-└─────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────┐
+│                         RadioBaseStation                          │  ← main.cpp
+├──────────────┬──────────────┬──────────────┬──────────────────────┤
+│   GSMStack   │   UMTSStack  │   LTEStack   │       NRStack        │  ← RAT стеки
+├──────────────┼──────────────┼──────────────┼──────────────────────┤
+│   GSM MAC    │   UMTS MAC   │ LTE MAC+PDCP │   NR MAC+SDAP+PDCP   │  ← MAC/PDCP/SDAP
+├──────────────┼──────────────┼──────────────┼──────────────────────┤
+│   GSM PHY    │   UMTS PHY   │   LTE PHY    │       NR PHY         │  ← Физический уровень
+├──────────────┴──────────────┴──────────────┴──────────────────────┤
+│ EN-DC NSA coordinator (X2AP): LTE(MN) ↔ NR(SN), Option 3/3a/3x    │
+├────────────────────────────────────────────────────────────────────┤
+│                  HAL — IRFHardware / RFHardware                   │  ← Железо (симуляция)
+├────────────────────────────────────────────────────────────────────┤
+│                  Common — types, logger, config                   │  ← Общие утилиты
+└────────────────────────────────────────────────────────────────────┘
          ↕ OMS (глобальный синглтон)
 ```
+
+Поддержка NSA 5G реализована через EN-DC (TS 37.340):
+- Option 3  (`OPTION_3`)  — split-bearer, PDCP на MN (LTE)
+- Option 3a (`OPTION_3A`) — SCG bearer, трафик через NR
+- Option 3x (`OPTION_3X`) — split-bearer, PDCP на SN (NR)
 
 Каждый RAT работает в **собственном потоке (std::thread)**, управляя тактовыми циклами независимо:
 
@@ -883,7 +890,7 @@ mme_port = 36412
 Класс `RestServer` (модуль `rbs_api`) запускается в фоновом потоке и предоставляет JSON-интерфейс к OMS.
 
 ```cpp
-RestServer srv(8080);
+RestServer srv(8181);
 srv.start();           // неблокирующий запуск
 srv.stop();
 ```
@@ -932,6 +939,9 @@ srv.stop();
 {
   "version": "1.0.0",
   "nodeState": "UNLOCKED",
+  "nodeAddr": "0.0.0.0",
+  "restAddr": "0.0.0.0:8181",
+  "promAddr": "0.0.0.0:9090",
   "rats": ["GSM","UMTS","LTE","NR"],
   "endcEnabled": true,
   "endcOption": "3a",
@@ -1007,7 +1017,7 @@ RadioBaseStation(configPath, mode)         ← mode: GSM | UMTS | LTE | NR | ALL
  ├── if LTE/ALL:  RFHardware(2Tx,4Rx) + LTEStack
  ├── if NR/ALL:   RFHardware(4Tx,4Rx) + NRStack    ← SCS 30 кГц, SSB период 20 мс
  ├── setAlarmCallback() → OMS              ← аппаратные аварии
- ├── RestServer(8080).start()              ← REST API / Web Dashboard (п.18)
+ ├── RestServer(8181).start()              ← REST API / Web Dashboard (п.18)
  │
  ├── start()
  │   ├── OMS → UNLOCKED
@@ -1518,7 +1528,7 @@ nr->releaseUE(nrCrnti);
 
 ### REST API использование
 
-REST-сервер запускается автоматически на порту **8080** (локальный биндинг `127.0.0.1`).
+REST-сервер запускается автоматически на порту **8181** (биндинг `0.0.0.0`, через `[api] bind` + `[node] node_addr` в rbs.conf).
 
 #### WSL one-page (полная шпаргалка, copy-paste)
 
@@ -1527,7 +1537,7 @@ REST-сервер запускается автоматически на пор�
 
 ```bash
 # База
-BASE="http://127.0.0.1:8080/api/v1"
+BASE="http://127.0.0.1:8181/api/v1"
 
 # -----------------------------
 # 1) Общие endpoint'ы
@@ -1685,6 +1695,15 @@ done
 #   bsc_addr=127.0.0.1
 ./tools/abis_d1_mock_smoke.sh "$BASE"
 
+# Real interop smoke с внешним Osmocom BSC (без mock)
+# Параметры: BASE EXPECTED_BSC_IP EXPECTED_BSC_PORT CONNECT_TIMEOUT_SEC TRAFFIC_WAIT_SEC
+# Пример для стенда с BSC=10.10.10.1 и RBS API=10.10.10.2:8181
+./tools/abis_osmocom_interop_smoke.sh "http://10.10.10.2:8181/api/v1" 10.10.10.1 3002 12 2
+
+# Interop smoke + сохранение артефактов (health_before/after, trace, summary.json → artifacts/)
+# Параметр 6: целевая папка для артефактов (по умолчанию artifacts/)
+./tools/abis_interop_report.sh "http://10.10.10.2:8181/api/v1" 10.10.10.1 3002 12 2 artifacts
+
 # Smoke-test inject по всем доступным процедурам
 ./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"OML:OPSTART"}'
 ./tools/rbs_api.sh "$BASE/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION"}'
@@ -1728,65 +1747,65 @@ done
 
 ```bash
 # Список всех интерфейсов и их состояние:
-# curl http://127.0.0.1:8080/api/v1/links
+# curl http://127.0.0.1:8181/api/v1/links
 
 # Трасса последних 10 PDU на S1:
-# curl 'http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10'
+# curl 'http://127.0.0.1:8181/api/v1/links/s1/trace?limit=10'
 
 # Поднять Iub вручную (если rnc_addr прописан в rbs.conf):
-# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/connect
+# curl -X POST http://127.0.0.1:8181/api/v1/links/iub/connect
 
 # Инжектировать S1 Setup Request:
-# curl -X POST http://127.0.0.1:8080/api/v1/links/s1/inject \
+# curl -X POST http://127.0.0.1:8181/api/v1/links/s1/inject \
 #      -H 'Content-Type: application/json' \
 #      -d '{"procedure":"S1AP:S1_SETUP"}'
 
 # Список доступных процедур для Abis:
-# curl http://127.0.0.1:8080/api/v1/links/abis/inject
+# curl http://127.0.0.1:8181/api/v1/links/abis/inject
 # → {"procedures":["OML:OPSTART","RSL:CHANNEL_ACTIVATION","RSL:CHANNEL_RELEASE","RSL:PAGING_CMD"]}
 
 # Заблокировать NBAP Reset на Iub:
-# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/block \
+# curl -X POST http://127.0.0.1:8181/api/v1/links/iub/block \
 #      -H 'Content-Type: application/json' \
 #      -d '{"type":"NBAP:RESET"}'
 
 # Снять блокировку:
-# curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
+# curl -X POST http://127.0.0.1:8181/api/v1/links/iub/unblock \
 #      -H 'Content-Type: application/json' \
 #      -d '{"type":"NBAP:RESET"}'
 ```
 
 Имена интерфейсов: `abis` (GSM), `iub` (UMTS), `s1` (LTE).
 
-> **Windows:** `curl` из PowerShell/cmd — это псевдоним `Invoke-WebRequest`, который не совместим с ключами `-X`, `-H`, `-d`.
+> **Windows / WSL2:** `curl` из PowerShell/cmd — это псевдоним `Invoke-WebRequest`, не совместимый с ключами `-X`, `-H`, `-d`.
 > Для работы с REST API используйте **WSL** (Windows Subsystem for Linux):
 > ```powershell
 > # Активировать среду WSL и перейти в неё:
 > wsl
 > ```
 > Все примеры ниже выполняются **внутри WSL-сессии** (bash/zsh).
-> Если в вашей WSL2/NAT-конфигурации `curl http://127.0.0.1:8080/...` не проходит,
-> используйте вызов через Windows-стек прямо из WSL:
-> ```bash
-> powershell.exe -NoProfile -Command "Invoke-RestMethod http://127.0.0.1:8080/api/v1/status | ConvertTo-Json -Compress"
+>
+> **Рекомендуемый способ**: включите `networkingMode=mirrored` для WSL2 и
+> `curl http://127.0.0.1:8181/...` будет работать напрямую:
+> ```ini
+> # ~/.wslconfig (создать или дополнить, затем wsl --shutdown)
+> [wsl2]
+> networkingMode=mirrored
 > ```
-> Альтернативно — установить `curl.exe` отдельно или использовать Postman / [Invoke-RestMethod](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/invoke-restmethod) в PowerShell:
-> ```powershell
-> Invoke-RestMethod http://127.0.0.1:8080/api/v1/status
-> ```
+> После `wsl --shutdown` и повторного запуска WSL `127.0.0.1` совпадает с Windows-хостом.
 
-Для более удобного цветного вывода в WSL используйте helper-скрипт:
+Для более удобного цветного вывода в WSL используйте helper-скрипт (`tools/rbs_api.sh` использует `curl` напрямую, PowerShell не требуется):
 ```bash
-./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links
-./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10
-./tools/rbs_api.sh http://127.0.0.1:8080/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
+./tools/rbs_api.sh http://127.0.0.1:8181/api/v1/links
+./tools/rbs_api.sh http://127.0.0.1:8181/api/v1/links/s1/trace?limit=10
+./tools/rbs_api.sh http://127.0.0.1:8181/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
 ```
 
 Для PowerShell доступен аналогичный helper с цветным форматированием:
 ```powershell
-.\tools\rbs_api.ps1 http://127.0.0.1:8080/api/v1/links
-.\tools\rbs_api.ps1 "http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10"
-.\tools\rbs_api.ps1 http://127.0.0.1:8080/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/links
+.\tools\rbs_api.ps1 "http://127.0.0.1:8181/api/v1/links/s1/trace?limit=10"
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/links/s1/inject POST '{"procedure":"S1AP:S1_SETUP"}'
 
 # Короткие алиасы без URL:
 .\tools\rbs_api.ps1 links
@@ -1796,25 +1815,22 @@ done
 
 ```bash
 # Статус узла:
-curl http://127.0.0.1:8080/api/v1/status
-# → {"version":"1.0.0","nodeState":"UNLOCKED","rats":["GSM","UMTS","LTE","NR"]}
+curl http://127.0.0.1:8181/api/v1/status
+# → {"version":"1.0.0","nodeState":"UNLOCKED","nodeAddr":"0.0.0.0","restAddr":"0.0.0.0:8181","rats":["GSM","UMTS","LTE","NR"]}
 
 # PM счётчики (все OMS):
-curl http://127.0.0.1:8080/api/v1/pm
+curl http://127.0.0.1:8181/api/v1/pm
 # → {"counters":[{"name":"lte.connectedUEs","value":3},{"name":"lte.rrc.successRate.pct","value":100},...]}
 
 # Активные аварии:
-curl http://127.0.0.1:8080/api/v1/alarms
+curl http://127.0.0.1:8181/api/v1/alarms
 # → {"alarms":[{"id":1,"source":"RFHardware","description":"PA overheat","severity":"MAJOR"}]}
 
 # Подключить UE (rat: GSM | UMTS | LTE | NR):
-curl -X POST http://127.0.0.1:8080/api/v1/admit \
+curl -X POST http://127.0.0.1:8181/api/v1/admit \
      -H "Content-Type: application/json" \
      -d '{"imsi": 300000000000003, "rat": "LTE"}'
 # → {"status":"ok","crnti":101}
-
-# Helper для WSL2/NAT, если обычный curl не достаёт Windows localhost:
-rbs_api () { powershell.exe -NoProfile -Command "Invoke-RestMethod '$1' | ConvertTo-Json -Depth 6 -Compress"; }
 ```
 
 #### Быстрая проверка интерфейсов
@@ -1825,36 +1841,36 @@ rbs_api () { powershell.exe -NoProfile -Command "Invoke-RestMethod '$1' | Conver
 ```bash
 # ABIS (GSM)
 # Windows: .\build\Release\rbs_node.exe rbs.conf gsm
-rbs_api "http://127.0.0.1:8080/api/v1/links"
-rbs_api "http://127.0.0.1:8080/api/v1/links/abis/inject"
-rbs_api "http://127.0.0.1:8080/api/v1/links/abis/trace?limit=10"
+rbs_api "http://127.0.0.1:8181/api/v1/links"
+rbs_api "http://127.0.0.1:8181/api/v1/links/abis/inject"
+rbs_api "http://127.0.0.1:8181/api/v1/links/abis/trace?limit=10"
 
 # IUB (UMTS)
 # Windows: .\build\Release\rbs_node.exe rbs.conf umts
-rbs_api "http://127.0.0.1:8080/api/v1/links/iub/inject"
-rbs_api "http://127.0.0.1:8080/api/v1/links/iub/trace?limit=10"
+rbs_api "http://127.0.0.1:8181/api/v1/links/iub/inject"
+rbs_api "http://127.0.0.1:8181/api/v1/links/iub/trace?limit=10"
 
 # S1 (LTE)
 # Windows: .\build\Release\rbs_node.exe rbs.conf lte
-rbs_api "http://127.0.0.1:8080/api/v1/links/s1/inject"
-rbs_api "http://127.0.0.1:8080/api/v1/links/s1/trace?limit=10"
+rbs_api "http://127.0.0.1:8181/api/v1/links/s1/inject"
+rbs_api "http://127.0.0.1:8181/api/v1/links/s1/trace?limit=10"
 ```
 
 ```bash
 # Block / unblock / inject examples
-curl -X POST http://127.0.0.1:8080/api/v1/links/iub/block \
+curl -X POST http://127.0.0.1:8181/api/v1/links/iub/block \
   -H 'Content-Type: application/json' \
   -d '{"type":"NBAP:RESET"}'
 
-curl -X POST http://127.0.0.1:8080/api/v1/links/iub/unblock \
+curl -X POST http://127.0.0.1:8181/api/v1/links/iub/unblock \
   -H 'Content-Type: application/json' \
   -d '{"type":"NBAP:RESET"}'
 
-curl -X POST http://127.0.0.1:8080/api/v1/links/s1/inject \
+curl -X POST http://127.0.0.1:8181/api/v1/links/s1/inject \
   -H 'Content-Type: application/json' \
   -d '{"procedure":"S1AP:S1_SETUP"}'
 
-curl -X POST http://127.0.0.1:8080/api/v1/links/abis/inject \
+curl -X POST http://127.0.0.1:8181/api/v1/links/abis/inject \
   -H 'Content-Type: application/json' \
   -d '{"procedure":"OML:OPSTART"}'
 ```
@@ -1867,6 +1883,63 @@ OMS::instance().exportCsv("pm_snapshot.csv");
 
 // Отправить в InfluxDB (UDP Line Protocol):
 OMS::instance().pushInflux("127.0.0.1:8086", "rbs_pm");
+
+**Latency Histograms (Prometheus histogram type):**
+```cpp
+// Записать наблюдение в гистограмму (bounds в µs, cumulative):
+OMS::instance().observeHistogram(
+    "perf.scheduler.tick_latency_us",
+    elapsed_us,
+    {50, 100, 200, 500, 1000, 2000, 5000, 10000, 20000}
+);
+
+// renderPrometheus() автоматически включает гистограмму:
+// # TYPE rbs_perf_scheduler_tick_latency_us histogram
+// rbs_perf_scheduler_tick_latency_us_bucket{le="500"} 1920
+// rbs_perf_scheduler_tick_latency_us_bucket{le="+Inf"} 2000
+// rbs_perf_scheduler_tick_latency_us_sum 193500.0
+// rbs_perf_scheduler_tick_latency_us_count 2000
+```
+
+**Per-interface error counters** (конвенция именования):
+```
+rbs.<rat>.<interface>.tx_errors   — ошибки TX-пути
+rbs.<rat>.<interface>.rx_errors   — ошибки RX-пути
+```
+Примеры: `rbs.lte.s1.rx_errors`, `rbs.gsm.abis.tx_errors`, `rbs.nr.ng.rx_errors`.
+
+**KPI Regression Check:**
+```bash
+# Сохранить baseline при первом «чистом» прогоне:
+python3 tools/perf_regression_check.py \
+  --baseline artifacts/baseline.json \
+  --current  artifacts/current.json \
+  --save-baseline artifacts/baseline.json
+
+# Проверить регрессию при следующем прогоне:
+python3 tools/perf_regression_check.py \
+  --baseline artifacts/baseline.json \
+  --current  artifacts/current.json \
+  --threshold 0.10 \
+  --report-json artifacts/regression_report.json
+
+# Получить current метрики напрямую из работающего Prometheus-экспортера:
+python3 tools/perf_regression_check.py \
+  --baseline artifacts/baseline.json \
+  --pm-url   http://127.0.0.1:9090/metrics
+```
+Скрипт выходит с кодом 0 (PASS) или 1 (FAIL — перечень регрессий).
+
+**Scheduler Latency Benchmark:**
+```bash
+cd build && ctest -C Debug -R test_perf_scheduler --output-on-failure
+```
+KPI budgets:
+| Метрика | Бюджет |
+|---------|--------|
+| mean tick latency | < 5 000 µs |
+| p95 tick latency  | < 15 000 µs |
+| throughput        | > 200 ticks/s |
 ```
 
 ---
@@ -1876,6 +1949,64 @@ OMS::instance().pushInflux("127.0.0.1:8086", "rbs_pm");
 ```powershell
 cd build
 ctest -C Debug --output-on-failure
+```
+
+### Smoke-скрипты (PowerShell)
+
+Быстрый E2E smoke по RAT-режимам:
+
+```powershell
+# Прогон GSM -> UMTS -> LTE
+.\tools\smoke_all_rat.ps1 -StopExisting
+
+# Оставить последний запущенный режим
+.\tools\smoke_all_rat.ps1 -StopExisting -KeepLastRunning
+
+# Оставить конкретный финальный режим
+.\tools\smoke_all_rat.ps1 -StopExisting -KeepLastRunning -FinalMode gsm
+.\tools\smoke_all_rat.ps1 -StopExisting -KeepLastRunning -FinalMode umts
+.\tools\smoke_all_rat.ps1 -StopExisting -KeepLastRunning -FinalMode lte
+
+# Прогнать только один режим
+.\tools\smoke_all_rat.ps1 -StopExisting -OnlyMode gsm
+.\tools\smoke_all_rat.ps1 -StopExisting -OnlyMode umts
+.\tools\smoke_all_rat.ps1 -StopExisting -OnlyMode lte
+```
+
+Проверка EN-DC NSA Option `3 / 3a / 3x` по очереди:
+
+```powershell
+# Меняет [endc].option, запускает RBS, проверяет /api/v1/status,
+# затем восстанавливает исходный rbs.conf
+.\tools\check_endc_options.ps1 -StopExisting
+
+# После проверки оставить rbs_node запущенным
+.\tools\check_endc_options.ps1 -StopExisting -KeepRunning
+```
+
+Примечания:
+- Для ручного запуска узла используйте `Release`-сборку: `.\build\Release\rbs_node.exe rbs.conf`.
+- `-OnlyMode` и `-FinalMode` в `smoke_all_rat.ps1` взаимоисключающие.
+
+#### Troubleshooting (быстро)
+
+Если `rbs_node` завершается с `Exit Code: 1`:
+
+```powershell
+# 1) Используйте Release-бинарь
+.\build\Release\rbs_node.exe rbs.conf
+
+# 2) Остановите зависшие процессы
+Get-Process rbs_node -ErrorAction SilentlyContinue | Stop-Process -Force
+
+# 3) Запустите smoke с авто-очисткой
+.\tools\smoke_all_rat.ps1 -StopExisting
+```
+
+Если PowerShell блокирует запуск скрипта:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\smoke_all_rat.ps1 -StopExisting
 ```
 
 | Тест                    | Что проверяет                                                   |
@@ -1921,8 +2052,10 @@ ctest -C Debug --output-on-failure
 | `test_f1ap_codec`       | F1AP: F1 Setup Request/Response/Failure encode/decode, NRStack F1 flow |
 | `test_rest_api`         | HTTP REST API: GET /status /pm /alarms, POST /admit, JSON-схема, Content-Type |
 | `test_endc`             | EN-DC NSA Option 3/3a/3x: SgNB Add/Ack/Reject/Mod/Release, SCG bearer, NR C-RNTI |
+| `test_perf_scheduler`   | Benchmark latency DL/UL PF-scheduler (50 UEs, 2 000 ticks), KPI: mean/p95/fps  |
+| `test_perf_oms`         | OMS histogram API, Prometheus bucket rendering, per-interface error counters, KPI threshold auto-alarm |
 
-Все **43 теста** проходят за ~8 с.
+Все **45 тестов** проходят за ~10 с.
 
 ---
 
@@ -1983,6 +2116,30 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 ```
 
 Уровень логирования задаётся в `rbs.conf` → секция `[logging]` → ключ `level`.
+
+### Цветовое оформление консоли
+
+Консольный вывод использует ANSI 256-color escape-коды (терминалы Linux/macOS/Windows Terminal/WSL):
+
+| Уровень | Цвет текста | Фон строки |
+|---------|-------------|-----------|
+| `DBG` | серый (dim) | — |
+| `INFO` | зелёный (bright) | — |
+| `WARNING` | жёлтый (bold) | жёлтый фон (`\033[43m`) |
+| `ERR` | красный (bold) | красный фон (`\033[41m`) |
+| `CRITICAL` | белый (bold) | красный фон (`\033[41m`) |
+
+Тег `[component]` окрашивается по протоколу/RAT:
+
+| Компонент | Цвет |
+|-----------|------|
+| `GSM`, `ABIS`, `OML`, `RSL` | зелёный |
+| `UMTS`, `NBAP`, `IUB` | голубой (cyan) |
+| `LTE`, `LTEMAC`, `S1AP`, `X2AP` | ярко-синий |
+| `NR`, `F1AP`, `NGAP`, `XNAP` | пурпурный (magenta) |
+| `OMS` | оранжевый |
+| `HAL` | тёмно-серый |
+| `RBS` | белый |
 
 ---
 

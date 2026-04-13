@@ -17,6 +17,7 @@ struct XnAPMessage {
     uint64_t sourceGnbId = 0;
     uint64_t targetGnbId = 0;
     ByteBuffer payload;
+    std::string traceId;
 };
 
 class XnAPLink {

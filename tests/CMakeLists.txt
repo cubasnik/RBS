@@ -246,7 +246,7 @@ add_test(NAME test_xnap COMMAND test_xnap)
 
 # ── test_ng_xn_transport (p.29) ─────────────────────────────────
 add_executable(test_ng_xn_transport test_ng_xn_transport.cpp)
-target_link_libraries(test_ng_xn_transport PRIVATE rbs_nr)
+target_link_libraries(test_ng_xn_transport PRIVATE rbs_nr rbs_oms)
 add_test(NAME test_ng_xn_transport COMMAND test_ng_xn_transport)
 
 # ── test_rest_api ─────────────────────────────────────────────────
@@ -278,3 +278,13 @@ add_test(NAME test_volte COMMAND test_volte)
 add_executable(test_multi_cell test_multi_cell.cpp)
 target_link_libraries(test_multi_cell PRIVATE rbs_lte rbs_oms)
 add_test(NAME test_multi_cell COMMAND test_multi_cell)
+
+# ── test_perf_scheduler (п.32) ───────────────────────────────────
+add_executable(test_perf_scheduler test_perf_scheduler.cpp)
+target_link_libraries(test_perf_scheduler PRIVATE rbs_lte rbs_oms)
+add_test(NAME test_perf_scheduler COMMAND test_perf_scheduler)
+
+# ── test_perf_oms (п.32) ─────────────────────────────────────────
+add_executable(test_perf_oms test_perf_oms.cpp)
+target_link_libraries(test_perf_oms PRIVATE rbs_oms)
+add_test(NAME test_perf_oms COMMAND test_perf_oms)

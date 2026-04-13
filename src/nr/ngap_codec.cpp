@@ -236,6 +236,8 @@ ByteBuffer encodeUeContextReleaseCommand(const UeContextReleaseCommand& cmd) {
     pushU16(buffer, cmd.ranUeNgapId);
     pushU8(buffer, cmd.causeType);
     pushU8(buffer, cmd.causeValue);
+    pushU8(buffer, cmd.releaseAction);
+    pushBytes(buffer, cmd.contextInfo);
     return buffer;
 }
 
@@ -249,6 +251,12 @@ bool decodeUeContextReleaseCommand(const ByteBuffer& pdu, UeContextReleaseComman
     out.ranUeNgapId = reader.u16();
     out.causeType = reader.u8();
     out.causeValue = reader.u8();
+    if (reader.position < pdu.size()) {
+        out.releaseAction = reader.u8();
+    }
+    if (reader.position < pdu.size()) {
+        out.contextInfo = reader.bytes();
+    }
     return reader.ok;
 }
 
@@ -258,6 +266,7 @@ ByteBuffer encodeUeContextReleaseComplete(const UeContextReleaseComplete& comple
     pushU16(buffer, complete.transactionId);
     pushU64(buffer, complete.amfUeNgapId);
     pushU16(buffer, complete.ranUeNgapId);
+    pushBytes(buffer, complete.releaseReport);
     return buffer;
 }
 
@@ -269,6 +278,39 @@ bool decodeUeContextReleaseComplete(const ByteBuffer& pdu, UeContextReleaseCompl
     out.transactionId = reader.u16();
     out.amfUeNgapId = reader.u64();
     out.ranUeNgapId = reader.u16();
+    if (reader.position < pdu.size()) {
+        out.releaseReport = reader.bytes();
+    }
+    return reader.ok;
+}
+
+ByteBuffer encodePagingMessage(const PagingMessage& paging) {
+    ByteBuffer buffer;
+    pushHeader(buffer, NgapProcedure::PAGING);
+    pushU16(buffer, paging.transactionId);
+    pushU64(buffer, paging.uePagingIdentity);
+    pushU32(buffer, paging.fivegTmsi);
+    pushU16(buffer, paging.tac);
+    pushU16(buffer, paging.mcc);
+    pushU16(buffer, paging.mnc);
+    pushU8(buffer, paging.pagingPriority);
+    pushU16(buffer, paging.drxCycle);
+    return buffer;
+}
+
+bool decodePagingMessage(const ByteBuffer& pdu, PagingMessage& out) {
+    Reader reader{pdu};
+    if (!checkHeader(reader, NgapProcedure::PAGING)) {
+        return false;
+    }
+    out.transactionId = reader.u16();
+    out.uePagingIdentity = reader.u64();
+    out.fivegTmsi = reader.u32();
+    out.tac = reader.u16();
+    out.mcc = reader.u16();
+    out.mnc = reader.u16();
+    out.pagingPriority = reader.u8();
+    out.drxCycle = reader.u16();
     return reader.ok;
 }
 

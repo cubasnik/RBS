@@ -32,6 +32,31 @@
 └─────────────────────────────────────────────────┘
 ```
 
+### Контекст в общей архитектуре RBS (Multi-RAT + NSA 5G)
+
+```
+┌────────────────────────────────────────────────────────────────────┐
+│                         RadioBaseStation                          │  ← main.cpp
+├──────────────┬──────────────┬──────────────┬──────────────────────┤
+│   GSMStack   │   UMTSStack  │   LTEStack   │       NRStack        │  ← RAT стеки
+├──────────────┼──────────────┼──────────────┼──────────────────────┤
+│   GSM MAC    │   UMTS MAC   │ LTE MAC+PDCP │   NR MAC+SDAP+PDCP   │
+├──────────────┼──────────────┼──────────────┼──────────────────────┤
+│   GSM PHY    │   UMTS PHY   │   LTE PHY    │       NR PHY         │
+├──────────────┴──────────────┴──────────────┴──────────────────────┤
+│ EN-DC NSA coordinator (X2AP): LTE(MN) ↔ NR(SN), Option 3/3a/3x    │
+├────────────────────────────────────────────────────────────────────┤
+│                  HAL — IRFHardware / RFHardware                   │
+├────────────────────────────────────────────────────────────────────┤
+│                  Common — types, logger, config                   │
+└────────────────────────────────────────────────────────────────────┘
+```
+
+NSA 5G в RBS поддерживается через EN-DC (TS 37.340):
+- Option 3  (`OPTION_3`)  — split-bearer, PDCP на MN (LTE)
+- Option 3a (`OPTION_3A`) — SCG bearer, трафик через NR
+- Option 3x (`OPTION_3X`) — split-bearer, PDCP на SN (NR)
+
 ---
 
 ## Files Created
@@ -189,198 +214,81 @@ cd build && ctest -C Debug
 
 ---
 
-## Abis Expansion Options (Roadmap)
+## Abis Expansion Options (Implementation Summary)
 
-Ниже практичные варианты расширения Abis-соединения от минимального к production-like.
+Все основные опции расширения Abis-соединения реализованы.
 
-### Option A: Config-gated TCP/IPA (минимальный риск)
-- Что сделать:
-   - Добавить флаг в `rbs.conf`, например `abis_transport = sim|ipa_tcp`.
-   - В `AbisOml::connect()` переключать `useRealTransport_` по флагу, а не по ручному редактированию кода.
-- Плюсы:
-   - Нулевая ломка текущих тестов.
-   - Быстрый switch между simulation и реальным транспортом.
-- Минусы:
-   - Нет активного reconnect/backoff.
+### Реализованные опции
 
-Статус: реализовано.
+| Опция | Описание | Статус |
+|-------|---------|--------|
+| **A** | Config-gated TCP/IPA: флаг abis_transport в rbs.conf → switch sim↔ipa_tcp | ✅ DONE |
+| **B** | Managed reconnect: backoff 1s→2s→5s→10s при обрыве TCP | ✅ DONE |
+| **B+** | Health state: REST /api/v1/links/abis/health (UP/DEGRADED/DOWN) + monitor | ✅ DONE |
+| **B++** | Keepalive probe: авто-отправка OML ping при stale RX, conf params | ✅ DONE |
+| **C** | OML/RSL split по IPA: msgFilter 0x00/0x01, REST inject/list процедур | ✅ DONE |
+| **C.1** | Параметризованный RSL inject: chanNr, entity, payload в POST body | ✅ DONE |
+| **D** | Interop profile (osmocom-first): конфиг abis_interop_profile, golden тесты | ✅ DONE |
+| **D.1** | Mock-BSC (Python): tools/mock_bsc_ipa.py, e2e abis_d1_mock_smoke.sh | ✅ DONE |
 
-### Option B: Managed reconnect + health state
-- Что сделать:
-   - Добавить `backoff` (1s/2s/5s/10s) при обрыве TCP.
-   - Добавить heartbeat/keepalive-логику для IPA (или периодический OML ping/OPSTART check).
-   - Экспортировать health в REST (например, lastRxMs, reconnectAttempts).
-- Плюсы:
-   - Стабильнее при нестабильной сети.
-   - Легче мониторить состояние линка.
-- Минусы:
-   - Нужна аккуратная синхронизация потоков RX/TX.
+### Краткое резюме реализации
 
-Статус: частично реализовано.
+1. Транспорт выбирается конфигом `abis_transport = sim | ipa_tcp` (default: `sim`).
+2. Для `ipa_tcp` есть reconnect backoff `1s→2s→5s→10s` и keepalive probe.
+3. Health доступен в `GET /api/v1/links/abis/health` (`UP/DEGRADED/DOWN` + counters).
+4. OML/RSL split реализован: `msgFilter 0x00/0x01`, inject-процедуры и параметризованный RSL inject.
+5. Interop baseline закрыт: `abis_interop_profile`, golden tests, mock-BSC smoke.
 
-Реализовано в коде:
-- reconnect backoff: `1s -> 2s -> 5s -> 10s` для `ipa_tcp` при неуспешных connect.
-- health в REST `/api/v1/links` для `abis`:
-   - `mode` (`sim` | `ipa_tcp`)
-    - `healthStatus` (`UP` | `DEGRADED` | `DOWN`)
-   - `reconnectAttempts`
-   - `lastRxEpochMs`
-   - `lastConnectEpochMs`
-   - `lastConnectAttemptEpochMs`
-   - `nextReconnectEpochMs`
-    - `heartbeatIntervalMs`
-    - `staleRxMs`
-- endpoint: `GET /api/v1/links/{name}/health`
+### Автоматизация smoke-проверок
 
-Статус B+: реализовано.
+Для быстрого прогона используйте готовые PowerShell-скрипты:
 
-Реализовано в B+:
-- Фоновый health-monitor для `ipa_tcp`.
-- Авто-обновление `healthStatus`:
-   - `UP`: транспорт активен и RX не stale.
-   - `DEGRADED`: транспорт активен, но нет RX дольше `abis_rx_stale_ms`.
-   - `DOWN`: TCP сокет недоступен.
-- Конфиг таймингов:
-   - `abis_hb_interval_ms` (по умолчанию 1000)
-   - `abis_rx_stale_ms` (по умолчанию 10000)
+```powershell
+# Full smoke: GSM -> UMTS -> LTE
+.\tools\smoke_all_rat.ps1 -StopExisting
 
-Статус B++: реализовано.
+# Только GSM (Abis)
+.\tools\smoke_all_rat.ps1 -StopExisting -OnlyMode gsm
 
-Реализовано в B++:
-- Активный keepalive probe в `ipa_tcp`:
-   - при отсутствии RX дольше `abis_keepalive_idle_ms` отправляется probe `OML:GET_BTS_ATTR`.
-- Добавлены health-метрики:
-   - `keepaliveEnabled`, `keepaliveIdleMs`, `keepaliveTxCount`, `keepaliveFailCount`, `lastKeepaliveTxEpochMs`.
-- Конфиг keepalive:
-   - `abis_keepalive_enabled` (по умолчанию `true`)
-   - `abis_keepalive_idle_ms` (по умолчанию `3000`)
+# Оставить выбранный режим после прогона
+.\tools\smoke_all_rat.ps1 -StopExisting -KeepLastRunning -FinalMode gsm
 
-Короткий smoke-сценарий B++ через REST:
-
-```bash
-# WSL, из корня репозитория
-./tools/abis_bpp_smoke.sh
-
-# Или с явной базой API и ожиданием после reconnect
-./tools/abis_bpp_smoke.sh "http://127.0.0.1:8080/api/v1" 3
+# Проверка EN-DC Option 3 / 3a / 3x
+.\tools\check_endc_options.ps1 -StopExisting
 ```
 
-Скрипт выполняет:
-- чтение `/api/v1/links/abis/health` до reconnect,
-- `disconnect` + `connect`,
-- повторное чтение health,
-- вывод delta по `keepaliveTxCount` и `keepaliveFailCount`.
+Скрипты:
+- `tools/smoke_all_rat.ps1` — общий smoke по RAT-режимам.
+- `tools/check_endc_options.ps1` — автопроверка EN-DC option-переключения через `rbs.conf` + `/api/v1/status`.
 
-### Option C: Full OML/RSL over IPA split
-- Что сделать:
-   - Разделить OML и RSL каналы поверх IPA (разные msgFilter/msgType, отдельные обработчики).
-   - Добавить явный mapping процедуры к channel discriminator.
-   - Расширить REST inject/list под RSL процедуры.
-- Плюсы:
-   - Ближе к реальным BSC сценариям.
-   - Готовность к interop c внешним стеком.
-- Минусы:
-   - Нужен дополнительный набор тестов и trace-фильтров.
+### Troubleshooting (быстро)
 
-Статус Option C: baseline реализован.
+Если `rbs_node` завершается с `Exit Code: 1`:
 
-Реализовано в Option C baseline:
-- Разделение OML/RSL в `ipa_tcp` по `msgFilter`:
-   - `0x00` -> OML,
-   - `0x01` -> RSL.
-- Для `abis` расширен REST inject/list:
-   - `OML:OPSTART`,
-   - `RSL:CHANNEL_ACTIVATION`,
-   - `RSL:CHANNEL_RELEASE`,
-   - `RSL:PAGING_CMD`.
-- Добавлен mapping RSL inject-процедур на channel discriminator (базовый канал `chan=1` для channel-control сценариев).
-- В health добавлены счётчики протокольных потоков:
-   - `omlTxFrames`, `omlRxFrames`, `rslTxFrames`, `rslRxFrames`.
+```powershell
+# 1) Используйте Release-бинарь
+.\build\Release\rbs_node.exe rbs.conf
 
-Option C.1 (параметризованный RSL inject): реализовано.
+# 2) Остановите зависшие процессы перед smoke
+Get-Process rbs_node -ErrorAction SilentlyContinue | Stop-Process -Force
 
-Для `POST /api/v1/links/abis/inject` поддержаны опциональные поля:
-- `chanNr` (0..255),
-- `entity` (0..255),
-- `payload` (массив байт 0..255).
-
-Пример:
-
-```bash
-./tools/rbs_api.sh "http://127.0.0.1:8080/api/v1/links/abis/inject" POST '{"procedure":"RSL:CHANNEL_ACTIVATION","chanNr":3,"entity":3,"payload":[1,0,7]}'
+# 3) Запустите smoke с авто-очисткой
+.\tools\smoke_all_rat.ps1 -StopExisting
 ```
 
-Короткий smoke-сценарий Option C.1:
+Если PowerShell блокирует запуск скриптов:
 
-```bash
-# WSL, из корня репозитория
-./tools/abis_c1_smoke.sh
-
-# С явной базой API и ожиданием после inject
-./tools/abis_c1_smoke.sh "http://127.0.0.1:8080/api/v1" 1
+```powershell
+powershell -ExecutionPolicy Bypass -File .\tools\smoke_all_rat.ps1 -StopExisting
 ```
 
-Скрипт выполняет:
-- 3 параметризованных RSL inject (`CHANNEL_ACTIVATION`, `PAGING_CMD`, `CHANNEL_RELEASE`),
-- чтение `/api/v1/links/abis/health` до и после,
-- вывод delta по `rslTxFrames` и `rslRxFrames`.
+### Будущие расширения (вне текущей реализации)
 
-### Option D: Interop profile (Osmocom-first)
-- Что сделать:
-   - Профиль совместимости для конкретного BSC (таймауты, форматирование payload).
-   - pcap golden-tests на ключевые процедуры (`OPSTART`, `SET_BTS_ATTR`, `CHANNEL_ACTIVATION`).
-   - Интеграционные тесты в CI с mock-BSC.
-- Плюсы:
-   - Predictable interop и меньше полевых сюрпризов.
-   - Быстрое расследование регрессий по pcap.
-- Минусы:
-   - Самый дорогой по времени вариант.
-
-Статус Option D: baseline реализован.
-
-Реализовано в Option D baseline:
-- Interop profile для Abis:
-   - ключ конфига `gsm.abis_interop_profile = default | osmocom`.
-   - профиль отражается в REST health как `interopProfile`.
-- Osmocom-first baseline для `ipa_tcp`:
-   - более агрессивные безопасные тайминги keepalive/health monitor при выборе `osmocom`.
-- Golden test по IPA framing ключевых процедур:
-   - `OML:OPSTART`, `OML:SET_BTS_ATTR`, `RSL:CHANNEL_ACTIVATION`.
-   - файл: `tests/test_abis_ipa_golden.cpp`.
-
-Option D.1 (mock-BSC interop smoke): реализовано.
-
-Добавлено:
-- `tools/mock_bsc_ipa.py` — минимальный mock BSC для Abis-over-IPA:
-   - принимает TCP/IPA,
-   - отвечает на OML/RSL baseline сообщения (`OPSTART_ACK`, `CHANNEL_ACTIVATION_ACK`, и т.д.),
-   - сохраняет stats в JSON.
-- `tools/abis_d1_mock_smoke.sh` — smoke-сценарий:
-   - поднимает mock BSC,
-   - делает `connect` и серию OML/RSL inject через REST,
-   - проверяет рост `omlRxFrames`/`rslRxFrames`.
-
-Запуск:
-
-```bash
-./tools/abis_d1_mock_smoke.sh "http://127.0.0.1:8080/api/v1"
-```
-
-Предусловия:
-- `rbs_node` запущен в `gsm` режиме,
-- в `rbs.conf` для `[gsm]` заданы:
-   - `abis_transport=ipa_tcp`
-   - `abis_interop_profile=osmocom`
-   - `bsc_addr=127.0.0.1`
-
-### Рекомендуемый порядок внедрения
-1. Option A
-2. Option B
-3. Option C
-4. Option D
+1. Real Osmocom BTS interop на физическом RAN.
+2. Edge-case тесты reassembly (`>65KB`, async fragmentation).
+3. Zero-copy parsing и multi-homing для отказоустойчивости.
 
 ---
-
 ## Code Stats
 
 - **New files**: 3 (tcp_socket.h/cpp, ipa.h)

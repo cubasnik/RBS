@@ -81,6 +81,18 @@ public:
     /// Radio Link Addition — add a new leg to the active set (soft HO TS 25.433 §8.1.4)
     virtual bool radioLinkAddition(RNTI rnti, uint16_t scrCode, SF sf) = 0;
 
+    /// Radio Bearer Setup over Iub/NBAP (maps RRC bearer config to dedicated NBAP procedures).
+    /// Uses RadioLink Reconfigure Prepare/Commit to apply bearer-specific transport params.
+    virtual bool radioBearerSetup(RNTI rnti,
+                                  uint8_t rbId,
+                                  uint8_t rlcMode,
+                                  uint16_t maxBitrateKbps,
+                                  bool uplinkEnabled,
+                                  bool downlinkEnabled) = 0;
+
+    /// Release previously configured bearer context on Iub side.
+    virtual bool radioBearerRelease(RNTI rnti, uint8_t rbId) = 0;
+
     /// Radio Link Deletion when a UE is released.
     virtual bool radioLinkDeletion(RNTI rnti) = 0;
 
