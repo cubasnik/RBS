@@ -29,6 +29,7 @@
 #include <vector>
 #include <functional>
 #include <algorithm>
+#include <fstream>
 
 namespace rbs::api {
 
@@ -301,8 +302,10 @@ struct RestServer::Impl {
         //   {"section":"logging","key":"level","value":"DEBUG"}
         //   {"updates":[{"section":"logging","key":"level","value":"DEBUG"},
         //               {"section":"gsm","key":"abis_keepalive_enabled","value":"false"}]}
+        //   {"dryRun":true,"updates":[...]} // validate only, no apply
         svr.Patch("/api/v1/config", [this](const httplib::Request& req, httplib::Response& res) {
             const bool reloadFromDisk = extractJsonBool(req.body, "reloadFromDisk", false);
+            const bool dryRun = extractJsonBool(req.body, "dryRun", false);
             std::string path = extractJsonStr(req.body, "path");
             if (path.empty()) {
                 std::lock_guard<std::mutex> lk(cfgCbMutex);
@@ -335,28 +338,50 @@ struct RestServer::Impl {
             bool reloaded = false;
 
             if (reloadFromDisk) {
-                if (!rbs::Config::instance().loadFile(path)) {
-                    res.status = 422;
-                    res.set_content("{\"error\":\"config reload failed\"}", "application/json");
-                    return;
+                if (dryRun) {
+                    std::ifstream f(path);
+                    if (!f.is_open()) {
+                        res.status = 422;
+                        res.set_content("{\"error\":\"config reload validation failed\",\"reason\":\"path not readable\"}", "application/json");
+                        return;
+                    }
+                } else {
+                    if (!rbs::Config::instance().loadFile(path)) {
+                        res.status = 422;
+                        res.set_content("{\"error\":\"config reload failed\"}", "application/json");
+                        return;
+                    }
                 }
                 reloaded = true;
             }
 
-            for (const auto& upd : updates) {
+            for (size_t idx = 0; idx < updates.size(); ++idx) {
+                const auto& upd = updates[idx];
+                if (upd.section.empty() || upd.key.empty()) {
+                    std::ostringstream e;
+                    e << "{\"error\":\"transaction aborted\",\"reason\":\"missing section/key\",\"updateIndex\":" << idx << "}";
+                    res.status = 422;
+                    res.set_content(e.str(), "application/json");
+                    return;
+                }
                 if (!isConfigPatchKeyAllowed(upd.section, upd.key)) {
                     std::ostringstream e;
-                    e << "{\"error\":\"config key is not allowed\",\"section\":"
-                      << jsonEscStr(upd.section) << ",\"key\":" << jsonEscStr(upd.key) << "}";
-                    res.status = 403;
+                    e << "{\"error\":\"transaction aborted\",\"reason\":\"config key is not allowed\",\"updateIndex\":" << idx
+                      << ",\"section\":" << jsonEscStr(upd.section)
+                      << ",\"key\":" << jsonEscStr(upd.key) << "}";
+                    res.status = 422;
                     res.set_content(e.str(), "application/json");
                     return;
                 }
             }
 
-            for (const auto& upd : updates) {
-                rbs::Config::instance().setString(upd.section, upd.key, upd.value);
-                patched = true;
+            if (!dryRun) {
+                for (const auto& upd : updates) {
+                    rbs::Config::instance().setString(upd.section, upd.key, upd.value);
+                    patched = true;
+                }
+            } else {
+                patched = !updates.empty();
             }
 
             if (!reloaded && !patched) {
@@ -366,22 +391,26 @@ struct RestServer::Impl {
             }
 
             std::function<void()> cb;
-            {
-                std::lock_guard<std::mutex> lk(cfgCbMutex);
-                cb = configApplyCb;
-            }
-            if (cb) cb();
+                        if (!dryRun) {
+                                {
+                                        std::lock_guard<std::mutex> lk(cfgCbMutex);
+                                        cb = configApplyCb;
+                                }
+                                if (cb) cb();
+                        }
 
             std::ostringstream j;
             j << "{"
               << "\"status\":\"ok\"," 
+                            << "\"dryRun\":" << (dryRun ? "true" : "false") << ","
               << "\"reloaded\":" << (reloaded ? "true" : "false") << ","
               << "\"patched\":" << (patched ? "true" : "false") << ","
                             << "\"appliedUpdates\":" << updates.size() << ","
               << "\"path\":" << jsonEscStr(path)
               << "}";
             res.set_content(j.str(), "application/json");
-            RBS_LOG_INFO("REST", "config patch reloaded=", reloaded, " patched=", patched, " path=", path);
+                        RBS_LOG_INFO("REST", "config patch dryRun=", dryRun, " reloaded=", reloaded,
+                                                 " patched=", patched, " updates=", updates.size(), " path=", path);
         });
 
         // ── GET /api/v1/pm ─────────────────────────────────────────────

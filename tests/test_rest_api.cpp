@@ -273,7 +273,61 @@ static void test_config_patch_rejects_non_whitelisted_key() {
         R"({"updates":[{"section":"nr","key":"cell_id","value":"123"}]})",
         "application/json");
     CHECK(res != nullptr);
-    CHECK(res && res->status == 403);
+    CHECK(res && res->status == 422);
+}
+
+static void test_config_patch_dry_run_does_not_apply() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+
+    // Set baseline value first (real apply).
+    auto setBase = cli.Patch(
+        "/api/v1/config",
+        R"({"section":"logging","key":"level","value":"INFO"})",
+        "application/json");
+    CHECK(setBase != nullptr);
+    CHECK(setBase && setBase->status == 200);
+    CHECK(rbs::Config::instance().getString("logging", "level", "") == "INFO");
+
+    // Dry-run should validate but not mutate runtime config.
+    auto dry = cli.Patch(
+        "/api/v1/config",
+        R"({"dryRun":true,"updates":[{"section":"logging","key":"level","value":"DEBUG"},{"section":"gsm","key":"abis_keepalive_enabled","value":"true"}]})",
+        "application/json");
+    CHECK(dry != nullptr);
+    CHECK(dry && dry->status == 200);
+    if (dry) {
+        CHECK(contains(dry->body, "\"dryRun\":true"));
+        CHECK(contains(dry->body, "\"appliedUpdates\":2"));
+    }
+    CHECK(rbs::Config::instance().getString("logging", "level", "") == "INFO");
+}
+
+static void test_config_patch_all_or_nothing_error_index() {
+    httplib::Client cli("127.0.0.1", gPort);
+    cli.set_connection_timeout(2, 0);
+
+    // Baseline
+    auto setBase = cli.Patch(
+        "/api/v1/config",
+        R"({"section":"logging","key":"level","value":"INFO"})",
+        "application/json");
+    CHECK(setBase != nullptr);
+    CHECK(setBase && setBase->status == 200);
+
+    // 2nd update is forbidden -> whole transaction must fail with index=1.
+    auto tx = cli.Patch(
+        "/api/v1/config",
+        R"({"updates":[{"section":"logging","key":"level","value":"WARNING"},{"section":"nr","key":"cell_id","value":"123"}]})",
+        "application/json");
+    CHECK(tx != nullptr);
+    CHECK(tx && tx->status == 422);
+    if (tx) {
+        CHECK(contains(tx->body, "transaction aborted"));
+        CHECK(contains(tx->body, "\"updateIndex\":1"));
+    }
+    // First update must not be applied (all-or-nothing).
+    CHECK(rbs::Config::instance().getString("logging", "level", "") == "INFO");
 }
 
 // ── main ─────────────────────────────────────────────────────────────────────
@@ -309,6 +363,8 @@ int main() {
     test_config_patch_rejects_empty_request();
     test_config_patch_batch_updates();
     test_config_patch_rejects_non_whitelisted_key();
+    test_config_patch_dry_run_does_not_apply();
+    test_config_patch_all_or_nothing_error_index();
 
     server.stop();
 
