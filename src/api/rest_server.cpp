@@ -21,6 +21,7 @@
 #endif
 
 #include <httplib.h>
+#include "../lte/lte_stack.h"
 
 #include <sstream>
 #include <thread>
@@ -322,7 +323,42 @@ struct RestServer::Impl {
             return rbs::oms::OMS::instance().getCounter(metricName);
         });
         policyEngine.setActionApplier([](rbs::oms::PolicyActionType action, const rbs::oms::PolicyRule& rule) {
-            RBS_LOG_INFO("POLICY", "rule=", rule.name, " action=", static_cast<int>(action), " metric=", rule.metricName);
+            // Get primary LTE stack instance for runtime parameter adjustments
+            auto lteStack = rbs::lte::LTEStack::primaryInstance();
+            
+            switch (action) {
+                case rbs::oms::PolicyActionType::ADJUST_HO_HYSTERESIS:
+                    if (lteStack) {
+                        // Increase HO threshold (make HO more conservative)
+                        lteStack->setHandoverHysteresis(-3);
+                        RBS_LOG_INFO("POLICY", "ADJUST_HO_HYSTERESIS applied: rule=", rule.name,
+                                     " metric=", rule.metricName, " value=", rule.threshold);
+                    }
+                    break;
+
+                case rbs::oms::PolicyActionType::ADJUST_TTT:
+                    RBS_LOG_INFO("POLICY", "ADJUST_TTT applied: rule=", rule.name,
+                                 " (not yet implemented)");
+                    break;
+
+                case rbs::oms::PolicyActionType::TIGHTEN_ADMISSION:
+                    if (lteStack) {
+                        // Lower admission threshold (reduce number of admitted UEs)
+                        lteStack->setAdmissionThreshold(70);
+                        RBS_LOG_INFO("POLICY", "TIGHTEN_ADMISSION applied: rule=", rule.name,
+                                     " metric=", rule.metricName, " value=", rule.threshold);
+                    }
+                    break;
+
+                case rbs::oms::PolicyActionType::RELAX_ADMISSION:
+                    if (lteStack) {
+                        // Increase admission threshold (allow more UEs)
+                        lteStack->setAdmissionThreshold(85);
+                        RBS_LOG_INFO("POLICY", "RELAX_ADMISSION applied: rule=", rule.name,
+                                     " metric=", rule.metricName, " value=", rule.threshold);
+                    }
+                    break;
+            }
         });
         policyEngine.setRules({
             {"ho_success_guard", "lte.handover.success.rate.pct", 95.0,

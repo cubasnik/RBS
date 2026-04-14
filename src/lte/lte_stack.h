@@ -15,6 +15,7 @@
 #include <set>
 #include <thread>
 #include <atomic>
+#include <mutex>
 
 namespace rbs::lte {
 
@@ -55,6 +56,16 @@ public:
 
     const LTECellConfig& config() const                                        override { return cfg_; }
 
+    // ── Policy Engine Integration ───────────────────────────────────
+    void  setHandoverHysteresis(int16_t hysteresisDb);
+    void  setAdmissionThreshold(uint8_t thresholdPercent);
+    int16_t getHandoverHysteresis() const;
+    uint8_t getAdmissionThreshold() const;
+
+    // Static accessors for LTE stack instance (primary cell)
+    static std::shared_ptr<LTEStack> primaryInstance();
+    static void setPrimaryInstance(std::shared_ptr<LTEStack> stack);
+
 private:
     LTECellConfig cfg_;
     std::shared_ptr<hal::IRFHardware> rf_;
@@ -81,6 +92,13 @@ private:
     std::unordered_map<RNTI, uint64_t> lastHoEpochMs_;
     std::unordered_map<RNTI, uint16_t> lastHoTargetPci_;
     uint32_t hoMinIntervalMs_ = 1000;
+
+    // Policy Engine tunables
+    int16_t hoHysteresisDb_ = 0;       ///< Handover hysteresis (dB) offset from A2 threshold
+    uint8_t admissionThresholdPercent_ = 80;  ///< Admission control RB utilization threshold (%)
+
+    static std::shared_ptr<LTEStack> primaryInstance_;
+    static std::mutex primaryInstanceMutex_;
 
     static uint32_t packPlmnHex(uint16_t mcc, uint16_t mnc);
     void subframeLoop();

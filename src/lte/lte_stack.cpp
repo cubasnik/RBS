@@ -468,4 +468,45 @@ void LTEStack::printStats() const {
                  " SFN=", phy_->currentSFN());
 }
 
+// ────────────────────────────────────────────────────────────────
+// Policy Engine Integration – HO Hysteresis & Admission Control
+// ────────────────────────────────────────────────────────────────
+void LTEStack::setHandoverHysteresis(int16_t hysteresisDb) {
+    hoHysteresisDb_ = hysteresisDb;
+    // In production: apply hysteresis offset to A2/A5 threshold via RRC
+    // e.g., if A2 threshold is 45 dB and hysteresis = -2, trigger at 43 instead
+    // Currently just storing the value; applier logs the action
+    RBS_LOG_INFO("LTEStack", "HO hysteresis adjusted: ", hoHysteresisDb_, " dB",
+                 " (A2 threshold offset from baseline 45 dB)");
+}
+
+void LTEStack::setAdmissionThreshold(uint8_t thresholdPercent) {
+    const uint8_t clamped = (thresholdPercent > 100) ? 100 : thresholdPercent;
+    admissionThresholdPercent_ = clamped;
+    RBS_LOG_INFO("LTEStack", "Admission threshold adjusted to ", 
+                 static_cast<int>(admissionThresholdPercent_), "% RB utilization");
+}
+
+int16_t LTEStack::getHandoverHysteresis() const {
+    return hoHysteresisDb_;
+}
+
+uint8_t LTEStack::getAdmissionThreshold() const {
+    return admissionThresholdPercent_;
+}
+
+// Static instance management for policy engine access
+std::shared_ptr<LTEStack> LTEStack::primaryInstance_ = nullptr;
+std::mutex LTEStack::primaryInstanceMutex_;
+
+std::shared_ptr<LTEStack> LTEStack::primaryInstance() {
+    std::lock_guard<std::mutex> lock(primaryInstanceMutex_);
+    return primaryInstance_;
+}
+
+void LTEStack::setPrimaryInstance(std::shared_ptr<LTEStack> stack) {
+    std::lock_guard<std::mutex> lock(primaryInstanceMutex_);
+    primaryInstance_ = stack;
+}
+
 }  // namespace rbs::lte

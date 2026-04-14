@@ -143,7 +143,12 @@ public:
                 c.s1uLocalPort = static_cast<uint16_t>(s1uPortBase + i);
 
                 lteRFs_.push_back(rf);
-                lteStacks_.push_back(std::make_unique<rbs::lte::LTEStack>(rf, c));
+                auto stackPtr = std::make_shared<rbs::lte::LTEStack>(rf, c);
+                if (i == 0) {
+                    // Register first LTE stack as primary instance for policy engine
+                    rbs::lte::LTEStack::setPrimaryInstance(stackPtr);
+                }
+                lteStacks_.push_back(stackPtr);
             }
         }
         if (rat_ == SelectedRAT::NR || rat_ == SelectedRAT::ALL) {
@@ -489,7 +494,7 @@ private:
     std::vector<std::shared_ptr<rbs::hal::RFHardware>> lteRFs_;
     std::unique_ptr<rbs::gsm::GSMStack>      gsmStack_;
     std::unique_ptr<rbs::umts::UMTSStack>    umtsStack_;
-    std::vector<std::unique_ptr<rbs::lte::LTEStack>> lteStacks_;
+    std::vector<std::shared_ptr<rbs::lte::LTEStack>> lteStacks_;
     std::shared_ptr<rbs::hal::RFHardware>    nrRF_;
     std::unique_ptr<rbs::nr::NRStack>        nrStack_;
     // EN-DC X2AP link between LTE(MN) and NR(SN)
