@@ -2,7 +2,7 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "git-commit-fault-correlation",
+			"label": "git-commit-remove-tasks-json",
 			"type": "shell",
 			"command": "git",
 			"args": [
@@ -12,7 +12,7 @@
 				"git",
 				"commit",
 				"-m",
-				"Add fault correlation and alarm suppression v0"
+				"Remove accidental VS Code tasks.json artifact"
 			],
 			"isBackground": false
 		}
