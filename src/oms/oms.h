@@ -1,5 +1,6 @@
 #pragma once
 #include "ioms.h"
+#include "alarm_correlation.h"
 #include "../common/types.h"
 #include <string>
 #include <unordered_map>
@@ -89,7 +90,7 @@ public:
     // ── Latency histograms (Prometheus histogram type) ────────────
     /// Record one observed value into a named histogram.
     /// @param name    Metric name (becomes rbs_<name> in Prometheus).
-    /// @param value   Observed value (any unit; µs recommended for latency).
+    /// @param value   Observed value (any unit; us recommended for latency).
     /// @param bounds  Sorted list of bucket upper-bounds.  Must be identical
     ///                across all calls for the same @name.
     void observeHistogram(const std::string& name, double value,
@@ -98,8 +99,15 @@ public:
     /// Return names of all registered histograms.
     std::vector<std::string> getHistogramNames() const;
 
+    // ── Alarm Correlation ────────────────────────────────────────────
+    std::vector<AlarmCorrelationGroup> getCorrelationGroups() const;
+    std::vector<AlarmEvent> getCorrelatedAlarms() const;
+    void initializeDefaultCorrelationRules();
+    uint64_t getSuppressedAlarmCount() const;
+
 private:
     OMS();
+    AlarmCorrelationEngine correlationEngine_;
     uint32_t nextAlarmId_ = 1;
     std::unordered_map<uint32_t, Alarm>       alarms_;
     std::unordered_map<std::string, PerfCounter> counters_;

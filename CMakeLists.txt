@@ -137,6 +137,7 @@ target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap rbs_oms
 # ─────────────────────────────────────────────────────────────────
 add_library(rbs_oms STATIC
     src/oms/oms.cpp
+    src/oms/alarm_correlation.cpp
     src/oms/policy_engine.cpp
 )
 target_link_libraries(rbs_oms PUBLIC rbs_common httplib::httplib)

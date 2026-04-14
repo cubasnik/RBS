@@ -319,6 +319,8 @@ struct RestServer::Impl {
     rbs::oms::PolicyEngine policyEngine;
 
     void setupRoutes() {
+        rbs::oms::OMS::instance().initializeDefaultCorrelationRules();
+
         policyEngine.setMetricReader([](const std::string& metricName) -> std::optional<double> {
             return rbs::oms::OMS::instance().getCounter(metricName);
         });
@@ -699,6 +701,30 @@ struct RestServer::Impl {
                   << "}";
             }
             j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── GET /api/v1/alarms/correlated ─────────────────────────
+        svr.Get("/api/v1/alarms/correlated", [](const httplib::Request&, httplib::Response& res) {
+            const auto groups = rbs::oms::OMS::instance().getCorrelationGroups();
+            std::ostringstream j;
+            j << "{\"groups\":[";
+            bool firstGroup = true;
+            for (const auto& g : groups) {
+                if (!firstGroup) j << ',';
+                firstGroup = false;
+                j << "{"
+                  << "\"correlationId\":" << g.correlationId << ","
+                  << "\"primary\":{"
+                  << "\"source\":" << jsonEscStr(g.primaryAlarm.source) << ","
+                  << "\"alarmCode\":" << jsonEscStr(g.primaryAlarm.alarmCode) << ","
+                  << "\"message\":" << jsonEscStr(g.primaryAlarm.message)
+                  << "},"
+                  << "\"relatedCount\":" << g.relatedAlarms.size() << ","
+                  << "\"suppressedCount\":" << g.suppressedCount
+                  << "}";
+            }
+            j << "],\"suppressedTotal\":" << rbs::oms::OMS::instance().getSuppressedAlarmCount() << "}";
             res.set_content(j.str(), "application/json");
         });
 

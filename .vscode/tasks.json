@@ -1,0 +1,20 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "git-commit-fault-correlation",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"add",
+				"-A",
+				"&&",
+				"git",
+				"commit",
+				"-m",
+				"Add fault correlation and alarm suppression v0"
+			],
+			"isBackground": false
+		}
+	]
+}

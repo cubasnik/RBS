@@ -27,13 +27,32 @@
 
 namespace rbs::oms {
 
+static std::string inferAlarmCode(const std::string& source, const std::string& description) {
+    const std::string text = source + " " + description;
+    if (text.find("handover") != std::string::npos || text.find("HO") != std::string::npos) {
+        return "HO_FAILED";
+    }
+    if (text.find("RLF") != std::string::npos || text.find("radio link failure") != std::string::npos) {
+        return "RLF_DETECTED";
+    }
+    if (text.find("admission") != std::string::npos || text.find("reject") != std::string::npos) {
+        return "ADMISSION_REJECT";
+    }
+    if (text.find("drop") != std::string::npos) {
+        return "UE_DROP";
+    }
+    return "GENERIC_ALARM";
+}
+
 struct OMS::PrometheusExporter {
     std::unique_ptr<httplib::Server> server;
     std::thread thread;
     bool running = false;
 };
 
-OMS::OMS() = default;
+OMS::OMS() {
+    initializeDefaultCorrelationRules();
+}
 
 OMS::~OMS() {
     stopPrometheus();
@@ -53,6 +72,23 @@ uint32_t OMS::raiseAlarm(const std::string& source,
     alarm.severity    = severity;
     alarm.raisedAt    = std::chrono::system_clock::now();
     alarm.active      = true;
+
+    AlarmEvent evt{};
+    evt.timestamp = alarm.raisedAt;
+    evt.source = source;
+    evt.alarmCode = inferAlarmCode(source, description);
+    evt.message = description;
+    evt.severity = static_cast<int>(severity);
+
+    const bool suppress = correlationEngine_.shouldSuppress(evt.alarmCode);
+    const uint64_t gid = correlationEngine_.reportAlarm(evt);
+    if (suppress) {
+        alarm.active = false;
+        alarm.severity = AlarmSeverity::CLEARED;
+        RBS_LOG_INFO("OMS", "ALARM[", id, "] suppressed by correlation gid=", gid,
+                     " code=", evt.alarmCode, " source=", source);
+    }
+
     alarms_[id]       = alarm;
 
     const char* sevStr[] = {"CLEARED","WARNING","MINOR","MAJOR","CRITICAL"};
@@ -60,7 +96,7 @@ uint32_t OMS::raiseAlarm(const std::string& source,
                     sevStr[static_cast<int>(severity)],
                     " from ", source, ": ", description);
 
-    if (notifyCb_) notifyCb_(alarm);
+    if (!suppress && notifyCb_) notifyCb_(alarm);
     return id;
 }
 
@@ -358,6 +394,30 @@ std::vector<std::string> OMS::getHistogramNames() const {
     names.reserve(histograms_.size());
     for (const auto& [n, _] : histograms_) names.push_back(n);
     return names;
+}
+
+std::vector<AlarmCorrelationGroup> OMS::getCorrelationGroups() const {
+    return correlationEngine_.activeGroups();
+}
+
+std::vector<AlarmEvent> OMS::getCorrelatedAlarms() const {
+    std::vector<AlarmEvent> out;
+    const auto groups = correlationEngine_.activeGroups();
+    for (const auto& g : groups) {
+        out.push_back(g.primaryAlarm);
+        out.insert(out.end(), g.relatedAlarms.begin(), g.relatedAlarms.end());
+    }
+    return out;
+}
+
+void OMS::initializeDefaultCorrelationRules() {
+    correlationEngine_.clearRules();
+    correlationEngine_.addRule({"HO_FAILED", {"RLF_DETECTED"}, 5000, true});
+    correlationEngine_.addRule({"ADMISSION_REJECT", {"UE_DROP"}, 10000, true});
+}
+
+uint64_t OMS::getSuppressedAlarmCount() const {
+    return correlationEngine_.totalSuppressed();
 }
 
 bool OMS::exportPrometheus(int port, const std::string& bindAddr) {
