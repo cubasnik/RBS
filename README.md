@@ -906,7 +906,7 @@ srv.stop();
 | `GET` | `/api/v1/lte/cells` | Список зарегистрированных LTE ячеек (`cellId`, `earfcn`, `pci`) |
 | `POST` | `/api/v1/lte/start_call` | VoLTE start: при необходимости admit UE, setup bearer, SIP INVITE, RTP burst |
 | `POST` | `/api/v1/lte/end_call` | VoLTE end: SIP BYE и опциональный release UE |
-| `POST` | `/api/v1/lte/handover` | Явный триггер HO (`imsi`/`rnti`, `targetCellId`) |
+| `POST` | `/api/v1/lte/handover` | Явный триггер HO (`cellId`, `rnti`, `targetPci`, `targetEarfcn`) |
 | `GET` | `/api/v1/links` | Список всех интерфейсов: имя, RAT, peer, connected, blocked |
 | `GET` | `/api/v1/links/{name}/trace` | Трасса последних PDU (`?limit=N`, по умолчанию 50) |
 | `GET` | `/api/v1/links/{name}/health` | Health-профиль линка (для `abis`: mode/status/reconnect/timestamps) |
@@ -916,6 +916,11 @@ srv.stop();
 | `POST` | `/api/v1/links/{name}/inject` | Тело: `{"procedure":"S1AP:S1_SETUP"}` → инжектировать |
 | `POST` | `/api/v1/links/{name}/block` | Тело: `{"type":"OML:OPSTART"}` → заблокировать тип сообщения |
 | `POST` | `/api/v1/links/{name}/unblock` | Тело: `{"type":"OML:OPSTART"}` → снять блокировку |
+| `GET` | `/api/v1/policy/status` | Статус Policy Engine: running/rules/events |
+| `POST` | `/api/v1/policy/enable` | Включить Policy Engine |
+| `POST` | `/api/v1/policy/disable` | Выключить Policy Engine |
+| `GET` | `/api/v1/config/versions` | Список сохранённых snapshot-версий конфигурации |
+| `POST` | `/api/v1/config/rollback` | Откат конфигурации к snapshot по `versionId` |
 
 Примечание по health полям:
 - Для `abis` в ответе `GET /api/v1/links` дополнительно возвращается объект `health` с полями
@@ -974,8 +979,8 @@ srv.stop();
 // POST /api/v1/lte/start_call body: {"cellId":42,"imsi":300000000000003,"withRtpBurst":true}
 {"status":"ok","message":"call started","cellId":42,"rnti":101}
 
-// POST /api/v1/lte/handover body: {"cellId":42,"imsi":300000000000003,"targetCellId":43}
-{"status":"ok","message":"handover request accepted"}
+// POST /api/v1/lte/handover body: {"cellId":42,"rnti":101,"targetPci":301,"targetEarfcn":1850}
+{"status":"ok"}
 
 // GET /api/v1/links
 [
@@ -1982,6 +1987,23 @@ ctest -C Debug --output-on-failure
 
 # После проверки оставить rbs_node запущенным
 .\tools\check_endc_options.ps1 -StopExisting -KeepRunning
+```
+
+Policy Engine и config rollback (REST):
+
+```powershell
+# Текущий статус policy rules/events
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/policy/status
+
+# Включить / выключить policy engine
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/policy/enable POST '{}'
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/policy/disable POST '{}'
+
+# Просмотр доступных snapshot-версий конфига
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/config/versions
+
+# Откат к snapshot версии
+.\tools\rbs_api.ps1 http://127.0.0.1:8181/api/v1/config/rollback POST '{"versionId":1}'
 ```
 
 Примечания:

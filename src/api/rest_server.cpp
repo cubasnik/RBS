@@ -1,9 +1,12 @@
 #include "rest_server.h"
+#include "rest_validation.h"
 #include "../oms/oms.h"
+#include "../oms/policy_engine.h"
 #include "../common/logger.h"
 #include "../common/link_registry.h"
 #include "../common/lte_service_registry.h"
 #include "../common/config.h"
+#include "../common/config_snapshot.h"
 
 #ifdef _WIN32
 #  ifndef WIN32_LEAN_AND_MEAN
@@ -258,6 +261,30 @@ static bool isConfigPatchKeyAllowed(const std::string& section, const std::strin
     return allowed.find(compound) != allowed.end();
 }
 
+static bool readTextFile(const std::string& path, std::string& out) {
+    std::ifstream f(path, std::ios::binary);
+    if (!f.is_open()) {
+        return false;
+    }
+    std::ostringstream ss;
+    ss << f.rdbuf();
+    out = ss.str();
+    return true;
+}
+
+static bool writeTextFile(const std::string& path, const std::string& content) {
+    std::ofstream f(path, std::ios::binary | std::ios::trunc);
+    if (!f.is_open()) {
+        return false;
+    }
+    f << content;
+    return static_cast<bool>(f);
+}
+
+static int64_t toEpochMs(const std::chrono::system_clock::time_point& tp) {
+    return std::chrono::duration_cast<std::chrono::milliseconds>(tp.time_since_epoch()).count();
+}
+
 static std::string resolveRequestTraceId(const httplib::Request& req, const char* routeTag) {
     if (req.has_header("X-Trace-Id")) {
         const std::string incoming = req.get_header_value("X-Trace-Id");
@@ -287,8 +314,26 @@ struct RestServer::Impl {
     std::mutex cfgCbMutex;
     std::string configPath{"rbs.conf"};
     std::function<void()> configApplyCb;
+    rbs::ConfigSnapshotManager cfgSnapshots{5};
+    rbs::oms::PolicyEngine policyEngine;
 
     void setupRoutes() {
+        policyEngine.setMetricReader([](const std::string& metricName) -> std::optional<double> {
+            return rbs::oms::OMS::instance().getCounter(metricName);
+        });
+        policyEngine.setActionApplier([](rbs::oms::PolicyActionType action, const rbs::oms::PolicyRule& rule) {
+            RBS_LOG_INFO("POLICY", "rule=", rule.name, " action=", static_cast<int>(action), " metric=", rule.metricName);
+        });
+        policyEngine.setRules({
+            {"ho_success_guard", "lte.handover.success.rate.pct", 95.0,
+             rbs::oms::PolicyComparison::LESS_THAN, std::chrono::seconds(60),
+             rbs::oms::PolicyActionType::ADJUST_HO_HYSTERESIS, true},
+            {"rlf_guard", "lte.rlf.rate.pct", 2.0,
+             rbs::oms::PolicyComparison::GREATER_THAN, std::chrono::seconds(30),
+             rbs::oms::PolicyActionType::TIGHTEN_ADMISSION, true}
+        });
+        policyEngine.start();
+
         // ── GET /api/v1/status ─────────────────────────────────────────
         svr.Get("/api/v1/status", [this](const httplib::Request&, httplib::Response& res) {
             auto& oms  = rbs::oms::OMS::instance();
@@ -317,6 +362,48 @@ struct RestServer::Impl {
             res.set_content(j.str(), "application/json");
         });
 
+        // ── GET /api/v1/policy/status ─────────────────────────────
+        svr.Get("/api/v1/policy/status", [this](const httplib::Request&, httplib::Response& res) {
+            policyEngine.tick();
+            const auto st = policyEngine.status();
+            const auto ev = policyEngine.recentEvents(10);
+
+            std::ostringstream j;
+            j << "{"
+              << "\"running\":" << (st.running ? "true" : "false") << ","
+              << "\"ruleCount\":" << st.rules << ","
+              << "\"recentEventCount\":" << st.recentEvents << ","
+              << "\"events\":[";
+
+            bool first = true;
+            for (const auto& e : ev) {
+                if (!first) j << ',';
+                first = false;
+                j << "{"
+                  << "\"tsMs\":" << toEpochMs(e.timestamp) << ","
+                  << "\"rule\":" << jsonEscStr(e.ruleName) << ","
+                  << "\"metric\":" << jsonEscStr(e.metricName) << ","
+                  << "\"value\":" << e.metricValue << ","
+                  << "\"action\":" << static_cast<int>(e.action) << ","
+                  << "\"details\":" << jsonEscStr(e.details)
+                  << "}";
+            }
+            j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/policy/enable ─────────────────────────────
+        svr.Post("/api/v1/policy/enable", [this](const httplib::Request&, httplib::Response& res) {
+            policyEngine.start();
+            res.set_content("{\"status\":\"ok\",\"running\":true}", "application/json");
+        });
+
+        // ── POST /api/v1/policy/disable ────────────────────────────
+        svr.Post("/api/v1/policy/disable", [this](const httplib::Request&, httplib::Response& res) {
+            policyEngine.stop();
+            res.set_content("{\"status\":\"ok\",\"running\":false}", "application/json");
+        });
+
         // ── PATCH /api/v1/config ───────────────────────────────────────
         // Body examples:
         //   {"reloadFromDisk":true,"path":"rbs.conf"}
@@ -326,6 +413,13 @@ struct RestServer::Impl {
         //   {"dryRun":true,"updates":[...]} // validate only, no apply
         svr.Patch("/api/v1/config", [this](const httplib::Request& req, httplib::Response& res) {
             RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-config"));
+            const auto validation = validateConfigPatchBody(req.body);
+            if (!validation.ok) {
+                res.status = 400;
+                res.set_content("{\"error\":" + jsonEscStr(validation.error) + "}", "application/json");
+                return;
+            }
+
             const bool reloadFromDisk = extractJsonBool(req.body, "reloadFromDisk", false);
             const bool dryRun = extractJsonBool(req.body, "dryRun", false);
             std::string path = extractJsonStr(req.body, "path");
@@ -358,6 +452,14 @@ struct RestServer::Impl {
 
             bool patched = false;
             bool reloaded = false;
+            uint64_t snapshotVersion = 0;
+
+            if (!dryRun) {
+                std::string beforeRaw;
+                if (readTextFile(path, beforeRaw)) {
+                    snapshotVersion = cfgSnapshots.saveSnapshot(beforeRaw, "rest.patch", "before patch/reload");
+                }
+            }
 
             if (reloadFromDisk) {
                 if (dryRun) {
@@ -428,11 +530,78 @@ struct RestServer::Impl {
               << "\"reloaded\":" << (reloaded ? "true" : "false") << ","
               << "\"patched\":" << (patched ? "true" : "false") << ","
                             << "\"appliedUpdates\":" << updates.size() << ","
+              << "\"snapshotVersion\":" << snapshotVersion << ","
+              << "\"currentConfigVersion\":" << cfgSnapshots.currentVersion() << ","
               << "\"path\":" << jsonEscStr(path)
               << "}";
             res.set_content(j.str(), "application/json");
                         RBS_LOG_INFO("REST", "config patch dryRun=", dryRun, " reloaded=", reloaded,
                                                  " patched=", patched, " updates=", updates.size(), " path=", path);
+        });
+
+        // ── GET /api/v1/config/versions ──────────────────────────────
+        svr.Get("/api/v1/config/versions", [this](const httplib::Request&, httplib::Response& res) {
+            auto versions = cfgSnapshots.listSnapshots();
+            std::ostringstream j;
+            j << "{\"versions\":[";
+            bool first = true;
+            for (const auto& v : versions) {
+                if (!first) j << ',';
+                first = false;
+                j << "{"
+                  << "\"versionId\":" << v.versionId << ","
+                  << "\"timestampMs\":" << toEpochMs(v.timestamp) << ","
+                  << "\"source\":" << jsonEscStr(v.source) << ","
+                  << "\"reason\":" << jsonEscStr(v.reason)
+                  << "}";
+            }
+            j << "]}";
+            res.set_content(j.str(), "application/json");
+        });
+
+        // ── POST /api/v1/config/rollback ─────────────────────────────
+        // Body: {"versionId":N}
+        svr.Post("/api/v1/config/rollback", [this](const httplib::Request& req, httplib::Response& res) {
+            const long long versionIn = extractJsonInt(req.body, "versionId");
+            if (versionIn <= 0) {
+                res.status = 400;
+                res.set_content("{\"error\":\"missing or invalid versionId\"}", "application/json");
+                return;
+            }
+
+            const auto snapshot = cfgSnapshots.rollbackTo(static_cast<uint64_t>(versionIn));
+            if (!snapshot.has_value()) {
+                res.status = 404;
+                res.set_content("{\"error\":\"version not found\"}", "application/json");
+                return;
+            }
+
+            std::string path;
+            {
+                std::lock_guard<std::mutex> lk(cfgCbMutex);
+                path = configPath;
+            }
+
+            if (!writeTextFile(path, *snapshot)) {
+                res.status = 422;
+                res.set_content("{\"error\":\"failed to write config file\"}", "application/json");
+                return;
+            }
+            if (!rbs::Config::instance().loadFile(path)) {
+                res.status = 422;
+                res.set_content("{\"error\":\"failed to load rolled-back config\"}", "application/json");
+                return;
+            }
+
+            std::function<void()> cb;
+            {
+                std::lock_guard<std::mutex> lk(cfgCbMutex);
+                cb = configApplyCb;
+            }
+            if (cb) cb();
+
+            cfgSnapshots.saveSnapshot(*snapshot, "rest.rollback", "applied rollback");
+            res.set_content("{\"status\":\"ok\",\"rolledBackTo\":" + std::to_string(versionIn) + "}", "application/json");
         });
 
         // ── GET /api/v1/pm ─────────────────────────────────────────────
@@ -642,6 +811,13 @@ struct RestServer::Impl {
         // ── POST /api/v1/lte/handover ─────────────────────────────────
         svr.Post("/api/v1/lte/handover", [](const httplib::Request& req, httplib::Response& res) {
             RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-lte-ho"));
+            const auto validation = validateHandoverBody(req.body);
+            if (!validation.ok) {
+                res.status = 400;
+                res.set_content("{\"error\":" + jsonEscStr(validation.error) + "}", "application/json");
+                return;
+            }
+
             const long long cellIdIn = extractJsonInt(req.body, "cellId");
             const long long rntiIn = extractJsonInt(req.body, "rnti");
             const long long targetPciIn = extractJsonInt(req.body, "targetPci");
@@ -886,6 +1062,13 @@ struct RestServer::Impl {
         // Body: {"procedure":"S1AP:S1_SETUP"}
         svr.Post(R"(/api/v1/links/([^/]+)/inject)", [](const httplib::Request& req, httplib::Response& res) {
             RBS_TRACE_SCOPE(resolveRequestTraceId(req, "rest-link-inject"));
+            const auto validation = validateInjectBody(req.body);
+            if (!validation.ok) {
+                res.status = 400;
+                res.set_content("{\"error\":" + jsonEscStr(validation.error) + "}", "application/json");
+                return;
+            }
+
             const std::string name = req.matches[1];
             auto* e = rbs::LinkRegistry::instance().getLink(name);
             if (!e) {

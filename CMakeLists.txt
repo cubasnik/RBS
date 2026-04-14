@@ -59,6 +59,7 @@ endif()
 # ─────────────────────────────────────────────────────────────────
 add_library(rbs_common STATIC
     src/common/config.cpp
+    src/common/config_snapshot.cpp
     src/common/link_registry.cpp
     src/common/lte_service_registry.cpp
     src/common/udp_socket.cpp
@@ -136,6 +137,7 @@ target_link_libraries(rbs_lte PUBLIC rbs_hal rbs_asn1_s1ap rbs_asn1_x2ap rbs_oms
 # ─────────────────────────────────────────────────────────────────
 add_library(rbs_oms STATIC
     src/oms/oms.cpp
+    src/oms/policy_engine.cpp
 )
 target_link_libraries(rbs_oms PUBLIC rbs_common httplib::httplib)
 if(WIN32)
@@ -163,6 +165,7 @@ target_link_libraries(rbs_nr PUBLIC rbs_hal)
 # ───────────────────────────────────────────────────────────────
 add_library(rbs_api STATIC
     src/api/rest_server.cpp
+    src/api/rest_validation.cpp
 )
 target_link_libraries(rbs_api PUBLIC rbs_oms httplib::httplib)
 if(WIN32)
