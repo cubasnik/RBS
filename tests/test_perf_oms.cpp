@@ -181,8 +181,9 @@ static void testErrorCounterKpiAlarm() {
     {
         const auto alarms = oms().getActiveAlarms();
         bool found = false;
+        const std::string kpiSource = "KPI:" + counter;
         for (const auto& a : alarms)
-            if (a.source == counter) found = true;
+            if (a.source == kpiSource) found = true;
         EXPECT_TRUE(!found);
     }
 
@@ -191,8 +192,9 @@ static void testErrorCounterKpiAlarm() {
     {
         const auto alarms = oms().getActiveAlarms();
         bool found = false;
+        const std::string kpiSource = "KPI:" + counter;
         for (const auto& a : alarms)
-            if (a.source == counter && a.active) found = true;
+            if (a.source == kpiSource && a.active) found = true;
         EXPECT_TRUE(found);
     }
 
@@ -201,8 +203,9 @@ static void testErrorCounterKpiAlarm() {
     {
         const auto alarms = oms().getActiveAlarms();
         bool stillActive = false;
+        const std::string kpiSource = "KPI:" + counter;
         for (const auto& a : alarms)
-            if (a.source == counter && a.active) stillActive = true;
+            if (a.source == kpiSource && a.active) stillActive = true;
         EXPECT_TRUE(!stillActive);
     }
 

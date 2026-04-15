@@ -100,7 +100,7 @@ public:
         // node_addr is the primary bind address; individual services may override it.
         const std::string nodeAddr = cfg.getString("node", "node_addr", "127.0.0.1");
         restServer_ = std::make_unique<rbs::api::RestServer>(
-            cfg.getInt("api", "port", 8080),
+            cfg.getInt("api", "port", 8181),
             cfg.getString("api", "bind", nodeAddr)
         );
         restServer_->setConfigPath(configPath_);

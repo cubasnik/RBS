@@ -251,7 +251,7 @@ add_test(NAME test_ng_xn_transport COMMAND test_ng_xn_transport)
 
 # ── test_rest_api ─────────────────────────────────────────────────
 add_executable(test_rest_api test_rest_api.cpp)
-target_link_libraries(test_rest_api PRIVATE rbs_api)
+target_link_libraries(test_rest_api PRIVATE rbs_api rbs_lte)
 add_test(NAME test_rest_api COMMAND test_rest_api)
 
 # ── test_endc ─────────────────────────────────────────────────────

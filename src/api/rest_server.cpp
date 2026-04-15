@@ -380,7 +380,7 @@ struct RestServer::Impl {
             // Resolved bind addresses (what the node is actually listening on)
             const std::string nodeAddr  = cfg.getString("node", "node_addr", "127.0.0.1");
             const std::string restAddr  = cfg.getString("api",  "bind",      nodeAddr);
-            const int         restPort  = cfg.getInt   ("api",  "port",      8080);
+            const int         restPort  = cfg.getInt   ("api",  "port",      8181);
             const std::string promBind  = cfg.getString("oms",  "prometheus_bind", nodeAddr);
             const int         promPort  = cfg.getInt   ("oms",  "prometheus_port", 9108);
             std::ostringstream j;
