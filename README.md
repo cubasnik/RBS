@@ -1,8 +1,7 @@
 # RBS — Radio Base Station
 
-[![CI](https://github.com/cubasnik/RBS/actions/workflows/build.yml/badge.svg)](https://github.com/cubasnik/RBS/actions/workflows/build.yml)
-
-Симулятор многостандартной базовой станции (Multi-RAT RBS), реализующий протокольные стеки **GSM (2G)**, **UMTS (3G)**, **LTE (4G)** и **5G NR** в одном исполняемом файле на языке **C++17**.
+Программа для многостандартной базовой станции (Multi-RAT RBS), реализующая протокольные стеки **GSM (2G)**, **UMTS (3G)**, **LTE (4G)** и **5G NR** 
+в одном исполняемом файле на языке **C++17**.
 
 ---
 
@@ -56,7 +55,7 @@ BASE="http://127.0.0.1:8181/api/v1"
 ./tools/rbs_api.sh "$BASE/status"
 ./tools/rbs_api.sh "$BASE/pm"
 ./tools/rbs_api.sh "$BASE/alarms"
-./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":300000000000003,"rat":"LTE"}'
+./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":250010000000003,"rat":"LTE"}'
 
 # 5) Интерфейсы и управление
 ./tools/rbs_api.sh "$BASE/links"
@@ -189,11 +188,11 @@ port = 8181
 │   GSM PHY    │   UMTS PHY   │   LTE PHY    │       NR PHY         │  ← Физический уровень
 ├──────────────┴──────────────┴──────────────┴──────────────────────┤
 │ EN-DC NSA coordinator (X2AP): LTE(MN) ↔ NR(SN), Option 3/3a/3x    │
-├────────────────────────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────────────────────┤
 │                  HAL — IRFHardware / RFHardware                   │  ← Железо (симуляция)
-├────────────────────────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────────────────────┤
 │                  Common — types, logger, config                   │  ← Общие утилиты
-└────────────────────────────────────────────────────────────────────┘
+└───────────────────────────────────────────────────────────────────┘
          ↕ OMS (глобальный синглтон)
 ```
 
@@ -217,49 +216,49 @@ port = 8181
 
 ```
 RBS/
-├── CMakeLists.txt          # Система сборки CMake
-├── rbs.conf                # Конфигурационный файл узла
-├── rbs.log                 # Лог-файл (создаётся при запуске)
-├── fix/                    # Скрипты пост-обработки ASN.1 (run_all.py + 7 fix_*.py)
+├── CMakeLists.txt               # Система сборки CMake
+├── rbs.conf                     # Конфигурационный файл узла
+├── rbs.log                      # Лог-файл (создаётся при запуске)
+├── fix/                         # Скрипты пост-обработки ASN.1 (run_all.py + 7 fix_*.py)
 ├── src/
-│   ├── main.cpp            # Точка входа, класс RadioBaseStation
+│   ├── main.cpp                 # Точка входа, класс RadioBaseStation
 │   ├── common/
-│   │   ├── types.h             # Общие типы, константы, структуры данных
-│   │   ├── logger.h            # Потокобезопасный синглтон-логгер
-│   │   ├── config.cpp/.h       # Парсер INI-конфигурации
-│   │   ├── link_controller.h   # Базовый класс-миксин: трасса сообщений + блокировка
+│   │   ├── types.h              # Общие типы, константы, структуры данных
+│   │   ├── logger.h             # Потокобезопасный синглтон-логгер
+│   │   ├── config.cpp/.h        # Парсер INI-конфигурации
+│   │   ├── link_controller.h    # Базовый класс-миксин: трасса сообщений + блокировка
 │   │   ├── link_registry.cpp/.h # Глобальный реестр всех сетевых интерфейсов
-│   │   └── pcap_writer.cpp/.h  # PCAP-экспорт: S1AP/X2AP/GTP-U → .pcap (Wireshark)
+│   │   └── pcap_writer.cpp/.h   # PCAP-экспорт: S1AP/X2AP/GTP-U → .pcap (Wireshark)
 │   ├── hal/
-│   │   ├── rf_interface.h  # Абстрактный интерфейс IRFHardware
-│   │   └── rf_hardware.cpp/.h  # Симулированное RF-железо
+│   │   ├── rf_interface.h       # Абстрактный интерфейс IRFHardware
+│   │   └── rf_hardware.cpp/.h   # Симулированное RF-железо
 │   ├── gsm/
-│   │   ├── gsm_phy.cpp/.h  # Физический уровень GSM (TDMA, пакеты burst)
-│   │   ├── gsm_mac.cpp/.h  # Уровень MAC (назначение каналов, SI)
-│   │   └── gsm_stack.cpp/.h # Верхний контроллер GSM-ячейки
+│   │   ├── gsm_phy.cpp/.h       # Физический уровень GSM (TDMA, пакеты burst)
+│   │   ├── gsm_mac.cpp/.h       # Уровень MAC (назначение каналов, SI)
+│   │   └── gsm_stack.cpp/.h     # Верхний контроллер GSM-ячейки
 │   ├── umts/
-│   │   ├── umts_phy.cpp/.h # Физический уровень UMTS (WCDMA, spreading)
-│   │   ├── umts_mac.cpp/.h # MAC (DCH, планирование)
-│   │   └── umts_stack.cpp/.h # Контроллер UMTS NodeB
+│   │   ├── umts_phy.cpp/.h     # Физический уровень UMTS (WCDMA, spreading)
+│   │   ├── umts_mac.cpp/.h     # MAC (DCH, планирование)
+│   │   └── umts_stack.cpp/.h   # Контроллер UMTS NodeB
 │   ├── lte/
-│   │   ├── lte_phy.cpp/.h  # Физический уровень LTE (OFDMA/SC-FDMA)
-│   │   ├── lte_mac.cpp/.h  # MAC (PF-планировщик, HARQ, CQI)
-│   │   ├── lte_pdcp.cpp/.h # PDCP (заголовки, шифрование AES-128 CTR)
-│   │   └── lte_stack.cpp/.h # Контроллер LTE eNodeB
+│   │   ├── lte_phy.cpp/.h      # Физический уровень LTE (OFDMA/SC-FDMA)
+│   │   ├── lte_mac.cpp/.h      # MAC (PF-планировщик, HARQ, CQI)
+│   │   ├── lte_pdcp.cpp/.h     # PDCP (заголовки, шифрование AES-128 CTR)
+│   │   └── lte_stack.cpp/.h    # Контроллер LTE eNodeB
 │   ├── nr/
-│   │   ├── nr_phy.cpp/.h   # Физический уровень NR (SSB, PSS/SSS/PBCH, SFN)
-│   │   ├── nr_stack.cpp/.h # Контроллер gNB-DU (NR stub)
-│   │   └── f1ap_codec.cpp/.h # F1AP: F1 Setup Request/Response (TS 38.473)
+│   │   ├── nr_phy.cpp/.h       # Физический уровень NR (SSB, PSS/SSS/PBCH, SFN)
+│   │   ├── nr_stack.cpp/.h     # Контроллер gNB-DU (NR stub)
+│   │   └── f1ap_codec.cpp/.h   # F1AP: F1 Setup Request/Response (TS 38.473)
 │   ├── api/
-│   │   └── rest_server.cpp/.h # HTTP/JSON REST API (cpp-httplib)
+│   │   └── rest_server.cpp/.h  # HTTP/JSON REST API (cpp-httplib)
 │   └── oms/
-│       ├── oms.cpp/.h      # Fault management, счётчики производительности
+│       ├── oms.cpp/.h          # Fault management, счётчики производительности
 └── tests/
     ├── CMakeLists.txt
-    ├── test_config.cpp     # Тест парсера конфигурации
-    ├── test_gsm_phy.cpp    # Тест GSM PHY
-    ├── test_lte_mac.cpp    # Тест LTE MAC (CQI→MCS, планировщик)
-    └── test_pdcp.cpp       # Тест PDCP (DL/UL loopback, AES KAT, SNOW3G/ZUC round-trip)
+    ├── test_config.cpp         # Тест парсера конфигурации
+    ├── test_gsm_phy.cpp        # Тест GSM PHY
+    ├── test_lte_mac.cpp        # Тест LTE MAC (CQI→MCS, планировщик)
+    └── test_pdcp.cpp           # Тест PDCP (DL/UL loopback, AES KAT, SNOW3G/ZUC round-trip)
 ```
 
 ---
@@ -324,7 +323,7 @@ struct LinkEntry {
 
 ```
 IRFHardware
- ├── initialise() / selfTest() / shutdown()   ← жизненный цикл
+ ├── initialise() / selfTest() / shutdown()    ← жизненный цикл
  ├── setDlFrequency() / setUlFrequency()       ← настройка частот
  ├── setTxPower() / getTxPower()               ← управление мощностью
  ├── transmit(iqSamples) / receive(iqSamples)  ← передача/приём IQ
@@ -333,14 +332,14 @@ IRFHardware
 ```
 
 #### `RFHardware` (rf_hardware.cpp/.h)
-Симулированная реализация (модель FPGA/BBU в реальной БС):
+ модель FPGA/BBU в БС:
 - `initialise()` — настраивает частоты DL/UL и мощность из конфигурации
 - `selfTest()` — проверяет три подсистемы: loopback (IQ self-test), PLL lock, PA health
-- `receive()` — генерирует случайные IQ-байты (имитация радиоканала)
+- `receive()` — генерирует случайные IQ-байты 
 - `transmit()` — принимает IQ-буфер, проверяет длину, «отправляет» в эфир
 - При ошибке вызывает `alarmCallback_`, который пробрасывает аварию в OMS
 
-В реальной системе класс `RFHardware` был бы заменён драйвером FPGA (например, через UIO или PCIe DMA).
+В системе класс `RFHardware` был бы заменён драйвером FPGA через UIO или PCIe DMA.
 
 ---
 
@@ -356,7 +355,7 @@ clockLoop (thread) → tick() [каждые ~577 мкс]
                         ├── слот 0: BCCH (SI burst)
                         ├── слот 1: CCCH (paging/RACH)
                         └── слоты 2–7: TCH/SDCCH
-```
+``` 
 
 **TDMA-структура:**
 - 1 фрейм = **8 временны́х слотов** по 577 мкс → длительность фрейма ~4.615 мс
@@ -401,7 +400,7 @@ clockLoop (thread) → tick() [каждые 10 мс]
 - Частота чипов: **3.84 Мчип/с**
 - 1 радиофрейм = 15 слотов = **10 мс**
 - **Spreading** (расширение спектра): каждый бит данных повторяется SF раз (Spreading Factor)
-  - SF = 4 (高скорость) … SF = 256 (низкая скорость, большее покрытие)
+  - SF = 4 (скорость) … SF = 256 (низкая скорость, большее покрытие)
   - Ортогональные коды OVSF (Orthogonal Variable Spreading Factor)
 - **Scrambling**: Gold-код на основе Primary Scrambling Code (PSC 0–511) накладывается поверх spread-сигнала для разделения ячеек
 
@@ -420,7 +419,7 @@ clockLoop (thread) → tick() [каждые 10 мс]
 
 #### NBAP — `nbap_codec`, `iub_link`
 
-Протокол Node B Application Part (TS 25.433) — управляющий интерфейс NodeB ↔ RNC по Iub.
+Протокол NodeB Application Part (TS 25.433) — управляющий интерфейс NodeB ↔ RNC по Iub.
 Кодирование — ручной APER-кодировщик (без asn1c: спека NBAP > 1 МБ).
 
 Реализованные процедуры:
@@ -477,10 +476,8 @@ clockLoop (thread) → tick() [каждые 1 мс]
 - **PSS** (Primary Synchronization Signal) — последовательность Zadoff-Chu длиной 63, несёт `PCI mod 3`
 - **SSS** (Secondary Synchronization Signal) — m-последовательность, несёт `PCI / 3` (группа ячейки)
 - **PBCH** (Physical Broadcast Channel) — MIB (Master Information Block): полоса, номер фрейма SFN, число антенн
-
-**PDCCH** — управляющий канал: содержит DCI (Downlink Control Information) — назначения RB для каждого UE.
-
-**PDSCH** — канал данных: несёт TB (Transport Block) с пользовательскими данными в назначенных RB.
+- **PDCCH** — управляющий канал: содержит DCI (Downlink Control Information) — назначения RB для каждого UE.
+- **PDSCH** — канал данных: несёт TB (Transport Block) с пользовательскими данными в назначенных RB.
 
 #### Уровень MAC — `LTEMAC`
 
@@ -858,11 +855,11 @@ abis_hb_interval_ms = 1000 # период health-monitor в ms
 abis_rx_stale_ms = 10000   # порог stale RX для DEGRADED
 abis_keepalive_enabled = true # активный keepalive probe в ipa_tcp
 abis_keepalive_idle_ms = 3000 # если нет RX дольше этого, шлём keepalive
-bsc_addr =          # для ipa_tcp укажите адрес BSC; пусто = simulation mode
+bsc_addr =          # для ipa_tcp укажите адрес BSC; если пусто = simulation mode
 bsc_port = 3002
 
 [umts]
-rnc_addr =          # пусто = simulation mode (Iub симулируется)
+rnc_addr =          # если пусто = simulation mode (Iub симулируется)
 rnc_port = 25412
 
 [lte]
@@ -929,7 +926,7 @@ srv.stop();
   `keepaliveEnabled`, `keepaliveIdleMs`, `keepaliveTxCount`, `keepaliveFailCount`,
   `lastKeepaliveTxEpochMs`, `omlTxFrames`, `omlRxFrames`, `rslTxFrames`, `rslRxFrames`.
 
-Примечание по параметризованной inject для `abis` (Option C.1):
+Примечание по параметризованной inject для `abis`:
 - Поддерживаются опциональные поля тела `chanNr`, `entity`, `payload` (массив байт 0..255).
 - Пример `RSL:CHANNEL_ACTIVATION` с параметрами:
 
@@ -976,7 +973,7 @@ srv.stop();
 // GET /api/v1/lte/cells
 {"cells":[{"cellId":42,"earfcn":1800,"pci":10}]}
 
-// POST /api/v1/lte/start_call body: {"cellId":42,"imsi":300000000000003,"withRtpBurst":true}
+// POST /api/v1/lte/start_call body: {"cellId":42,"imsi":250010000000003,"withRtpBurst":true}
 {"status":"ok","message":"call started","cellId":42,"rnti":101}
 
 // POST /api/v1/lte/handover body: {"cellId":42,"rnti":101,"targetPci":301,"targetEarfcn":1850}
@@ -1022,7 +1019,7 @@ RadioBaseStation(configPath, mode)         ← mode: GSM | UMTS | LTE | NR | ALL
  ├── if LTE/ALL:  RFHardware(2Tx,4Rx) + LTEStack
  ├── if NR/ALL:   RFHardware(4Tx,4Rx) + NRStack    ← SCS 30 кГц, SSB период 20 мс
  ├── setAlarmCallback() → OMS              ← аппаратные аварии
- ├── RestServer(8181).start()              ← REST API / Web Dashboard (п.18)
+ ├── RestServer(8181).start()              ← REST API / Web Dashboard 
  │
  ├── start()
  │   ├── OMS → UNLOCKED
@@ -1113,42 +1110,42 @@ LTEStack::receiveIPPacket() → IP-пакет
 ```ini
 [gsm]
 cell_id       = 1
-arfcn         = 60       # P-GSM 900: ARFCN 1–124 → DL 935–960 МГц
-tx_power_dbm  = 43.0     # 20 Вт
-bsic          = 10       # ID ячейки (0–63)
-lac           = 1000     # Location Area Code
-mcc           = 250      # Россия
-mnc           = 1        # МТС
-abis_transport = sim     # транспорт Abis: sim | ipa_tcp
-abis_hb_interval_ms = 1000 # период health-monitor в ms
-abis_rx_stale_ms = 10000   # порог stale RX для DEGRADED
+arfcn         = 60            # P-GSM 900: ARFCN 1–124 → DL 935–960 МГц
+tx_power_dbm  = 43.0          # 20 Вт
+bsic          = 10            # ID ячейки (0–63)
+lac           = 1000          # Location Area Code
+mcc           = 250           # Россия
+mnc           = 1             # МТС
+abis_transport = sim          # транспорт Abis: sim | ipa_tcp
+abis_hb_interval_ms = 1000    # период health-monitor в ms
+abis_rx_stale_ms = 10000      # порог stale RX для DEGRADED
 abis_keepalive_enabled = true # активный keepalive probe в ipa_tcp
 abis_keepalive_idle_ms = 3000 # если нет RX дольше этого, шлём keepalive
-bsc_addr      =          # адрес BSC для Abis (для ipa_tcp обязателен)
+bsc_addr      =               # адрес BSC для Abis (для ipa_tcp обязателен)
 bsc_port      = 3002
 
 [umts]
 cell_id       = 2
-uarfcn        = 10700    # UMTS Band I DL: 10562–10838 → 2110–2170 МГц
+uarfcn        = 10700         # UMTS Band I DL: 10562–10838 → 2110–2170 МГц
 tx_power_dbm  = 43.0
-psc           = 64       # Primary Scrambling Code (0–511)
+psc           = 64            # Primary Scrambling Code (0–511)
 lac           = 1000
-rac           = 1        # Routing Area Code
-rnc_addr      =          # адрес RNC для Iub (пусто = simulation mode)
+rac           = 1             # Routing Area Code
+rnc_addr      =               # адрес RNC для Iub (если пусто = simulation mode)
 rnc_port      = 25412
 
 [lte]
 cell_id       = 3
-earfcn        = 1800     # Band 3 → DL ~1865 МГц
+earfcn        = 1800          # Band 3 → DL ~1865 МГц
 tx_power_dbm  = 43.0
-pci           = 300      # Physical Cell Identity (0–503)
-tac           = 1        # Tracking Area Code
-num_antennas  = 2        # Порты Tx: 1, 2 или 4
-mme_addr      =          # адрес MME (пусто = simulation mode)
+pci           = 300           # Physical Cell Identity (0–503)
+tac           = 1             # Tracking Area Code
+num_antennas  = 2             # Порты Tx: 1, 2 или 4
+mme_addr      =               # адрес MME (если пусто = simulation mode)
 mme_port      = 36412
 
 [logging]
-level         = INFO     # DEBUG | INFO | WARNING | ERROR | CRITICAL
+level         = INFO          # DEBUG | INFO | WARNING | ERROR | CRITICAL
 log_file      = rbs.log
 ```
 
@@ -1463,7 +1460,7 @@ cu_port        = 38472
 [endc]
 enabled        = true        # активировать EN-DC при запуске в режиме all
 option         = 3a          # 3 | 3a | 3x (см. таблицу вариантов ниже)
-x2_addr        = 127.0.0.1   # X2 адрес Secondary Node (NR gNB)
+x2_addr        = 127.0.0.2   # X2 адрес Secondary Node (NR gNB)
 x2_port        = 36422       # X2AP порт (TS 36.422)
 enb_bearer_id  = 5           # E-RAB ID на Master Node (LTE), 1–15
 scg_drb_id     = 1           # DRB ID на Secondary Node (NR), 1–11
@@ -1554,7 +1551,7 @@ BASE="http://127.0.0.1:8181/api/v1"
 ./tools/rbs_api.sh "$BASE/alarms"
 
 # admit (rat: GSM | UMTS | LTE | NR)
-./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":300000000000003,"rat":"LTE"}'
+./tools/rbs_api.sh "$BASE/admit" POST '{"imsi":250010000000003,"rat":"LTE"}'
 
 # -----------------------------
 # 1.1) LTE: VoLTE и handover
@@ -1564,13 +1561,13 @@ BASE="http://127.0.0.1:8181/api/v1"
 ./tools/rbs_api.sh "$BASE/lte/cells"
 
 # старт VoLTE звонка (авто-admit + RTP burst)
-./tools/rbs_api.sh "$BASE/lte/start_call" POST '{"cellId":42,"imsi":300000000000003,"withRtpBurst":true,"releaseAfter":false}'
+./tools/rbs_api.sh "$BASE/lte/start_call" POST '{"cellId":42,"imsi":250010000000003,"withRtpBurst":true,"releaseAfter":false}'
 
 # завершение VoLTE звонка
-./tools/rbs_api.sh "$BASE/lte/end_call" POST '{"cellId":42,"imsi":300000000000003,"releaseAfter":true}'
+./tools/rbs_api.sh "$BASE/lte/end_call" POST '{"cellId":42,"imsi":250010000000003,"releaseAfter":true}'
 
 # ручной trigger handover
-./tools/rbs_api.sh "$BASE/lte/handover" POST '{"cellId":42,"imsi":300000000000003,"targetCellId":43}'
+./tools/rbs_api.sh "$BASE/lte/handover" POST '{"cellId":42,"imsi":250010000000003,"targetCellId":43}'
 
 # -----------------------------
 # 2) Links: общий список
@@ -1834,7 +1831,7 @@ curl http://127.0.0.1:8181/api/v1/alarms
 # Подключить UE (rat: GSM | UMTS | LTE | NR):
 curl -X POST http://127.0.0.1:8181/api/v1/admit \
      -H "Content-Type: application/json" \
-     -d '{"imsi": 300000000000003, "rat": "LTE"}'
+     -d '{"imsi": 250010000000003, "rat": "LTE"}'
 # → {"status":"ok","crnti":101}
 ```
 
@@ -2081,10 +2078,6 @@ powershell -ExecutionPolicy Bypass -File .\tools\smoke_all_rat.ps1 -StopExisting
 
 ---
 
-## Разработка с GitHub Copilot
-
-Репозиторий содержит преднастроенные файлы для GitHub Copilot в папке `.github/`:
-
 ### Конвенции кода — `copilot-instructions.md`
 
 Файл `.github/copilot-instructions.md` автоматически применяется Copilot ко всем чатам в этом воркспейсе. Содержит:
@@ -2199,27 +2192,6 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 | п.28 | CI/CD Pipeline (GitHub Actions): `.github/workflows/build.yml`, matrix `{Debug,Release}×{ubuntu-22.04,ubuntu-24.04}`, ASAN в Debug ubuntu-22.04, `ctest --output-on-failure`, badge в README |
 | п.29 | Real NG/Xn Transport (SCTP): dual-mode transport в `NgapLink`/`XnAPLink` (in-memory + SCTP backend), API `bindTransport/connectSctpPeer`, `NRStack` overload-методы для peer IP/port, тест `test_ng_xn_transport` |
 
-### Детализация последней выполненной итерации (п.29)
-
-Цель:
-перейти от in-memory NGAP/XnAP транспорта к реальному SCTP/IP, сохранив обратную совместимость существующих сценариев.
-
-Артефакты:
-- `NgapLink`/`XnAPLink`: dual-mode transport (in-memory + SCTP backend на базе `SctpSocket`)
-- новые API для transport-конфигурации: `bindTransport()` и `connectSctpPeer()`
-- `NRStack`: overload-методы `connectNgPeer(...ip,port...)` и `connectXnPeer(...ip,port...)`
-- тест: `test_ng_xn_transport`
-
-Тесты:
-- `test_ng_xn_transport`
-- `test_ngap_codec`
-- `test_xnap`
-- `test_nr_stack`
-
-Результат:
-- транспортный SCTP-path для NG/Xn интегрирован без регрессий in-memory режима
-- таргетные NR/transport тесты проходят локально
-
 ---
 
 ## Стандарты и спецификации
@@ -2267,7 +2239,7 @@ YYYY-MM-DD HH:MM:SS.mmm [LEVEL] [Источник] Сообщение
 
 Итог текущего этапа проекта:
 - сформирован целостный Multi-RAT стенд GSM/UMTS/LTE/NR с единым OMS и REST-управлением;
-- реализованы NR core-функции симуляции (scheduler/SDAP/PDCP, XnAP, NGAP, slicing);
+- реализованы NR core-функции (scheduler/SDAP/PDCP, XnAP, NGAP, slicing);
 - добавлены эксплуатационные механизмы (Link health, Prometheus export, CI pipeline);
 - тестовая база расширена и стабильно проходит (локально 51/51).
 

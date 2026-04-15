@@ -15,6 +15,17 @@
 				"Remove accidental VS Code tasks.json artifact"
 			],
 			"isBackground": false
+		},
+		{
+			"label": "git-push-main-fault-correlation",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"push",
+				"origin",
+				"main"
+			],
+			"isBackground": false
 		}
 	]
 }

@@ -42,7 +42,7 @@
 проверить межвендорную совместимость и работоспособность сценариев вне in-memory стенда.
 
 Артефакты:
-- e2e smoke-скрипты для Open5GS (NGAP/PDU session) и Osmocom (Abis IPA).
+- e2e smoke-скрипты для Open5GS (NGAP/PDU session).
 - Набор golden traces/pcap для регрессионной проверки.
 
 Критерий готовности:

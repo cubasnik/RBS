@@ -2,15 +2,7 @@
 
 ## Overview
 
-**RBS теперь поддерживает полную архитектуру для Abis-over-IP (IP Protocol for Abis)** согласно 3GPP TS 12.21 §4.2.
-
-### Текущий статус
-- ✅ **Симуляция**: in-memory очередь сообщений (стабильно работает)
-- ✅ **TCP/IPA транспорт**: структурно готов, требует конфигурации
-- ✅ **IPA Frame Parser**: полная поддержка фреймирования
-- ✅ **все тесты pass**: никаких регрессий
-
----
+**RBS поддерживает полную архитектуру для Abis-over-IP (IP Protocol for Abis)** согласно 3GPP TS 12.21 §4.2.
 
 ## Architecture
 
@@ -19,16 +11,16 @@
 ```
 ┌─────────────────────────────────────────────────┐
 │ OML Messages (TS 12.21)                         │
-│ OPSTART, SET_BTS_ATTR, CHANNEL_ACTIVATION, etc │
+│ OPSTART, SET_BTS_ATTR, CHANNEL_ACTIVATION, etc  │
 ├─────────────────────────────────────────────────┤
-│ IPA Framing (TS 12.21 §4.2)  [NEW]             │
-│ Length (LE 16b) | Filter | Type | Payload     │
+│ IPA Framing (TS 12.21 §4.2)                     │
+│ Length (LE 16b) | Filter | Type | Payload       │
 ├─────────────────────────────────────────────────┤
-│ TCP Socket (Point-to-Point)  [NEW]             │
-│ TcpSocket class with async RX callback         │
+│ TCP Socket (Point-to-Point)                     │
+│ TcpSocket class with async RX callback          │
 ├─────────────────────────────────────────────────┤
-│ Network (TCP/IP 127.0.0.1:3002 default)       │
-│ RBS Node ←→ Real BSC (Osmocom, Nokia, etc)    │
+│ Network (TCP/IP 127.0.0.1:3002 default)         │
+│ RBS Node ←→ Real BSC                            │
 └─────────────────────────────────────────────────┘
 ```
 
@@ -36,19 +28,19 @@
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│                         RadioBaseStation                          │  ← main.cpp
-├──────────────┬──────────────┬──────────────┬──────────────────────┤
-│   GSMStack   │   UMTSStack  │   LTEStack   │       NRStack        │  ← RAT стеки
-├──────────────┼──────────────┼──────────────┼──────────────────────┤
-│   GSM MAC    │   UMTS MAC   │ LTE MAC+PDCP │   NR MAC+SDAP+PDCP   │
-├──────────────┼──────────────┼──────────────┼──────────────────────┤
-│   GSM PHY    │   UMTS PHY   │   LTE PHY    │       NR PHY         │
-├──────────────┴──────────────┴──────────────┴──────────────────────┤
-│ EN-DC NSA coordinator (X2AP): LTE(MN) ↔ NR(SN), Option 3/3a/3x    │
+│                         RadioBaseStation                           │  ← main.cpp
+├──────────────┬──────────────┬──────────────┬───────────────────────┤
+│   GSMStack   │   UMTSStack  │   LTEStack   │       NRStack         │  ← RAT стеки
+├──────────────┼──────────────┼──────────────┼───────────────────────┤
+│   GSM MAC    │   UMTS MAC   │ LTE MAC+PDCP │   NR MAC+SDAP+PDCP    │
+├──────────────┼──────────────┼──────────────┼───────────────────────┤
+│   GSM PHY    │   UMTS PHY   │   LTE PHY    │       NR PHY          │
+├──────────────┴──────────────┴──────────────┴───────────────────────┤
+│ EN-DC NSA coordinator (X2AP): LTE(MN) ↔ NR(SN), Option 3/3a/3x     │
 ├────────────────────────────────────────────────────────────────────┤
-│                  HAL — IRFHardware / RFHardware                   │
+│                  HAL — IRFHardware / RFHardware                    │
 ├────────────────────────────────────────────────────────────────────┤
-│                  Common — types, logger, config                   │
+│                  Common — types, logger, config                    │
 └────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -61,13 +53,13 @@ NSA 5G в RBS поддерживается через EN-DC (TS 37.340):
 
 ## Files Created
 
-### 1. **`src/common/tcp_socket.h` / `tcp_socket.cpp`** (800 линий)
+### 1. **`src/common/tcp_socket.h` / `tcp_socket.cpp`** 
    - Cross-platform TCP socket (Windows + Linux)
    - Async receive callback pattern
    - Drop-in replacement for SCTP socket interface
    - Supports: bind, listen, accept, connect, send, recv (async)
 
-### 2. **`src/gsm/ipa.h`** (200 линий)
+### 2. **`src/gsm/ipa.h`** 
    - IPA frame encoding/decoding
    - `FrameParser` class for streaming reassembly
    - Frame format per TS 12.21:
@@ -76,7 +68,7 @@ NSA 5G в RBS поддерживается через EN-DC (TS 37.340):
      (2 bytes)      (1 byte)     (1 byte)   (variable)
      ```
 
-### 3. **`src/gsm/abis_link.{h,cpp}`** (updated)
+### 3. **`src/gsm/abis_link.{h,cpp}`** 
    - Dual-mode: simulation ↔ TCP/IPA
    - New method: `onTcpRxPacket()` for async frame processing
    - Fields:
@@ -84,7 +76,7 @@ NSA 5G в RBS поддерживается через EN-DC (TS 37.340):
      - `ipa::FrameParser ipaParser_`
      - `bool useRealTransport_`
 
-### 4. **`CMakeLists.txt`** (updated)
+### 4. **`CMakeLists.txt`** 
    - Added `src/common/tcp_socket.cpp` to `rbs_common` library
 
 ---
@@ -123,7 +115,7 @@ if (success) {
 ```ini
 [gsm]
 # Пусто = симуляция, заполнено = TCP/IPA:
-bsc_addr       = 10.10.10.1   # Реальный BSC IP
+bsc_addr       = 10.10.10.1    # BSC IP
 bsc_port       = 3002          # IPA default port
 ```
 
@@ -196,7 +188,7 @@ cd build && ctest -C Debug
 ## Next Steps
 
 1. **Real BSC Integration**
-   - Osmocom BTS (`osmo-bts-trx`) on Linux
+   - BTS (`bts-trx`) on Linux
    - Test real OML handshake
 
 2. **Error Handling**
@@ -209,7 +201,7 @@ cd build && ctest -C Debug
    - TCP window tuning for bursty OML traffic
 
 4. **Documentation**
-   - IPA interop guide (Osmocom, Nokia, Ericsson)
+   - IPA interop guide 
    - Troubleshooting playbook
 
 ---
@@ -220,16 +212,14 @@ cd build && ctest -C Debug
 
 ### Реализованные опции
 
-| Опция | Описание | Статус |
-|-------|---------|--------|
-| **A** | Config-gated TCP/IPA: флаг abis_transport в rbs.conf → switch sim↔ipa_tcp | ✅ DONE |
-| **B** | Managed reconnect: backoff 1s→2s→5s→10s при обрыве TCP | ✅ DONE |
-| **B+** | Health state: REST /api/v1/links/abis/health (UP/DEGRADED/DOWN) + monitor | ✅ DONE |
-| **B++** | Keepalive probe: авто-отправка OML ping при stale RX, conf params | ✅ DONE |
-| **C** | OML/RSL split по IPA: msgFilter 0x00/0x01, REST inject/list процедур | ✅ DONE |
-| **C.1** | Параметризованный RSL inject: chanNr, entity, payload в POST body | ✅ DONE |
-| **D** | Interop profile (osmocom-first): конфиг abis_interop_profile, golden тесты | ✅ DONE |
-| **D.1** | Mock-BSC (Python): tools/mock_bsc_ipa.py, e2e abis_d1_mock_smoke.sh | ✅ DONE |
+ Config-gated TCP/IPA: флаг abis_transport в rbs.conf → switch sim↔ipa_tcp 
+ Managed reconnect: backoff 1s→2s→5s→10s при обрыве TCP 
+ Health state: REST /api/v1/links/abis/health (UP/DEGRADED/DOWN) + monitor 
+ Keepalive probe: авто-отправка OML ping при stale RX, conf params 
+ OML/RSL split по IPA: msgFilter 0x00/0x01, REST inject/list процедур 
+ Параметризованный RSL inject: chanNr, entity, payload в POST body 
+ Interop profile: конфиг abis_interop_profile, golden тесты 
+ Mock-BSC (Python): tools/mock_bsc_ipa.py, e2e abis_d1_mock_smoke.sh 
 
 ### Краткое резюме реализации
 
@@ -284,15 +274,8 @@ powershell -ExecutionPolicy Bypass -File .\tools\smoke_all_rat.ps1 -StopExisting
 
 ### Будущие расширения (вне текущей реализации)
 
-1. Real Osmocom BTS interop на физическом RAN.
+1. Real BTS interop на физическом RAN.
 2. Edge-case тесты reassembly (`>65KB`, async fragmentation).
 3. Zero-copy parsing и multi-homing для отказоустойчивости.
 
 ---
-## Code Stats
-
-- **New files**: 3 (tcp_socket.h/cpp, ipa.h)
-- **Modified files**: 2 (abis_link.h/cpp, CMakeLists.txt)
-- **Lines added**: ~1500 LOC
-- **Test coverage**: 100% (all tests pass)
-- **Backward compat**: ✅ Yes (simulation mode default)
