@@ -1,4 +1,8 @@
 {
+    "files.exclude": {
+        ".github": true,
+        ".vscode": true
+    },
     "chat.tools.terminal.autoApprove": {
         ".\\build\\Release\\rbs_node.exe": true,
         "Test-Path": true,
